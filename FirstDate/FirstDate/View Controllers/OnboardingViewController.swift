@@ -8,7 +8,10 @@
 
 import UIKit
 
-class OnboardingViewController: UIViewController {
+class OnboardingViewController: UIViewController, UICollectionViewDelegate { //UICollectionViewDataSource {
+    
+    //MARK: - Properties
+    
 
     @IBOutlet weak var collectionViewLayout: UICollectionViewFlowLayout!
    
@@ -18,6 +21,17 @@ class OnboardingViewController: UIViewController {
         
     }
     
+//    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+//
+//    }
+//
+//    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+//
+//    }
+//
+//    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAtIndexPath indexPath: IndexPath) -> CGSize {
+//
+//    }
 
     /*
     // MARK: - Navigation
