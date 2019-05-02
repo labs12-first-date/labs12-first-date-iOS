@@ -46,7 +46,3 @@ struct STD {
     var title: String
 }
 
-struct Page {
-    let imageName: String
-    let headerText: String
-}

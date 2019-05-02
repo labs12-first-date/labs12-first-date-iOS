@@ -1,21 +1,20 @@
 //
-//  ViewController.swift
+//  OnboardingViewController.swift
 //  FirstDate
 //
-//  Created by Lambda_School_Loaner_34 on 4/30/19.
+//  Created by Lambda_School_Loaner_34 on 5/2/19.
 //  Copyright © 2019 Frulwinn. All rights reserved.
 //
 
 import UIKit
 
-class ViewController: UIViewController {
-    
-    //MARK: - outlets
-    
+class OnboardingViewController: UIViewController {
+
+    @IBOutlet weak var collectionViewLayout: UICollectionViewFlowLayout!
+   
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // entry point
         
     }
     
