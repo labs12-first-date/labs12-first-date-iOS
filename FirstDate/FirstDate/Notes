@@ -1,0 +1,52 @@
+credit if use icons
+Icon made by [author link] from www.flaticon.com
+
+bandaid on heart
+<div>Icons made by <a href="https://www.flaticon.com/<?=_('authors').'/'?>smalllikeart" title="smalllikeart">smalllikeart</a> from <a href="https://www.flaticon.com/"             title="Flaticon">www.flaticon.com</a> is licensed by <a href="http://creativecommons.org/licenses/by/3.0/"             title="Creative Commons BY 3.0" target="_blank">CC 3.0 BY</a></div>
+
+heart in bottle
+<div>Icons made by <a href="https://www.flaticon.com/<?=_('authors').'/'?>smalllikeart" title="smalllikeart">smalllikeart</a> from <a href="https://www.flaticon.com/"             title="Flaticon">www.flaticon.com</a> is licensed by <a href="http://creativecommons.org/licenses/by/3.0/"             title="Creative Commons BY 3.0" target="_blank">CC 3.0 BY</a></div>
+
+chocolate
+<div>Icons made by <a href="https://www.flaticon.com/<?=_('authors').'/'?>smalllikeart" title="smalllikeart">smalllikeart</a> from <a href="https://www.flaticon.com/"             title="Flaticon">www.flaticon.com</a> is licensed by <a href="http://creativecommons.org/licenses/by/3.0/"             title="Creative Commons BY 3.0" target="_blank">CC 3.0 BY</a></div>
+
+location
+<div>Icons made by <a href="https://www.flaticon.com/<?=_('authors').'/'?>freepik" title="Freepik">Freepik</a> from <a href="https://www.flaticon.com/"             title="Flaticon">www.flaticon.com</a> is licensed by <a href="http://creativecommons.org/licenses/by/3.0/"             title="Creative Commons BY 3.0" target="_blank">CC 3.0 BY</a></div>
+
+messaging
+<div>Icons made by <a href="https://www.flaticon.com/<?=_('authors').'/'?>smalllikeart" title="smalllikeart">smalllikeart</a> from <a href="https://www.flaticon.com/"             title="Flaticon">www.flaticon.com</a> is licensed by <a href="http://creativecommons.org/licenses/by/3.0/"             title="Creative Commons BY 3.0" target="_blank">CC 3.0 BY</a></div>
+
+heart idea
+<div>Icons made by <a href="https://www.flaticon.com/<?=_('authors').'/'?>freepik" title="Freepik">Freepik</a> from <a href="https://www.flaticon.com/"             title="Flaticon">www.flaticon.com</a> is licensed by <a href="http://creativecommons.org/licenses/by/3.0/"             title="Creative Commons BY 3.0" target="_blank">CC 3.0 BY</a></div>
+
+just heart
+<div>Icons made by <a href="https://www.flaticon.com/<?=_('authors').'/'?>pixel-buddha" title="Pixel Buddha">Pixel Buddha</a> from <a href="https://www.flaticon.com/"             title="Flaticon">www.flaticon.com</a> is licensed by <a href="http://creativecommons.org/licenses/by/3.0/"             title="Creative Commons BY 3.0" target="_blank">CC 3.0 BY</a></div>
+
+app flow
+
+1.
+log in
+- google, facebook, email
+(log in model)
+
+2.
+right when you sign in
+boolean to check if you onboarded
+if not start onboarding
+(profile model)
+
+3.
+first page - profile
+settings
+get to add pictures and media
+(profile model)
+
+4.
+get matches based on condition, age, location(zipcode)
+you like him
+if he likes you back then you can message him
+
+5.
+messaging
+shows all messages
+(messaging model)
