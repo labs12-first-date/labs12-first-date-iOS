@@ -55,6 +55,23 @@ class UserController {
         
     }
     
+    func login(withEmail email: String, andPassword password: String, completion: @escaping (Error?) -> Void) {
+        
+        Auth.auth().signIn(withEmail: email, password: password) { (user, error) in
+            
+            if let error = error {
+                NSLog("Error finding user account: \(error)")
+                completion(error)
+                return
+            }
+            
+           /* if let userAccount = user {
+                self.userFound = true
+                self.fetchSingleEntryFromServer(userId: userAccount.user.uid, completion: completion)
+            }*/
+        }
+    }
+    
     func updateMessages(user: User, messageThread: MessageThread, completion: @escaping (Error?) -> Void = {_ in }) {
         
         let ref = userRef.child(user.identifier).updateChildValues(["messages": messageThread])
