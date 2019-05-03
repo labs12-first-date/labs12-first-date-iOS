@@ -15,6 +15,7 @@ class UserController {
     
     let baseURL = URL(string: "https://awkdate.firebaseio.com/")!
     let userRef = Database.database().reference(withPath: "users")
+    let profileRef = Database.database().reference(withPath: "profiles")
     let db = Firestore.firestore()
     
     
@@ -27,7 +28,8 @@ class UserController {
     func createUserAccount(withEmail email: String, andPassword password: String, andFirst firstName: String, andLast lastName: String, age: Int, gender: String, mainPhoto: Data, zipcode: Int, biography: String?, condition: [String], completion: @escaping (Error?) -> Void) {
         
         let likedMatches: [Profile] = []
-        let message:[MessageThread] =  [MessageThread(title: "Shane Lowe", messages: [MessageThread.Message(text: "Hi", senderName: "Shane Lowe")], identifier: "fakeIdentifier")]
+        //let message:[MessageThread] =  [MessageThread(title: "Shane Lowe", messages: [MessageThread.Message(text: "Hi", senderName: "Shane Lowe")], identifier: "fakeIdentifier")]
+        let message:[MessageThread] = []
         let photoLibrary:[Photo] = []
         Auth.auth().createUser(withEmail: email, password: password) { (user, error) in
             
@@ -44,6 +46,7 @@ class UserController {
                     print("The same uid!")
                     self.localCurrentUser = userLocal
                     self.putUserToServer(user: userLocal, completion: completion)
+                    self.putProfileToServer(user: userLocal)
                     self.changeRequest?.displayName = userLocal.firstName
                     self.changeRequest?.commitChanges(completion: { (error) in
                         print("Created display name")
@@ -79,16 +82,26 @@ class UserController {
       
     }
     
+    func putProfileToServer(user: User, completion: @escaping (Error?) -> Void = {_ in }) {
+        let identifier = user.identifier
+        
+        let profile = Profile(identifier: identifier, name: user.firstName, age: user.age, gender: user.gender, zipcode: user.zipcode, condition: user.condition, mainPhoto: user.mainPhoto, photoLibrary: user.photoLibrary, biography: user.biography, isLiked: false)
+        
+        let specificProfileRef = self.profileRef.child(identifier)
+        
+        specificProfileRef.setValue(profile.toAnyObject())
+    }
+    
     func putUserToServer(user: User, completion: @escaping (Error?) -> Void = {_ in }) {
         let identifier = user.identifier
         
-        var ref: DocumentReference? = nil
-        ref = db.collection("users").addDocument(data: user.dictionaryRepresentation as! [String : Any])
+       /* var ref: DocumentReference? = nil
+        ref = db.collection("users").addDocument(data: user.dictionaryRepresentation as! [String : Any]) */
         
         
-       /* let specificUserRef = self.userRef.child(identifier)
+        let specificUserRef = self.userRef.child(identifier)
         
-        specificUserRef.setValue(user.toAnyObject())*/
+        specificUserRef.setValue(user.toAnyObject())
         
         
       /*

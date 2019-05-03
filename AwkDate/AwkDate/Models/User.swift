@@ -81,14 +81,20 @@ struct Photo: Equatable, Codable {
 
 struct Profile: Codable {
     
+    
     var identifier: String
     var name: String
     var age: Int
+    var gender: String
     var zipcode: Int
     var condition: [String]
-    var mainPhoto: Data
-    var photoLibrary: [Data]
+    var mainPhoto: Photo
+    var photoLibrary: [Photo]
     var biography: String
     var isLiked: Bool
+    
+    func toAnyObject() -> Dictionary<String, Any> {
+        return ["identifier": identifier, "name": name, "age": age, "gender": gender, "mainPhoto": [mainPhoto.imageData.description, mainPhoto.caption], "zipcode": zipcode, "biography": biography, "condition": condition, "isLiked": isLiked.description, "photoLibrary": photoLibrary]
+    }
     
 }
