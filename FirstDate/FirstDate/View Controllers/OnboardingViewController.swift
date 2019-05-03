@@ -8,30 +8,30 @@
 
 import UIKit
 
-class OnboardingViewController: UIViewController, UICollectionViewDelegate { //UICollectionViewDataSource {
+class OnboardingViewController: UIViewController, UICollectionViewDelegate { //}, UICollectionViewDataSource, UIScrollViewDelegate {
     
     //MARK: - Properties
+    var nameLabel = UILabel()
+    var textField = UITextField()
     
-
-    @IBOutlet weak var collectionViewLayout: UICollectionViewFlowLayout!
-   
+    //MARK: - Outlets
+    @IBOutlet weak var scrollView: UIScrollView! {
+        didSet {
+            scrollView.addSubview(nameLabel)
+            scrollView.addSubview(textField)
+            
+        }
+    }
+    @IBOutlet weak var pageControl: UIPageControl!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
         
+        
     }
     
-//    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-//
-//    }
-//
-//    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-//
-//    }
-//
-//    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAtIndexPath indexPath: IndexPath) -> CGSize {
-//
-//    }
+    
 
     /*
     // MARK: - Navigation
