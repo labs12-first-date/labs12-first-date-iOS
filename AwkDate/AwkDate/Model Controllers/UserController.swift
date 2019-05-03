@@ -14,6 +14,7 @@ import Firebase
 class UserController {
     
     let baseURL = URL(string: "https://awkdate.firebaseio.com/")!
+    let userRef = Database.database().reference(withPath: "users")
     
     var serverCurrentUser = Auth.auth().currentUser
     var localCurrentUser: User?
@@ -21,8 +22,11 @@ class UserController {
     
     let changeRequest = Auth.auth().currentUser?.createProfileChangeRequest()
     
-    func createUserAccount(withEmail email: String, andPassword password: String, andFirst firstName: String, andLast lastName: String, age: Int, gender: String, mainPhoto: Data, zipcode: Int, biography: String?, condition: [STD], completion: @escaping (Error?) -> Void) {
+    func createUserAccount(withEmail email: String, andPassword password: String, andFirst firstName: String, andLast lastName: String, age: Int, gender: String, mainPhoto: Data, zipcode: Int, biography: String?, condition: [String], completion: @escaping (Error?) -> Void) {
         
+        let likedMatches: [Profile] = []
+        let message:[MessageThread] = []
+        let photoLibrary:[Photo] = []
         Auth.auth().createUser(withEmail: email, password: password) { (user, error) in
             
             if let error = error {
@@ -32,7 +36,7 @@ class UserController {
             }
             
             if let userAccount = user {
-                let userLocal = User(email: email, password: password, identifier: userAccount.user.uid, firstName: firstName, lastName: lastName, age: age, gender: gender, mainPhoto: self.currentPhoto!, zipcode: zipcode, biography: biography, condition: condition, likedMatches: [], message: [], photoLibrary: [])
+                let userLocal = User(email: email, password: password, identifier: userAccount.user.uid, firstName: firstName, lastName: lastName, age: age, gender: gender, mainPhoto: self.currentPhoto!, zipcode: zipcode, biography: biography ?? "", condition: condition, likedMatches: likedMatches, messages: message, photoLibrary: photoLibrary)
 
                 if Auth.auth().currentUser?.uid == userLocal.identifier {
                     print("The same uid!")
@@ -50,12 +54,18 @@ class UserController {
     }
     
     func putUserToServer(user: User, completion: @escaping (Error?) -> Void = {_ in }) {
-        
         let identifier = user.identifier
+        let specificUserRef = self.userRef.child(identifier)
         
-        let firebaseURL = baseURL.appendingPathComponent("users").appendingPathComponent(identifier).appendingPathExtension("json")
+        specificUserRef.setValue(user.toAnyObject())
         
-        var request = URLRequest(url: firebaseURL)
+        
+       /*
+        let urlPlusUser = baseURL.appendingPathComponent("users")
+        let urlPlusID = urlPlusUser.appendingPathComponent(identifier)
+        let urlPlusJSON = urlPlusID.appendingPathExtension("json")
+        
+        var request = URLRequest(url: urlPlusJSON)
         request.httpMethod = "PUT"
         
         do {
@@ -77,7 +87,7 @@ class UserController {
             
             completion(nil)
             print("Done creating user!: \(user.firstName)")
-            }.resume()
+            }.resume() */
       
     }
     

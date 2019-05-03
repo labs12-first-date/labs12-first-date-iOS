@@ -12,6 +12,21 @@ import Foundation
 
 class User: Codable {
     
+    static private let uidKey = "identifier"
+    static private let firstNameKey = "firstName"
+    static private let lastNameKey = "lastName"
+    static private let emailKey = "emailAddress"
+    static private let passwordKey = "password"
+    static private let ageKey = "age"
+    static private let genderKey = "gender"
+    static private let mainPhotoKey = "mainPhoto"
+    static private let zipcodeKey = "zipcode"
+    static private let conditionKey = "condition"
+    static private let biographyKey = "biography"
+    static private let likedMatchesKey = "likedMatches"
+    static private let messagesKey = "messages"
+    static private let photoLibraryKey = "photoLibrary"
+    
     var email: String
     var password: String
     var identifier: String
@@ -22,14 +37,14 @@ class User: Codable {
     var mainPhoto: Photo
     var zipcode: Int
    // var bio: String?
-    var condition: [STD]
+    var condition: [String]
     
-    var biography: String?
-    var likedMatches: [Profile]?
-    var message: [MessageThread]?
-    var photoLibray: [Photo]?
+    var biography: String
+    var likedMatches: [Profile]
+    var messages: [MessageThread]
+    var photoLibrary: [Photo]
     
-    init(email: String, password: String, identifier: String, firstName: String, lastName: String, age: Int, gender: String, mainPhoto: Photo, zipcode: Int, biography: String?, condition: [STD], likedMatches: [Profile]?, message: [MessageThread]?, photoLibrary: [Photo]?) {
+    init(email: String, password: String, identifier: String, firstName: String, lastName: String, age: Int, gender: String, mainPhoto: Photo, zipcode: Int, biography: String = "", condition: [String], likedMatches: [Profile] = [], messages: [MessageThread] = [], photoLibrary: [Photo] = []) {
         self.email = email
         self.password = password
         self.identifier = identifier
@@ -39,11 +54,19 @@ class User: Codable {
         self.gender = gender
         self.mainPhoto = mainPhoto
         self.zipcode = zipcode
-        self.biography = biography ?? ""
+        self.biography = biography
         self.condition = condition
-        self.likedMatches = likedMatches ?? []
-        self.message = message ?? []
-        self.photoLibray = photoLibrary ?? []
+        self.likedMatches = likedMatches
+        self.messages = messages
+        self.photoLibrary = photoLibrary
+    }
+    
+    /*var dictionaryRepresentation: NSDictionary {
+        return [User.emailKey: email, User.passwordKey: password, User.firstNameKey: firstName, User.lastNameKey: lastName, User.ageKey: age, User.genderKey: gender, User.mainPhotoKey: mainPhoto, User.zipcodeKey: zipcode, User.biographyKey: biography, User.conditionKey: condition, User.likedMatchesKey: likedMatches, User.messagesKey: messages, User.photoLibraryKey: photoLibrary] as NSDictionary
+    }*/
+    
+    func toAnyObject() -> Dictionary<String, Any> {
+        return [User.emailKey: email, User.passwordKey: password, User.firstNameKey: firstName, User.lastNameKey: lastName, User.ageKey: age, User.genderKey: gender, User.mainPhotoKey: [mainPhoto.imageData.description, mainPhoto.caption], User.zipcodeKey: zipcode, User.biographyKey: biography, User.conditionKey: condition, User.likedMatchesKey: likedMatches, User.messagesKey: messages, User.photoLibraryKey: photoLibrary]
     }
 
 }
@@ -51,7 +74,7 @@ class User: Codable {
 struct Photo: Equatable, Codable {
     
     var imageData: Data
-    var caption: String?
+    var caption: String
 
 }
 
@@ -63,14 +86,8 @@ struct Profile: Codable {
     var zipcode: Int
     var condition: [String]
     var mainPhoto: Data
-    var photoLibrary: [Data]?
+    var photoLibrary: [Data]
     var biography: String
     var isLiked: Bool
     
 }
-
-struct STD: Codable {
-    var title: String
-}
-
-
