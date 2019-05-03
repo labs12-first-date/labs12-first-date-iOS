@@ -15,6 +15,8 @@ class UserController {
     
     let baseURL = URL(string: "https://awkdate.firebaseio.com/")!
     let userRef = Database.database().reference(withPath: "users")
+    let db = Firestore.firestore()
+    
     
     var serverCurrentUser = Auth.auth().currentUser
     var localCurrentUser: User?
@@ -25,7 +27,7 @@ class UserController {
     func createUserAccount(withEmail email: String, andPassword password: String, andFirst firstName: String, andLast lastName: String, age: Int, gender: String, mainPhoto: Data, zipcode: Int, biography: String?, condition: [String], completion: @escaping (Error?) -> Void) {
         
         let likedMatches: [Profile] = []
-        let message:[MessageThread] = []
+        let message:[MessageThread] =  [MessageThread(title: "Shane Lowe", messages: [MessageThread.Message(text: "Hi", senderName: "Shane Lowe")], identifier: "fakeIdentifier")]
         let photoLibrary:[Photo] = []
         Auth.auth().createUser(withEmail: email, password: password) { (user, error) in
             
@@ -53,14 +55,26 @@ class UserController {
         
     }
     
+    func updateMessages(user: User, messageThread: MessageThread, completion: @escaping (Error?) -> Void = {_ in }) {
+        
+        let ref = userRef.child(user.identifier).updateChildValues(["messages": messageThread])
+        
+      
+    }
+    
     func putUserToServer(user: User, completion: @escaping (Error?) -> Void = {_ in }) {
         let identifier = user.identifier
-        let specificUserRef = self.userRef.child(identifier)
         
-        specificUserRef.setValue(user.toAnyObject())
+        var ref: DocumentReference? = nil
+        ref = db.collection("users").addDocument(data: user.dictionaryRepresentation as! [String : Any])
         
         
-       /*
+       /* let specificUserRef = self.userRef.child(identifier)
+        
+        specificUserRef.setValue(user.toAnyObject())*/
+        
+        
+      /*
         let urlPlusUser = baseURL.appendingPathComponent("users")
         let urlPlusID = urlPlusUser.appendingPathComponent(identifier)
         let urlPlusJSON = urlPlusID.appendingPathExtension("json")

@@ -11,6 +11,7 @@ target 'AwkDate' do
   pod 'MessageKit'
 
   pod 'Firebase/Database'
+  pod 'Firebase/Firestore'
   
   target 'AwkDateTests' do
     inherit! :search_paths

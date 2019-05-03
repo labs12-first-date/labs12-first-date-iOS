@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import MessageKit
 
 // https://awkdate.firebaseio.com/
 
@@ -61,9 +62,9 @@ class User: Codable {
         self.photoLibrary = photoLibrary
     }
     
-    /*var dictionaryRepresentation: NSDictionary {
+    var dictionaryRepresentation: NSDictionary {
         return [User.emailKey: email, User.passwordKey: password, User.firstNameKey: firstName, User.lastNameKey: lastName, User.ageKey: age, User.genderKey: gender, User.mainPhotoKey: mainPhoto, User.zipcodeKey: zipcode, User.biographyKey: biography, User.conditionKey: condition, User.likedMatchesKey: likedMatches, User.messagesKey: messages, User.photoLibraryKey: photoLibrary] as NSDictionary
-    }*/
+    }
     
     func toAnyObject() -> Dictionary<String, Any> {
         return [User.emailKey: email, User.passwordKey: password, User.firstNameKey: firstName, User.lastNameKey: lastName, User.ageKey: age, User.genderKey: gender, User.mainPhotoKey: [mainPhoto.imageData.description, mainPhoto.caption], User.zipcodeKey: zipcode, User.biographyKey: biography, User.conditionKey: condition, User.likedMatchesKey: likedMatches, User.messagesKey: messages, User.photoLibraryKey: photoLibrary]

@@ -14,7 +14,6 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         super.viewDidLoad()
         updateViews()
         
-        // Do any additional setup after loading the view.
     }
 
     let userController = UserController()
@@ -49,8 +48,7 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         if userController.currentPhoto != nil {
             
             
-            
-            userController.createUserAccount(withEmail: "test1@test.com", andPassword: "testtest9", andFirst: "Iron", andLast: "Man", age: 40, gender: "Male", mainPhoto: photoData, zipcode: 22191, biography: "Genius, billionaire, superhero", condition: ["HIV", "Herpes"]) { (error) in
+            userController.createUserAccount(withEmail: "test5@test.com", andPassword: "testtest9", andFirst: "Hawk", andLast: "Eye", age: 45, gender: "male", mainPhoto: photoData, zipcode: 22191, biography: "weirdo superhero", condition: ["HIV", "Herpes"]) { (error) in
                 if let error = error {
                     print("Error creating user account: \(error)")
                     return
