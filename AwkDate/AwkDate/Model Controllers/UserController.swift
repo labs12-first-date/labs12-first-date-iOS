@@ -14,6 +14,9 @@ import Firebase
 class UserController {
     
     let baseURL = URL(string: "https://awkdate.firebaseio.com/")!
+    let userRef = Database.database().reference(withPath: "users")
+    let db = Firestore.firestore()
+    
     
     var serverCurrentUser = Auth.auth().currentUser
     var localCurrentUser: User?
@@ -21,8 +24,11 @@ class UserController {
     
     let changeRequest = Auth.auth().currentUser?.createProfileChangeRequest()
     
-    func createUserAccount(withEmail email: String, andPassword password: String, andFirst firstName: String, andLast lastName: String, age: Int, gender: String, mainPhoto: Data, zipcode: Int, biography: String?, condition: [STD], completion: @escaping (Error?) -> Void) {
+    func createUserAccount(withEmail email: String, andPassword password: String, andFirst firstName: String, andLast lastName: String, age: Int, gender: String, mainPhoto: Data, zipcode: Int, biography: String?, condition: [String], completion: @escaping (Error?) -> Void) {
         
+        let likedMatches: [Profile] = []
+        let message:[MessageThread] =  [MessageThread(title: "Shane Lowe", messages: [MessageThread.Message(text: "Hi", senderName: "Shane Lowe")], identifier: "fakeIdentifier")]
+        let photoLibrary:[Photo] = []
         Auth.auth().createUser(withEmail: email, password: password) { (user, error) in
             
             if let error = error {
@@ -32,7 +38,7 @@ class UserController {
             }
             
             if let userAccount = user {
-                let userLocal = User(email: email, password: password, identifier: userAccount.user.uid, firstName: firstName, lastName: lastName, age: age, gender: gender, mainPhoto: self.currentPhoto!, zipcode: zipcode, biography: biography, condition: condition, likedMatches: [], message: [], photoLibrary: [])
+                let userLocal = User(email: email, password: password, identifier: userAccount.user.uid, firstName: firstName, lastName: lastName, age: age, gender: gender, mainPhoto: self.currentPhoto!, zipcode: zipcode, biography: biography ?? "", condition: condition, likedMatches: likedMatches, messages: message, photoLibrary: photoLibrary)
 
                 if Auth.auth().currentUser?.uid == userLocal.identifier {
                     print("The same uid!")
@@ -49,13 +55,48 @@ class UserController {
         
     }
     
-    func putUserToServer(user: User, completion: @escaping (Error?) -> Void = {_ in }) {
+    func login(withEmail email: String, andPassword password: String, completion: @escaping (Error?) -> Void) {
         
+        Auth.auth().signIn(withEmail: email, password: password) { (user, error) in
+            
+            if let error = error {
+                NSLog("Error finding user account: \(error)")
+                completion(error)
+                return
+            }
+            
+           /* if let userAccount = user {
+                self.userFound = true
+                self.fetchSingleEntryFromServer(userId: userAccount.user.uid, completion: completion)
+            }*/
+        }
+    }
+    
+    func updateMessages(user: User, messageThread: MessageThread, completion: @escaping (Error?) -> Void = {_ in }) {
+        
+        let ref = userRef.child(user.identifier).updateChildValues(["messages": messageThread])
+        
+      
+    }
+    
+    func putUserToServer(user: User, completion: @escaping (Error?) -> Void = {_ in }) {
         let identifier = user.identifier
         
-        let firebaseURL = baseURL.appendingPathComponent("users").appendingPathComponent(identifier).appendingPathExtension("json")
+        var ref: DocumentReference? = nil
+        ref = db.collection("users").addDocument(data: user.dictionaryRepresentation as! [String : Any])
         
-        var request = URLRequest(url: firebaseURL)
+        
+       /* let specificUserRef = self.userRef.child(identifier)
+        
+        specificUserRef.setValue(user.toAnyObject())*/
+        
+        
+      /*
+        let urlPlusUser = baseURL.appendingPathComponent("users")
+        let urlPlusID = urlPlusUser.appendingPathComponent(identifier)
+        let urlPlusJSON = urlPlusID.appendingPathExtension("json")
+        
+        var request = URLRequest(url: urlPlusJSON)
         request.httpMethod = "PUT"
         
         do {
@@ -77,7 +118,7 @@ class UserController {
             
             completion(nil)
             print("Done creating user!: \(user.firstName)")
-            }.resume()
+            }.resume() */
       
     }
     

@@ -13,11 +13,12 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     override func viewDidLoad() {
         super.viewDidLoad()
         updateViews()
-        // Do any additional setup after loading the view.
+        
     }
 
     let userController = UserController()
     var photo: Photo?
+    
     
     @IBOutlet weak var imageView: UIImageView!
     @IBAction func addPhotoTapped(_ sender: UIButton) {
@@ -46,7 +47,8 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         userController.uploadPhoto(imageContainer: photoData, caption: "Main Photo")
         if userController.currentPhoto != nil {
             
-            userController.createUserAccount(withEmail: "test6@test.com", andPassword: "testtest4", andFirst: "Jill", andLast: "Blue", age: 20, gender: "Male", mainPhoto: photoData, zipcode: 22191, biography: "Yo", condition: [STD(title: "HIV")]) { (error) in
+            
+            userController.createUserAccount(withEmail: "test5@test.com", andPassword: "testtest9", andFirst: "Hawk", andLast: "Eye", age: 45, gender: "male", mainPhoto: photoData, zipcode: 22191, biography: "weirdo superhero", condition: ["HIV", "Herpes"]) { (error) in
                 if let error = error {
                     print("Error creating user account: \(error)")
                     return
@@ -75,3 +77,13 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     
 }
 
+/*
+ let user = User(email: "test8@test.com", password: "testtest8", identifier: "idjgueka", firstName: "Joe", lastName: "Black", age: 18, gender: "Male", mainPhoto: userController.currentPhoto!, zipcode: 22191, biography: "Hello", condition: [STD(title: "HIV")], likedMatches: [], message: [], photoLibrary: [])
+ 
+ userController.putUserToServer(user: user) { (error) in
+ if let error = error {
+ print("Error in save photo: \(error)")
+ return
+ }
+ print("Put to Server!")
+ }*/
