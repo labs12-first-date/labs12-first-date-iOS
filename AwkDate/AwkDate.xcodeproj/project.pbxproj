@@ -8,6 +8,14 @@
 
 /* Begin PBXBuildFile section */
 		23AA840CDFE724BB0287990E /* Pods_AwkDate.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E7F9A0579D89A2E32923A6C8 /* Pods_AwkDate.framework */; };
+		48D6DADF228214A800A77728 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 48D6DADD228214A800A77728 /* Main.storyboard */; };
+		48D6DAE22282183500A77728 /* ChooseSignupOrLoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48D6DAE12282183500A77728 /* ChooseSignupOrLoginViewController.swift */; };
+		48D6DAE42282186600A77728 /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48D6DAE32282186600A77728 /* SignUpViewController.swift */; };
+		48D6DAE62282189800A77728 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48D6DAE52282189800A77728 /* LoginViewController.swift */; };
+		48D6DAE8228218DC00A77728 /* OnboardingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48D6DAE7228218DC00A77728 /* OnboardingViewController.swift */; };
+		48D6DAEA2282197C00A77728 /* GetUserInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48D6DAE92282197C00A77728 /* GetUserInfoViewController.swift */; };
+		48D6DAEC228219AA00A77728 /* BioConditionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48D6DAEB228219AA00A77728 /* BioConditionViewController.swift */; };
+		48D6DAEE228219DF00A77728 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48D6DAED228219DF00A77728 /* ProfileViewController.swift */; };
 		4F3C55D822792A1E006307A9 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F3C55D722792A1E006307A9 /* AppDelegate.swift */; };
 		4F3C55DA22792A1E006307A9 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F3C55D922792A1E006307A9 /* ViewController.swift */; };
 		4F3C55DD22792A1E006307A9 /* MainTest.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4F3C55DB22792A1E006307A9 /* MainTest.storyboard */; };
@@ -44,6 +52,14 @@
 		012238BD4CFFD1B891F13654 /* Pods-AwkDateTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AwkDateTests.release.xcconfig"; path = "Target Support Files/Pods-AwkDateTests/Pods-AwkDateTests.release.xcconfig"; sourceTree = "<group>"; };
 		1224DB312B4A1660FC47D00D /* Pods-AwkDate.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AwkDate.debug.xcconfig"; path = "Target Support Files/Pods-AwkDate/Pods-AwkDate.debug.xcconfig"; sourceTree = "<group>"; };
 		1BC226744CAFF4D4FDE02EB1 /* Pods-AwkDateUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AwkDateUITests.debug.xcconfig"; path = "Target Support Files/Pods-AwkDateUITests/Pods-AwkDateUITests.debug.xcconfig"; sourceTree = "<group>"; };
+		48D6DADE228214A800A77728 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = ../../../FirstDate/FirstDate/Storyboards/Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		48D6DAE12282183500A77728 /* ChooseSignupOrLoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ChooseSignupOrLoginViewController.swift; path = AwkDate/ChooseSignupOrLoginViewController.swift; sourceTree = SOURCE_ROOT; };
+		48D6DAE32282186600A77728 /* SignUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = SignUpViewController.swift; path = AwkDate/SignUpViewController.swift; sourceTree = SOURCE_ROOT; };
+		48D6DAE52282189800A77728 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = LoginViewController.swift; path = AwkDate/LoginViewController.swift; sourceTree = SOURCE_ROOT; };
+		48D6DAE7228218DC00A77728 /* OnboardingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = OnboardingViewController.swift; path = AwkDate/OnboardingViewController.swift; sourceTree = SOURCE_ROOT; };
+		48D6DAE92282197C00A77728 /* GetUserInfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = GetUserInfoViewController.swift; path = AwkDate/GetUserInfoViewController.swift; sourceTree = SOURCE_ROOT; };
+		48D6DAEB228219AA00A77728 /* BioConditionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = BioConditionViewController.swift; path = AwkDate/BioConditionViewController.swift; sourceTree = SOURCE_ROOT; };
+		48D6DAED228219DF00A77728 /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ProfileViewController.swift; path = AwkDate/ProfileViewController.swift; sourceTree = SOURCE_ROOT; };
 		4F3C55D422792A1E006307A9 /* AwkDate.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AwkDate.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4F3C55D722792A1E006307A9 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		4F3C55D922792A1E006307A9 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -98,6 +114,22 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		48D6DADC2282147100A77728 /* Storyboards */ = {
+			isa = PBXGroup;
+			children = (
+				48D6DADD228214A800A77728 /* Main.storyboard */,
+				4F3C55E022792A20006307A9 /* LaunchScreen.storyboard */,
+			);
+			path = Storyboards;
+			sourceTree = "<group>";
+		};
+		48D6DAE0228214F200A77728 /* UI */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = UI;
+			sourceTree = "<group>";
+		};
 		4F3C55CB22792A1E006307A9 = {
 			isa = PBXGroup;
 			children = (
@@ -128,11 +160,12 @@
 				4F3C560722792A44006307A9 /* View Controllers */,
 				4F3C560622792A3D006307A9 /* Model Controllers */,
 				4F3C560522792A31006307A9 /* Models */,
+				48D6DADC2282147100A77728 /* Storyboards */,
+				48D6DAE0228214F200A77728 /* UI */,
 				4F3C55D722792A1E006307A9 /* AppDelegate.swift */,
 				4F3C55D922792A1E006307A9 /* ViewController.swift */,
 				4F3C55DB22792A1E006307A9 /* MainTest.storyboard */,
 				4F3C55DE22792A20006307A9 /* Assets.xcassets */,
-				4F3C55E022792A20006307A9 /* LaunchScreen.storyboard */,
 				4F3C55E322792A20006307A9 /* Info.plist */,
 			);
 			path = AwkDate;
@@ -176,6 +209,13 @@
 		4F3C560722792A44006307A9 /* View Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				48D6DAE12282183500A77728 /* ChooseSignupOrLoginViewController.swift */,
+				48D6DAE32282186600A77728 /* SignUpViewController.swift */,
+				48D6DAE52282189800A77728 /* LoginViewController.swift */,
+				48D6DAE7228218DC00A77728 /* OnboardingViewController.swift */,
+				48D6DAE92282197C00A77728 /* GetUserInfoViewController.swift */,
+				48D6DAEB228219AA00A77728 /* BioConditionViewController.swift */,
+				48D6DAED228219DF00A77728 /* ProfileViewController.swift */,
 			);
 			path = "View Controllers";
 			sourceTree = "<group>";
@@ -317,6 +357,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				4F3C55E222792A20006307A9 /* LaunchScreen.storyboard in Resources */,
+				48D6DADF228214A800A77728 /* Main.storyboard in Resources */,
 				4F76E671227A74C3004CC709 /* GoogleService-Info.plist in Resources */,
 				4F3C55DF22792A20006307A9 /* Assets.xcassets in Resources */,
 				4F3C55DD22792A1E006307A9 /* MainTest.storyboard in Resources */,
@@ -454,9 +495,16 @@
 			buildActionMask = 2147483647;
 			files = (
 				4F3C55DA22792A1E006307A9 /* ViewController.swift in Sources */,
+				48D6DAE42282186600A77728 /* SignUpViewController.swift in Sources */,
 				4F3C55D822792A1E006307A9 /* AppDelegate.swift in Sources */,
+				48D6DAE22282183500A77728 /* ChooseSignupOrLoginViewController.swift in Sources */,
+				48D6DAEA2282197C00A77728 /* GetUserInfoViewController.swift in Sources */,
+				48D6DAEC228219AA00A77728 /* BioConditionViewController.swift in Sources */,
+				48D6DAEE228219DF00A77728 /* ProfileViewController.swift in Sources */,
+				48D6DAE62282189800A77728 /* LoginViewController.swift in Sources */,
 				4F76E673227A7962004CC709 /* UserController.swift in Sources */,
 				4F3C560922792A59006307A9 /* User.swift in Sources */,
+				48D6DAE8228218DC00A77728 /* OnboardingViewController.swift in Sources */,
 				4F3C560B227948E8006307A9 /* MessageThread.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -493,6 +541,14 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
+		48D6DADD228214A800A77728 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				48D6DADE228214A800A77728 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
 		4F3C55DB22792A1E006307A9 /* MainTest.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (

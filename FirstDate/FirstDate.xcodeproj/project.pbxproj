@@ -15,6 +15,8 @@
 		484114462278AD2A00B31F2F /* Notes in Resources */ = {isa = PBXBuildFile; fileRef = 484114452278AD2A00B31F2F /* Notes */; };
 		48411460227B237B00B31F2F /* OnboardingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4841145F227B237B00B31F2F /* OnboardingViewController.swift */; };
 		485A8166227BC90C0097DB7F /* OnboardingCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 485A8165227BC90C0097DB7F /* OnboardingCollectionViewCell.swift */; };
+		48D6DAD92280DE8600A77728 /* MediaCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48D6DAD82280DE8600A77728 /* MediaCollectionViewController.swift */; };
+		48D6DADB2280E25100A77728 /* MediaCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48D6DADA2280E25100A77728 /* MediaCollectionViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -28,6 +30,8 @@
 		484114452278AD2A00B31F2F /* Notes */ = {isa = PBXFileReference; lastKnownFileType = text; path = Notes; sourceTree = "<group>"; };
 		4841145F227B237B00B31F2F /* OnboardingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingViewController.swift; sourceTree = "<group>"; };
 		485A8165227BC90C0097DB7F /* OnboardingCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingCollectionViewCell.swift; sourceTree = "<group>"; };
+		48D6DAD82280DE8600A77728 /* MediaCollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MediaCollectionViewController.swift; sourceTree = "<group>"; };
+		48D6DADA2280E25100A77728 /* MediaCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MediaCollectionViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -61,13 +65,13 @@
 			isa = PBXGroup;
 			children = (
 				484114302277874100B31F2F /* AppDelegate.swift */,
-				484114452278AD2A00B31F2F /* Notes */,
 				4841145C227B1C3200B31F2F /* Model */,
 				4841145D227B1C4A00B31F2F /* View Controllers */,
 				4841145E227B1C7200B31F2F /* Cells */,
 				4841145B227B1C2400B31F2F /* Storyboards */,
 				484114372277874400B31F2F /* Assets.xcassets */,
 				4841143C2277874400B31F2F /* Info.plist */,
+				484114452278AD2A00B31F2F /* Notes */,
 			);
 			path = FirstDate;
 			sourceTree = "<group>";
@@ -93,6 +97,7 @@
 			isa = PBXGroup;
 			children = (
 				4841145F227B237B00B31F2F /* OnboardingViewController.swift */,
+				48D6DAD82280DE8600A77728 /* MediaCollectionViewController.swift */,
 			);
 			path = "View Controllers";
 			sourceTree = "<group>";
@@ -101,6 +106,7 @@
 			isa = PBXGroup;
 			children = (
 				485A8165227BC90C0097DB7F /* OnboardingCollectionViewCell.swift */,
+				48D6DADA2280E25100A77728 /* MediaCollectionViewCell.swift */,
 			);
 			path = Cells;
 			sourceTree = "<group>";
@@ -178,7 +184,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				484114312277874100B31F2F /* AppDelegate.swift in Sources */,
+				48D6DADB2280E25100A77728 /* MediaCollectionViewCell.swift in Sources */,
 				48411460227B237B00B31F2F /* OnboardingViewController.swift in Sources */,
+				48D6DAD92280DE8600A77728 /* MediaCollectionViewController.swift in Sources */,
 				48411443227787AA00B31F2F /* Model.swift in Sources */,
 				485A8166227BC90C0097DB7F /* OnboardingCollectionViewCell.swift in Sources */,
 			);
