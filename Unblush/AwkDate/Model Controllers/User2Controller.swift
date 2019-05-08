@@ -13,11 +13,16 @@ import Firebase
 class User2Controller {
     
     let db = Firestore.firestore()
+    var singleProfileFromServer: [String: Any] = [:]
+    var profilesFromServer: [[String: Any]] = [[:]]
+    var currentUserUID: String?
+    
     var currentPhoto: Data?
     func createUserAccount(withEmail email: String, andPassword password: String, completion: @escaping (Error?) -> Void) {
         
         let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "MM dd, yyyy"
+        dateFormatter.dateFormat = "MM/dd/yyyy"
+        dateFormatter.dateStyle = .short
 
         Auth.auth().createUser(withEmail: email, password: password) { (user, error) in
             
@@ -28,12 +33,31 @@ class User2Controller {
             }
 
             if let userLocal = user {
-                self.putProfileToServer(userID: userLocal.user.uid, firstName: "Bob", lastName: "Blue", email: email, dob: dateFormatter.date(from: "06 15, 1999")!, gender: "Male", zipcode: 23456, condition: ["Herpes"], mainPhoto: self.currentPhoto!, lookingFor: "Same", biography: "Nothing", completion: completion)
+                self.currentUserUID = userLocal.user.uid
+                self.putProfileToServer(userID: userLocal.user.uid, firstName: "Bob", lastName: "Blue", email: email, dob: dateFormatter.date(from: "06/15/1999")!, gender: "Male", zipcode: 23456, condition: ["Herpes"], mainPhoto: self.currentPhoto!, lookingFor: "Same", biography: "Nothing", completion: completion)
             }
             
         }
         
         
+    }
+    
+    func login(withEmail email: String, andPassword password: String, completion: @escaping (Error?) -> Void) {
+        
+        Auth.auth().signIn(withEmail: email, password: password) { (user, error) in
+            
+            if let error = error {
+                NSLog("Error finding user account: \(error)")
+                completion(error)
+                return
+            }
+            
+            if let userAccount = user {
+               // self.userFound = true
+                self.currentUserUID = userAccount.user.uid
+                self.fetchProfileFromServer(userID: userAccount.user.uid, completion: completion)
+            }
+        }
     }
     
     func putProfileToServer(userID: String, firstName: String, lastName: String, email: String, dob: Date, gender: String, zipcode: Int, condition: [String], mainPhoto: Data, lookingFor: String, biography:String,  completion: @escaping (Error?) -> Void = {_ in }) {
@@ -57,6 +81,50 @@ class User2Controller {
         
         //addDocument(data: profile.toAnyObject())
     }
+    
+    func fetchProfileFromServer(userID: String, completion: @escaping (Error?) -> Void = {_ in }) {
+        let profileRef = db.collection("profiles").document(userID)
+        
+        profileRef.getDocument { (document, error) in
+            
+            if let error = error {
+                print("Error fetching single profile from server: \(error)")
+                completion(error)
+                return
+            }
+            
+           // let jsonDecoder = JSONDecoder()
+            
+            if let document = document, document.exists {
+                self.singleProfileFromServer = document.data()!
+                print("Document data: \(document.data()!)")
+                print("Profile from fetch: \(self.singleProfileFromServer["first_name"])")
+            } else {
+                print("Document does not exist")
+            }
+            
+            
+        }
+        
+        
+    }
+    
+    func fetchAllProfilesFromServer(completion: @escaping (Error?) -> Void = {_ in }) {
+        /*
+ 
+ db.collection("cities").getDocuments() { (querySnapshot, err) in
+ if let err = err {
+ print("Error getting documents: \(err)")
+ } else {
+ for document in querySnapshot!.documents {
+ print("\(document.documentID) => \(document.data())")
+ }
+ }
+ } */
+        
+        
+    }
+    
     
     func uploadPhoto(imageContainer: Data) {
         self.currentPhoto = imageContainer
