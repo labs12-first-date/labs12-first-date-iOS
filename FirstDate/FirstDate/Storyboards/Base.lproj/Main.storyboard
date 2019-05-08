@@ -727,7 +727,7 @@
                                         <rect key="frame" x="0.0" y="291" width="294" height="30"/>
                                         <state key="normal" title="let's get started"/>
                                         <connections>
-                                            <segue destination="zuh-Tr-nwp" kind="show" id="fL1-6k-oEC"/>
+                                            <segue destination="zuh-Tr-nwp" kind="show" identifier="Getstarted" id="fL1-6k-oEC"/>
                                         </connections>
                                     </button>
                                 </subviews>
@@ -742,6 +742,10 @@
                         <viewLayoutGuide key="safeArea" id="Pcg-bC-KAz"/>
                     </view>
                     <navigationItem key="navigationItem" id="NFp-cL-fN3"/>
+                    <connections>
+                        <outlet property="getStartedButton" destination="dPI-Q7-r2I" id="Fcv-kv-uj2"/>
+                        <outlet property="onboardingLabel" destination="amf-1u-21X" id="BXK-oS-TpW"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="7K7-ll-knp" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -847,10 +851,23 @@
                     <navigationItem key="navigationItem" id="awV-DX-OlE">
                         <barButtonItem key="rightBarButtonItem" systemItem="save" id="Fic-Jh-zNy">
                             <connections>
-                                <segue destination="kmG-yk-po1" kind="show" id="Jwn-f8-FBK"/>
+                                <action selector="saveButton:" destination="xWg-40-8O5" id="agC-hR-ZaK"/>
+                                <segue destination="kmG-yk-po1" kind="show" identifier="SaveGetInfo" id="Jwn-f8-FBK"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
+                    <connections>
+                        <outlet property="dateOfBirthLabel" destination="gtg-Lt-gpT" id="kF7-8E-c1J"/>
+                        <outlet property="dateOfBirthTextField" destination="ZIR-0X-PI1" id="6LN-Vr-2Kk"/>
+                        <outlet property="firstNameLabel" destination="dzW-aA-V9U" id="g8Y-YM-NWX"/>
+                        <outlet property="firstNameTextField" destination="E2g-Ha-iyL" id="Bfh-38-b9g"/>
+                        <outlet property="lastNameLabel" destination="FzS-51-ynj" id="Tj1-Ut-Rpa"/>
+                        <outlet property="lastNameTextField" destination="ibg-Xv-bpi" id="guA-pM-rdI"/>
+                        <outlet property="laterButton" destination="T2D-lA-E25" id="9XZ-Mu-eql"/>
+                        <outlet property="saveButton" destination="Fic-Jh-zNy" id="9LP-ZT-Ji3"/>
+                        <outlet property="zipLabel" destination="H1L-T9-nBP" id="pgc-pI-tt8"/>
+                        <outlet property="zipTextField" destination="V18-hH-v2O" id="KJT-FL-QuS"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Krz-h3-8Bt" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
