@@ -742,6 +742,10 @@
                         <viewLayoutGuide key="safeArea" id="Pcg-bC-KAz"/>
                     </view>
                     <navigationItem key="navigationItem" id="NFp-cL-fN3"/>
+                    <connections>
+                        <outlet property="getStartedButton" destination="dPI-Q7-r2I" id="90y-Lo-Yis"/>
+                        <outlet property="onboardingLabel" destination="amf-1u-21X" id="xdH-5i-tFX"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="7K7-ll-knp" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
