@@ -50,7 +50,7 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         if user2Controller.currentPhoto != nil {
             
             
-            user2Controller.createUserAccount(withEmail: "test2@test.com", andPassword: "testtest2") { (error) in
+            user2Controller.createUserAccount(withEmail: "test13@test.com", andPassword: "testtest13") { (error) in
                 if let error = error {
                     print("Error creating user account: \(error)")
                     return
