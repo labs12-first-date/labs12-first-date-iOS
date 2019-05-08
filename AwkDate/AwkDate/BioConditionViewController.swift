@@ -9,6 +9,12 @@
 import UIKit
 
 class BioConditionViewController: UIViewController {
+    
+    //MARK: - Properties
+    var userController: UserController?
+    var user: User?
+    
+    //MARK: - Outlets
 
     override func viewDidLoad() {
         super.viewDidLoad()
