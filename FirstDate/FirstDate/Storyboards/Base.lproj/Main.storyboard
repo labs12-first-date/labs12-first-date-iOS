@@ -65,10 +65,10 @@
             </objects>
             <point key="canvasLocation" x="970" y="-792"/>
         </scene>
-        <!--Sign Up View Controller-->
+        <!--Signup View Controller-->
         <scene sceneID="c5Q-xQ-jxP">
             <objects>
-                <viewController id="Txt-3x-IHZ" customClass="SignUpViewController" customModule="AwkDate" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="Txt-3x-IHZ" customClass="SignupViewController" customModule="AwkDate" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="p17-1k-5eQ">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
