@@ -9,11 +9,23 @@
 import UIKit
 
 class SignupViewController: UIViewController {
+    
+    //MARK: - Outlets
+    @IBOutlet weak var emailLabel: UILabel!
+    @IBOutlet weak var emailTextField: UITextField!
+    @IBOutlet weak var passwordLabel: UILabel!
+    @IBOutlet weak var passwordTextField: UITextField!
+    @IBOutlet weak var retypePasswordLabel: UILabel!
+    @IBOutlet weak var retypePasswordTextField: UITextField!
+    @IBOutlet weak var signupButton: UIButton!
+    @IBAction func signupButton(_ sender: Any) {
+        
+    }
+    
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Do any additional setup after loading the view.
     }
     
 

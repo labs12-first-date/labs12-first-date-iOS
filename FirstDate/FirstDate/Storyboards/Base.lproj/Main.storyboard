@@ -137,6 +137,7 @@
                                         <rect key="frame" x="0.0" y="265.5" width="334" height="30"/>
                                         <state key="normal" title="signup"/>
                                         <connections>
+                                            <action selector="signupButton:" destination="Txt-3x-IHZ" eventType="touchUpInside" id="KdB-hL-Ead"/>
                                             <segue destination="gte-Nk-yGk" kind="show" id="Flh-aZ-4tp"/>
                                         </connections>
                                     </button>
@@ -151,6 +152,15 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="fVJ-I4-ziz"/>
                     </view>
+                    <connections>
+                        <outlet property="emailLabel" destination="Efh-u5-yh1" id="gB1-hu-hTG"/>
+                        <outlet property="emailTextField" destination="Vhi-Al-fKs" id="icC-JE-RXf"/>
+                        <outlet property="passwordLabel" destination="bKF-M6-eHK" id="6P6-iA-trn"/>
+                        <outlet property="passwordTextField" destination="a76-6j-d1T" id="GPG-id-Q8L"/>
+                        <outlet property="retypePasswordLabel" destination="PyI-uf-7kU" id="j1p-F6-4Tg"/>
+                        <outlet property="retypePasswordTextField" destination="JcL-xC-q0k" id="xIE-7C-M57"/>
+                        <outlet property="signupButton" destination="E0c-0u-X7u" id="Tij-36-7xO"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ewz-23-6Nw" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -983,6 +993,6 @@
     <inferredMetricsTieBreakers>
         <segue reference="Jwn-f8-FBK"/>
         <segue reference="VII-Hm-M6i"/>
-        <segue reference="GeQ-lK-fsw"/>
+        <segue reference="Flh-aZ-4tp"/>
     </inferredMetricsTieBreakers>
 </document>
