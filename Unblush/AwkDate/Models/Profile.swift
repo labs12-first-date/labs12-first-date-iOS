@@ -65,6 +65,9 @@ struct Profile: Decodable {
     func toAnyObject() -> Dictionary<String, Any> {
         return [Profile.firstNameKey: firstName, Profile.lastNameKey: lastName, Profile.genderKey: gender, Profile.mainPhotoKey: mainPhoto.description, Profile.zipcodeKey: NSNumber(value: zipcode).stringValue, Profile.biographyKey: biography, Profile.conditionKey: condition, Profile.dobKey: dob.description, Profile.emailKey: email, Profile.lookingForKey: lookingFor, Profile.likedMatchesKey: likedMatches, Profile.matchesKey: matches]
     }
+    
+  
+    
     init(firstName: String, lastName: String, email: String, dob: Date, gender: String, zipcode: Int, condition: [String], mainPhoto: Data, likedMatches: [Any], lookingFor: String, biography: String, matches: [Any]) {
         
         self.firstName = firstName
@@ -81,6 +84,14 @@ struct Profile: Decodable {
         self.matches = matches
         
     }
+    
+  /*  init?(dictionary: [String: Any]) {
+        guard let firstName = dictionary[Profile.firstNameKey], let lastName = dictionary[Profile.lastNameKey], let email = dictionary[Profile.emailKey], let dob = dictionary[Profile.dobKey], let gender = dictionary[Profile.genderKey], let zipcode = dictionary[Profile.zipcodeKey], let condition = dictionary[Profile.conditionKey], let mainPhoto = dictionary[Profile.mainPhotoKey], let likedMatches = dictionary[Profile.likedMatchesKey], let lookingFor = dictionary[Profile.lookingForKey], let biography = dictionary[Profile.biographyKey], let matches = dictionary[Profile.matchesKey] else { return nil }
+        
+        self.init(firstName: firstName as! String, lastName: lastName as! String, email: email as! String, dob: dob as! Date, gender: gender, zipcode: zipcode, condition: condition, mainPhoto: mainPhoto, likedMatches: likedMatches, lookingFor: lookingFor, biography: biography, matches: matches)
+        
+        
+    }*/
     
     init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)

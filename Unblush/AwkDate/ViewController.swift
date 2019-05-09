@@ -20,7 +20,26 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     let user2Controller = User2Controller()
     var photo: Data?
     
+    @IBOutlet weak var userInfoLabel: UILabel!
     
+    @IBAction func fetchUserTapped(_ sender: UIButton) {
+        if user2Controller.currentUserUID != nil {
+            
+            self.user2Controller.fetchProfileFromServer(userID: user2Controller.currentUserUID!) { (error) in
+                if let error = error {
+                    print("Error fetching profile in vc: \(error)")
+                    return
+                }
+                print(self.user2Controller.singleProfileFromServer["first_name"] as! String)
+                DispatchQueue.main.async {
+                    self.userInfoLabel.text = self.user2Controller.singleProfileFromServer["first_name"] as! String
+                }
+                
+            }
+            
+        }
+        
+    }
     @IBOutlet weak var imageView: UIImageView!
     @IBAction func addPhotoTapped(_ sender: UIButton) {
         
@@ -50,12 +69,19 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         if user2Controller.currentPhoto != nil {
             
             
-            user2Controller.createUserAccount(withEmail: "test13@test.com", andPassword: "testtest13") { (error) in
+           /* user2Controller.createUserAccount(withEmail: "test3@test.com", andPassword: "testtest3") { (error) in
                 if let error = error {
                     print("Error creating user account: \(error)")
                     return
                 }
                 print("Successfully created user account!")
+            }*/
+            user2Controller.login(withEmail: "test3@test.com", andPassword: "testtest3") { (error) in
+                if let error = error {
+                    print("Error logging in: \(error)")
+                    return
+                }
+                print("Successfully logged in!")
             }
             
         }
