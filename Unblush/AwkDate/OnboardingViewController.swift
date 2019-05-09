@@ -22,11 +22,10 @@ class OnboardingViewController: UIViewController {
         super.viewDidLoad()
 
     }
-    
+}
 //    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
 //        if segue.identifier == "getStarted" {
 //        guard segue.destination is GetUserInfoViewController else { return }
 //        }
 //    }
 
-}

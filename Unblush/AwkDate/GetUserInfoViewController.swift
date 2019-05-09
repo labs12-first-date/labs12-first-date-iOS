@@ -33,7 +33,7 @@ class GetUserInfoViewController: UIViewController {
             let dob = dateOfBirthTextField.text,
             let zipcode = zipTextField.text else { return }
         
-        let date = self.dateFormatter.date(from: dob)!
+ //       let date = self.dateFormatter.date(from: dob)!
         
 //        if let user = user {
         //need to use create profile            user2Controller.createProfile(.....
@@ -70,16 +70,15 @@ class GetUserInfoViewController: UIViewController {
         
     }
     
-    private func updateViews() {
-        guard isViewLoaded else { return }
-        guard let profile = profile
-    }
+//    private func updateViews() {
+//        guard isViewLoaded else { return }
+//        guard let profile = profile
+//    }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "SaveGetInfo" {
             guard segue.destination is BioConditionViewController else { return }
         }
     }
-    
 }
 

@@ -10,6 +10,10 @@ import UIKit
 
 class SignupViewController: UIViewController {
     
+    //MARK: - Properties
+    let user2Controller = User2Controller()
+    var currentUserUID: String?
+    
     //MARK: - Outlets
     @IBOutlet weak var emailLabel: UILabel!
     @IBOutlet weak var emailTextField: UITextField!
@@ -19,47 +23,67 @@ class SignupViewController: UIViewController {
     @IBOutlet weak var retypePasswordTextField: UITextField!
     @IBOutlet weak var signupButton: UIButton!
     @IBAction func signupButton(_ sender: Any) {
-        if passwordTextField.text != retypePasswordTextField.text {
-            let alertController = UIAlertController(title: "Password Incorrect", message: "Please re-type password", preferredStyle: .alert)
-            
-            let defaultAction = UIAlertAction(title: "OK", style: .cancel, handler: nil)
-            
-            alertController.addAction(defaultAction)
-            self.present(alertController, animated: true, completion: nil)
+        guard let email = emailTextField.text, let password = passwordTextField.text, let confirmPassword = retypePasswordTextField.text else {
+            NSLog("Fields are empty")
+            return
         }
         
-        else {
-            Auth.auth().createUser(withEmail: emailTextField.text!, password: passwordTextField.text!){ (user, error) in
-                
-                if error == nil {
-                    self.performSegue(withIdentifier: "signupToLogin", sender: self)
+        //Create Activity Indicator
+        let myActivityIndicator = UIActivityIndicatorView(frame: CGRect(x: 100,y: 200, width: 200, height: 200))
+        myActivityIndicator.style = (UIActivityIndicatorView.Style.gray)
+        
+        // Position Activity Indicator in the center of the main view
+        myActivityIndicator.center = self.view.center
+        
+        // If needed, you can prevent Acivity Indicator from hiding when stopAnimating() is called
+        myActivityIndicator.hidesWhenStopped = false
+        
+        // Start Activity Indicator
+        myActivityIndicator.startAnimating()
+        
+        DispatchQueue.main.async {
+            self.view.addSubview(myActivityIndicator)
+        }
+        
+        if password == confirmPassword {
+            user2Controller.createUserAccount(withEmail: email, andPassword: password) { (error) in
+                if let error = error {
+                    NSLog("Error creating account in vc: \(error.localizedDescription)")
+                    self.displayMessage(userMessage: "\(error.localizedDescription)")
+                    self.removeActivityIndicator(activityIndicator: myActivityIndicator)
+                    return
                 }
-                else {
-                    let alertController = UIAlertController(title: "Error", message: error?.localizedDescription, preferredStyle: .alert)
-                    let defaultAction = UIAlertAction(title: "OK", style: .cancel, handler: nil)
-                    
-                    alertController.addAction(defaultAction)
-                    self.present(alertController, animated: true, completion: nil)
+                
+                self.currentUserUID = self.user2Controller.currentUserUID
+                
+                DispatchQueue.main.async {
+                    self.removeActivityIndicator(activityIndicator: myActivityIndicator)
+                    self.performSegue(withIdentifier: "signup", sender: self)
                 }
             }
+            
+        } else {
+            // display message
+            self.displayMessage(userMessage: "Passwords do not match!")
+            return
         }
     }
     
-
-    override func viewDidLoad() {
-        super.viewDidLoad()
-
+    func displayMessage(userMessage:String) -> Void {
+        DispatchQueue.main.async
+            {
+                let alertController = UIAlertController(title: "Please Try Again", message: userMessage, preferredStyle: .alert)
+                
+                let OKAction = UIAlertAction(title: "OK", style: .default) { (action:UIAlertAction!) in
+                    // Code in this block will trigger when OK button tapped.
+                    print("Ok button tapped")
+                    DispatchQueue.main.async
+                        {
+                            self.dismiss(animated: true, completion: nil)
+                    }
+                }
+                alertController.addAction(OKAction)
+                self.present(alertController, animated: true, completion:nil)
+        }
     }
-    
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
 }
