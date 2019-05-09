@@ -23,6 +23,14 @@ class GetUserInfoViewController: UIViewController {
     var dob: String?
     var zipcode: Int?
     
+    let genderChoice = ["Female",
+                  "Male",
+                  "Trans",
+                  "Non-binary",
+                  "Questioning",
+                  "Other"]
+    
+    var selectedGender: String?
     
     //MARK: - Outlets
     @IBOutlet weak var firstNameLabel: UILabel!
@@ -56,15 +64,43 @@ class GetUserInfoViewController: UIViewController {
         dateFormatter.dateFormat = "MM/dd/yyyy"
         let date = dateFormatter.date(from: dob)!
         
-//        if let profile = profile {
-//            user2Controller?.putProfileToServer(userID: <#T##String#>, firstName: <#T##String#>, lastName: <#T##String#>, email: <#T##String#>, dob: <#T##Date#>, gender: <#T##String#>, zipcode: <#T##Int#>, condition: <#T##[String]#>, mainPhoto: <#T##Data#>, lookingFor: <#T##String#>, biography: <#T##String#>)
-//        
-//        }
     }
     
+    func createGenderPicker() {
+        let genderPicker = UIPickerView()
+        genderPicker.delegate = self as! UIPickerViewDelegate
+        genderTextField.inputView = genderPicker
+        
+        //Customizations
+        //genderPicker.backgroundColor = .white
+        
+    }
+    
+    func createToolbar() {
+        let toolBar = UIToolbar()
+        toolBar.sizeToFit()
+        
+        let doneButton = UIBarButtonItem(title: "Done", style: .plain, target: self, action: #selector(GetUserInfoViewController.dismissKeyboard))
+        
+        toolBar.setItems([doneButton], animated: false)
+        toolBar.isUserInteractionEnabled = true
+        
+        genderTextField.inputAccessoryView = toolBar
+        
+        //Customization
+        //toolBar.barTintColor = .black
+        //toolBar.tintColor = .white
+        
+    }
+    
+    @objc func dismissKeyboard() {
+        view.endEditing(true)
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        createGenderPicker()
+        createToolbar()
         
         //date picker
         datePicker = UIDatePicker()
@@ -110,3 +146,39 @@ class GetUserInfoViewController: UIViewController {
     }
 }
 
+extension GetUserInfoViewController: UIPickerViewDelegate, UIPickerViewDataSource {
+    func numberOfComponents(in pickerView: UIPickerView) -> Int {
+        return 1
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
+        return genderChoice.count
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
+        return genderChoice[row]
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
+        selectedGender = genderChoice[row]
+        genderTextField.text = selectedGender
+    }
+    
+//    func pickerView(_ pickerView: UIPickerView, viewForRow row: Int, forComponent component: Int, reusing view: UIView?) -> UIView {
+//        var label: UILabel
+//
+//        if let view = view as? UILabel {
+//            label = view
+//        } else {
+//            label = UILabel()
+//        }
+//
+//        label.textColor = .white
+//        label.textAlignment = .center
+//        label.font = UIFont(name: "Menlo-Regular", size: 17)
+//
+//        label.text = genderChoice[row]
+//        return label
+//    }
+    
+}
