@@ -23,7 +23,6 @@
                                 <subviews>
                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="4dF-7t-nAz">
                                         <rect key="frame" x="117" y="0.0" width="100" height="100"/>
-                                        <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="100" id="FmH-Nr-rdO"/>
                                             <constraint firstAttribute="height" constant="100" id="dVd-Ao-MAX"/>
@@ -36,6 +35,7 @@
                                                 <rect key="frame" x="6" y="0.0" width="34" height="30"/>
                                                 <state key="normal" title="login"/>
                                                 <connections>
+                                                    <action selector="loginButton:" destination="xTd-XU-ttU" eventType="touchUpInside" id="4wv-6n-5cD"/>
                                                     <segue destination="gte-Nk-yGk" kind="show" id="GeQ-lK-fsw"/>
                                                 </connections>
                                             </button>
@@ -43,6 +43,7 @@
                                                 <rect key="frame" x="0.0" y="30" width="46" height="30"/>
                                                 <state key="normal" title="signup"/>
                                                 <connections>
+                                                    <action selector="signupButton:" destination="xTd-XU-ttU" eventType="touchUpInside" id="0sL-NX-rbv"/>
                                                     <segue destination="Txt-3x-IHZ" kind="show" id="71G-DC-iNf"/>
                                                 </connections>
                                             </button>
@@ -60,6 +61,11 @@
                         <viewLayoutGuide key="safeArea" id="r1e-NW-0Hu"/>
                     </view>
                     <navigationItem key="navigationItem" id="n0U-tR-YZ1"/>
+                    <connections>
+                        <outlet property="loginButton" destination="OdN-Gx-E4o" id="dQl-5C-dlH"/>
+                        <outlet property="logoView" destination="4dF-7t-nAz" id="v3t-bO-5L5"/>
+                        <outlet property="signupButton" destination="KsI-AN-LgB" id="FhC-R1-S3h"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Xel-8q-XuA" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -851,10 +857,23 @@
                     <navigationItem key="navigationItem" id="awV-DX-OlE">
                         <barButtonItem key="rightBarButtonItem" systemItem="save" id="Fic-Jh-zNy">
                             <connections>
+                                <action selector="saveButton:" destination="xWg-40-8O5" id="I4V-mx-pq5"/>
                                 <segue destination="kmG-yk-po1" kind="show" id="Jwn-f8-FBK"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
+                    <connections>
+                        <outlet property="dateOfBirthLabel" destination="gtg-Lt-gpT" id="g9D-sW-ndt"/>
+                        <outlet property="dateOfBirthTextField" destination="ZIR-0X-PI1" id="Ew1-Z2-eRi"/>
+                        <outlet property="firstNameLabel" destination="dzW-aA-V9U" id="ywh-44-n4b"/>
+                        <outlet property="firstNameTextField" destination="E2g-Ha-iyL" id="L8W-or-4t4"/>
+                        <outlet property="lastNameLabel" destination="FzS-51-ynj" id="XJO-Ft-ChA"/>
+                        <outlet property="lastNameTextField" destination="ibg-Xv-bpi" id="hg2-Qb-44U"/>
+                        <outlet property="laterButton" destination="T2D-lA-E25" id="f0S-c9-zFX"/>
+                        <outlet property="saveButton" destination="Fic-Jh-zNy" id="ICf-zp-eTZ"/>
+                        <outlet property="zipLabel" destination="H1L-T9-nBP" id="Dlq-lj-wvI"/>
+                        <outlet property="zipTextField" destination="V18-hH-v2O" id="LRJ-ul-4x4"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Krz-h3-8Bt" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -964,6 +983,6 @@
     <inferredMetricsTieBreakers>
         <segue reference="Jwn-f8-FBK"/>
         <segue reference="VII-Hm-M6i"/>
-        <segue reference="Flh-aZ-4tp"/>
+        <segue reference="GeQ-lK-fsw"/>
     </inferredMetricsTieBreakers>
 </document>

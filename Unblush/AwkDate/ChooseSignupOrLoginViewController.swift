@@ -9,11 +9,25 @@
 import UIKit
 
 class ChooseSignupOrLoginViewController: UIViewController {
+    
+    //MARK: - Outlets
+    @IBOutlet weak var logoView: UIImageView!
+    @IBOutlet weak var loginButton: UIButton!
+    @IBOutlet weak var signupButton: UIButton!
+    
+    @IBAction func loginButton(_ sender: Any) {
+        
+    }
+    
+    @IBAction func signupButton(_ sender: Any) {
+        
+    }
+    
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Do any additional setup after loading the view.
+   
     }
     
 

@@ -11,7 +11,7 @@ import UIKit
 class GetUserInfoViewController: UIViewController {
     
     //MARK: - Properties
-    var userController2: UserController2?
+    var user2Controller: User2Controller?
     var profile: Profile?
     private var datePicker: UIDatePicker?
     
@@ -30,14 +30,14 @@ class GetUserInfoViewController: UIViewController {
     @IBAction func saveButton(_ sender: Any) {
         guard let firstName = firstNameTextField.text, !firstName.isEmpty,
             let lastName = lastNameTextField.text,
-            let dateOfBirth = dateOfBirthTextField.text,
-            let zip = zipTextField.text else { return }
+            let dob = dateOfBirthTextField.text,
+            let zipcode = zipTextField.text else { return }
         
-        //        let date = self.dateFormatter.date(from: dateOfBirth)!
+        let date = self.dateFormatter.date(from: dob)!
         
-        //        if let user = user {
-        //            userController?.update
-        //        }
+//        if let user = user {
+        //need to use create profile            user2Controller.createProfile(.....
+//        }
     }
     
     
@@ -63,20 +63,17 @@ class GetUserInfoViewController: UIViewController {
     
     @objc func dateChanged(datePicker: UIDatePicker) {
         let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "MMMM d"
+        dateFormatter.dateFormat = "MM dd, yyyy"
         
         dateOfBirthTextField.text = dateFormatter.string(from: datePicker.date)
         view.endEditing(true)
         
     }
-    // Do any additional setup after loading the view.        }
     
     private func updateViews() {
         guard isViewLoaded else { return }
         guard let profile = profile
     }
-    
-    
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "SaveGetInfo" {
