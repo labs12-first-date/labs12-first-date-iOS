@@ -36,7 +36,7 @@
                                                 <state key="normal" title="login"/>
                                                 <connections>
                                                     <action selector="loginButton:" destination="xTd-XU-ttU" eventType="touchUpInside" id="4wv-6n-5cD"/>
-                                                    <segue destination="gte-Nk-yGk" kind="show" id="GeQ-lK-fsw"/>
+                                                    <segue destination="gte-Nk-yGk" kind="show" identifier="login" id="GeQ-lK-fsw"/>
                                                 </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KsI-AN-LgB">
@@ -44,7 +44,7 @@
                                                 <state key="normal" title="signup"/>
                                                 <connections>
                                                     <action selector="signupButton:" destination="xTd-XU-ttU" eventType="touchUpInside" id="0sL-NX-rbv"/>
-                                                    <segue destination="Txt-3x-IHZ" kind="show" id="71G-DC-iNf"/>
+                                                    <segue destination="Txt-3x-IHZ" kind="show" identifier="signup" id="71G-DC-iNf"/>
                                                 </connections>
                                             </button>
                                         </subviews>
@@ -138,7 +138,7 @@
                                         <state key="normal" title="signup"/>
                                         <connections>
                                             <action selector="signupButton:" destination="Txt-3x-IHZ" eventType="touchUpInside" id="KdB-hL-Ead"/>
-                                            <segue destination="gte-Nk-yGk" kind="show" id="Flh-aZ-4tp"/>
+                                            <segue destination="gte-Nk-yGk" kind="show" identifier="signupToLogin" id="Flh-aZ-4tp"/>
                                         </connections>
                                     </button>
                                 </subviews>

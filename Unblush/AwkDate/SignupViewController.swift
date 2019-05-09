@@ -19,7 +19,30 @@ class SignupViewController: UIViewController {
     @IBOutlet weak var retypePasswordTextField: UITextField!
     @IBOutlet weak var signupButton: UIButton!
     @IBAction func signupButton(_ sender: Any) {
+        if passwordTextField.text != retypePasswordTextField.text {
+            let alertController = UIAlertController(title: "Password Incorrect", message: "Please re-type password", preferredStyle: .alert)
+            
+            let defaultAction = UIAlertAction(title: "OK", style: .cancel, handler: nil)
+            
+            alertController.addAction(defaultAction)
+            self.present(alertController, animated: true, completion: nil)
+        }
         
+        else {
+            Auth.auth().createUser(withEmail: emailTextField.text!, password: passwordTextField.text!){ (user, error) in
+                
+                if error == nil {
+                    self.performSegue(withIdentifier: "signup", sender: self)
+                }
+                else {
+                    let alertController = UIAlertController(title: "Error", message: error?.localizedDescription, preferredStyle: .alert)
+                    let defaultAction = UIAlertAction(title: "OK", style: .cancel, handler: nil)
+                    
+                    alertController.addAction(defaultAction)
+                    self.present(alertController, animated: true, completion: nil)
+                }
+            }
+        }
     }
     
 
