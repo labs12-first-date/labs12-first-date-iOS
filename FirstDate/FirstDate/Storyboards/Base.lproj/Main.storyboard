@@ -215,6 +215,7 @@
                                         <rect key="frame" x="0.0" y="176" width="334" height="30"/>
                                         <state key="normal" title="login"/>
                                         <connections>
+                                            <action selector="loginButton:" destination="gte-Nk-yGk" eventType="touchUpInside" id="j9k-cD-B29"/>
                                             <segue destination="agv-MU-LDL" kind="presentation" id="9P1-nX-8qR"/>
                                         </connections>
                                     </button>
@@ -229,6 +230,13 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="u1F-Cr-sC0"/>
                     </view>
+                    <connections>
+                        <outlet property="emailLabel" destination="s62-vb-g3D" id="ueH-97-dT9"/>
+                        <outlet property="emailTextField" destination="z1t-bw-hVb" id="FLw-tL-Ohi"/>
+                        <outlet property="loginButton" destination="BlR-f9-pNG" id="dKX-Qc-d58"/>
+                        <outlet property="passwordLabel" destination="BtD-UW-dUE" id="497-Ft-rvs"/>
+                        <outlet property="passwordTextField" destination="CWH-W0-ra4" id="qgO-dN-gZA"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="gII-ii-T6k" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
