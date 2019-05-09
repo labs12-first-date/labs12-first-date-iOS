@@ -751,7 +751,8 @@
                                         <rect key="frame" x="0.0" y="291" width="294" height="30"/>
                                         <state key="normal" title="let's get started"/>
                                         <connections>
-                                            <segue destination="zuh-Tr-nwp" kind="show" id="fL1-6k-oEC"/>
+                                            <action selector="getStartedButton:" destination="agv-MU-LDL" eventType="touchUpInside" id="6XI-Tq-cVd"/>
+                                            <segue destination="zuh-Tr-nwp" kind="show" identifier="getStarted" id="fL1-6k-oEC"/>
                                         </connections>
                                     </button>
                                 </subviews>

@@ -13,17 +13,20 @@ class OnboardingViewController: UIViewController {
     //MARK: - Outlets
     @IBOutlet weak var onboardingLabel: UILabel!
     @IBOutlet weak var getStartedButton: UIButton!
-
+    
+    @IBAction func getStartedButton(_ sender: Any) {
+        performSegue(withIdentifier: "getStarted", sender: self)
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Do any additional setup after loading the view.
     }
     
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "Getstarted" {
-        guard segue.destination is GetUserInfoViewController else { return }
-        }
-    }
+//    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+//        if segue.identifier == "getStarted" {
+//        guard segue.destination is GetUserInfoViewController else { return }
+//        }
+//    }
 
 }
