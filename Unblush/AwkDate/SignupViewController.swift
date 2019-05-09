@@ -32,7 +32,7 @@ class SignupViewController: UIViewController {
             Auth.auth().createUser(withEmail: emailTextField.text!, password: passwordTextField.text!){ (user, error) in
                 
                 if error == nil {
-                    self.performSegue(withIdentifier: "signup", sender: self)
+                    self.performSegue(withIdentifier: "signupToLogin", sender: self)
                 }
                 else {
                     let alertController = UIAlertController(title: "Error", message: error?.localizedDescription, preferredStyle: .alert)

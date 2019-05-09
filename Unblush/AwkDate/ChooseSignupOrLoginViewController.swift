@@ -16,11 +16,11 @@ class ChooseSignupOrLoginViewController: UIViewController {
     @IBOutlet weak var signupButton: UIButton!
     
     @IBAction func loginButton(_ sender: Any) {
-        
+        performSegue(withIdentifier: "login", sender: self)
     }
     
     @IBAction func signupButton(_ sender: Any) {
-        
+        performSegue(withIdentifier: "signup", sender: self)
     }
     
 
