@@ -23,7 +23,7 @@ class User2Controller {
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "MM/dd/yyyy"
         dateFormatter.dateStyle = .short
-
+      
         Auth.auth().createUser(withEmail: email, password: password) { (user, error) in
             
             if let error = error {
@@ -31,7 +31,7 @@ class User2Controller {
                 completion(error)
                 return
             }
-
+            
             if let userLocal = user {
                 self.currentUserUID = userLocal.user.uid
                 self.putProfileToServer(userID: userLocal.user.uid, firstName: "Bob", lastName: "Blue", email: email, dob: dateFormatter.date(from: "06/15/1999")!, gender: "Male", zipcode: 23456, condition: ["Herpes"], mainPhoto: self.currentPhoto!, lookingFor: "Same", biography: "Nothing", completion: completion)
@@ -53,7 +53,8 @@ class User2Controller {
             }
             
             if let userAccount = user {
-               // self.userFound = true
+
+              
                 self.currentUserUID = userAccount.user.uid
                 self.fetchProfileFromServer(userID: userAccount.user.uid, completion: completion)
             }
@@ -72,7 +73,7 @@ class User2Controller {
         //.. /profiles/uid
         
         var ref: DocumentReference? = nil
-        ref = db.collection("profiles").document(userID)
+        ref = db.collection("profilesiOS").document(userID)
         
         if ref != nil {
             ref?.setData(profile.toAnyObject())
@@ -83,7 +84,8 @@ class User2Controller {
     }
     
     func fetchProfileFromServer(userID: String, completion: @escaping (Error?) -> Void = {_ in }) {
-        let profileRef = db.collection("profiles").document(userID)
+        let profileRef = db.collection("profilesiOS").document(userID)
+
         
         profileRef.getDocument { (document, error) in
             
@@ -93,7 +95,6 @@ class User2Controller {
                 return
             }
             
-           // let jsonDecoder = JSONDecoder()
             
             if let document = document, document.exists {
                 self.singleProfileFromServer = document.data()!
@@ -111,17 +112,17 @@ class User2Controller {
     
     func fetchAllProfilesFromServer(completion: @escaping (Error?) -> Void = {_ in }) {
         /*
- 
- db.collection("cities").getDocuments() { (querySnapshot, err) in
- if let err = err {
- print("Error getting documents: \(err)")
- } else {
- for document in querySnapshot!.documents {
- print("\(document.documentID) => \(document.data())")
- }
- }
- } */
-        
+         
+         db.collection("cities").getDocuments() { (querySnapshot, err) in
+         if let err = err {
+         print("Error getting documents: \(err)")
+         } else {
+         for document in querySnapshot!.documents {
+         print("\(document.documentID) => \(document.data())")
+         }
+         }
+         } */
+         
         
     }
     
@@ -132,3 +133,4 @@ class User2Controller {
     
     
 }
+
