@@ -23,7 +23,7 @@ class User2Controller {
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "MM/dd/yyyy"
         dateFormatter.dateStyle = .short
-        
+      
         Auth.auth().createUser(withEmail: email, password: password) { (user, error) in
             
             if let error = error {
@@ -53,7 +53,8 @@ class User2Controller {
             }
             
             if let userAccount = user {
-                // self.userFound = true
+
+              
                 self.currentUserUID = userAccount.user.uid
                 self.fetchProfileFromServer(userID: userAccount.user.uid, completion: completion)
             }
@@ -84,6 +85,7 @@ class User2Controller {
     
     func fetchProfileFromServer(userID: String, completion: @escaping (Error?) -> Void = {_ in }) {
         let profileRef = db.collection("profilesiOS").document(userID)
+
         
         profileRef.getDocument { (document, error) in
             
@@ -93,7 +95,6 @@ class User2Controller {
                 return
             }
             
-            // let jsonDecoder = JSONDecoder()
             
             if let document = document, document.exists {
                 self.singleProfileFromServer = document.data()!
@@ -121,7 +122,7 @@ class User2Controller {
          }
          }
          } */
-        
+         
         
     }
     
