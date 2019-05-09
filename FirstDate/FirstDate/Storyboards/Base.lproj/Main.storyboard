@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="z4B-9U-6n1">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="zDL-D3-FyP">
     <device id="retina6_1" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -21,7 +21,7 @@
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="100" translatesAutoresizingMaskIntoConstraints="NO" id="VqH-8M-1FD">
                                 <rect key="frame" x="40" y="238" width="334" height="260"/>
                                 <subviews>
-                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="4dF-7t-nAz">
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="unblushLogo" translatesAutoresizingMaskIntoConstraints="NO" id="4dF-7t-nAz">
                                         <rect key="frame" x="117" y="0.0" width="100" height="100"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="100" id="FmH-Nr-rdO"/>
@@ -36,7 +36,6 @@
                                                 <state key="normal" title="login"/>
                                                 <connections>
                                                     <action selector="loginButton:" destination="xTd-XU-ttU" eventType="touchUpInside" id="4wv-6n-5cD"/>
-                                                    <segue destination="gte-Nk-yGk" kind="show" identifier="login" id="GeQ-lK-fsw"/>
                                                 </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KsI-AN-LgB">
@@ -44,7 +43,6 @@
                                                 <state key="normal" title="signup"/>
                                                 <connections>
                                                     <action selector="signupButton:" destination="xTd-XU-ttU" eventType="touchUpInside" id="0sL-NX-rbv"/>
-                                                    <segue destination="Txt-3x-IHZ" kind="show" identifier="signup" id="71G-DC-iNf"/>
                                                 </connections>
                                             </button>
                                         </subviews>
@@ -65,11 +63,13 @@
                         <outlet property="loginButton" destination="OdN-Gx-E4o" id="dQl-5C-dlH"/>
                         <outlet property="logoView" destination="4dF-7t-nAz" id="v3t-bO-5L5"/>
                         <outlet property="signupButton" destination="KsI-AN-LgB" id="FhC-R1-S3h"/>
+                        <segue destination="Txt-3x-IHZ" kind="show" identifier="signup" id="UIw-hK-Sfp"/>
+                        <segue destination="gte-Nk-yGk" kind="show" identifier="login" id="UnL-7z-Eph"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Xel-8q-XuA" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="970" y="-792"/>
+            <point key="canvasLocation" x="1889.8550724637682" y="-790.17857142857144"/>
         </scene>
         <!--Signup View Controller-->
         <scene sceneID="c5Q-xQ-jxP">
@@ -138,7 +138,6 @@
                                         <state key="normal" title="signup"/>
                                         <connections>
                                             <action selector="signupButton:" destination="Txt-3x-IHZ" eventType="touchUpInside" id="KdB-hL-Ead"/>
-                                            <segue destination="gte-Nk-yGk" kind="show" identifier="signupToLogin" id="Flh-aZ-4tp"/>
                                         </connections>
                                     </button>
                                 </subviews>
@@ -160,11 +159,12 @@
                         <outlet property="retypePasswordLabel" destination="PyI-uf-7kU" id="j1p-F6-4Tg"/>
                         <outlet property="retypePasswordTextField" destination="JcL-xC-q0k" id="xIE-7C-M57"/>
                         <outlet property="signupButton" destination="E0c-0u-X7u" id="Tij-36-7xO"/>
+                        <segue destination="zuh-Tr-nwp" kind="show" identifier="getInfoFromSignup" id="cKK-6n-2GY"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ewz-23-6Nw" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1710" y="-790"/>
+            <point key="canvasLocation" x="2771.0144927536235" y="-902.00892857142856"/>
         </scene>
         <!--Login View Controller-->
         <scene sceneID="pwG-Dn-Ehz">
@@ -216,7 +216,6 @@
                                         <state key="normal" title="login"/>
                                         <connections>
                                             <action selector="loginButton:" destination="gte-Nk-yGk" eventType="touchUpInside" id="j9k-cD-B29"/>
-                                            <segue destination="agv-MU-LDL" kind="presentation" id="9P1-nX-8qR"/>
                                         </connections>
                                     </button>
                                 </subviews>
@@ -236,11 +235,12 @@
                         <outlet property="loginButton" destination="BlR-f9-pNG" id="dKX-Qc-d58"/>
                         <outlet property="passwordLabel" destination="BtD-UW-dUE" id="497-Ft-rvs"/>
                         <outlet property="passwordTextField" destination="CWH-W0-ra4" id="qgO-dN-gZA"/>
+                        <segue destination="zuh-Tr-nwp" kind="show" identifier="getInfoFromLogin" id="Y1S-Er-adq"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="gII-ii-T6k" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2451" y="-790"/>
+            <point key="canvasLocation" x="3581.1594202898555" y="-790.17857142857144"/>
         </scene>
         <!--profile-->
         <scene sceneID="qEA-V9-E5o">
@@ -657,7 +657,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="zSQ-fC-wrX" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="5598.5507246376819" y="-319.41964285714283"/>
+            <point key="canvasLocation" x="6508.6956521739139" y="-319.41964285714283"/>
         </scene>
         <!--chat-->
         <scene sceneID="lpT-mL-6Fa">
@@ -710,25 +710,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4cw-nf-XH1" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="6355.072463768116" y="-319.41964285714283"/>
-        </scene>
-        <!--Navigation Controller-->
-        <scene sceneID="AcL-NX-XQQ">
-            <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="z4B-9U-6n1" sceneMemberID="viewController">
-                    <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="hMm-g5-P1V">
-                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                    </navigationBar>
-                    <nil name="viewControllers"/>
-                    <connections>
-                        <segue destination="xTd-XU-ttU" kind="relationship" relationship="rootViewController" id="v1l-Cd-PiA"/>
-                    </connections>
-                </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="jsL-k8-i2k" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="222" y="-791"/>
+            <point key="canvasLocation" x="7265.217391304348" y="-319.41964285714283"/>
         </scene>
         <!--Onboarding View Controller-->
         <scene sceneID="TA8-Jk-ZST">
@@ -739,7 +721,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="40" translatesAutoresizingMaskIntoConstraints="NO" id="U3N-cp-g1P">
-                                <rect key="frame" x="60" y="194" width="294" height="321"/>
+                                <rect key="frame" x="60" y="188" width="294" height="321"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Welcome to a dating app that provides a safe space for people with special health conditions." textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="amf-1u-21X">
                                         <rect key="frame" x="0.0" y="0.0" width="294" height="251"/>
@@ -752,7 +734,6 @@
                                         <state key="normal" title="let's get started"/>
                                         <connections>
                                             <action selector="getStartedButton:" destination="agv-MU-LDL" eventType="touchUpInside" id="6XI-Tq-cVd"/>
-                                            <segue destination="zuh-Tr-nwp" kind="show" identifier="getStarted" id="fL1-6k-oEC"/>
                                         </connections>
                                     </button>
                                 </subviews>
@@ -760,7 +741,7 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstItem="U3N-cp-g1P" firstAttribute="top" secondItem="Pcg-bC-KAz" secondAttribute="top" constant="150" id="Hk0-JU-xbJ"/>
+                            <constraint firstItem="U3N-cp-g1P" firstAttribute="top" secondItem="Pcg-bC-KAz" secondAttribute="top" constant="100" id="Hk0-JU-xbJ"/>
                             <constraint firstAttribute="trailing" secondItem="U3N-cp-g1P" secondAttribute="trailing" constant="60" id="MOd-e6-Bga"/>
                             <constraint firstItem="U3N-cp-g1P" firstAttribute="leading" secondItem="Pcg-bC-KAz" secondAttribute="leading" constant="60" id="zum-Ub-DX5"/>
                         </constraints>
@@ -770,11 +751,12 @@
                     <connections>
                         <outlet property="getStartedButton" destination="dPI-Q7-r2I" id="90y-Lo-Yis"/>
                         <outlet property="onboardingLabel" destination="amf-1u-21X" id="xdH-5i-tFX"/>
+                        <segue destination="xTd-XU-ttU" kind="show" identifier="getStarted" id="ZgC-yc-OZN"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="7K7-ll-knp" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="294" y="-60"/>
+            <point key="canvasLocation" x="1102.8985507246377" y="-790.17857142857144"/>
         </scene>
         <!--Get User Info View Controller-->
         <scene sceneID="DIC-je-VPY">
@@ -785,7 +767,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="30" translatesAutoresizingMaskIntoConstraints="NO" id="BHn-a0-f6B">
-                                <rect key="frame" x="40" y="208" width="334" height="384"/>
+                                <rect key="frame" x="40" y="168" width="334" height="464.5"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="FxQ-Xu-rpD">
                                         <rect key="frame" x="0.0" y="0.0" width="334" height="58.5"/>
@@ -821,8 +803,25 @@
                                             </textField>
                                         </subviews>
                                     </stackView>
+                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="gOE-7D-9v9">
+                                        <rect key="frame" x="0.0" y="177" width="334" height="50.5"/>
+                                        <subviews>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Gender" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dRz-Ma-P1b">
+                                                <rect key="frame" x="0.0" y="0.0" width="334" height="20.5"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Ofs-K6-tnl">
+                                                <rect key="frame" x="0.0" y="20.5" width="334" height="30"/>
+                                                <nil key="textColor"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                <textInputTraits key="textInputTraits"/>
+                                            </textField>
+                                        </subviews>
+                                    </stackView>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="LT6-za-mOv">
-                                        <rect key="frame" x="0.0" y="177" width="334" height="58.5"/>
+                                        <rect key="frame" x="0.0" y="257.5" width="334" height="58.5"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Date of Birth" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gtg-Lt-gpT">
                                                 <rect key="frame" x="0.0" y="0.0" width="334" height="20.5"/>
@@ -839,7 +838,7 @@
                                         </subviews>
                                     </stackView>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="Jn8-Xu-3X8">
-                                        <rect key="frame" x="0.0" y="265.5" width="334" height="58.5"/>
+                                        <rect key="frame" x="0.0" y="346" width="334" height="58.5"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Zip Code" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="H1L-T9-nBP">
                                                 <rect key="frame" x="0.0" y="0.0" width="334" height="20.5"/>
@@ -856,7 +855,7 @@
                                         </subviews>
                                     </stackView>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="T2D-lA-E25">
-                                        <rect key="frame" x="0.0" y="354" width="334" height="30"/>
+                                        <rect key="frame" x="0.0" y="434.5" width="334" height="30"/>
                                         <state key="normal" title="fill later"/>
                                         <connections>
                                             <segue destination="kmG-yk-po1" kind="show" id="8np-YE-PyQ"/>
@@ -868,7 +867,7 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="BHn-a0-f6B" firstAttribute="leading" secondItem="eMN-MV-bEp" secondAttribute="leading" constant="40" id="dUM-8I-GVx"/>
-                            <constraint firstItem="BHn-a0-f6B" firstAttribute="top" secondItem="eMN-MV-bEp" secondAttribute="top" constant="120" id="jUg-bR-Dod"/>
+                            <constraint firstItem="BHn-a0-f6B" firstAttribute="top" secondItem="eMN-MV-bEp" secondAttribute="top" constant="80" id="jUg-bR-Dod"/>
                             <constraint firstItem="eMN-MV-bEp" firstAttribute="trailing" secondItem="BHn-a0-f6B" secondAttribute="trailing" constant="40" id="ywl-5O-cjd"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="eMN-MV-bEp"/>
@@ -886,6 +885,8 @@
                         <outlet property="dateOfBirthTextField" destination="ZIR-0X-PI1" id="Ew1-Z2-eRi"/>
                         <outlet property="firstNameLabel" destination="dzW-aA-V9U" id="ywh-44-n4b"/>
                         <outlet property="firstNameTextField" destination="E2g-Ha-iyL" id="L8W-or-4t4"/>
+                        <outlet property="genderLabel" destination="dRz-Ma-P1b" id="pNY-cs-zkx"/>
+                        <outlet property="genderTextField" destination="Ofs-K6-tnl" id="di2-0m-Spl"/>
                         <outlet property="lastNameLabel" destination="FzS-51-ynj" id="XJO-Ft-ChA"/>
                         <outlet property="lastNameTextField" destination="ibg-Xv-bpi" id="hg2-Qb-44U"/>
                         <outlet property="laterButton" destination="T2D-lA-E25" id="f0S-c9-zFX"/>
@@ -994,14 +995,33 @@
             </objects>
             <point key="canvasLocation" x="1533" y="-60"/>
         </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="MtG-pr-vf1">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="zDL-D3-FyP" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="nxn-xW-ifM">
+                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="agv-MU-LDL" kind="relationship" relationship="rootViewController" id="8vS-z6-qaw"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="gcz-TQ-HL3" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="192.75362318840581" y="-790.17857142857144"/>
+        </scene>
     </scenes>
     <resources>
         <image name="girl" width="298" height="450"/>
         <image name="guy" width="500" height="750"/>
+        <image name="unblushLogo" width="796" height="838"/>
     </resources>
     <inferredMetricsTieBreakers>
+        <segue reference="cKK-6n-2GY"/>
         <segue reference="Jwn-f8-FBK"/>
         <segue reference="VII-Hm-M6i"/>
-        <segue reference="Flh-aZ-4tp"/>
     </inferredMetricsTieBreakers>
 </document>

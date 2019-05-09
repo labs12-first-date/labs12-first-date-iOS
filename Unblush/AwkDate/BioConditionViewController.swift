@@ -9,6 +9,18 @@
 import UIKit
 
 class BioConditionViewController: UIViewController {
+    
+    //MARK: - Properties
+    var user2Controller: User2Controller?
+    var currentUserUID: String?
+    var profile: Profile?
+        
+    var firstName: String?
+    var lastName: String?
+    var gender: String?
+    var dob: String?
+    var zipcode: Int?
+    
 
     override func viewDidLoad() {
         super.viewDidLoad()

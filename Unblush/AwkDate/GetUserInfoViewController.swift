@@ -12,8 +12,17 @@ class GetUserInfoViewController: UIViewController {
     
     //MARK: - Properties
     var user2Controller: User2Controller?
+    var currentUserUID: String?
     var profile: Profile?
+    
     private var datePicker: UIDatePicker?
+    
+    var firstName: String?
+    var lastName: String?
+    var gender: String?
+    var dob: String?
+    var zipcode: Int?
+    
     
     //MARK: - Outlets
     @IBOutlet weak var firstNameLabel: UILabel!
@@ -24,19 +33,32 @@ class GetUserInfoViewController: UIViewController {
     @IBOutlet weak var dateOfBirthTextField: UITextField!
     @IBOutlet weak var zipLabel: UILabel!
     @IBOutlet weak var zipTextField: UITextField!
+    @IBOutlet weak var genderLabel: UILabel!
+    @IBOutlet weak var genderTextField: UITextField!
     
     @IBOutlet weak var laterButton: UIButton!
     @IBOutlet weak var saveButton: UIBarButtonItem!
+    
     @IBAction func saveButton(_ sender: Any) {
         guard let firstName = firstNameTextField.text, !firstName.isEmpty,
             let lastName = lastNameTextField.text,
+            let gender = genderTextField.text,
             let dob = dateOfBirthTextField.text,
             let zipcode = zipTextField.text else { return }
         
- //       let date = self.dateFormatter.date(from: dob)!
+        self.firstName = firstName
+        self.lastName = lastName
+        self.gender = gender
+        self.dob = dob
+        self.zipcode = Int(zipcode)
         
-//        if let user = user {
-        //need to use create profile            user2Controller.createProfile(.....
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "MM/dd/yyyy"
+        let date = dateFormatter.date(from: dob)!
+        
+//        if let profile = profile {
+//            user2Controller?.putProfileToServer(userID: <#T##String#>, firstName: <#T##String#>, lastName: <#T##String#>, email: <#T##String#>, dob: <#T##Date#>, gender: <#T##String#>, zipcode: <#T##Int#>, condition: <#T##[String]#>, mainPhoto: <#T##Data#>, lookingFor: <#T##String#>, biography: <#T##String#>)
+//        
 //        }
     }
     
@@ -77,7 +99,13 @@ class GetUserInfoViewController: UIViewController {
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "SaveGetInfo" {
-            guard segue.destination is BioConditionViewController else { return }
+            guard let destination = segue.destination as? BioConditionViewController else { return }
+            
+            destination.firstName = self.firstName
+            destination.lastName = self.lastName
+            destination.gender = self.gender
+            destination.dob = self.dob
+            destination.zipcode = self.zipcode
         }
     }
 }
