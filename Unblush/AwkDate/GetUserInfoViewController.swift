@@ -86,6 +86,7 @@ class GetUserInfoViewController: UIViewController {
         toolBar.isUserInteractionEnabled = true
         
         genderTextField.inputAccessoryView = toolBar
+        dateOfBirthTextField.inputAccessoryView = toolBar
         
         //Customization
         //toolBar.barTintColor = .black
@@ -107,24 +108,24 @@ class GetUserInfoViewController: UIViewController {
         datePicker?.datePickerMode = .date
         datePicker?.addTarget(self, action: #selector(GetUserInfoViewController.dateChanged(datePicker:)), for: .valueChanged)
         
-        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(GetUserInfoViewController.viewTapped(gestureRecognizer:)))
+//        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(GetUserInfoViewController.viewTapped(gestureRecognizer:)))
         
-        tapGesture.cancelsTouchesInView = false
-        view.addGestureRecognizer(tapGesture)
+//        tapGesture.cancelsTouchesInView = false
+//        view.addGestureRecognizer(tapGesture)
         
         dateOfBirthTextField.inputView = datePicker
     }
     
-    @objc func viewTapped(gestureRecognizer: UITapGestureRecognizer) {
-        view.endEditing(true)
-    }
+//    @objc func viewTapped(gestureRecognizer: UITapGestureRecognizer) {
+//        view.endEditing(true)
+//    }
     
     @objc func dateChanged(datePicker: UIDatePicker) {
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "MM dd, yyyy"
         
         dateOfBirthTextField.text = dateFormatter.string(from: datePicker.date)
-        view.endEditing(true)
+        //view.endEditing(true)
         
     }
     
