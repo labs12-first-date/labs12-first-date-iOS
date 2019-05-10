@@ -8,6 +8,7 @@
 
 import Foundation
 import Firebase
+import FirebaseStorage
 
 
 class User2Controller {
@@ -18,12 +19,15 @@ class User2Controller {
     var currentUserUID: String?
     
     var currentPhoto: Data?
+    var currentPhotoURL: URL?
+    let storage = Storage.storage()
+    
     func createUserAccount(withEmail email: String, andPassword password: String, completion: @escaping (Error?) -> Void) {
         
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "MM/dd/yyyy"
         dateFormatter.dateStyle = .short
-      
+
         Auth.auth().createUser(withEmail: email, password: password) { (user, error) in
             
             if let error = error {
@@ -34,7 +38,6 @@ class User2Controller {
             
             if let userLocal = user {
                 self.currentUserUID = userLocal.user.uid
-//                self.putProfileToServer(userID: userLocal.user.uid, firstName: "Bob", lastName: "Blue", email: email, dob: dateFormatter.date(from: "06/15/1999")!, gender: "Male", zipcode: 23456, condition: ["Herpes"], mainPhoto: self.currentPhoto!, lookingFor: "Same", biography: "Nothing", completion: completion)
                 completion(nil)
             }
             
@@ -54,40 +57,68 @@ class User2Controller {
             }
             
             if let userAccount = user {
-
-              
+               // self.userFound = true
                 self.currentUserUID = userAccount.user.uid
-                completion(nil)
-//                self.fetchProfileFromServer(userID: userAccount.user.uid, completion: completion)
+                self.fetchProfileFromServer(userID: userAccount.user.uid, completion: completion)
             }
         }
     }
     
-    func putProfileToServer(userID: String, firstName: String, lastName: String, email: String, dob: Date, gender: String, zipcode: Int, condition: [String], mainPhoto: Data, lookingFor: String, biography:String,  completion: @escaping (Error?) -> Void = {_ in }) {
+    func putProfileToServer(userID: String, firstName: String, lastName: String, email: String, dob: Date, gender: String, zipcode: Int, condition: [String], mainPhoto: URL?, lookingFor: String, biography: String, completion: @escaping (Error?) -> Void = {_ in }) {
         
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "MM/dd/yyyy"
+        dateFormatter.dateStyle = .short
         
-        let exampleProfile = Profile(firstName: "Joe", lastName: "Blue", email: "test14@test.com", dob: dateFormatter.date(from: "05 22, 1997")!, gender: "Male", zipcode: 23456, condition: ["Herpes"], mainPhoto: self.currentPhoto!, likedMatches: [[:]], lookingFor: "Same", biography: "Nothing really", matches: [[:]])
+       // let exampleProfile = Profile(firstName: "Joe", lastName: "Blue", email: "test14@test.com", dob: dateFormatter.date(from: "05/22/1997")!, gender: "Male", zipcode: 23456, condition: ["Herpes"], mainPhoto: self.currentPhotoURL!, likedMatches: [[:]], lookingFor: "Same", biography: "Nothing really", matches: [[:]])
         
-        let profile = Profile(firstName: firstName, lastName: lastName, email: email, dob: dob, gender: gender, zipcode: zipcode, condition: condition, mainPhoto: mainPhoto, likedMatches: [exampleProfile.toAnyObject() as NSDictionary], lookingFor: lookingFor, biography: biography, matches: [exampleProfile.toAnyObject() as NSDictionary])
+        let photoUID = UUID().uuidString
+        
+        let storageRef = self.storage.reference()
+        let imagesRef = storageRef.child("images")
+        
+        let userPhotosRef = storageRef.child("images/\(photoUID).png")
+        
+        userPhotosRef.putData(self.currentPhoto!, metadata: nil, completion: { (metadata, error) in
+            
+            if let error = error {
+                print("Error putting image to storage: \(error)")
+                return
+            }
+            
+            userPhotosRef.downloadURL(completion: { (url, error) in
+                if let error = error {
+                    print("Error downloading url: \(error)")
+                    return
+                }
+                self.currentPhotoURL = url
+                let profile = Profile(firstName: firstName, lastName: lastName, email: email, dob: dob, gender: gender, zipcode: zipcode, condition: condition, mainPhoto: self.currentPhotoURL!, likedMatches: [[:]], lookingFor: lookingFor, biography: biography, matches: [[:]])
+                
+                var ref: DocumentReference? = nil
+                ref = self.db.collection("profilesiOS").document(userID)
+                
+                if ref != nil {
+                    ref?.setData(profile.toAnyObject())
+                    completion(nil)
+                }
+                
+            })
+            
+        })
+        
+       // let profile = Profile(firstName: firstName, lastName: lastName, email: email, dob: dob, gender: gender, zipcode: zipcode, condition: condition, mainPhoto: mainPhoto, likedMatches: [exampleProfile.toAnyObject() as NSDictionary], lookingFor: lookingFor, biography: biography, matches: [exampleProfile.toAnyObject() as NSDictionary])
         
         //.. /profiles/uid
         
-        var ref: DocumentReference? = nil
-        ref = db.collection("profilesiOS").document(userID)
         
-        if ref != nil {
-            ref?.setData(profile.toAnyObject())
-        }
         
         
         //addDocument(data: profile.toAnyObject())
+        //completion(nil)
     }
     
     func fetchProfileFromServer(userID: String, completion: @escaping (Error?) -> Void = {_ in }) {
         let profileRef = db.collection("profilesiOS").document(userID)
-
         
         profileRef.getDocument { (document, error) in
             
@@ -97,13 +128,17 @@ class User2Controller {
                 return
             }
             
+           // let jsonDecoder = JSONDecoder()
             
             if let document = document, document.exists {
                 self.singleProfileFromServer = document.data()!
                 print("Document data: \(document.data()!)")
-                print("Profile from fetch: \(self.singleProfileFromServer["first_name"])")
+                print("Photo from fetch: \( self.singleProfileFromServer["first_name"])")
+                completion(nil)
             } else {
                 print("Document does not exist")
+                completion(error)
+                return
             }
             
             
@@ -114,17 +149,17 @@ class User2Controller {
     
     func fetchAllProfilesFromServer(completion: @escaping (Error?) -> Void = {_ in }) {
         /*
-         
-         db.collection("cities").getDocuments() { (querySnapshot, err) in
-         if let err = err {
-         print("Error getting documents: \(err)")
-         } else {
-         for document in querySnapshot!.documents {
-         print("\(document.documentID) => \(document.data())")
-         }
-         }
-         } */
-         
+ 
+ db.collection("cities").getDocuments() { (querySnapshot, err) in
+ if let err = err {
+ print("Error getting documents: \(err)")
+ } else {
+ for document in querySnapshot!.documents {
+ print("\(document.documentID) => \(document.data())")
+ }
+ }
+ } */
+        
         
     }
     
@@ -135,4 +170,3 @@ class User2Controller {
     
     
 }
-

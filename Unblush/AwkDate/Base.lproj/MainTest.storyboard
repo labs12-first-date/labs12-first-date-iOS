@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="K0L-AF-gMv">
     <device id="retina6_1" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -64,6 +64,83 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
+            <point key="canvasLocation" x="-19" y="54"/>
+        </scene>
+        <!--Conditions View Controller-->
+        <scene sceneID="tLZ-HI-Xil">
+            <objects>
+                <viewController id="K0L-AF-gMv" customClass="ConditionsViewController" customModule="AwkDate" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="fcA-uY-lo5">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="5lv-F2-Vb0">
+                                <rect key="frame" x="20" y="122" width="374" height="128"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="ConditionCell" rowHeight="59" id="WnR-h2-IT5" customClass="ConditionTableViewCell" customModule="AwkDate" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="28" width="374" height="59"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="WnR-h2-IT5" id="DqE-Ku-DLo">
+                                            <rect key="frame" x="0.0" y="0.0" width="374" height="58.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <stackView opaque="NO" contentMode="scaleToFill" spacing="217" translatesAutoresizingMaskIntoConstraints="NO" id="XFx-tE-SXv">
+                                                    <rect key="frame" x="8" y="11" width="358" height="37"/>
+                                                    <subviews>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="STD Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="egJ-V3-a8q">
+                                                            <rect key="frame" x="0.0" y="0.0" width="104" height="37"/>
+                                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                            <nil key="textColor"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
+                                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="BRN-dM-1Hp">
+                                                            <rect key="frame" x="321" y="0.0" width="37" height="37"/>
+                                                            <constraints>
+                                                                <constraint firstAttribute="height" constant="37" id="4Ik-QF-2I2"/>
+                                                                <constraint firstAttribute="width" constant="37" id="SHH-BC-XAP"/>
+                                                            </constraints>
+                                                            <state key="normal" image="emptyCheck"/>
+                                                            <connections>
+                                                                <action selector="checkMarkTapped:" destination="WnR-h2-IT5" eventType="touchUpInside" id="bym-dl-smN"/>
+                                                            </connections>
+                                                        </button>
+                                                    </subviews>
+                                                </stackView>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstAttribute="trailing" secondItem="XFx-tE-SXv" secondAttribute="trailing" constant="8" id="1oz-Wf-4yW"/>
+                                                <constraint firstItem="XFx-tE-SXv" firstAttribute="top" secondItem="DqE-Ku-DLo" secondAttribute="top" constant="11" id="DnT-rR-thO"/>
+                                                <constraint firstAttribute="bottom" secondItem="XFx-tE-SXv" secondAttribute="bottom" constant="10.5" id="TBX-uq-o0j"/>
+                                                <constraint firstItem="XFx-tE-SXv" firstAttribute="leading" secondItem="DqE-Ku-DLo" secondAttribute="leading" constant="8" id="iK8-wy-hYI"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="checkMarkButton" destination="BRN-dM-1Hp" id="Gls-Do-7pE"/>
+                                            <outlet property="conditionNameLabel" destination="egJ-V3-a8q" id="wBx-g1-cfL"/>
+                                        </connections>
+                                    </tableViewCell>
+                                </prototypes>
+                                <connections>
+                                    <outlet property="dataSource" destination="K0L-AF-gMv" id="aET-sh-O0i"/>
+                                    <outlet property="delegate" destination="K0L-AF-gMv" id="eaq-Fk-j0y"/>
+                                </connections>
+                            </tableView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <viewLayoutGuide key="safeArea" id="xyR-gM-yX2"/>
+                    </view>
+                    <connections>
+                        <outlet property="conditionsTableView" destination="5lv-F2-Vb0" id="rGx-9P-xbJ"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="di2-Ox-qIq" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="776.81159420289862" y="104.46428571428571"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="emptyCheck" width="512" height="512"/>
+    </resources>
 </document>
