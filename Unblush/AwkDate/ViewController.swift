@@ -14,7 +14,7 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        user2Controller.fetchProfileFromServer(userID: "e1bHvaIJhhPvn7En1ftztHNpWls2") { (error) in
+       /* user2Controller.fetchProfileFromServer(userID: "e1bHvaIJhhPvn7En1ftztHNpWls2") { (error) in
             if let error = error {
                 print("Error fetching profile in vc: \(error)")
                 return
@@ -25,10 +25,10 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
             DispatchQueue.main.async {
                 self.updateViews()
             }
-        }
+        }*/
         
         
-        
+        updateViews()
         
     }
 
@@ -142,7 +142,7 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         if user2Controller.currentPhoto != nil {
             
             
-            user2Controller.createUserAccount(withEmail: "test21@test.com", andPassword: "testtest21") { (error) in
+            user2Controller.createUserAccount(withEmail: "test22@test.com", andPassword: "testtest22") { (error) in
                 if let error = error {
                     print("Error creating user account: \(error)")
                     return

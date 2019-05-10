@@ -19,18 +19,18 @@ enum LookingForType: String {
 }
 
 enum ConditionType: String {
-    case aids
-    case hiv
-    case herpes
-    case chlamydia
-    case theClap
-    case hepC
-    case hepB
-    case hepD
-    case genitalWarts
-    case crabs
-    case gonorrhea
-    case syphyllis
+    case aids = "AIDS"
+    case hiv = "HIV"
+    case herpes = "Herpes"
+    case chlamydia = "Chlamydia"
+    case theClap = "The Clap"
+    case hepC = "Hep C"
+    case hepB = "Hep B"
+    case hepD = "Hep D"
+    case genitalWarts = "Genital Warts"
+    case crabs = "Crabs"
+    case gonorrhea = "Gonorrhea"
+    case syphyllis = "Syphyllis"
 }
 
 enum GenderType: String {

@@ -22,6 +22,8 @@
 		4F4F40082281E3BA00667A92 /* User2Controller.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F4F40072281E3BA00667A92 /* User2Controller.swift */; };
 		4F4F400A2281E6B800667A92 /* Profile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F4F40092281E6B800667A92 /* Profile.swift */; };
 		4F76E673227A7962004CC709 /* UserController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F76E672227A7962004CC709 /* UserController.swift */; };
+		4FE8AE132285B64800975841 /* ConditionsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FE8AE122285B64800975841 /* ConditionsViewController.swift */; };
+		4FE8AE152285B69200975841 /* ConditionTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FE8AE142285B69200975841 /* ConditionTableViewCell.swift */; };
 		7C8A7E0B204A2237D3961EBE /* Pods_AwkDateTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 79B8CF5230FC66BD53FBFEBF /* Pods_AwkDateTests.framework */; };
 		F63BC0D0FB87348B0AC6AD59 /* Pods_AwkDateUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 93F8567FA63E53C74DAB5D78 /* Pods_AwkDateUITests.framework */; };
 /* End PBXBuildFile section */
@@ -67,6 +69,8 @@
 		4F4F40072281E3BA00667A92 /* User2Controller.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User2Controller.swift; sourceTree = "<group>"; };
 		4F4F40092281E6B800667A92 /* Profile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Profile.swift; sourceTree = "<group>"; };
 		4F76E672227A7962004CC709 /* UserController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserController.swift; sourceTree = "<group>"; };
+		4FE8AE122285B64800975841 /* ConditionsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConditionsViewController.swift; sourceTree = "<group>"; };
+		4FE8AE142285B69200975841 /* ConditionTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConditionTableViewCell.swift; sourceTree = "<group>"; };
 		4FF3274A227B5F1000192934 /* AwkDate.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = AwkDate.entitlements; sourceTree = "<group>"; };
 		6DD244BB161B0869426CEE15 /* Pods-AwkDate.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AwkDate.release.xcconfig"; path = "Target Support Files/Pods-AwkDate/Pods-AwkDate.release.xcconfig"; sourceTree = "<group>"; };
 		79B8CF5230FC66BD53FBFEBF /* Pods_AwkDateTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_AwkDateTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -137,6 +141,8 @@
 				4F3C55D722792A1E006307A9 /* AppDelegate.swift */,
 				4F3C55D922792A1E006307A9 /* ViewController.swift */,
 				4F3C55DB22792A1E006307A9 /* MainTest.storyboard */,
+				4FE8AE142285B69200975841 /* ConditionTableViewCell.swift */,
+				4FE8AE122285B64800975841 /* ConditionsViewController.swift */,
 				4F3C55DE22792A20006307A9 /* Assets.xcassets */,
 				4F3C55E022792A20006307A9 /* LaunchScreen.storyboard */,
 				4F3C55E322792A20006307A9 /* Info.plist */,
@@ -465,7 +471,9 @@
 				4F3C55DA22792A1E006307A9 /* ViewController.swift in Sources */,
 				4F4130A02284822900CDF247 /* ViewControllerMethods.swift in Sources */,
 				4F4F40082281E3BA00667A92 /* User2Controller.swift in Sources */,
+				4FE8AE132285B64800975841 /* ConditionsViewController.swift in Sources */,
 				4F3C55D822792A1E006307A9 /* AppDelegate.swift in Sources */,
+				4FE8AE152285B69200975841 /* ConditionTableViewCell.swift in Sources */,
 				4F4F400A2281E6B800667A92 /* Profile.swift in Sources */,
 				4F76E673227A7962004CC709 /* UserController.swift in Sources */,
 				4F3C560922792A59006307A9 /* User.swift in Sources */,
