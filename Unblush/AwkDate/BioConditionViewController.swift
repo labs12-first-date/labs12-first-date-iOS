@@ -49,6 +49,11 @@ class BioConditionViewController: UIViewController, UITableViewDataSource, UITab
         guard let biography = bioTextField.text else { return }
         
         self.biography = biography
+        
+        //            user2Controller?.putProfileToServer(userID: <#T##String#>, firstName: <#T##String#>, lastName: <#T##String#>, email: <#T##String#>, dob: <#T##Date#>, gender: <#T##String#>, zipcode: <#T##Int#>, condition: <#T##[String]#>, mainPhoto: <#T##Data#>, lookingFor: <#T##String#>, biography: <#T##String#>)
+        //
+        //        }
+        
     }
     
     @IBOutlet weak var fillLaterButton: UIButton!
@@ -78,16 +83,11 @@ class BioConditionViewController: UIViewController, UITableViewDataSource, UITab
         
         return cell
     }
-    
-    //            user2Controller?.putProfileToServer(userID: <#T##String#>, firstName: <#T##String#>, lastName: <#T##String#>, email: <#T##String#>, dob: <#T##Date#>, gender: <#T##String#>, zipcode: <#T##Int#>, condition: <#T##[String]#>, mainPhoto: <#T##Data#>, lookingFor: <#T##String#>, biography: <#T##String#>)
-    //
-    //        }
 
     // MARK: - Navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "profile" {
             guard let destination = segue.destination as? ProfileViewController else { return }
-            
             
         }
     }
