@@ -45,6 +45,10 @@ class GetUserInfoViewController: UIViewController {
     @IBOutlet weak var genderTextField: UITextField!
     
     @IBOutlet weak var laterButton: UIButton!
+    @IBAction func laterButton(_ sender: Any) {
+        performSegue(withIdentifier: "later", sender: self)
+    }
+    
     @IBOutlet weak var saveButton: UIBarButtonItem!
     
     @IBAction func saveButton(_ sender: Any) {
