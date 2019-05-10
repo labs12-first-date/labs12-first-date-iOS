@@ -8,9 +8,37 @@
 
 import Foundation
 
-/*enum LookingFor {
- 
-}*/
+enum LookingForType: String {
+    case sameGender
+    case sameCondition
+    case openToAllPossibilities
+    case openToAllConditions
+    case fiveYearAgeGap
+    case tenYearAgeGap
+    case threeYearAgeGap
+}
+
+enum ConditionType: String {
+    case aids = "AIDS"
+    case hiv = "HIV"
+    case herpes = "Herpes"
+    case chlamydia = "Chlamydia"
+    case theClap = "The Clap"
+    case hepC = "Hep C"
+    case hepB = "Hep B"
+    case hepD = "Hep D"
+    case genitalWarts = "Genital Warts"
+    case crabs = "Crabs"
+    case gonorrhea = "Gonorrhea"
+    case syphyllis = "Syphyllis"
+}
+
+enum GenderType: String {
+    case female
+    case male
+    case nonbinary
+    case transgender
+}
 
 struct Profile: Decodable {
     
@@ -52,7 +80,7 @@ struct Profile: Decodable {
     var gender: String // enum
     var zipcode: Int
     var condition: [String]
-    var mainPhoto: Data
+    var mainPhoto: URL //Data
     // var photoLibrary: [Photos]
     var likedMatches: [Any] //[Profile] converted to dict in user controller
     
@@ -63,12 +91,16 @@ struct Profile: Decodable {
     var matches: [Any]
    
     func toAnyObject() -> Dictionary<String, Any> {
-        return [Profile.firstNameKey: firstName, Profile.lastNameKey: lastName, Profile.genderKey: gender, Profile.mainPhotoKey: mainPhoto.description, Profile.zipcodeKey: NSNumber(value: zipcode).stringValue, Profile.biographyKey: biography, Profile.conditionKey: condition, Profile.dobKey: dob.description, Profile.emailKey: email, Profile.lookingForKey: lookingFor, Profile.likedMatchesKey: likedMatches, Profile.matchesKey: matches]
+       // let mainPhotoString = String(data: mainPhoto, encoding: .utf8)!
+       // let mainPhotoURL = URL(string: String(mainPhotoString))!
+        //let mainPhotoURL2 = URL(dataRepresentation: mainPhoto, relativeTo: nil)!
+        
+        return [Profile.firstNameKey: firstName, Profile.lastNameKey: lastName, Profile.genderKey: gender, Profile.mainPhotoKey: mainPhoto.absoluteString, Profile.zipcodeKey: NSNumber(value: zipcode).stringValue, Profile.biographyKey: biography, Profile.conditionKey: condition, Profile.dobKey: dob.description, Profile.emailKey: email, Profile.lookingForKey: lookingFor, Profile.likedMatchesKey: likedMatches, Profile.matchesKey: matches]
     }
     
   
     
-    init(firstName: String, lastName: String, email: String, dob: Date, gender: String, zipcode: Int, condition: [String], mainPhoto: Data, likedMatches: [Any], lookingFor: String, biography: String, matches: [Any]) {
+    init(firstName: String, lastName: String, email: String, dob: Date, gender: String, zipcode: Int, condition: [String], mainPhoto: URL, likedMatches: [Any], lookingFor: String, biography: String, matches: [Any]) {
         
         self.firstName = firstName
         self.lastName = lastName
@@ -120,7 +152,7 @@ struct Profile: Decodable {
         self.gender = genderString
         self.zipcode = Int(zip)!
         self.condition = conditionString
-        self.mainPhoto = mainPhotoString.data(using: .utf8)!
+        self.mainPhoto = URL(fileURLWithPath: mainPhotoString)
         self.lookingFor = lookingForString
         self.biography = bio
     }
