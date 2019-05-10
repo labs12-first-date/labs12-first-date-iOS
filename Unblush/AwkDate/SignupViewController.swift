@@ -58,7 +58,7 @@ class SignupViewController: UIViewController {
                 
                 DispatchQueue.main.async {
                     self.removeActivityIndicator(activityIndicator: myActivityIndicator)
-                    self.performSegue(withIdentifier: "signup", sender: self)
+                    self.performSegue(withIdentifier: "getInfoFromSignup", sender: self)
                 }
             }
             
@@ -85,5 +85,15 @@ class SignupViewController: UIViewController {
                 alertController.addAction(OKAction)
                 self.present(alertController, animated: true, completion:nil)
         }
+    }
+    
+        override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+            if segue.identifier == "getInfoFromSignup" {
+                guard let destination = segue.destination as? UINavigationController,
+                    let vcDestination = destination.topViewController as? GetUserInfoViewController else { return }
+                    
+                vcDestination.currentUserUID = self.currentUserUID
+                vcDestination.user2Controller = user2Controller
+            }
     }
 }

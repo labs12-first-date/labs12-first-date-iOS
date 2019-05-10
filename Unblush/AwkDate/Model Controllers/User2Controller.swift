@@ -34,7 +34,8 @@ class User2Controller {
             
             if let userLocal = user {
                 self.currentUserUID = userLocal.user.uid
-                self.putProfileToServer(userID: userLocal.user.uid, firstName: "Bob", lastName: "Blue", email: email, dob: dateFormatter.date(from: "06/15/1999")!, gender: "Male", zipcode: 23456, condition: ["Herpes"], mainPhoto: self.currentPhoto!, lookingFor: "Same", biography: "Nothing", completion: completion)
+//                self.putProfileToServer(userID: userLocal.user.uid, firstName: "Bob", lastName: "Blue", email: email, dob: dateFormatter.date(from: "06/15/1999")!, gender: "Male", zipcode: 23456, condition: ["Herpes"], mainPhoto: self.currentPhoto!, lookingFor: "Same", biography: "Nothing", completion: completion)
+                completion(nil)
             }
             
         }
@@ -56,7 +57,8 @@ class User2Controller {
 
               
                 self.currentUserUID = userAccount.user.uid
-                self.fetchProfileFromServer(userID: userAccount.user.uid, completion: completion)
+                completion(nil)
+//                self.fetchProfileFromServer(userID: userAccount.user.uid, completion: completion)
             }
         }
     }
@@ -64,7 +66,7 @@ class User2Controller {
     func putProfileToServer(userID: String, firstName: String, lastName: String, email: String, dob: Date, gender: String, zipcode: Int, condition: [String], mainPhoto: Data, lookingFor: String, biography:String,  completion: @escaping (Error?) -> Void = {_ in }) {
         
         let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "MM dd, yyyy"
+        dateFormatter.dateFormat = "MM/dd/yyyy"
         
         let exampleProfile = Profile(firstName: "Joe", lastName: "Blue", email: "test14@test.com", dob: dateFormatter.date(from: "05 22, 1997")!, gender: "Male", zipcode: 23456, condition: ["Herpes"], mainPhoto: self.currentPhoto!, likedMatches: [[:]], lookingFor: "Same", biography: "Nothing really", matches: [[:]])
         
