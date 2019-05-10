@@ -19,16 +19,10 @@ class ConditionsViewController: UIViewController, UITableViewDelegate, UITableVi
         let condition = self.conditions[indexPath.row]
         cell.conditionNameLabel.text = condition.rawValue
         
+        cell.condition = condition
+        
         return cell
     }
-    
-
-    override func viewDidLoad() {
-        super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
-    }
-    
     
     let conditions: [ConditionType] = [.aids, .chlamydia, .crabs, .genitalWarts, .gonorrhea, .hepB, .hepC, .hepD, .herpes, .hiv, .syphyllis, .theClap]
     

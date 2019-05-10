@@ -36,33 +36,9 @@ class User2Controller {
                 return
             }
             
-            let photoUID = UUID().uuidString
-            
             if let userLocal = user {
                 self.currentUserUID = userLocal.user.uid
-                let storageRef = self.storage.reference()
-                let imagesRef = storageRef.child("images")
-              //  let userImagesRef = storageRef.child("images/\(userLocal.user.uid)")
-                var userPhotosRef = storageRef.child("images/\(photoUID).png")
-                
-                userPhotosRef.putData(self.currentPhoto!, metadata: nil, completion: { (metadata, error) in
-                    
-                    if let error = error {
-                        print("Error putting image to storage: \(error)")
-                        return
-                    }
-                    
-                    userPhotosRef.downloadURL(completion: { (url, error) in
-                        if let error = error {
-                            print("Error downloading url: \(error)")
-                            return
-                        }
-                        self.currentPhotoURL = url
-                        self.putProfileToServer(userID: userLocal.user.uid, firstName: "Bob", lastName: "Blue", email: email, dob: dateFormatter.date(from: "06/15/1999")!, gender: "Male", zipcode: 23456, condition: ["Herpes"], mainPhoto: self.currentPhotoURL!, lookingFor: "Same", biography: "Nothing", completion: completion)
-                    })
-                    
-                })
-                
+                completion(nil)
             }
             
         }
@@ -88,28 +64,57 @@ class User2Controller {
         }
     }
     
-    func putProfileToServer(userID: String, firstName: String, lastName: String, email: String, dob: Date, gender: String, zipcode: Int, condition: [String], mainPhoto: URL, lookingFor: String, biography:String,  completion: @escaping (Error?) -> Void = {_ in }) {
+    func putProfileToServer(userID: String, firstName: String, lastName: String, email: String, dob: Date, gender: String, zipcode: Int, condition: [String], mainPhoto: URL?, lookingFor: String, biography: String, completion: @escaping (Error?) -> Void = {_ in }) {
         
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "MM/dd/yyyy"
         dateFormatter.dateStyle = .short
         
-        let exampleProfile = Profile(firstName: "Joe", lastName: "Blue", email: "test14@test.com", dob: dateFormatter.date(from: "05/22/1997")!, gender: "Male", zipcode: 23456, condition: ["Herpes"], mainPhoto: self.currentPhotoURL!, likedMatches: [[:]], lookingFor: "Same", biography: "Nothing really", matches: [[:]])
+       // let exampleProfile = Profile(firstName: "Joe", lastName: "Blue", email: "test14@test.com", dob: dateFormatter.date(from: "05/22/1997")!, gender: "Male", zipcode: 23456, condition: ["Herpes"], mainPhoto: self.currentPhotoURL!, likedMatches: [[:]], lookingFor: "Same", biography: "Nothing really", matches: [[:]])
         
-        let profile = Profile(firstName: firstName, lastName: lastName, email: email, dob: dob, gender: gender, zipcode: zipcode, condition: condition, mainPhoto: mainPhoto, likedMatches: [exampleProfile.toAnyObject() as NSDictionary], lookingFor: lookingFor, biography: biography, matches: [exampleProfile.toAnyObject() as NSDictionary])
+        let photoUID = UUID().uuidString
+        
+        let storageRef = self.storage.reference()
+        let imagesRef = storageRef.child("images")
+        
+        let userPhotosRef = storageRef.child("images/\(photoUID).png")
+        
+        userPhotosRef.putData(self.currentPhoto!, metadata: nil, completion: { (metadata, error) in
+            
+            if let error = error {
+                print("Error putting image to storage: \(error)")
+                return
+            }
+            
+            userPhotosRef.downloadURL(completion: { (url, error) in
+                if let error = error {
+                    print("Error downloading url: \(error)")
+                    return
+                }
+                self.currentPhotoURL = url
+                let profile = Profile(firstName: firstName, lastName: lastName, email: email, dob: dob, gender: gender, zipcode: zipcode, condition: condition, mainPhoto: self.currentPhotoURL!, likedMatches: [[:]], lookingFor: lookingFor, biography: biography, matches: [[:]])
+                
+                var ref: DocumentReference? = nil
+                ref = self.db.collection("profilesiOS").document(userID)
+                
+                if ref != nil {
+                    ref?.setData(profile.toAnyObject())
+                    completion(nil)
+                }
+                
+            })
+            
+        })
+        
+       // let profile = Profile(firstName: firstName, lastName: lastName, email: email, dob: dob, gender: gender, zipcode: zipcode, condition: condition, mainPhoto: mainPhoto, likedMatches: [exampleProfile.toAnyObject() as NSDictionary], lookingFor: lookingFor, biography: biography, matches: [exampleProfile.toAnyObject() as NSDictionary])
         
         //.. /profiles/uid
         
-        var ref: DocumentReference? = nil
-        ref = db.collection("profilesiOS").document(userID)
         
-        if ref != nil {
-            ref?.setData(profile.toAnyObject())
-            completion(nil)
-        }
         
         
         //addDocument(data: profile.toAnyObject())
+        //completion(nil)
     }
     
     func fetchProfileFromServer(userID: String, completion: @escaping (Error?) -> Void = {_ in }) {

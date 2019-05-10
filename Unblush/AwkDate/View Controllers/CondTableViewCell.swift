@@ -1,5 +1,5 @@
 //
-//  ConditionTableViewCell.swift
+//  CondTableViewCell.swift
 //  AwkDate
 //
 //  Created by Lambda_School_Loaner_95 on 5/10/19.
@@ -8,19 +8,8 @@
 
 import UIKit
 
-class ConditionTableViewCell: UITableViewCell {
+class CondTableViewCell: UITableViewCell {
 
-    override func awakeFromNib() {
-        super.awakeFromNib()
-        // Initialization code
-    }
-
-    override func setSelected(_ selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
-
-        // Configure the view for the selected state
-    }
-    
     var condition: ConditionType? {
         didSet {
             
@@ -41,11 +30,11 @@ class ConditionTableViewCell: UITableViewCell {
         let currentImage = checkMarkButton.currentImage!
         let buttonEmptyImage = UIImage(named: "emptyCheck")!
         let buttonCheckImage = UIImage(named: "check")!
-            
+        
         if currentImage.pngData() != buttonEmptyImage.pngData() {
             
             DispatchQueue.main.async {
-                 self.checkMarkButton.setImage(buttonEmptyImage, for: .normal)
+                self.checkMarkButton.setImage(buttonEmptyImage, for: .normal)
             }
             let indexOfSTD = conditionsFromTableView.firstIndex(of: condition.rawValue)
             conditionsFromTableView.remove(at: indexOfSTD!)
@@ -59,7 +48,5 @@ class ConditionTableViewCell: UITableViewCell {
         }
     }
     
-
+    
 }
-
-var conditionsFromTableView: [String] = []
