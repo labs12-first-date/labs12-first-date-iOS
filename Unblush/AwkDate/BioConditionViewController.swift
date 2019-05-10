@@ -89,6 +89,9 @@ class BioConditionViewController: UIViewController, UITableViewDataSource, UITab
         if segue.identifier == "profile" {
             guard let destination = segue.destination as? ProfileViewController else { return }
             
+            destination.currentUserUID = self.currentUserUID
+            destination.user2Controller = user2Controller
+            
         }
     }
 }

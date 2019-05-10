@@ -16,6 +16,7 @@
 		482F4CD2228338FA004E6B93 /* GetUserInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 482F4CD1228338FA004E6B93 /* GetUserInfoViewController.swift */; };
 		482F4CD42283391A004E6B93 /* BioConditionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 482F4CD32283391A004E6B93 /* BioConditionViewController.swift */; };
 		482F4CD622833947004E6B93 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 482F4CD522833947004E6B93 /* ProfileViewController.swift */; };
+		48C1A0CA2285A652003B47EC /* MediaCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48C1A0C92285A652003B47EC /* MediaCollectionViewController.swift */; };
 		4F3C55D822792A1E006307A9 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F3C55D722792A1E006307A9 /* AppDelegate.swift */; };
 		4F3C55DA22792A1E006307A9 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F3C55D922792A1E006307A9 /* ViewController.swift */; };
 		4F3C55DD22792A1E006307A9 /* MainTest.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4F3C55DB22792A1E006307A9 /* MainTest.storyboard */; };
@@ -62,6 +63,7 @@
 		482F4CD1228338FA004E6B93 /* GetUserInfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = GetUserInfoViewController.swift; path = AwkDate/GetUserInfoViewController.swift; sourceTree = SOURCE_ROOT; };
 		482F4CD32283391A004E6B93 /* BioConditionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = BioConditionViewController.swift; path = AwkDate/BioConditionViewController.swift; sourceTree = SOURCE_ROOT; };
 		482F4CD522833947004E6B93 /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ProfileViewController.swift; path = AwkDate/ProfileViewController.swift; sourceTree = SOURCE_ROOT; };
+		48C1A0C92285A652003B47EC /* MediaCollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = MediaCollectionViewController.swift; path = AwkDate/MediaCollectionViewController.swift; sourceTree = SOURCE_ROOT; };
 		4F3C55D422792A1E006307A9 /* AwkDate.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AwkDate.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4F3C55D722792A1E006307A9 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		4F3C55D922792A1E006307A9 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -214,6 +216,7 @@
 				482F4CD1228338FA004E6B93 /* GetUserInfoViewController.swift */,
 				482F4CD32283391A004E6B93 /* BioConditionViewController.swift */,
 				482F4CD522833947004E6B93 /* ProfileViewController.swift */,
+				48C1A0C92285A652003B47EC /* MediaCollectionViewController.swift */,
 			);
 			path = "View Controllers";
 			sourceTree = "<group>";
@@ -494,6 +497,7 @@
 			files = (
 				482F4CCC22833873004E6B93 /* SignupViewController.swift in Sources */,
 				4F3C55DA22792A1E006307A9 /* ViewController.swift in Sources */,
+				48C1A0CA2285A652003B47EC /* MediaCollectionViewController.swift in Sources */,
 				482F4CD42283391A004E6B93 /* BioConditionViewController.swift in Sources */,
 				4F4F40082281E3BA00667A92 /* User2Controller.swift in Sources */,
 				482F4CD622833947004E6B93 /* ProfileViewController.swift in Sources */,

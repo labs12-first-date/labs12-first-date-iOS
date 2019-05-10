@@ -147,6 +147,10 @@ class GetUserInfoViewController: UIViewController {
             destination.gender = self.gender
             destination.dob = self.dob
             destination.zipcode = self.zipcode
+            
+            destination.currentUserUID = self.currentUserUID
+            destination.user2Controller = user2Controller
+            
         }
     }
 }
