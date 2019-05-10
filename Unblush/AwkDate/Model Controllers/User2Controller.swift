@@ -17,7 +17,7 @@ class User2Controller {
     var profilesFromServer: [[String: Any]] = [[:]]
     var currentUserUID: String?
     
-    var currentPhoto: Data?
+    var currentPhoto: URL?
     func createUserAccount(withEmail email: String, andPassword password: String, completion: @escaping (Error?) -> Void) {
         
         let dateFormatter = DateFormatter()
@@ -60,22 +60,24 @@ class User2Controller {
         }
     }
     
-    func putProfileToServer(userID: String, firstName: String, lastName: String, email: String, dob: Date, gender: String, zipcode: Int, condition: [String], mainPhoto: Data, lookingFor: String, biography:String,  completion: @escaping (Error?) -> Void = {_ in }) {
+    func putProfileToServer(userID: String, firstName: String, lastName: String, email: String, dob: Date, gender: String, zipcode: Int, condition: [String], mainPhoto: URL, lookingFor: String, biography:String,  completion: @escaping (Error?) -> Void = {_ in }) {
         
         let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "MM dd, yyyy"
+        dateFormatter.dateFormat = "MM/dd/yyyy"
+        dateFormatter.dateStyle = .short
         
-        let exampleProfile = Profile(firstName: "Joe", lastName: "Blue", email: "test14@test.com", dob: dateFormatter.date(from: "05 22, 1997")!, gender: "Male", zipcode: 23456, condition: ["Herpes"], mainPhoto: self.currentPhoto!, likedMatches: [[:]], lookingFor: "Same", biography: "Nothing really", matches: [[:]])
+        let exampleProfile = Profile(firstName: "Joe", lastName: "Blue", email: "test14@test.com", dob: dateFormatter.date(from: "05/22/1997")!, gender: "Male", zipcode: 23456, condition: ["Herpes"], mainPhoto: self.currentPhoto!, likedMatches: [[:]], lookingFor: "Same", biography: "Nothing really", matches: [[:]])
         
         let profile = Profile(firstName: firstName, lastName: lastName, email: email, dob: dob, gender: gender, zipcode: zipcode, condition: condition, mainPhoto: mainPhoto, likedMatches: [exampleProfile.toAnyObject() as NSDictionary], lookingFor: lookingFor, biography: biography, matches: [exampleProfile.toAnyObject() as NSDictionary])
         
         //.. /profiles/uid
         
         var ref: DocumentReference? = nil
-        ref = db.collection("profiles").document(userID)
+        ref = db.collection("profilesiOS").document(userID)
         
         if ref != nil {
             ref?.setData(profile.toAnyObject())
+            completion(nil)
         }
         
         
@@ -83,7 +85,7 @@ class User2Controller {
     }
     
     func fetchProfileFromServer(userID: String, completion: @escaping (Error?) -> Void = {_ in }) {
-        let profileRef = db.collection("profiles").document(userID)
+        let profileRef = db.collection("profilesiOS").document(userID)
         
         profileRef.getDocument { (document, error) in
             
@@ -98,9 +100,12 @@ class User2Controller {
             if let document = document, document.exists {
                 self.singleProfileFromServer = document.data()!
                 print("Document data: \(document.data()!)")
-                print("Profile from fetch: \(self.singleProfileFromServer["first_name"])")
+                print("Photo from fetch: \( self.singleProfileFromServer["first_name"])")
+                completion(nil)
             } else {
                 print("Document does not exist")
+                completion(error)
+                return
             }
             
             
@@ -126,7 +131,7 @@ class User2Controller {
     }
     
     
-    func uploadPhoto(imageContainer: Data) {
+    func uploadPhoto(imageContainer: URL) {
         self.currentPhoto = imageContainer
     }
     

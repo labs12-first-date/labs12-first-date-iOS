@@ -17,6 +17,7 @@
 		4F3C55F822792A20006307A9 /* AwkDateUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F3C55F722792A20006307A9 /* AwkDateUITests.swift */; };
 		4F3C560922792A59006307A9 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F3C560822792A59006307A9 /* User.swift */; };
 		4F3C560B227948E8006307A9 /* MessageThread.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F3C560A227948E8006307A9 /* MessageThread.swift */; };
+		4F4130A02284822900CDF247 /* ViewControllerMethods.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F41309F2284822900CDF247 /* ViewControllerMethods.swift */; };
 		4F4F40062281D60F00667A92 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 4F4F40052281D60F00667A92 /* GoogleService-Info.plist */; };
 		4F4F40082281E3BA00667A92 /* User2Controller.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F4F40072281E3BA00667A92 /* User2Controller.swift */; };
 		4F4F400A2281E6B800667A92 /* Profile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F4F40092281E6B800667A92 /* Profile.swift */; };
@@ -61,6 +62,7 @@
 		4F3C55F922792A20006307A9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		4F3C560822792A59006307A9 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		4F3C560A227948E8006307A9 /* MessageThread.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageThread.swift; sourceTree = "<group>"; };
+		4F41309F2284822900CDF247 /* ViewControllerMethods.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ViewControllerMethods.swift; path = AwkDate/ViewControllerMethods.swift; sourceTree = SOURCE_ROOT; };
 		4F4F40052281D60F00667A92 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		4F4F40072281E3BA00667A92 /* User2Controller.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User2Controller.swift; sourceTree = "<group>"; };
 		4F4F40092281E6B800667A92 /* Profile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Profile.swift; sourceTree = "<group>"; };
@@ -182,6 +184,7 @@
 		4F3C560722792A44006307A9 /* View Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				4F41309F2284822900CDF247 /* ViewControllerMethods.swift */,
 			);
 			path = "View Controllers";
 			sourceTree = "<group>";
@@ -460,6 +463,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				4F3C55DA22792A1E006307A9 /* ViewController.swift in Sources */,
+				4F4130A02284822900CDF247 /* ViewControllerMethods.swift in Sources */,
 				4F4F40082281E3BA00667A92 /* User2Controller.swift in Sources */,
 				4F3C55D822792A1E006307A9 /* AppDelegate.swift in Sources */,
 				4F4F400A2281E6B800667A92 /* Profile.swift in Sources */,
