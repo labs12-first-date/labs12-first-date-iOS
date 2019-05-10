@@ -8,6 +8,7 @@
 
 import Foundation
 import Firebase
+import FirebaseStorage
 
 
 class User2Controller {
@@ -17,7 +18,10 @@ class User2Controller {
     var profilesFromServer: [[String: Any]] = [[:]]
     var currentUserUID: String?
     
-    var currentPhoto: URL?
+    var currentPhoto: Data?
+    var currentPhotoURL: URL?
+    let storage = Storage.storage()
+    
     func createUserAccount(withEmail email: String, andPassword password: String, completion: @escaping (Error?) -> Void) {
         
         let dateFormatter = DateFormatter()
@@ -31,10 +35,34 @@ class User2Controller {
                 completion(error)
                 return
             }
-
+            
+            let photoUID = UUID().uuidString
+            
             if let userLocal = user {
                 self.currentUserUID = userLocal.user.uid
-                self.putProfileToServer(userID: userLocal.user.uid, firstName: "Bob", lastName: "Blue", email: email, dob: dateFormatter.date(from: "06/15/1999")!, gender: "Male", zipcode: 23456, condition: ["Herpes"], mainPhoto: self.currentPhoto!, lookingFor: "Same", biography: "Nothing", completion: completion)
+                let storageRef = self.storage.reference()
+                let imagesRef = storageRef.child("images")
+              //  let userImagesRef = storageRef.child("images/\(userLocal.user.uid)")
+                var userPhotosRef = storageRef.child("images/\(photoUID).png")
+                
+                userPhotosRef.putData(self.currentPhoto!, metadata: nil, completion: { (metadata, error) in
+                    
+                    if let error = error {
+                        print("Error putting image to storage: \(error)")
+                        return
+                    }
+                    
+                    userPhotosRef.downloadURL(completion: { (url, error) in
+                        if let error = error {
+                            print("Error downloading url: \(error)")
+                            return
+                        }
+                        self.currentPhotoURL = url
+                        self.putProfileToServer(userID: userLocal.user.uid, firstName: "Bob", lastName: "Blue", email: email, dob: dateFormatter.date(from: "06/15/1999")!, gender: "Male", zipcode: 23456, condition: ["Herpes"], mainPhoto: self.currentPhotoURL!, lookingFor: "Same", biography: "Nothing", completion: completion)
+                    })
+                    
+                })
+                
             }
             
         }
@@ -66,7 +94,7 @@ class User2Controller {
         dateFormatter.dateFormat = "MM/dd/yyyy"
         dateFormatter.dateStyle = .short
         
-        let exampleProfile = Profile(firstName: "Joe", lastName: "Blue", email: "test14@test.com", dob: dateFormatter.date(from: "05/22/1997")!, gender: "Male", zipcode: 23456, condition: ["Herpes"], mainPhoto: self.currentPhoto!, likedMatches: [[:]], lookingFor: "Same", biography: "Nothing really", matches: [[:]])
+        let exampleProfile = Profile(firstName: "Joe", lastName: "Blue", email: "test14@test.com", dob: dateFormatter.date(from: "05/22/1997")!, gender: "Male", zipcode: 23456, condition: ["Herpes"], mainPhoto: self.currentPhotoURL!, likedMatches: [[:]], lookingFor: "Same", biography: "Nothing really", matches: [[:]])
         
         let profile = Profile(firstName: firstName, lastName: lastName, email: email, dob: dob, gender: gender, zipcode: zipcode, condition: condition, mainPhoto: mainPhoto, likedMatches: [exampleProfile.toAnyObject() as NSDictionary], lookingFor: lookingFor, biography: biography, matches: [exampleProfile.toAnyObject() as NSDictionary])
         
@@ -131,7 +159,7 @@ class User2Controller {
     }
     
     
-    func uploadPhoto(imageContainer: URL) {
+    func uploadPhoto(imageContainer: Data) {
         self.currentPhoto = imageContainer
     }
     

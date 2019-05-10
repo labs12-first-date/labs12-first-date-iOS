@@ -19,11 +19,15 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
                 print("Error fetching profile in vc: \(error)")
                 return
             }
-            let photoData = self.load(fileName: self.user2Controller.singleProfileFromServer["main_photo"] as! String)
+           // let photoData = self.load(fileName: self.user2Controller.singleProfileFromServer["main_photo"] as! String)
+            let photoData = self.load(fileName: "https://firebasestorage.googleapis.com/v0/b/awk-dating.appspot.com/o/images%2F083744af-cdab-4c48-b0a7-6f13e484fff0.jpg?alt=media&token=a156f73e-ca3a-4c6b-a261-d5ea1cdc7432")
             self.photo = photoData
+            DispatchQueue.main.async {
+                self.updateViews()
+            }
         }
         
-        updateViews()
+        
         
         
     }
@@ -101,10 +105,13 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         print("No photo")
         return nil*/
         
+        let newURL = NSURL(string: fileName)
+        
         let imagePath: String = url!.path! //"\(NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)[0])/\(url).png"
         let imageUrl: URL = URL(fileURLWithPath: imagePath)
         do {
-            let imageData = try Data(contentsOf: imageUrl)
+            let imageData = try Data(contentsOf: newURL! as URL)
+            print("Image data: \(imageData)")
             return UIImage(data: imageData)
         } catch {
             print("Error loading image : \(error)")
@@ -115,21 +122,21 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     
     @IBAction func savePhotoTapped(_ sender: UIButton) {
         guard let photoView = imageView.image, let photoData = photoView.pngData() else { return }
-        let photoUID = UUID().uuidString
+        //let photoUID = UUID().uuidString
         
         print("Photo present!")
 
-        let fileManager = FileManager.default
+      /*  let fileManager = FileManager.default
         
         guard let imageData = photoView.jpegData(compressionQuality: 1.0) else { fatalError("Impossible to read the image") }
         let filename = getDocumentsDirectory().appendingPathComponent("\(photoUID).png")
         try! imageData.write(to: filename.absoluteURL, options: .atomic)
         
         print("About to see if it exists")
-        print(fileManager.fileExists(atPath: filename.path))
+        print(fileManager.fileExists(atPath: filename.path))*/
         
         
-        user2Controller.uploadPhoto(imageContainer: filename)
+        user2Controller.uploadPhoto(imageContainer: photoData)
         
         
         if user2Controller.currentPhoto != nil {
