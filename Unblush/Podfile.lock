@@ -108,6 +108,8 @@ PODS:
   - gRPC-Core/Interface (1.17.0)
   - GTMSessionFetcher/Core (1.2.1)
   - leveldb-library (1.20)
+  - MessageInputBar (0.4.1):
+    - MessageInputBar/Core (= 0.4.1)
   - MessageInputBar/Core (0.4.1)
   - MessageKit (2.0.0):
     - MessageInputBar/Core
@@ -124,6 +126,7 @@ DEPENDENCIES:
   - Firebase/Database
   - Firebase/Firestore
   - Firebase/Storage
+  - MessageInputBar
   - MessageKit
 
 SPEC REPOS:
@@ -171,6 +174,6 @@ SPEC CHECKSUMS:
   nanopb: 2901f78ea1b7b4015c860c2fdd1ea2fee1a18d48
   Protobuf: 7a877b7f3e5964e3fce995e2eb323dbc6831bb5a
 
-PODFILE CHECKSUM: 7db0bd1d3351f74a7c1bac1281e7f1eff2416a21
+PODFILE CHECKSUM: 0f3dd572805e64058ba25956e318e34bf2912d49
 
 COCOAPODS: 1.6.1
