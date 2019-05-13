@@ -70,7 +70,7 @@ class User2Controller {
         dateFormatter.dateFormat = "MM/dd/yyyy"
         dateFormatter.dateStyle = .short
         
-       // let exampleProfile = Profile(firstName: "Joe", lastName: "Blue", email: "test14@test.com", dob: dateFormatter.date(from: "05/22/1997")!, gender: "Male", zipcode: 23456, condition: ["Herpes"], mainPhoto: self.currentPhotoURL!, likedMatches: [[:]], lookingFor: "Same", biography: "Nothing really", matches: [[:]])
+//        let exampleProfile = Profile(firstName: "Joe", lastName: "Blue", email: "test14@test.com", dob: dateFormatter.date(from: "05/22/1997")!, gender: "Male", zipcode: 23456, condition: ["Herpes"], mainPhoto: self.currentPhotoURL!, likedMatches: [[:]], lookingFor: "Same", biography: "Nothing really", matches: [[:]])
         
         let photoUID = UUID().uuidString
         
