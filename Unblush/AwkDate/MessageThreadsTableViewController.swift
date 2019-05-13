@@ -1,0 +1,182 @@
+//
+//  MessageThreadsTableViewController.swift
+//  AwkDate
+//
+//  Created by Lambda_School_Loaner_95 on 5/13/19.
+//  Copyright © 2019 JS. All rights reserved.
+//
+
+import UIKit
+import FirebaseAuth
+import FirebaseFirestore
+
+class MessageThreadsTableViewController: UITableViewController {
+    
+    private let toolbarLabel: UILabel = {
+        let label = UILabel()
+        label.textAlignment = .center
+        label.font = UIFont.systemFont(ofSize: 15)
+        return label
+    }()
+    
+    private let messageThreadCellIdentifier = "MessageCell"
+    private var currentChannelAlertController: UIAlertController?
+    
+    private let db = Firestore.firestore()
+    
+    private var messageThreadReference: CollectionReference {
+        return db.collection("messageThreadsiOS")
+    }
+    
+    private var messageThreads = [MessageThread]()
+    private var messageThreadListener: ListenerRegistration?
+    
+    private let currentUser: User
+    
+    deinit {
+        messageThreadListener?.remove()
+    }
+    
+    init(currentUser: User) {
+        self.currentUser = currentUser
+        super.init(style: .grouped)
+        
+        title = "Message Threads"
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        clearsSelectionOnViewWillAppear = true
+        tableView.register(UITableViewCell.self, forCellReuseIdentifier: messageThreadCellIdentifier)
+        
+        toolbarItems = [
+            UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil),
+            UIBarButtonItem(customView: toolbarLabel),
+            UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil),
+            //UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(addButtonPressed)),
+        ]
+        toolbarLabel.text = AppSettings.displayName
+        
+        messageThreadListener = messageThreadReference.addSnapshotListener { querySnapshot, error in
+            guard let snapshot = querySnapshot else {
+                print("Error listening for message thread updates: \(error?.localizedDescription ?? "No error")")
+                return
+            }
+            
+            snapshot.documentChanges.forEach { change in
+                self.handleDocumentChange(change)
+            }
+        }
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        navigationController?.isToolbarHidden = false
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        
+        navigationController?.isToolbarHidden = true
+    }
+    
+    // MARK: - Actions
+
+    private func addChannelToTable(_ messageThread: MessageThread) {
+        guard !messageThreads.contains(messageThread) else {
+            return
+        }
+        
+        messageThreads.append(messageThread)
+        messageThreads.sort()
+        
+        guard let index = messageThreads.index(of: messageThread) else {
+            return
+        }
+        tableView.insertRows(at: [IndexPath(row: index, section: 0)], with: .automatic)
+    }
+    
+    private func updateChannelInTable(_ messageThread: MessageThread) {
+        guard let index = messageThreads.index(of: messageThread) else {
+            return
+        }
+        
+        messageThreads[index] = messageThread
+        tableView.reloadRows(at: [IndexPath(row: index, section: 0)], with: .automatic)
+    }
+    
+    private func removeChannelFromTable(_ messageThread: MessageThread) {
+        guard let index = messageThreads.index(of: messageThread) else {
+            return
+        }
+        
+        messageThreads.remove(at: index)
+        tableView.deleteRows(at: [IndexPath(row: index, section: 0)], with: .automatic)
+    }
+    
+    private func handleDocumentChange(_ change: DocumentChange) {
+        guard let messageThread = MessageThread(document: change.document) else {
+            return
+        }
+        
+        switch change.type {
+        case .added:
+            addChannelToTable(messageThread)
+            
+        case .modified:
+            updateChannelInTable(messageThread)
+            
+        case .removed:
+            removeChannelFromTable(messageThread)
+        }
+    }
+    
+
+   
+    // MARK: - Table view data source
+
+    override func numberOfSections(in tableView: UITableView) -> Int {
+        // #warning Incomplete implementation, return the number of sections
+        return 1
+    }
+
+    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        // #warning Incomplete implementation, return the number of rows
+        return messageThreads.count
+    }
+    
+    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 55
+    }
+    
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: messageThreadCellIdentifier, for: indexPath)
+
+        cell.accessoryType = .disclosureIndicator
+        cell.textLabel?.text = messageThreads[indexPath.row].name
+        
+        return cell
+    }
+    
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let messageThread = messageThreads[indexPath.row]
+        let vc = ChatViewController(user: currentUser, messageThread: messageThread)
+        navigationController?.pushViewController(vc, animated: true)
+    }
+    /*
+    // MARK: - Navigation
+
+    // In a storyboard-based application, you will often want to do a little preparation before navigation
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        // Get the new view controller using segue.destination.
+        // Pass the selected object to the new view controller.
+    }
+    */
+
+}
