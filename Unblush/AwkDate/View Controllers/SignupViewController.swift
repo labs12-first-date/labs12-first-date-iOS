@@ -70,6 +70,21 @@ class SignupViewController: UIViewController {
         }
     }
     
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        setTheme()
+    }
+    
+    func setTheme() {
+        emailTextField.setPadding()
+        passwordTextField.setPadding()
+        retypePasswordTextField.setPadding()
+        
+        emailTextField.setBottomBorder()
+        passwordTextField.setBottomBorder()
+        retypePasswordTextField.setBottomBorder()
+    }
+    
     func displayMessage(userMessage:String) -> Void {
         DispatchQueue.main.async
             {

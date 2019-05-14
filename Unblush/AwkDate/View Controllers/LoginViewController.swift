@@ -62,7 +62,15 @@ class LoginViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        setTheme()
+    }
+    
+    func setTheme() {
+        emailTextField.setPadding()
+        passwordTextField.setPadding()
         
+        emailTextField.setBottomBorder()
+        passwordTextField.setBottomBorder()
     }
     
     func displayMessage(userMessage:String) -> Void {
