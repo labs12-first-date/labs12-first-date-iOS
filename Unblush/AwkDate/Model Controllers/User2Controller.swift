@@ -24,6 +24,8 @@ class User2Controller {
     
     var serverCurrentUser = Auth.auth().currentUser
     
+    let changeRequest = Auth.auth().currentUser?.createProfileChangeRequest()
+    
     func createUserAccount(withEmail email: String, andPassword password: String, completion: @escaping (Error?) -> Void) {
         
         let dateFormatter = DateFormatter()
@@ -61,7 +63,7 @@ class User2Controller {
             if let userAccount = user {
                // self.userFound = true
                 self.currentUserUID = userAccount.user.uid
-                //self.serverCurrentUser = userAccount
+                self.serverCurrentUser = user?.user
                 self.fetchProfileFromServer(userID: userAccount.user.uid, completion: completion)
             }
         }
@@ -88,6 +90,12 @@ class User2Controller {
                 print("Error putting image to storage: \(error)")
                 return
             }
+            
+            // Adds a name property for the authentication 'user'
+            self.changeRequest?.displayName = firstName
+            self.changeRequest?.commitChanges(completion: { (error) in
+                print("Created display name")
+            })
             
             userPhotosRef.downloadURL(completion: { (url, error) in
                 if let error = error {

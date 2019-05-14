@@ -27,6 +27,7 @@ class ChatViewController: MessagesViewController {
     
     private let db = Firestore.firestore()
     private var reference: CollectionReference?
+    private var chattingUserReference: CollectionReference?
     private let storage = Storage.storage().reference()
     
     var messages: [Message] = []
@@ -34,14 +35,16 @@ class ChatViewController: MessagesViewController {
     
     let user: User
     let messageThread: MessageThread
+    let chattingUserUID: String
     
     deinit {
         messageListener?.remove()
     }
     
-    init(user: User, messageThread: MessageThread) {
+    init(user: User, messageThread: MessageThread, chattingUserUID: String) {
         self.user = user
         self.messageThread = messageThread
+        self.chattingUserUID = chattingUserUID
         super.init(nibName: nil, bundle: nil)
         
         title = messageThread.name
@@ -58,9 +61,9 @@ class ChatViewController: MessagesViewController {
             navigationController?.popViewController(animated: true)
             return
         }
-        
-        reference = db.collection(["messageThreadsiOS", id, "messages"].joined(separator: "/"))
-        
+    
+        reference = db.collection(["messageThreadsiOS", user.uid, "threads", id, "messages"].joined(separator: "/"))
+        chattingUserReference = db.collection(["messageThreadsiOS", chattingUserUID, "threads", id, "messages"].joined(separator: "/"))
         
         messageListener = reference?.addSnapshotListener { querySnapshot, error in
             guard let snapshot = querySnapshot else {
@@ -138,6 +141,7 @@ class ChatViewController: MessagesViewController {
     // MARK: - Helpers
     
     private func save(_ message: Message) {
+        chattingUserReference?.addDocument(data: message.representation)
         reference?.addDocument(data: message.representation) { error in
             if let e = error {
                 print("Error sending message: \(e.localizedDescription)")
