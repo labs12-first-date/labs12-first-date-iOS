@@ -31,6 +31,18 @@
 		4F507C3A2285E6F900A60674 /* Main2.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4F507C392285E6F900A60674 /* Main2.storyboard */; };
 		4F507C3C2285F95100A60674 /* CondTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F507C3B2285F95100A60674 /* CondTableViewCell.swift */; };
 		4F76E673227A7962004CC709 /* UserController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F76E672227A7962004CC709 /* UserController.swift */; };
+		4F9ACB612289E235004A5D2A /* Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F9ACB602289E235004A5D2A /* Message.swift */; };
+		4F9ACB632289E2FF004A5D2A /* DatabaseRepresentation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F9ACB622289E2FF004A5D2A /* DatabaseRepresentation.swift */; };
+		4F9ACB652289E3D1004A5D2A /* AppSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F9ACB642289E3D1004A5D2A /* AppSettings.swift */; };
+		4F9ACB672289E4C1004A5D2A /* MessageThreadsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F9ACB662289E4C1004A5D2A /* MessageThreadsTableViewController.swift */; };
+		4F9ACB692289E784004A5D2A /* ChatViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F9ACB682289E784004A5D2A /* ChatViewController.swift */; };
+		4F9ACB6C2289EE14004A5D2A /* UICollectionView+Additions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F9ACB6B2289EE14004A5D2A /* UICollectionView+Additions.swift */; };
+		4F9ACB6E2289EE1D004A5D2A /* UIColor+Additions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F9ACB6D2289EE1D004A5D2A /* UIColor+Additions.swift */; };
+		4F9ACB702289EE24004A5D2A /* UIImage+Additions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F9ACB6F2289EE24004A5D2A /* UIImage+Additions.swift */; };
+		4F9ACB722289EE4B004A5D2A /* UIView+Additions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F9ACB712289EE4B004A5D2A /* UIView+Additions.swift */; };
+		4F9ACB74228A1976004A5D2A /* BogusViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F9ACB73228A1976004A5D2A /* BogusViewController.swift */; };
+		4F9ACB76228A1DC6004A5D2A /* NavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F9ACB75228A1DC6004A5D2A /* NavigationController.swift */; };
+		4F9ACB78228A1EF7004A5D2A /* AppController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F9ACB77228A1EF7004A5D2A /* AppController.swift */; };
 		4FE8AE132285B64800975841 /* ConditionsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FE8AE122285B64800975841 /* ConditionsViewController.swift */; };
 		4FE8AE152285B69200975841 /* ConditionTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FE8AE142285B69200975841 /* ConditionTableViewCell.swift */; };
 		4FE8AE172285E41900975841 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4FE8AE162285E41900975841 /* Assets.xcassets */; };
@@ -89,6 +101,18 @@
 		4F507C392285E6F900A60674 /* Main2.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main2.storyboard; sourceTree = "<group>"; };
 		4F507C3B2285F95100A60674 /* CondTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CondTableViewCell.swift; sourceTree = "<group>"; };
 		4F76E672227A7962004CC709 /* UserController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserController.swift; sourceTree = "<group>"; };
+		4F9ACB602289E235004A5D2A /* Message.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Message.swift; sourceTree = "<group>"; };
+		4F9ACB622289E2FF004A5D2A /* DatabaseRepresentation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatabaseRepresentation.swift; sourceTree = "<group>"; };
+		4F9ACB642289E3D1004A5D2A /* AppSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppSettings.swift; sourceTree = "<group>"; };
+		4F9ACB662289E4C1004A5D2A /* MessageThreadsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = MessageThreadsTableViewController.swift; path = ../MessageThreadsTableViewController.swift; sourceTree = "<group>"; };
+		4F9ACB682289E784004A5D2A /* ChatViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ChatViewController.swift; path = ../ChatViewController.swift; sourceTree = "<group>"; };
+		4F9ACB6B2289EE14004A5D2A /* UICollectionView+Additions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UICollectionView+Additions.swift"; sourceTree = "<group>"; };
+		4F9ACB6D2289EE1D004A5D2A /* UIColor+Additions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIColor+Additions.swift"; sourceTree = "<group>"; };
+		4F9ACB6F2289EE24004A5D2A /* UIImage+Additions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIImage+Additions.swift"; sourceTree = "<group>"; };
+		4F9ACB712289EE4B004A5D2A /* UIView+Additions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIView+Additions.swift"; sourceTree = "<group>"; };
+		4F9ACB73228A1976004A5D2A /* BogusViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BogusViewController.swift; sourceTree = "<group>"; };
+		4F9ACB75228A1DC6004A5D2A /* NavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationController.swift; sourceTree = "<group>"; };
+		4F9ACB77228A1EF7004A5D2A /* AppController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppController.swift; sourceTree = "<group>"; };
 		4FE8AE122285B64800975841 /* ConditionsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConditionsViewController.swift; sourceTree = "<group>"; };
 		4FE8AE142285B69200975841 /* ConditionTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConditionTableViewCell.swift; sourceTree = "<group>"; };
 		4FE8AE162285E41900975841 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -154,6 +178,7 @@
 		4F3C55D622792A1E006307A9 /* AwkDate */ = {
 			isa = PBXGroup;
 			children = (
+				4F9ACB6A2289EDF1004A5D2A /* New Group */,
 				4F4F40052281D60F00667A92 /* GoogleService-Info.plist */,
 				4FF3274A227B5F1000192934 /* AwkDate.entitlements */,
 				4F3C560722792A44006307A9 /* View Controllers */,
@@ -162,6 +187,8 @@
 				4F3C55D722792A1E006307A9 /* AppDelegate.swift */,
 				4F3C55D922792A1E006307A9 /* ViewController.swift */,
 				4F3C55DB22792A1E006307A9 /* MainTest.storyboard */,
+				4F9ACB73228A1976004A5D2A /* BogusViewController.swift */,
+				4F9ACB75228A1DC6004A5D2A /* NavigationController.swift */,
 				4FE8AE142285B69200975841 /* ConditionTableViewCell.swift */,
 				4FE8AE122285B64800975841 /* ConditionsViewController.swift */,
 				4F507C392285E6F900A60674 /* Main2.storyboard */,
@@ -197,6 +224,8 @@
 				4F3C560822792A59006307A9 /* User.swift */,
 				4F4F40092281E6B800667A92 /* Profile.swift */,
 				4F3C560A227948E8006307A9 /* MessageThread.swift */,
+				4F9ACB602289E235004A5D2A /* Message.swift */,
+				4F9ACB622289E2FF004A5D2A /* DatabaseRepresentation.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -206,6 +235,8 @@
 			children = (
 				4F76E672227A7962004CC709 /* UserController.swift */,
 				4F4F40072281E3BA00667A92 /* User2Controller.swift */,
+				4F9ACB642289E3D1004A5D2A /* AppSettings.swift */,
+				4F9ACB77228A1EF7004A5D2A /* AppController.swift */,
 			);
 			path = "Model Controllers";
 			sourceTree = "<group>";
@@ -223,8 +254,21 @@
 				4F507C2E2285E4F300A60674 /* ChooseSignupOrLoginViewController.swift */,
 				4F507C302285E50800A60674 /* BioConditionViewController.swift */,
 				4F507C322285E50F00A60674 /* SignupViewController.swift */,
+				4F9ACB662289E4C1004A5D2A /* MessageThreadsTableViewController.swift */,
+				4F9ACB682289E784004A5D2A /* ChatViewController.swift */,
 			);
 			path = "View Controllers";
+			sourceTree = "<group>";
+		};
+		4F9ACB6A2289EDF1004A5D2A /* New Group */ = {
+			isa = PBXGroup;
+			children = (
+				4F9ACB6B2289EE14004A5D2A /* UICollectionView+Additions.swift */,
+				4F9ACB6D2289EE1D004A5D2A /* UIColor+Additions.swift */,
+				4F9ACB6F2289EE24004A5D2A /* UIImage+Additions.swift */,
+				4F9ACB712289EE4B004A5D2A /* UIView+Additions.swift */,
+			);
+			path = "New Group";
 			sourceTree = "<group>";
 		};
 		807AD58B2F91EC3D094EA4A2 /* Pods */ = {
@@ -501,15 +545,25 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4F9ACB74228A1976004A5D2A /* BogusViewController.swift in Sources */,
 				4F507C332285E50F00A60674 /* SignupViewController.swift in Sources */,
+				4F9ACB6E2289EE1D004A5D2A /* UIColor+Additions.swift in Sources */,
 				4F3C55DA22792A1E006307A9 /* ViewController.swift in Sources */,
+				4F9ACB78228A1EF7004A5D2A /* AppController.swift in Sources */,
 				4F507C2C2285E4A500A60674 /* MediaCollectionViewController.swift in Sources */,
 				4F507C2F2285E4F300A60674 /* ChooseSignupOrLoginViewController.swift in Sources */,
 				4F507C312285E50800A60674 /* BioConditionViewController.swift in Sources */,
+				4F9ACB76228A1DC6004A5D2A /* NavigationController.swift in Sources */,
+				4F9ACB672289E4C1004A5D2A /* MessageThreadsTableViewController.swift in Sources */,
+				4F9ACB6C2289EE14004A5D2A /* UICollectionView+Additions.swift in Sources */,
+				4F9ACB702289EE24004A5D2A /* UIImage+Additions.swift in Sources */,
 				4F4130A02284822900CDF247 /* ViewControllerMethods.swift in Sources */,
 				4F507C3C2285F95100A60674 /* CondTableViewCell.swift in Sources */,
 				4F4F40082281E3BA00667A92 /* User2Controller.swift in Sources */,
+				4F9ACB722289EE4B004A5D2A /* UIView+Additions.swift in Sources */,
 				4F507C212285E49300A60674 /* GetUserInfoViewController.swift in Sources */,
+				4F9ACB692289E784004A5D2A /* ChatViewController.swift in Sources */,
+				4F9ACB632289E2FF004A5D2A /* DatabaseRepresentation.swift in Sources */,
 				4F507C2A2285E4A500A60674 /* ProfileViewController.swift in Sources */,
 				4FE8AE132285B64800975841 /* ConditionsViewController.swift in Sources */,
 				4F3C55D822792A1E006307A9 /* AppDelegate.swift in Sources */,
@@ -518,6 +572,8 @@
 				4F4F400A2281E6B800667A92 /* Profile.swift in Sources */,
 				4F76E673227A7962004CC709 /* UserController.swift in Sources */,
 				4F507C2D2285E4A500A60674 /* LoginViewController.swift in Sources */,
+				4F9ACB652289E3D1004A5D2A /* AppSettings.swift in Sources */,
+				4F9ACB612289E235004A5D2A /* Message.swift in Sources */,
 				4F3C560922792A59006307A9 /* User.swift in Sources */,
 				4F3C560B227948E8006307A9 /* MessageThread.swift in Sources */,
 			);

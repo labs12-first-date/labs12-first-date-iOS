@@ -9,6 +9,7 @@ target 'AwkDate' do
   pod 'Firebase/Core'
   pod 'Firebase/Auth'
   pod 'MessageKit'
+  pod 'MessageInputBar'
 
   pod 'Firebase/Database'
   pod 'Firebase/Firestore'

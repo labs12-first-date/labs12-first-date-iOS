@@ -4,6 +4,10 @@
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
+<<<<<<< HEAD
+        <deployment identifier="iOS"/>
+=======
+>>>>>>> Jocelyn
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="Stack View standard spacing" minToolsVersion="9.0"/>
@@ -362,31 +366,47 @@
             </objects>
             <point key="canvasLocation" x="3957" y="-60"/>
         </scene>
+<<<<<<< HEAD
+        <!--messages-->
+        <scene sceneID="yTf-SL-e5R">
+            <objects>
+                <tableViewController id="64e-Fx-fDb" sceneMemberID="viewController">
+=======
         <!--Message Threads-->
         <scene sceneID="yTf-SL-e5R">
             <objects>
                 <tableViewController id="64e-Fx-fDb" customClass="MessageThreadsTableViewController" customModule="AwkDate" customModuleProvider="target" sceneMemberID="viewController">
+>>>>>>> Jocelyn
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="1je-jl-O1g">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="MessageCell" textLabel="ncQ-yt-wbM" imageView="mpY-Ng-4B4" rowHeight="67" style="IBUITableViewCellStyleDefault" id="dhY-s2-gtU">
+<<<<<<< HEAD
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="MessageCell" id="dhY-s2-gtU">
+                                <rect key="frame" x="0.0" y="28" width="414" height="44"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="dhY-s2-gtU" id="hZY-UB-7vz">
+                                    <rect key="frame" x="0.0" y="0.0" width="414" height="43.5"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </tableViewCellContentView>
+=======
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="MessageCell" textLabel="ncQ-yt-wbM" imageView="mpY-Ng-4B4" rowHeight="67" style="IBUITableViewCellStyleDefault" id="dhY-s2-gtU">
                                 <rect key="frame" x="0.0" y="28" width="414" height="67"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="dhY-s2-gtU" id="hZY-UB-7vz">
-                                    <rect key="frame" x="0.0" y="0.0" width="376" height="66.5"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="414" height="66.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="ncQ-yt-wbM">
-                                            <rect key="frame" x="102" y="0.0" width="274" height="66.5"/>
+                                            <rect key="frame" x="92" y="0.0" width="302" height="66.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" image="Image" id="mpY-Ng-4B4">
-                                            <rect key="frame" x="20" y="0.0" width="67" height="66.5"/>
+                                        <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" image="bubble_outlined_tail_v2.png" id="mpY-Ng-4B4">
+                                            <rect key="frame" x="20" y="14" width="57" height="37"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                         </imageView>
                                     </subviews>
@@ -394,6 +414,7 @@
                                 <connections>
                                     <segue destination="fSo-s2-8Ju" kind="show" identifier="toMessage" id="5au-ed-esm"/>
                                 </connections>
+>>>>>>> Jocelyn
                             </tableViewCell>
                         </prototypes>
                         <connections>
@@ -401,6 +422,13 @@
                             <outlet property="delegate" destination="64e-Fx-fDb" id="KX1-Tz-o6Q"/>
                         </connections>
                     </tableView>
+<<<<<<< HEAD
+                    <navigationItem key="navigationItem" title="messages" id="FBF-Bt-SMQ"/>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="EnW-Kt-Vnm" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3799" y="781"/>
+=======
                     <navigationItem key="navigationItem" title="Message Threads" id="FBF-Bt-SMQ"/>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="EnW-Kt-Vnm" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -421,6 +449,7 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Wt3-Da-c2j" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="3559" y="779"/>
+>>>>>>> Jocelyn
         </scene>
         <!--media-->
         <scene sceneID="bAf-Zs-etD">
@@ -1160,7 +1189,10 @@
         </scene>
     </scenes>
     <resources>
-        <image name="Image" width="980" height="980"/>
+<<<<<<< HEAD
+=======
+        <image name="bubble_outlined_tail_v2.png" width="57" height="37"/>
+>>>>>>> Jocelyn
         <image name="emptyCheck" width="512" height="512"/>
         <image name="unblushLogo" width="796" height="838"/>
     </resources>
