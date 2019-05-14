@@ -13,16 +13,16 @@ import Firebase
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
-  /*  override init() {
+    override init() {
         super.init()
         FirebaseApp.configure()
-    }*/
+    }
 
     //let userController = User2Controller()
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
-        AppController.shared.show(in: UIWindow(frame: UIScreen.main.bounds))
+        //AppController.shared.show(in: UIWindow(frame: UIScreen.main.bounds))
         
         return true
     }

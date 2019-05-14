@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import FirebaseAuth
 
 class BogusViewController: UIViewController {
     
@@ -26,19 +27,29 @@ class BogusViewController: UIViewController {
                 return
             }
             AppSettings.displayName = self.userController.serverCurrentUser?.displayName ?? "John"
-            self.performSegue(withIdentifier: "toThreads", sender: self)
+            self.currentUser = self.userController.serverCurrentUser!
+            print("User: \(self.currentUser)")
+            DispatchQueue.main.async {
+                self.performSegue(withIdentifier: "toThreads", sender: self)
+            }
+            
         }
         
     }
     
-    /*
+    var currentUser: User?
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+        if segue.identifier == "toThreads" {
+            guard let vc = segue.destination as? MessageThreadsTableViewController else { return }
+            
+            //vc.init(currentUser: self.currentUser)
+            //(currentUser: self.currentUser)
+            vc.currentUser = currentUser
+        }
     }
-    */
+    
 
 }

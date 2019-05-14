@@ -31,7 +31,7 @@ class MessageThreadsTableViewController: UITableViewController {
     private var messageThreads = [MessageThread]()
     private var messageThreadListener: ListenerRegistration?
     
-    private let currentUser: User
+    var currentUser: User? 
     let userController = User2Controller()
     
     deinit {
@@ -46,7 +46,7 @@ class MessageThreadsTableViewController: UITableViewController {
     }
     
     required init?(coder aDecoder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
+        super.init(coder: aDecoder)
     }
     
     override func viewDidLoad() {
@@ -59,7 +59,7 @@ class MessageThreadsTableViewController: UITableViewController {
             UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil),
             UIBarButtonItem(customView: toolbarLabel),
             UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil),
-            //UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(addButtonPressed)),
+            UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(addButtonPressed)),
         ]
         toolbarLabel.text = AppSettings.displayName
         
@@ -234,7 +234,7 @@ class MessageThreadsTableViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let messageThread = messageThreads[indexPath.row]
-        let vc = ChatViewController(user: currentUser, messageThread: messageThread)
+        let vc = ChatViewController(user: currentUser!, messageThread: messageThread)
         navigationController?.pushViewController(vc, animated: true)
     }
     /*

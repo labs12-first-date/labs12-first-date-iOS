@@ -85,7 +85,7 @@ class ChatViewController: MessagesViewController {
         
         let cameraItem = InputBarButtonItem(type: .system) // 1
         cameraItem.tintColor = .primary
-        cameraItem.image = #imageLiteral(resourceName: "camera")
+        cameraItem.image = UIImage(named: "Image")
         cameraItem.addTarget(
             self,
             action: #selector(cameraButtonPressed), // 2
@@ -292,9 +292,18 @@ extension ChatViewController: MessagesDataSource {
         return messages.count
     }
     
+    
     func messageForItem(at indexPath: IndexPath, in messagesCollectionView: MessagesCollectionView) -> MessageType {
-        return messages[indexPath.section]
+        
+        if messages.count == 0 {
+            return Message(user: self.user, content: "Let's Start Chatting!")
+        } else {
+           return messages[indexPath.section]
+        }
+        
+            //?? Message(user: self.user, content: "Let's Start Chatting!")
     }
+    
     
     func cellTopLabelAttributedText(for message: MessageType, at indexPath: IndexPath) -> NSAttributedString? {
         let name = message.sender.displayName

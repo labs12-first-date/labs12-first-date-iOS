@@ -45,7 +45,7 @@ final class AppController {
   private func handleAppState() {
     if let user = Auth.auth().currentUser {
         let vc = MessageThreadsTableViewController(currentUser: user)
-      rootViewController = NavigationController(vc)
+        rootViewController = UINavigationController(rootViewController: vc)
     } else {
       rootViewController = BogusViewController()
     }

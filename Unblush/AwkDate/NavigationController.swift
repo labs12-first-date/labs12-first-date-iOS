@@ -8,7 +8,7 @@
 
 import UIKit
 
-class NavigationController: UINavigationController {
+/*class NavigationController: UINavigationController {
     
     init(_ rootVC: UIViewController) {
         super.init(nibName: nil, bundle: nil)
@@ -42,4 +42,4 @@ class NavigationController: UINavigationController {
         return topViewController?.preferredStatusBarStyle ?? .default
     }
     
-}
+}*/
