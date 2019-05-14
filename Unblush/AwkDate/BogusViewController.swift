@@ -47,7 +47,7 @@ class BogusViewController: UIViewController {
             
             //vc.init(currentUser: self.currentUser)
             //(currentUser: self.currentUser)
-            vc.currentUser = currentUser
+            vc.currentUser = self.currentUser
         }
     }
     
