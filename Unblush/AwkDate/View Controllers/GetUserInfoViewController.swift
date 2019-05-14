@@ -49,6 +49,8 @@ class GetUserInfoViewController: UIViewController {
     
     @IBOutlet weak var bioTextField: UITextField!
     
+    @IBOutlet weak var headerView: UIView!
+    @IBOutlet weak var titleLabel: UILabel!
     
     @IBOutlet weak var saveButton: UIBarButtonItem!
     
