@@ -40,6 +40,9 @@
 		4F9ACB6E2289EE1D004A5D2A /* UIColor+Additions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F9ACB6D2289EE1D004A5D2A /* UIColor+Additions.swift */; };
 		4F9ACB702289EE24004A5D2A /* UIImage+Additions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F9ACB6F2289EE24004A5D2A /* UIImage+Additions.swift */; };
 		4F9ACB722289EE4B004A5D2A /* UIView+Additions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F9ACB712289EE4B004A5D2A /* UIView+Additions.swift */; };
+		4F9ACB74228A1976004A5D2A /* BogusViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F9ACB73228A1976004A5D2A /* BogusViewController.swift */; };
+		4F9ACB76228A1DC6004A5D2A /* NavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F9ACB75228A1DC6004A5D2A /* NavigationController.swift */; };
+		4F9ACB78228A1EF7004A5D2A /* AppController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F9ACB77228A1EF7004A5D2A /* AppController.swift */; };
 		4FE8AE132285B64800975841 /* ConditionsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FE8AE122285B64800975841 /* ConditionsViewController.swift */; };
 		4FE8AE152285B69200975841 /* ConditionTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FE8AE142285B69200975841 /* ConditionTableViewCell.swift */; };
 		4FE8AE172285E41900975841 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4FE8AE162285E41900975841 /* Assets.xcassets */; };
@@ -107,6 +110,9 @@
 		4F9ACB6D2289EE1D004A5D2A /* UIColor+Additions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIColor+Additions.swift"; sourceTree = "<group>"; };
 		4F9ACB6F2289EE24004A5D2A /* UIImage+Additions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIImage+Additions.swift"; sourceTree = "<group>"; };
 		4F9ACB712289EE4B004A5D2A /* UIView+Additions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIView+Additions.swift"; sourceTree = "<group>"; };
+		4F9ACB73228A1976004A5D2A /* BogusViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BogusViewController.swift; sourceTree = "<group>"; };
+		4F9ACB75228A1DC6004A5D2A /* NavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationController.swift; sourceTree = "<group>"; };
+		4F9ACB77228A1EF7004A5D2A /* AppController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppController.swift; sourceTree = "<group>"; };
 		4FE8AE122285B64800975841 /* ConditionsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConditionsViewController.swift; sourceTree = "<group>"; };
 		4FE8AE142285B69200975841 /* ConditionTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConditionTableViewCell.swift; sourceTree = "<group>"; };
 		4FE8AE162285E41900975841 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -181,6 +187,8 @@
 				4F3C55D722792A1E006307A9 /* AppDelegate.swift */,
 				4F3C55D922792A1E006307A9 /* ViewController.swift */,
 				4F3C55DB22792A1E006307A9 /* MainTest.storyboard */,
+				4F9ACB73228A1976004A5D2A /* BogusViewController.swift */,
+				4F9ACB75228A1DC6004A5D2A /* NavigationController.swift */,
 				4FE8AE142285B69200975841 /* ConditionTableViewCell.swift */,
 				4FE8AE122285B64800975841 /* ConditionsViewController.swift */,
 				4F507C392285E6F900A60674 /* Main2.storyboard */,
@@ -228,6 +236,7 @@
 				4F76E672227A7962004CC709 /* UserController.swift */,
 				4F4F40072281E3BA00667A92 /* User2Controller.swift */,
 				4F9ACB642289E3D1004A5D2A /* AppSettings.swift */,
+				4F9ACB77228A1EF7004A5D2A /* AppController.swift */,
 			);
 			path = "Model Controllers";
 			sourceTree = "<group>";
@@ -536,12 +545,15 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4F9ACB74228A1976004A5D2A /* BogusViewController.swift in Sources */,
 				4F507C332285E50F00A60674 /* SignupViewController.swift in Sources */,
 				4F9ACB6E2289EE1D004A5D2A /* UIColor+Additions.swift in Sources */,
 				4F3C55DA22792A1E006307A9 /* ViewController.swift in Sources */,
+				4F9ACB78228A1EF7004A5D2A /* AppController.swift in Sources */,
 				4F507C2C2285E4A500A60674 /* MediaCollectionViewController.swift in Sources */,
 				4F507C2F2285E4F300A60674 /* ChooseSignupOrLoginViewController.swift in Sources */,
 				4F507C312285E50800A60674 /* BioConditionViewController.swift in Sources */,
+				4F9ACB76228A1DC6004A5D2A /* NavigationController.swift in Sources */,
 				4F9ACB672289E4C1004A5D2A /* MessageThreadsTableViewController.swift in Sources */,
 				4F9ACB6C2289EE14004A5D2A /* UICollectionView+Additions.swift in Sources */,
 				4F9ACB702289EE24004A5D2A /* UIImage+Additions.swift in Sources */,

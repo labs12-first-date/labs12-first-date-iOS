@@ -31,7 +31,8 @@ class MessageThreadsTableViewController: UITableViewController {
     private var messageThreads = [MessageThread]()
     private var messageThreadListener: ListenerRegistration?
     
-    private let currentUser: User
+    var currentUser: User? 
+    let userController = User2Controller()
     
     deinit {
         messageThreadListener?.remove()
@@ -45,7 +46,7 @@ class MessageThreadsTableViewController: UITableViewController {
     }
     
     required init?(coder aDecoder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
+        super.init(coder: aDecoder)
     }
     
     override func viewDidLoad() {
@@ -58,7 +59,7 @@ class MessageThreadsTableViewController: UITableViewController {
             UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil),
             UIBarButtonItem(customView: toolbarLabel),
             UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil),
-            //UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(addButtonPressed)),
+            UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(addButtonPressed)),
         ]
         toolbarLabel.text = AppSettings.displayName
         
@@ -78,6 +79,7 @@ class MessageThreadsTableViewController: UITableViewController {
         super.viewWillAppear(animated)
         
         navigationController?.isToolbarHidden = false
+        
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -87,6 +89,72 @@ class MessageThreadsTableViewController: UITableViewController {
     }
     
     // MARK: - Actions
+    
+    @objc private func signOut() {
+        let ac = UIAlertController(title: nil, message: "Are you sure you want to sign out?", preferredStyle: .alert)
+        ac.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
+        ac.addAction(UIAlertAction(title: "Sign Out", style: .destructive, handler: { _ in
+            do {
+                try Auth.auth().signOut()
+            } catch {
+                print("Error signing out: \(error.localizedDescription)")
+            }
+        }))
+        present(ac, animated: true, completion: nil)
+    }
+    
+    @objc private func addButtonPressed() {
+        let ac = UIAlertController(title: "Create a new message thread", message: nil, preferredStyle: .alert)
+        ac.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
+        ac.addTextField { field in
+            field.addTarget(self, action: #selector(self.textFieldDidChange(_:)), for: .editingChanged)
+            field.enablesReturnKeyAutomatically = true
+            field.autocapitalizationType = .words
+            field.clearButtonMode = .whileEditing
+            field.placeholder = "Message Thread name"
+            field.returnKeyType = .done
+            field.tintColor = .primary
+        }
+        
+        let createAction = UIAlertAction(title: "Create", style: .default, handler: { _ in
+            self.createChannel()
+        })
+        createAction.isEnabled = false
+        ac.addAction(createAction)
+        ac.preferredAction = createAction
+        
+        present(ac, animated: true) {
+            ac.textFields?.first?.becomeFirstResponder()
+        }
+        currentChannelAlertController = ac
+    }
+    
+    @objc private func textFieldDidChange(_ field: UITextField) {
+        guard let ac = currentChannelAlertController else {
+            return
+        }
+        
+        ac.preferredAction?.isEnabled = field.hasText
+    }
+    
+    // MARK: - Helpers
+    
+    private func createChannel() {
+        guard let ac = currentChannelAlertController else {
+            return
+        }
+        
+        guard let channelName = ac.textFields?.first?.text else {
+            return
+        }
+        
+        let messageThread = MessageThread(name: channelName)
+        messageThreadReference.addDocument(data: messageThread.representation) { error in
+            if let e = error {
+                print("Error saving channel: \(e.localizedDescription)")
+            }
+        }
+    }
 
     private func addChannelToTable(_ messageThread: MessageThread) {
         guard !messageThreads.contains(messageThread) else {
@@ -166,7 +234,7 @@ class MessageThreadsTableViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let messageThread = messageThreads[indexPath.row]
-        let vc = ChatViewController(user: currentUser, messageThread: messageThread)
+        let vc = ChatViewController(user: currentUser!, messageThread: messageThread)
         navigationController?.pushViewController(vc, animated: true)
     }
     /*

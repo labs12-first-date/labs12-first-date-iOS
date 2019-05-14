@@ -22,6 +22,8 @@ class User2Controller {
     var currentPhotoURL: URL?
     let storage = Storage.storage()
     
+    var serverCurrentUser = Auth.auth().currentUser
+    
     func createUserAccount(withEmail email: String, andPassword password: String, completion: @escaping (Error?) -> Void) {
         
         let dateFormatter = DateFormatter()
@@ -59,6 +61,7 @@ class User2Controller {
             if let userAccount = user {
                // self.userFound = true
                 self.currentUserUID = userAccount.user.uid
+                //self.serverCurrentUser = userAccount
                 self.fetchProfileFromServer(userID: userAccount.user.uid, completion: completion)
             }
         }
