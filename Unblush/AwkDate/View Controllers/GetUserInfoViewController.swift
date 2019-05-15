@@ -23,6 +23,7 @@ class GetUserInfoViewController: UIViewController {
     var email: String?
     var age: Int?
     var zipcode: Int?
+    var biography: String?
     
     let genderChoice = ["Female",
                   "Male",
@@ -30,6 +31,8 @@ class GetUserInfoViewController: UIViewController {
                   "Non-binary",
                   "Questioning",
                   "Other"]
+    
+    let ageChoice = ["18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30", "31", "32", "33", "34", "35", "36", "37", "38", "39", "40", "41", "42", "43", "44", "45", "46", "47", "48", "49", "50", "51", "52", "53", "54", "55", "56", "57", "58", "59", "60"]
     
     var selectedGender: String?
     
@@ -44,11 +47,12 @@ class GetUserInfoViewController: UIViewController {
     @IBOutlet weak var zipTextField: UITextField!
     @IBOutlet weak var genderLabel: UILabel!
     @IBOutlet weak var genderTextField: UITextField!
+    @IBOutlet weak var bioLabel: UILabel!
     
-    @IBOutlet weak var laterButton: UIButton!
-    @IBAction func laterButton(_ sender: Any) {
-        performSegue(withIdentifier: "later", sender: self)
-    }
+    @IBOutlet weak var bioTextField: UITextField!
+    
+    @IBOutlet weak var logoView: UIImageView!
+    @IBOutlet weak var headerView: UIView!
     
     @IBOutlet weak var saveButton: UIBarButtonItem!
     
@@ -56,26 +60,39 @@ class GetUserInfoViewController: UIViewController {
         guard let firstName = firstNameTextField.text, !firstName.isEmpty,
             let lastName = lastNameTextField.text,
             let gender = genderTextField.text,
+            let biography = bioTextField.text,
             let age = dateOfBirthTextField.text,
             let zipcode = zipTextField.text else { return }
+
         
         self.firstName = firstName
         self.lastName = lastName
         self.gender = gender
         self.zipcode = Int(zipcode)
+        self.biography = biography
         self.age = Int(age)
+
         
         
         DispatchQueue.main.async {
             self.performSegue(withIdentifier: "SaveGetInfo", sender: self)
         }
-    
     }
     
     func createGenderPicker() {
         let genderPicker = UIPickerView()
         genderPicker.delegate = self as! UIPickerViewDelegate
         genderTextField.inputView = genderPicker
+        
+        //Customizations
+        //genderPicker.backgroundColor = .white
+        
+    }
+    
+    func createAgePicker() {
+        let agePicker = UIPickerView()
+        agePicker.delegate = self as! UIPickerViewDelegate
+        dateOfBirthTextField.inputView = agePicker
         
         //Customizations
         //genderPicker.backgroundColor = .white
@@ -107,39 +124,57 @@ class GetUserInfoViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         createGenderPicker()
+        createAgePicker()
         createToolbar()
+        setTheme()
         
         //date picker
-        datePicker = UIDatePicker()
-        datePicker?.datePickerMode = .date
-        datePicker?.addTarget(self, action: #selector(GetUserInfoViewController.dateChanged(datePicker:)), for: .valueChanged)
-        
-//        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(GetUserInfoViewController.viewTapped(gestureRecognizer:)))
-        
-//        tapGesture.cancelsTouchesInView = false
-//        view.addGestureRecognizer(tapGesture)
-        
-        dateOfBirthTextField.inputView = datePicker
+//        datePicker = UIDatePicker()
+//        datePicker?.datePickerMode = .date
+//        datePicker?.addTarget(self, action: #selector(GetUserInfoViewController.dateChanged(datePicker:)), for: .valueChanged)
+//
+//
+//        dateOfBirthTextField.inputView = datePicker
     }
     
-//    @objc func viewTapped(gestureRecognizer: UITapGestureRecognizer) {
-//        view.endEditing(true)
+//    @objc func dateChanged(datePicker: UIDatePicker) {
+//        let dateFormatter = DateFormatter()
+//        dateFormatter.dateFormat = "MM dd, yyyy"
+//        dateFormatter.dateStyle = .short
+//
+//        dateOfBirthTextField.text = dateFormatter.string(from: datePicker.date)
+//        //view.endEditing(true)
+//
 //    }
     
-    @objc func dateChanged(datePicker: UIDatePicker) {
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "MM dd, yyyy"
-        dateFormatter.dateStyle = .short
+    private func setTheme() {
+        firstNameTextField.setPadding()
+        lastNameTextField.setPadding()
+        genderTextField.setPadding()
+        dateOfBirthTextField.setPadding()
+        zipTextField.setPadding()
+        bioTextField.setPadding()
         
-        dateOfBirthTextField.text = dateFormatter.string(from: datePicker.date)
-        //view.endEditing(true)
+        firstNameTextField.textColor = .grape
+        lastNameTextField.textColor = .grape
+        genderTextField.textColor = .grape
+        dateOfBirthTextField.textColor = .grape
+        zipTextField.textColor = .grape
+        bioTextField.textColor = .grape
+        
+        headerView.backgroundColor = .violet
+        
+
+        firstNameTextField.backgroundColor = UIColor.grape.withAlphaComponent(0.1)
+        lastNameTextField.backgroundColor = UIColor.grape.withAlphaComponent(0.1)
+        genderTextField.backgroundColor = UIColor.grape.withAlphaComponent(0.1)
+        dateOfBirthTextField.backgroundColor = UIColor.grape.withAlphaComponent(0.1)
+        zipTextField.backgroundColor = UIColor.grape.withAlphaComponent(0.1)
+        bioTextField.backgroundColor = UIColor.grape.withAlphaComponent(0.1)
+        
+        view.backgroundColor = .violet
         
     }
-    
-//    private func updateViews() {
-//        guard isViewLoaded else { return }
-//        guard let profile = profile
-//    }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "SaveGetInfo" {
@@ -150,6 +185,7 @@ class GetUserInfoViewController: UIViewController {
             destination.gender = self.gender
             destination.age = self.age
             destination.zipcode = self.zipcode
+            destination.biography = self.biography
             destination.email = self.email
             
             destination.currentUserUID = self.currentUserUID
@@ -165,16 +201,28 @@ extension GetUserInfoViewController: UIPickerViewDelegate, UIPickerViewDataSourc
     }
     
     func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
-        return genderChoice.count
+        if pickerView == genderTextField {
+            return genderChoice.count
+        } else {
+            return ageChoice.count
+        }
     }
     
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
-        return genderChoice[row]
+        if pickerView == genderTextField {
+            return genderChoice[row]
+        } else {
+            return ageChoice[row]
+        }
     }
     
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
-        selectedGender = genderChoice[row]
-        genderTextField.text = selectedGender
+        if pickerView == genderTextField {
+            genderTextField.text = genderChoice[row]
+            //genderTextField.text = selectedGender
+        } else if pickerView == dateOfBirthTextField {
+            dateOfBirthTextField.text = ageChoice[row]
+        }
     }
     
 //    func pickerView(_ pickerView: UIPickerView, viewForRow row: Int, forComponent component: Int, reusing view: UIView?) -> UIView {

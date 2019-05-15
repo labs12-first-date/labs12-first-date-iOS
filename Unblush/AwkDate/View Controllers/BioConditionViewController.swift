@@ -10,9 +10,6 @@ import UIKit
 
 class BioConditionViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     
-   
-    
-    
     //MARK: - Properties
     var user2Controller: User2Controller?
     var currentUserUID: String?
@@ -36,9 +33,6 @@ class BioConditionViewController: UIViewController, UITableViewDataSource, UITab
     let conditions: [ConditionType] = [.aids, .chlamydia, .crabs, .genitalWarts, .gonorrhea, .hepB, .hepC, .hepD, .herpes, .hiv, .syphyllis, .theClap]
     
     //MARK: - Outlets
-    @IBOutlet weak var bioLabel: UILabel!
-    @IBOutlet weak var bioTextField: UITextField!
-    
     @IBOutlet weak var conditionLabel: UILabel!
     @IBOutlet weak var conditionsTableView: UITableView!
     
@@ -48,7 +42,6 @@ class BioConditionViewController: UIViewController, UITableViewDataSource, UITab
     }
     
     @IBOutlet weak var photoView: UIImageView!
-    
     
     @IBOutlet weak var saveButton: UIBarButtonItem!
     
@@ -63,12 +56,27 @@ class BioConditionViewController: UIViewController, UITableViewDataSource, UITab
         cell.conditionNameLabel.text = condition.rawValue
         
         cell.condition = condition
-        
+        style(cell: cell)
         return cell
     }
     
+    func style(cell: UITableViewCell) {
+        //cell.textLabel?.font = AppearanceHelper.typerighterFont(with: .caption1, pointSize: 30)
+        cell.textLabel?.adjustsFontForContentSizeCategory = true
+        //cell.detailTextLabel?.font = AppearanceHelper.typerighterFont(with: .caption2, pointSize: 25)
+        cell.detailTextLabel?.adjustsFontForContentSizeCategory = true
+        
+        cell.textLabel?.backgroundColor = .clear
+        cell.detailTextLabel?.backgroundColor = .clear
+        
+        cell.textLabel?.textColor = .white
+        cell.detailTextLabel?.textColor = .white
+        
+        cell.backgroundColor = .violet
+    }
+    
     @IBAction func saveButton(_ sender: Any) {
-        guard let biography = bioTextField.text, let photo = photoView.image, let photoData = photo.pngData() else { return }
+        guard let photo = photoView.image, let photoData = photo.pngData() else { return }
         
         //Create Activity Indicator
         let myActivityIndicator = UIActivityIndicatorView(frame: CGRect(x: 100,y: 200, width: 200, height: 200))
@@ -87,12 +95,13 @@ class BioConditionViewController: UIViewController, UITableViewDataSource, UITab
             self.view.addSubview(myActivityIndicator)
         }
         
-        self.biography = biography
         
         user2Controller!.uploadPhoto(imageContainer: photoData)
         
         if user2Controller?.currentPhoto != nil {
+          
             user2Controller?.putProfileToServer(userID: currentUserUID!, firstName: firstName!, lastName: lastName!, email: email!, age: age!, gender: gender!, zipcode: zipcode!, condition: conditionsFromTableView, mainPhoto: nil, lookingFor: "Not particular", biography: biography, completion: { (error) in
+
                 if let error = error {
                     print("Error putting profile to server: \(error)")
                     self.removeActivityIndicator(activityIndicator: myActivityIndicator)
@@ -109,6 +118,19 @@ class BioConditionViewController: UIViewController, UITableViewDataSource, UITab
         
     }
     
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        setUpPhotoView()
+        setTheme()
+    }
+    
+    func setTheme() {
+        
+        AppearanceHelper.style(button: addButton)
+        
+        view.backgroundColor = .violet
+    }
    /* override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
@@ -148,14 +170,10 @@ class BioConditionViewController: UIViewController, UITableViewDataSource, UITab
         dismiss(animated: true, completion: nil)
     }
     
-//    private func updateImage() {
-//        if let profileImage = profileImage {
-//            addPhoto.isHidden = true
-//        } else {
-//            profileView.image = nil
-//        }
-//    }
-
+    private func setUpPhotoView() {
+        photoView.layer.cornerRadius = photoView.frame.width / 2
+    }
+    
     // MARK: - Navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "profile" {

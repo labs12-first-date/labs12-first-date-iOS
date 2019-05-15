@@ -62,7 +62,22 @@ class LoginViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        setTheme()
+    }
+    
+    func setTheme() {
+        emailTextField.setPadding()
+        passwordTextField.setPadding()
         
+        emailTextField.textColor = .grape
+        passwordTextField.textColor = .grape
+        
+        emailTextField.backgroundColor = UIColor.grape.withAlphaComponent(0.1)
+        passwordTextField.backgroundColor = UIColor.grape.withAlphaComponent(0.1)
+        
+        AppearanceHelper.style(button: loginButton)
+        
+        view.backgroundColor = .violet
     }
     
     func displayMessage(userMessage:String) -> Void {
