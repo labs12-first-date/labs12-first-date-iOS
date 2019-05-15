@@ -32,6 +32,8 @@ class GetUserInfoViewController: UIViewController {
                   "Questioning",
                   "Other"]
     
+    let ageChoice = ["18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30", "31", "32", "33", "34", "35", "36", "37", "38", "39", "40", "41", "42", "43", "44", "45", "46", "47", "48", "49", "50", "51", "52", "53", "54", "55", "56", "57", "58", "59", "60"]
+    
     var selectedGender: String?
     
     //MARK: - Outlets
@@ -49,8 +51,8 @@ class GetUserInfoViewController: UIViewController {
     
     @IBOutlet weak var bioTextField: UITextField!
     
+    @IBOutlet weak var logoView: UIImageView!
     @IBOutlet weak var headerView: UIView!
-    @IBOutlet weak var titleLabel: UILabel!
     
     @IBOutlet weak var saveButton: UIBarButtonItem!
     
@@ -88,6 +90,16 @@ class GetUserInfoViewController: UIViewController {
         
     }
     
+    func createAgePicker() {
+        let agePicker = UIPickerView()
+        agePicker.delegate = self as! UIPickerViewDelegate
+        dateOfBirthTextField.inputView = agePicker
+        
+        //Customizations
+        //genderPicker.backgroundColor = .white
+        
+    }
+    
     func createToolbar() {
         let toolBar = UIToolbar()
         toolBar.sizeToFit()
@@ -113,27 +125,28 @@ class GetUserInfoViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         createGenderPicker()
+        createAgePicker()
         createToolbar()
         setTheme()
         
         //date picker
-        datePicker = UIDatePicker()
-        datePicker?.datePickerMode = .date
-        datePicker?.addTarget(self, action: #selector(GetUserInfoViewController.dateChanged(datePicker:)), for: .valueChanged)
-        
-        
-        dateOfBirthTextField.inputView = datePicker
+//        datePicker = UIDatePicker()
+//        datePicker?.datePickerMode = .date
+//        datePicker?.addTarget(self, action: #selector(GetUserInfoViewController.dateChanged(datePicker:)), for: .valueChanged)
+//
+//
+//        dateOfBirthTextField.inputView = datePicker
     }
     
-    @objc func dateChanged(datePicker: UIDatePicker) {
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "MM dd, yyyy"
-        dateFormatter.dateStyle = .short
-        
-        dateOfBirthTextField.text = dateFormatter.string(from: datePicker.date)
-        //view.endEditing(true)
-        
-    }
+//    @objc func dateChanged(datePicker: UIDatePicker) {
+//        let dateFormatter = DateFormatter()
+//        dateFormatter.dateFormat = "MM dd, yyyy"
+//        dateFormatter.dateStyle = .short
+//
+//        dateOfBirthTextField.text = dateFormatter.string(from: datePicker.date)
+//        //view.endEditing(true)
+//
+//    }
     
     private func setTheme() {
         firstNameTextField.setPadding()
@@ -150,8 +163,8 @@ class GetUserInfoViewController: UIViewController {
         zipTextField.textColor = .grape
         bioTextField.textColor = .grape
         
-        headerView.backgroundColor = .grape
-        titleLabel.textColor = .violet
+        headerView.backgroundColor = .violet
+        
 
         firstNameTextField.backgroundColor = UIColor.grape.withAlphaComponent(0.1)
         lastNameTextField.backgroundColor = UIColor.grape.withAlphaComponent(0.1)
@@ -189,16 +202,28 @@ extension GetUserInfoViewController: UIPickerViewDelegate, UIPickerViewDataSourc
     }
     
     func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
-        return genderChoice.count
+        if pickerView == genderTextField {
+            return genderChoice.count
+        } else {
+            return ageChoice.count
+        }
     }
     
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
-        return genderChoice[row]
+        if pickerView == genderTextField {
+            return genderChoice[row]
+        } else {
+            return ageChoice[row]
+        }
     }
     
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
-        selectedGender = genderChoice[row]
-        genderTextField.text = selectedGender
+        if pickerView == genderTextField {
+            genderTextField.text = genderChoice[row]
+            //genderTextField.text = selectedGender
+        } else if pickerView == dateOfBirthTextField {
+            dateOfBirthTextField.text = ageChoice[row]
+        }
     }
     
 //    func pickerView(_ pickerView: UIPickerView, viewForRow row: Int, forComponent component: Int, reusing view: UIView?) -> UIView {

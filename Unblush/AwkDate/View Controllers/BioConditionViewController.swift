@@ -56,8 +56,23 @@ class BioConditionViewController: UIViewController, UITableViewDataSource, UITab
         cell.conditionNameLabel.text = condition.rawValue
         
         cell.condition = condition
-        
+        style(cell: cell)
         return cell
+    }
+    
+    func style(cell: UITableViewCell) {
+        //cell.textLabel?.font = AppearanceHelper.typerighterFont(with: .caption1, pointSize: 30)
+        cell.textLabel?.adjustsFontForContentSizeCategory = true
+        //cell.detailTextLabel?.font = AppearanceHelper.typerighterFont(with: .caption2, pointSize: 25)
+        cell.detailTextLabel?.adjustsFontForContentSizeCategory = true
+        
+        cell.textLabel?.backgroundColor = .clear
+        cell.detailTextLabel?.backgroundColor = .clear
+        
+        cell.textLabel?.textColor = .white
+        cell.detailTextLabel?.textColor = .white
+        
+        cell.backgroundColor = .violet
     }
     
     @IBAction func saveButton(_ sender: Any) {
@@ -108,6 +123,9 @@ class BioConditionViewController: UIViewController, UITableViewDataSource, UITab
     }
     
     func setTheme() {
+        
+        AppearanceHelper.style(button: addButton)
+        
         view.backgroundColor = .violet
     }
    /* override func viewWillAppear(_ animated: Bool) {
