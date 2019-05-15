@@ -15,7 +15,8 @@ class BogusViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
+        print("User in view did load: \(userController.serverCurrentUser?.uid)")
         
     }
     
@@ -28,7 +29,9 @@ class BogusViewController: UIViewController {
             }
             AppSettings.displayName = self.userController.serverCurrentUser?.displayName ?? "John"
             self.currentUser = self.userController.serverCurrentUser!
-            print("User: \(self.currentUser)")
+            self.chattingUserUID = "qgWMqM5HWtTEMMygiJIWTOvR4m63" // uid of test23
+            //self.chattingUserUID = "AMi53uJuuubUv3gp5coQ7ZRk1xH3"
+            print("User: \(self.currentUser!.uid)")
             DispatchQueue.main.async {
                 self.performSegue(withIdentifier: "toThreads", sender: self)
             }
@@ -38,6 +41,7 @@ class BogusViewController: UIViewController {
     }
     
     var currentUser: User?
+    var chattingUserUID: String?
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
@@ -47,7 +51,8 @@ class BogusViewController: UIViewController {
             
             //vc.init(currentUser: self.currentUser)
             //(currentUser: self.currentUser)
-            vc.currentUser = currentUser
+            vc.currentUser = self.currentUser
+            vc.chattingUserUID = self.chattingUserUID
         }
     }
     

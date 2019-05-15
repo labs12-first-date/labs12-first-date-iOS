@@ -24,15 +24,23 @@ class MessageThreadsTableViewController: UITableViewController {
     
     private let db = Firestore.firestore()
     
-    private var messageThreadReference: CollectionReference {
-        return db.collection("messageThreadsiOS")
-    }
-    
     private var messageThreads = [MessageThread]()
     private var messageThreadListener: ListenerRegistration?
+    private var chattingUserMessageThreadListener: ListenerRegistration?
     
-    var currentUser: User? 
+    
+    var currentUser: User?
+    var chattingUserUID: String?
     let userController = User2Controller()
+    
+    
+    private var messageThreadReference: CollectionReference {
+        return db.collection("messageThreadsiOS").document(currentUser!.uid).collection("threads")
+    }
+    
+    private var chattingUserMessageThreadReference: CollectionReference {
+        return db.collection("messageThreadsiOS").document(chattingUserUID!).collection("threads")
+    }
     
     deinit {
         messageThreadListener?.remove()
@@ -56,6 +64,7 @@ class MessageThreadsTableViewController: UITableViewController {
         tableView.register(UITableViewCell.self, forCellReuseIdentifier: messageThreadCellIdentifier)
         
         toolbarItems = [
+            UIBarButtonItem(title: "Sign Out", style: .plain, target: self, action: #selector(signOut)),
             UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil),
             UIBarButtonItem(customView: toolbarLabel),
             UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil),
@@ -73,6 +82,38 @@ class MessageThreadsTableViewController: UITableViewController {
                 self.handleDocumentChange(change)
             }
         }
+        chattingUserMessageThreadListener = chattingUserMessageThreadReference.addSnapshotListener { querySnapshot, error in
+            guard let snapshot = querySnapshot else {
+                print("Error listening for message thread updates: \(error?.localizedDescription ?? "No error")")
+                return
+            }
+            
+            snapshot.documentChanges.forEach { change in
+                self.handleDocumentChange(change)
+            }
+        }
+        
+        messageThreadReference.getDocuments(completion: { (querySnapshot, error) in
+            if let error = error {
+                print("Error fetching messages from id: \(error)")
+                return
+            }
+            
+            guard let querySnap = querySnapshot else {
+                print("No query snapshot")
+                return
+            }
+            
+            for document in querySnap.documents {
+                print("Document msg: \(document)")
+                let thread = MessageThread(document: document)!
+                guard !self.messageThreads.contains(thread) else {
+                    return
+                }
+                self.messageThreads.append(thread)
+            }
+        })
+        
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -139,6 +180,7 @@ class MessageThreadsTableViewController: UITableViewController {
     
     // MARK: - Helpers
     
+    // when chat is tapped
     private func createChannel() {
         guard let ac = currentChannelAlertController else {
             return
@@ -148,12 +190,18 @@ class MessageThreadsTableViewController: UITableViewController {
             return
         }
         
-        let messageThread = MessageThread(name: channelName)
-        messageThreadReference.addDocument(data: messageThread.representation) { error in
+        let messageThread = MessageThread(name: channelName).representation
+        messageThreadReference.addDocument(data: messageThread) { error in
             if let e = error {
                 print("Error saving channel: \(e.localizedDescription)")
             }
         }
+       /* chattingUserMessageThreadReference.addDocument(data: messageThread) { error in
+            if let e = error {
+                print("Error saving channel: \(e.localizedDescription)")
+            }
+        }*/
+        
     }
 
     private func addChannelToTable(_ messageThread: MessageThread) {
@@ -164,14 +212,14 @@ class MessageThreadsTableViewController: UITableViewController {
         messageThreads.append(messageThread)
         messageThreads.sort()
         
-        guard let index = messageThreads.index(of: messageThread) else {
+        guard let index = messageThreads.firstIndex(of: messageThread) else {
             return
         }
         tableView.insertRows(at: [IndexPath(row: index, section: 0)], with: .automatic)
     }
     
     private func updateChannelInTable(_ messageThread: MessageThread) {
-        guard let index = messageThreads.index(of: messageThread) else {
+        guard let index = messageThreads.firstIndex(of: messageThread) else {
             return
         }
         
@@ -180,7 +228,7 @@ class MessageThreadsTableViewController: UITableViewController {
     }
     
     private func removeChannelFromTable(_ messageThread: MessageThread) {
-        guard let index = messageThreads.index(of: messageThread) else {
+        guard let index = messageThreads.firstIndex(of: messageThread) else {
             return
         }
         
@@ -234,17 +282,21 @@ class MessageThreadsTableViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let messageThread = messageThreads[indexPath.row]
-        let vc = ChatViewController(user: currentUser!, messageThread: messageThread)
+        let vc = ChatViewController(user: currentUser!, messageThread: messageThread, chattingUserUID: chattingUserUID!)
         navigationController?.pushViewController(vc, animated: true)
     }
-    /*
+    
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
+    /*override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "toMessages" {
+            guard let destinationVC = segue.destination as? ChatViewController else { return }
+            
+            
+            
+        }
+    }*/
+    
 
 }

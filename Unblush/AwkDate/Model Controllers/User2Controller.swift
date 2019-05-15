@@ -24,12 +24,10 @@ class User2Controller {
     
     var serverCurrentUser = Auth.auth().currentUser
     
+    let changeRequest = Auth.auth().currentUser?.createProfileChangeRequest()
+    
     func createUserAccount(withEmail email: String, andPassword password: String, completion: @escaping (Error?) -> Void) {
         
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "MM/dd/yyyy"
-        dateFormatter.dateStyle = .short
-
         Auth.auth().createUser(withEmail: email, password: password) { (user, error) in
             
             if let error = error {
@@ -61,18 +59,15 @@ class User2Controller {
             if let userAccount = user {
                // self.userFound = true
                 self.currentUserUID = userAccount.user.uid
-                //self.serverCurrentUser = userAccount
+                self.serverCurrentUser = user?.user
                 self.fetchProfileFromServer(userID: userAccount.user.uid, completion: completion)
             }
         }
     }
     
-    func putProfileToServer(userID: String, firstName: String, lastName: String, email: String, dob: Date, gender: String, zipcode: Int, condition: [String], mainPhoto: URL?, lookingFor: String, biography: String, completion: @escaping (Error?) -> Void = {_ in }) {
+    func putProfileToServer(userID: String, firstName: String, lastName: String, email: String, age: Int, gender: String, zipcode: Int, condition: [String], mainPhoto: URL?, lookingFor: String, biography: String, completion: @escaping (Error?) -> Void = {_ in }) {
         
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "MM/dd/yyyy"
-        dateFormatter.dateStyle = .short
-        
+       
        // let exampleProfile = Profile(firstName: "Joe", lastName: "Blue", email: "test14@test.com", dob: dateFormatter.date(from: "05/22/1997")!, gender: "Male", zipcode: 23456, condition: ["Herpes"], mainPhoto: self.currentPhotoURL!, likedMatches: [[:]], lookingFor: "Same", biography: "Nothing really", matches: [[:]])
         
         let photoUID = UUID().uuidString
@@ -89,13 +84,19 @@ class User2Controller {
                 return
             }
             
+            // Adds a name property for the authentication 'user'
+            self.changeRequest?.displayName = firstName
+            self.changeRequest?.commitChanges(completion: { (error) in
+                print("Created display name")
+            })
+            
             userPhotosRef.downloadURL(completion: { (url, error) in
                 if let error = error {
                     print("Error downloading url: \(error)")
                     return
                 }
                 self.currentPhotoURL = url
-                let profile = Profile(firstName: firstName, lastName: lastName, email: email, dob: dob, gender: gender, zipcode: zipcode, condition: condition, mainPhoto: self.currentPhotoURL!, likedMatches: [[:]], lookingFor: lookingFor, biography: biography, matches: [[:]])
+                let profile = Profile(firstName: firstName, lastName: lastName, email: email, age: age, gender: gender, zipcode: zipcode, condition: condition, mainPhoto: self.currentPhotoURL!, likedMatches: [[:]], lookingFor: lookingFor, biography: biography, matches: [[:]])
                 
                 var ref: DocumentReference? = nil
                 ref = self.db.collection("profilesiOS").document(userID)
