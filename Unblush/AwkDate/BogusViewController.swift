@@ -20,17 +20,17 @@ class BogusViewController: UIViewController {
         
     }
     
-    @IBAction func loginTapped(_ sender: UIButton) {
+   /* @IBAction func loginTapped(_ sender: UIButton) {
         
-        userController.login(withEmail: "test22@unblushtest.com", andPassword: "testtest22") { (error) in
+        userController.login(withEmail: "test23@unblushtest.com", andPassword: "testtest23") { (error) in
             if let error = error {
                 print("Error logging in: \(error)")
                 return
             }
-            AppSettings.displayName = self.userController.serverCurrentUser?.displayName ?? "John"
+            AppSettings.displayName = self.userController.serverCurrentUser?.displayName ?? "Samantha"
             self.currentUser = self.userController.serverCurrentUser!
-            self.chattingUserUID = "qgWMqM5HWtTEMMygiJIWTOvR4m63" // uid of test23
-            //self.chattingUserUID = "AMi53uJuuubUv3gp5coQ7ZRk1xH3"
+            //self.chattingUserUID = "qgWMqM5HWtTEMMygiJIWTOvR4m63" // uid of test23
+            self.chattingUserUID = "AMi53uJuuubUv3gp5coQ7ZRk1xH3"
             print("User: \(self.currentUser!.uid)")
             DispatchQueue.main.async {
                 self.performSegue(withIdentifier: "toThreads", sender: self)
@@ -55,6 +55,22 @@ class BogusViewController: UIViewController {
             vc.chattingUserUID = self.chattingUserUID
         }
     }
+    */
     
-
+    // segue = showMatches
+    
+    @IBAction func loginButtonTapped(_ sender: UIButton) {
+    }
+    
+    @IBAction func matchesButtonTapped(_ sender: UIButton) {
+    }
+    
+    @IBAction func mutallyLikedButtonTapped(_ sender: UIButton) {
+    }
+    
+    @IBAction func signOutButtonTapped(_ sender: UIButton) {
+    }
+    
+    
+    
 }

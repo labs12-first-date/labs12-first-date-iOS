@@ -42,6 +42,10 @@
 		4F9ACB722289EE4B004A5D2A /* UIView+Additions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F9ACB712289EE4B004A5D2A /* UIView+Additions.swift */; };
 		4F9ACB74228A1976004A5D2A /* BogusViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F9ACB73228A1976004A5D2A /* BogusViewController.swift */; };
 		4F9ACB78228A1EF7004A5D2A /* AppController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F9ACB77228A1EF7004A5D2A /* AppController.swift */; };
+		4F9AFBAC228C811C005F261B /* BogusMatchesCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F9AFBAB228C811C005F261B /* BogusMatchesCollectionViewController.swift */; };
+		4F9AFBAE228C814E005F261B /* BogusMatchCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F9AFBAD228C814E005F261B /* BogusMatchCollectionViewCell.swift */; };
+		4F9AFBB2228C8BC6005F261B /* JCSLocation.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F9AFBB1228C8BC6005F261B /* JCSLocation.m */; };
+		4F9AFBB5228C8F03005F261B /* JCSLocationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F9AFBB4228C8F03005F261B /* JCSLocationController.m */; };
 		4FE8AE132285B64800975841 /* ConditionsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FE8AE122285B64800975841 /* ConditionsViewController.swift */; };
 		4FE8AE152285B69200975841 /* ConditionTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FE8AE142285B69200975841 /* ConditionTableViewCell.swift */; };
 		4FE8AE172285E41900975841 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4FE8AE162285E41900975841 /* Assets.xcassets */; };
@@ -111,6 +115,13 @@
 		4F9ACB712289EE4B004A5D2A /* UIView+Additions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIView+Additions.swift"; sourceTree = "<group>"; };
 		4F9ACB73228A1976004A5D2A /* BogusViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BogusViewController.swift; sourceTree = "<group>"; };
 		4F9ACB77228A1EF7004A5D2A /* AppController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppController.swift; sourceTree = "<group>"; };
+		4F9AFBAB228C811C005F261B /* BogusMatchesCollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BogusMatchesCollectionViewController.swift; sourceTree = "<group>"; };
+		4F9AFBAD228C814E005F261B /* BogusMatchCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BogusMatchCollectionViewCell.swift; sourceTree = "<group>"; };
+		4F9AFBAF228C8BC6005F261B /* AwkDate-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "AwkDate-Bridging-Header.h"; sourceTree = "<group>"; };
+		4F9AFBB0228C8BC6005F261B /* JCSLocation.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JCSLocation.h; sourceTree = "<group>"; };
+		4F9AFBB1228C8BC6005F261B /* JCSLocation.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JCSLocation.m; sourceTree = "<group>"; };
+		4F9AFBB3228C8F03005F261B /* JCSLocationController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JCSLocationController.h; sourceTree = "<group>"; };
+		4F9AFBB4228C8F03005F261B /* JCSLocationController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JCSLocationController.m; sourceTree = "<group>"; };
 		4FE8AE122285B64800975841 /* ConditionsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConditionsViewController.swift; sourceTree = "<group>"; };
 		4FE8AE142285B69200975841 /* ConditionTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConditionTableViewCell.swift; sourceTree = "<group>"; };
 		4FE8AE162285E41900975841 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -185,6 +196,8 @@
 				4F3C55D722792A1E006307A9 /* AppDelegate.swift */,
 				4F3C55D922792A1E006307A9 /* ViewController.swift */,
 				4F3C55DB22792A1E006307A9 /* MainTest.storyboard */,
+				4F9AFBAD228C814E005F261B /* BogusMatchCollectionViewCell.swift */,
+				4F9AFBAB228C811C005F261B /* BogusMatchesCollectionViewController.swift */,
 				4F9ACB73228A1976004A5D2A /* BogusViewController.swift */,
 				4FE8AE142285B69200975841 /* ConditionTableViewCell.swift */,
 				4FE8AE122285B64800975841 /* ConditionsViewController.swift */,
@@ -223,6 +236,9 @@
 				4F3C560A227948E8006307A9 /* MessageThread.swift */,
 				4F9ACB602289E235004A5D2A /* Message.swift */,
 				4F9ACB622289E2FF004A5D2A /* DatabaseRepresentation.swift */,
+				4F9AFBB0228C8BC6005F261B /* JCSLocation.h */,
+				4F9AFBB1228C8BC6005F261B /* JCSLocation.m */,
+				4F9AFBAF228C8BC6005F261B /* AwkDate-Bridging-Header.h */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -234,6 +250,8 @@
 				4F4F40072281E3BA00667A92 /* User2Controller.swift */,
 				4F9ACB642289E3D1004A5D2A /* AppSettings.swift */,
 				4F9ACB77228A1EF7004A5D2A /* AppController.swift */,
+				4F9AFBB3228C8F03005F261B /* JCSLocationController.h */,
+				4F9AFBB4228C8F03005F261B /* JCSLocationController.m */,
 			);
 			path = "Model Controllers";
 			sourceTree = "<group>";
@@ -363,6 +381,7 @@
 				TargetAttributes = {
 					4F3C55D322792A1E006307A9 = {
 						CreatedOnToolsVersion = 10.2.1;
+						LastSwiftMigration = 1020;
 						SystemCapabilities = {
 							com.apple.Push = {
 								enabled = 1;
@@ -545,6 +564,7 @@
 				4F9ACB74228A1976004A5D2A /* BogusViewController.swift in Sources */,
 				4F507C332285E50F00A60674 /* SignupViewController.swift in Sources */,
 				4F9ACB6E2289EE1D004A5D2A /* UIColor+Additions.swift in Sources */,
+				4F9AFBAC228C811C005F261B /* BogusMatchesCollectionViewController.swift in Sources */,
 				4F3C55DA22792A1E006307A9 /* ViewController.swift in Sources */,
 				4F9ACB78228A1EF7004A5D2A /* AppController.swift in Sources */,
 				4F507C2C2285E4A500A60674 /* MediaCollectionViewController.swift in Sources */,
@@ -552,6 +572,7 @@
 				4F507C312285E50800A60674 /* BioConditionViewController.swift in Sources */,
 				4F9ACB672289E4C1004A5D2A /* MessageThreadsTableViewController.swift in Sources */,
 				4F9ACB6C2289EE14004A5D2A /* UICollectionView+Additions.swift in Sources */,
+				4F9AFBB5228C8F03005F261B /* JCSLocationController.m in Sources */,
 				4F9ACB702289EE24004A5D2A /* UIImage+Additions.swift in Sources */,
 				4F4130A02284822900CDF247 /* ViewControllerMethods.swift in Sources */,
 				4F507C3C2285F95100A60674 /* CondTableViewCell.swift in Sources */,
@@ -562,8 +583,10 @@
 				4F9ACB632289E2FF004A5D2A /* DatabaseRepresentation.swift in Sources */,
 				4F507C2A2285E4A500A60674 /* ProfileViewController.swift in Sources */,
 				4FE8AE132285B64800975841 /* ConditionsViewController.swift in Sources */,
+				4F9AFBAE228C814E005F261B /* BogusMatchCollectionViewCell.swift in Sources */,
 				4F3C55D822792A1E006307A9 /* AppDelegate.swift in Sources */,
 				4F507C2B2285E4A500A60674 /* OnboardingViewController.swift in Sources */,
+				4F9AFBB2228C8BC6005F261B /* JCSLocation.m in Sources */,
 				4FE8AE152285B69200975841 /* ConditionTableViewCell.swift in Sources */,
 				4F4F400A2281E6B800667A92 /* Profile.swift in Sources */,
 				4F76E673227A7962004CC709 /* UserController.swift in Sources */,
@@ -739,6 +762,7 @@
 			baseConfigurationReference = 1224DB312B4A1660FC47D00D /* Pods-AwkDate.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = AwkDate/AwkDate.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 7M33TUA2Z8;
@@ -750,6 +774,8 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.JS.Unblush;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "AwkDate/Models/AwkDate-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -760,6 +786,7 @@
 			baseConfigurationReference = 6DD244BB161B0869426CEE15 /* Pods-AwkDate.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = AwkDate/AwkDate.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 7M33TUA2Z8;
@@ -771,6 +798,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.JS.Unblush;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "AwkDate/Models/AwkDate-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
