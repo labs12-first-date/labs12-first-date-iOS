@@ -99,17 +99,10 @@ class BioConditionViewController: UIViewController, UITableViewDataSource, UITab
         user2Controller!.uploadPhoto(imageContainer: photoData)
         
         if user2Controller?.currentPhoto != nil {
-<<<<<<< HEAD
-<<<<<<< HEAD
-            user2Controller?.putProfileToServer(userID: currentUserUID!, firstName: firstName!, lastName: lastName!, email: email!, dob: dob!, gender: gender!, zipcode: zipcode!, condition: conditionsFromTableView, mainPhoto: nil, lookingFor: "Not particular", biography: biography!, completion: { (error) in
-=======
-            user2Controller?.putProfileToServer(userID: currentUserUID!, firstName: firstName!, lastName: lastName!, email: email!, age: age!, gender: gender!, zipcode: zipcode!, condition: conditionsFromTableView, mainPhoto: nil, lookingFor: "Not particular", biography: biography, completion: { (error) in
->>>>>>> origin/master
-=======
-          
-            user2Controller?.putProfileToServer(userID: currentUserUID!, firstName: firstName!, lastName: lastName!, email: email!, age: age!, gender: gender!, zipcode: zipcode!, condition: conditionsFromTableView, mainPhoto: nil, lookingFor: "Not particular", biography: biography, completion: { (error) in
 
->>>>>>> origin/master
+            user2Controller?.putProfileToServer(userID: currentUserUID!, firstName: firstName!, lastName: lastName!, email: email!, age: age!, gender: gender!, zipcode: zipcode!, condition: conditionsFromTableView, mainPhoto: nil, lookingFor: "Not particular", biography: biography!, completion: { (error) in
+
+
                 if let error = error {
                     print("Error putting profile to server: \(error)")
                     self.removeActivityIndicator(activityIndicator: myActivityIndicator)
