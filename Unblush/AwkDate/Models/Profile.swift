@@ -84,7 +84,7 @@ struct Profile: Decodable {
     // var photoLibrary: [Photos]
     var likedMatches: [Any] //[Profile] converted to dict in user controller
     
-    var lookingFor: String // enum
+    var lookingFor: [String] // enum
     var biography: String
     // var isLiked: Bool
     
@@ -100,7 +100,7 @@ struct Profile: Decodable {
     
   
     
-    init(firstName: String, lastName: String, email: String, age: Int, gender: String, zipcode: Int, condition: [String], mainPhoto: URL, likedMatches: [Any], lookingFor: String, biography: String, matches: [Any]) {
+    init(firstName: String, lastName: String, email: String, age: Int, gender: String, zipcode: Int, condition: [String], mainPhoto: URL, likedMatches: [Any], lookingFor: [String], biography: String, matches: [Any]) {
         
         self.firstName = firstName
         self.lastName = lastName
@@ -137,7 +137,7 @@ struct Profile: Decodable {
         let zip = try container.decode(String.self, forKey: .zipcodeKey)
         let conditionString = try container.decode([String].self, forKey: .conditionKey)
         let mainPhotoString = try container.decode(String.self, forKey: .mainPhotoKey)
-        let lookingForString = try container.decode(String.self, forKey: .lookingForKey)
+        let lookingForString = try container.decode([String].self, forKey: .lookingForKey)
         let bio = try container.decode(String.self, forKey: .biographyKey)
         
        

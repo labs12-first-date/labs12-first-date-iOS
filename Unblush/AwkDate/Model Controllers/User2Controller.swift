@@ -65,7 +65,7 @@ class User2Controller {
         }
     }
     
-    func putProfileToServer(userID: String, firstName: String, lastName: String, email: String, age: Int, gender: String, zipcode: Int, condition: [String], mainPhoto: URL?, lookingFor: String, biography: String, completion: @escaping (Error?) -> Void = {_ in }) {
+    func putProfileToServer(userID: String, firstName: String, lastName: String, email: String, age: Int, gender: String, zipcode: Int, condition: [String], mainPhoto: URL?, lookingFor: [String], biography: String, completion: @escaping (Error?) -> Void = {_ in }) {
         
        
        // let exampleProfile = Profile(firstName: "Joe", lastName: "Blue", email: "test14@test.com", dob: dateFormatter.date(from: "05/22/1997")!, gender: "Male", zipcode: 23456, condition: ["Herpes"], mainPhoto: self.currentPhotoURL!, likedMatches: [[:]], lookingFor: "Same", biography: "Nothing really", matches: [[:]])

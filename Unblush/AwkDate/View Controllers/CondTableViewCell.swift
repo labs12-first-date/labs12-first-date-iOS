@@ -9,7 +9,7 @@
 import UIKit
 
 class CondTableViewCell: UITableViewCell {
-
+    //MARK: - Properties
     var condition: ConditionType? {
         didSet {
             
@@ -20,7 +20,7 @@ class CondTableViewCell: UITableViewCell {
         guard let condition = condition else { return }
         
     }
-    
+    //MARK: - Outlets
     @IBOutlet weak var conditionNameLabel: UILabel!
     
     @IBOutlet weak var checkMarkButton: UIButton!

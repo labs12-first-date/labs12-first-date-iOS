@@ -1165,27 +1165,27 @@
                                                 <rect key="frame" x="0.0" y="20.333333333333343" width="335" height="199.66666666666666"/>
                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <prototypes>
-                                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="conditionCell" rowHeight="50" id="wkL-BZ-iQW" customClass="CondTableViewCell" customModule="AwkDate" customModuleProvider="target">
-                                                        <rect key="frame" x="0.0" y="28" width="335" height="50"/>
+                                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="conditionCell" rowHeight="44" id="wkL-BZ-iQW" customClass="CondTableViewCell" customModule="AwkDate" customModuleProvider="target">
+                                                        <rect key="frame" x="0.0" y="28" width="335" height="44"/>
                                                         <autoresizingMask key="autoresizingMask"/>
                                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="wkL-BZ-iQW" id="kmm-GS-HI3">
-                                                            <rect key="frame" x="0.0" y="0.0" width="335" height="49.666666666666664"/>
+                                                            <rect key="frame" x="0.0" y="0.0" width="335" height="43.666666666666664"/>
                                                             <autoresizingMask key="autoresizingMask"/>
                                                             <subviews>
                                                                 <stackView opaque="NO" contentMode="scaleToFill" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="SfI-mz-ckX">
-                                                                    <rect key="frame" x="23" y="10" width="289" height="30"/>
+                                                                    <rect key="frame" x="23" y="12" width="289" height="20"/>
                                                                     <subviews>
                                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="STD Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kDQ-Nl-9od">
-                                                                            <rect key="frame" x="0.0" y="0.0" width="249" height="30"/>
+                                                                            <rect key="frame" x="0.0" y="0.0" width="259" height="20"/>
                                                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                                             <nil key="textColor"/>
                                                                             <nil key="highlightedColor"/>
                                                                         </label>
                                                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GA8-2k-ryf">
-                                                                            <rect key="frame" x="259" y="0.0" width="30" height="30"/>
+                                                                            <rect key="frame" x="269" y="0.0" width="20" height="20"/>
                                                                             <constraints>
-                                                                                <constraint firstAttribute="width" constant="30" id="H1M-Sz-jQM"/>
-                                                                                <constraint firstAttribute="height" constant="30" id="uz5-bc-ScW"/>
+                                                                                <constraint firstAttribute="width" constant="20" id="H1M-Sz-jQM"/>
+                                                                                <constraint firstAttribute="height" constant="20" id="uz5-bc-ScW"/>
                                                                             </constraints>
                                                                             <state key="normal" image="emptyCheck"/>
                                                                             <connections>
@@ -1233,13 +1233,46 @@
                                                     <constraint firstAttribute="height" constant="200" id="mp1-bS-5hl"/>
                                                 </constraints>
                                                 <prototypes>
-                                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="ti5-cr-lU5">
+                                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="LookingForCell" rowHeight="44" id="ti5-cr-lU5" customClass="LookingForTableViewCell" customModule="AwkDate" customModuleProvider="target">
                                                         <rect key="frame" x="0.0" y="28" width="335" height="44"/>
                                                         <autoresizingMask key="autoresizingMask"/>
                                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="ti5-cr-lU5" id="aNb-x3-dBM">
                                                             <rect key="frame" x="0.0" y="0.0" width="335" height="43.666666666666664"/>
                                                             <autoresizingMask key="autoresizingMask"/>
+                                                            <subviews>
+                                                                <stackView opaque="NO" contentMode="scaleToFill" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="aQz-AT-3qR">
+                                                                    <rect key="frame" x="16" y="12" width="303" height="20"/>
+                                                                    <subviews>
+                                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Looking For" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Tjk-vZ-Rl0">
+                                                                            <rect key="frame" x="0.0" y="0.0" width="273" height="20"/>
+                                                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                                            <nil key="textColor"/>
+                                                                            <nil key="highlightedColor"/>
+                                                                        </label>
+                                                                        <button opaque="NO" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Q20-sS-xEr">
+                                                                            <rect key="frame" x="283" y="0.0" width="20" height="20"/>
+                                                                            <constraints>
+                                                                                <constraint firstAttribute="height" constant="20" id="QV7-zJ-Ghw"/>
+                                                                                <constraint firstAttribute="width" constant="20" id="cfx-sM-5T5"/>
+                                                                            </constraints>
+                                                                            <state key="normal" title="Button" image="emptyCheck"/>
+                                                                            <connections>
+                                                                                <action selector="buttonTapped:" destination="ti5-cr-lU5" eventType="touchUpInside" id="Zf1-sh-hgg"/>
+                                                                            </connections>
+                                                                        </button>
+                                                                    </subviews>
+                                                                </stackView>
+                                                            </subviews>
+                                                            <constraints>
+                                                                <constraint firstAttribute="trailingMargin" secondItem="aQz-AT-3qR" secondAttribute="trailing" constant="8" id="6tx-zo-eMa"/>
+                                                                <constraint firstItem="aQz-AT-3qR" firstAttribute="leading" secondItem="aNb-x3-dBM" secondAttribute="leadingMargin" constant="8" id="QgE-Eg-mSa"/>
+                                                                <constraint firstItem="aQz-AT-3qR" firstAttribute="centerY" secondItem="aNb-x3-dBM" secondAttribute="centerY" id="oPl-y3-0FP"/>
+                                                            </constraints>
                                                         </tableViewCellContentView>
+                                                        <connections>
+                                                            <outlet property="lookingForLabel" destination="Tjk-vZ-Rl0" id="r6D-eV-X8Q"/>
+                                                            <outlet property="uncheckButton" destination="Q20-sS-xEr" id="SaR-nY-AdF"/>
+                                                        </connections>
                                                     </tableViewCell>
                                                 </prototypes>
                                             </tableView>
@@ -1285,6 +1318,8 @@
                         <outlet property="addButton" destination="yhc-r4-2r1" id="MQg-9o-SoL"/>
                         <outlet property="conditionLabel" destination="TWX-1D-aMA" id="epv-LU-vMF"/>
                         <outlet property="conditionsTableView" destination="8Ar-3x-t1X" id="2g6-Gc-nTo"/>
+                        <outlet property="lookingForLabel" destination="9Tv-VU-Czw" id="xE5-70-vxI"/>
+                        <outlet property="lookingTableView" destination="Mia-0M-vWC" id="27g-nG-sAj"/>
                         <outlet property="photoView" destination="tbF-r1-oND" id="fbk-yE-Ppw"/>
                         <outlet property="saveButton" destination="E9z-Bz-S0f" id="0Pf-gF-rEW"/>
                         <segue destination="NZU-Yv-iKK" kind="show" identifier="profile" id="zJM-WX-1cQ"/>

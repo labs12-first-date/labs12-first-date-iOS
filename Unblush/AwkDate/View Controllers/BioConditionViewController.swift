@@ -23,14 +23,11 @@ class BioConditionViewController: UIViewController, UITableViewDataSource, UITab
     var zipcode: Int?
     var biography: String?
     var condition: [String] = [] //not sure of []
-    
-//    private var profileImage: UIImage? {
-//        didSet {
-//            updateImage()
-//        }
-//    }
+    var lookingFor: [String] = []
     
     let conditions: [ConditionType] = [.aids, .chlamydia, .crabs, .genitalWarts, .gonorrhea, .hepB, .hepC, .hepD, .herpes, .hiv, .syphyllis, .theClap]
+    
+    let lookingForCriteria: [LookingForType] = [.sameGender, .sameCondition, .openToAllPossibilities, .openToAllConditions, .fiveYearAgeGap, .tenYearAgeGap, .threeYearAgeGap]
     
     //MARK: - Outlets
     @IBOutlet weak var conditionLabel: UILabel!
@@ -40,6 +37,8 @@ class BioConditionViewController: UIViewController, UITableViewDataSource, UITab
     @IBAction func addButton(_ sender: Any) {
         presentImagePickerController()
     }
+    @IBOutlet weak var lookingForLabel: UILabel!
+    @IBOutlet weak var lookingTableView: UITableView!
     
     @IBOutlet weak var photoView: UIImageView!
     
@@ -127,22 +126,10 @@ class BioConditionViewController: UIViewController, UITableViewDataSource, UITab
     }
     
     func setTheme() {
-        
         AppearanceHelper.style(button: addButton)
         
         view.backgroundColor = .violet
     }
-   /* override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        
-        DispatchQueue.main.async {
-           self.con
-        }
-        tableView.dataSource = self
-        tableView.delegate = self
-        
-    }*/
-
     
     private func presentImagePickerController() {
         guard UIImagePickerController.isSourceTypeAvailable(.photoLibrary) else {
