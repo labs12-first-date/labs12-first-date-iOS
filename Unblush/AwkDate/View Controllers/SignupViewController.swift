@@ -83,6 +83,10 @@ class SignupViewController: UIViewController {
         emailTextField.setBottomBorder()
         passwordTextField.setBottomBorder()
         retypePasswordTextField.setBottomBorder()
+        
+        AppearanceHelper.style(button: signupButton)
+        
+        view.backgroundColor = .violet
     }
     
     func displayMessage(userMessage:String) -> Void {

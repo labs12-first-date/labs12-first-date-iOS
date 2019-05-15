@@ -8,7 +8,7 @@
 
 import UIKit
 
-enum Appearance {
+enum AppearanceHelper {
     
     //allows for accomodating large type
     static func boldFont(with textStyle: UIFont.TextStyle, pointSize: CGFloat) -> UIFont {
@@ -17,7 +17,7 @@ enum Appearance {
     }
     
     static func mediumFont(with textStyle: UIFont.TextStyle, pointSize: CGFloat) -> UIFont {
-        guard let font = UIFont(name: "Helvetica Neue Medium", size: pointSize) else { fatalError("Font is nil. Check the name of the font.") }
+        guard let font = UIFont(name: "Helvetica Neue", size: pointSize) else { fatalError("Font is nil. Check the name of the font.") }
         return UIFontMetrics(forTextStyle: .body).scaledFont(for: font)
     }
     
@@ -28,24 +28,33 @@ enum Appearance {
     
     static func Appearance() {
         //navigationbar
-        UINavigationBar.appearance().barTintColor = .white
+        UINavigationBar.appearance().barTintColor = .violet
         
-        let textAttributes = [NSAttributedString.Key.foregroundColor: UIColor.white]
+        let textAttributes = [NSAttributedString.Key.foregroundColor: UIColor.grass]
         UINavigationBar.appearance().largeTitleTextAttributes = textAttributes
         UINavigationBar.appearance().titleTextAttributes = textAttributes
         
-        //        UITextField.appearance().tintColor = lambdaRed
-        //        UITextView.appearance().tintColor = lambdaRed
+        UITextField.appearance().tintColor = .none
+        UITextView.appearance().tintColor = .none
         
         
-        UINavigationBar.appearance().largeTitleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.gray, NSAttributedString.Key.font: UIFont(name: "Helvetica Neue", size: 30)!]
+        UINavigationBar.appearance().largeTitleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.grass, NSAttributedString.Key.font: UIFont(name: "Helvetica Neue", size: 30)!]
         
         //bar button item
-        UIBarButtonItem.appearance().tintColor = .gray
-        UIBarButtonItem.appearance().setTitleTextAttributes([NSAttributedString.Key.font : UIFont(name: "Helvetica Neue", size: 14)!, NSAttributedString.Key.foregroundColor : UIColor.gray], for: .normal)
+        UIBarButtonItem.appearance().tintColor = .grape
+        UIBarButtonItem.appearance().setTitleTextAttributes([NSAttributedString.Key.font : UIFont(name: "Helvetica Neue", size: 14)!, NSAttributedString.Key.foregroundColor : UIColor.grape], for: .normal)
         
         //labels
-        UILabel.appearance().textColor = .white
+        UILabel.appearance().textColor = .grass
         UILabel.appearance().font = UIFont(name: "Helvetica Neue", size: 16)
+    }
+    
+    static func style(button: UIButton) {
+        button.titleLabel?.font = AppearanceHelper.mediumFont(with: .body, pointSize: 18)
+        button.titleLabel?.adjustsFontForContentSizeCategory = true
+        
+        button.setTitleColor(.grape, for: .normal)
+        //button.backgroundColor = .midnight
+        //button.layer.cornerRadius = 8
     }
 }

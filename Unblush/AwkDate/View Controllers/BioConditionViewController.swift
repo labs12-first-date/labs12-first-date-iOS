@@ -101,6 +101,15 @@ class BioConditionViewController: UIViewController, UITableViewDataSource, UITab
         
     }
     
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        setTheme()
+    }
+    
+    func setTheme() {
+        view.backgroundColor = .violet
+    }
    /* override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         

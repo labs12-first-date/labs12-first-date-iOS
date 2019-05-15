@@ -150,6 +150,8 @@ class GetUserInfoViewController: UIViewController {
         zipTextField.setBottomBorder()
         bioTextField.setBottomBorder()
         
+        view.backgroundColor = .violet
+        
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {

@@ -10,11 +10,16 @@ import UIKit
 
 class ChooseSignupOrLoginViewController: UIViewController {
     
+    //MARk: - Properties
+    var onboarding = Onboarding.fetchInterests()
+    let cellScaling: CGFloat = 0.6
+    
     //MARK: - Outlets
     @IBOutlet weak var logoView: UIImageView!
     @IBOutlet weak var loginButton: UIButton!
     @IBOutlet weak var signupButton: UIButton!
     
+    @IBOutlet weak var collectionView: UICollectionView!
     @IBAction func loginButton(_ sender: Any) {
         performSegue(withIdentifier: "login", sender: self)
     }
@@ -25,6 +30,60 @@ class ChooseSignupOrLoginViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        setTheme()
    
+        let screenSize = UIScreen.main.bounds.size
+        let cellWidth = floor(screenSize.width * cellScaling)
+        let cellHeight = floor(screenSize.height * cellScaling)
+        
+        let insetX = (view.bounds.width - cellWidth) / 2.0
+        let insetY = (view.bounds.height - cellHeight) / 2.0
+        
+        let layout = collectionView!.collectionViewLayout as! UICollectionViewFlowLayout
+        layout.itemSize = CGSize(width: cellWidth, height: cellHeight)
+        collectionView?.contentInset = UIEdgeInsets(top: insetY, left: insetX, bottom: insetY, right: insetX)
+        
+        collectionView?.dataSource = self
+        collectionView?.delegate = self
+
+    }
+    
+    func setTheme() {
+        view.backgroundColor = .violet
+        AppearanceHelper.style(button: loginButton)
+        AppearanceHelper.style(button: signupButton)
+
+    }
+}
+
+extension ChooseSignupOrLoginViewController: UICollectionViewDataSource {
+    func numberOfSections(in collectionView: UICollectionView) -> Int {
+        return 1
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return onboarding.count
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "OnboardingCell", for: indexPath) as! OnboardingCollectionViewCell
+        
+        cell.onboarding = onboarding[indexPath.item]
+        
+        return cell
+    }
+}
+
+extension ChooseSignupOrLoginViewController: UIScrollViewDelegate, UICollectionViewDelegate {
+    func scrollViewWillEndDragging(_ scrollView: UIScrollView, withVelocity velocity: CGPoint, targetContentOffset: UnsafeMutablePointer<CGPoint>) {
+        let layout = self.collectionView?.collectionViewLayout as! UICollectionViewFlowLayout
+        let cellWidthIncludingSpacing = layout.itemSize.width + layout.minimumLineSpacing
+        
+        var offset = targetContentOffset.pointee
+        let index = (offset.x + scrollView.contentInset.left) / cellWidthIncludingSpacing
+        let roundedIndex = round(index)
+        
+        offset = CGPoint(x: roundedIndex * cellWidthIncludingSpacing - scrollView.contentInset.left, y: -scrollView.contentInset.top)
+        targetContentOffset.pointee = offset
     }
 }

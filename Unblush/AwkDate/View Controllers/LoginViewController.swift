@@ -71,6 +71,10 @@ class LoginViewController: UIViewController {
         
         emailTextField.setBottomBorder()
         passwordTextField.setBottomBorder()
+        
+        AppearanceHelper.style(button: loginButton)
+        
+        view.backgroundColor = .violet
     }
     
     func displayMessage(userMessage:String) -> Void {
