@@ -26,6 +26,7 @@ enum ConditionType: String {
     case theClap = "The Clap"
     case hepC = "Hep C"
     case hepB = "Hep B"
+    case hepA = "Hep A"
     case hepD = "Hep D"
     case genitalWarts = "Genital Warts"
     case crabs = "Crabs"
@@ -42,14 +43,13 @@ enum GenderType: String {
 
 struct Profile: Decodable {
     
-    
     static private let firstNameKey = "first_name"
     static private let lastNameKey = "last_name"
     static private let emailKey = "email"
-    static private let dobKey = "date_of_birth"
+    static private let ageKey = "age"
     static private let genderKey = "gender"
-    static private let mainPhotoKey = "main_photo"
-    static private let zipcodeKey = "zip"
+    static private let mainPhotoKey = "profile_picture"
+    static private let zipcodeKey = "zip_code"
     static private let conditionKey = "condition"
     static private let biographyKey = "bio"
     static private let likedMatchesKey = "liked"
@@ -63,10 +63,10 @@ struct Profile: Decodable {
         case firstNameKey = "first_name"
         case lastNameKey = "last_name"
         case emailKey = "email"
-        case dobKey = "date_of_birth"
+        case ageKey = "age"
         case genderKey = "gender"
-        case mainPhotoKey = "main_photo"
-        case zipcodeKey = "zip"
+        case mainPhotoKey = "profile_picture"
+        case zipcodeKey = "zip_code"
         case conditionKey = "condition"
         case biographyKey = "bio"
         case lookingForKey = "looking_for"
@@ -76,7 +76,7 @@ struct Profile: Decodable {
     var firstName: String
     var lastName: String
     var email: String
-    var dob: Date
+    var age: Int
     var gender: String // enum
     var zipcode: Int
     var condition: [String]
@@ -95,17 +95,17 @@ struct Profile: Decodable {
        // let mainPhotoURL = URL(string: String(mainPhotoString))!
         //let mainPhotoURL2 = URL(dataRepresentation: mainPhoto, relativeTo: nil)!
         
-        return [Profile.firstNameKey: firstName, Profile.lastNameKey: lastName, Profile.genderKey: gender, Profile.mainPhotoKey: mainPhoto.absoluteString, Profile.zipcodeKey: NSNumber(value: zipcode).stringValue, Profile.biographyKey: biography, Profile.conditionKey: condition, Profile.dobKey: dob.description, Profile.emailKey: email, Profile.lookingForKey: lookingFor, Profile.likedMatchesKey: likedMatches, Profile.matchesKey: matches]
+        return [Profile.firstNameKey: firstName, Profile.lastNameKey: lastName, Profile.genderKey: gender, Profile.mainPhotoKey: mainPhoto.absoluteString, Profile.zipcodeKey: NSNumber(value: zipcode).stringValue, Profile.biographyKey: biography, Profile.conditionKey: condition, Profile.ageKey: String(age), Profile.emailKey: email, Profile.lookingForKey: lookingFor, Profile.likedMatchesKey: likedMatches, Profile.matchesKey: matches]
     }
     
   
     
-    init(firstName: String, lastName: String, email: String, dob: Date, gender: String, zipcode: Int, condition: [String], mainPhoto: URL, likedMatches: [Any], lookingFor: String, biography: String, matches: [Any]) {
+    init(firstName: String, lastName: String, email: String, age: Int, gender: String, zipcode: Int, condition: [String], mainPhoto: URL, likedMatches: [Any], lookingFor: String, biography: String, matches: [Any]) {
         
         self.firstName = firstName
         self.lastName = lastName
         self.email = email
-        self.dob = dob
+        self.age = age
         self.gender = gender
         self.zipcode = zipcode
         self.condition = condition
@@ -132,7 +132,7 @@ struct Profile: Decodable {
         let first = try container.decode(String.self, forKey: .firstNameKey)
         let last = try container.decode(String.self, forKey: .lastNameKey)
         let emailAddress = try container.decode(String.self, forKey: .emailKey)
-        let dateOB = try container.decode(String.self, forKey: .dobKey)
+        let age = try container.decode(String.self, forKey: .ageKey)
         let genderString = try container.decode(String.self, forKey: .genderKey)
         let zip = try container.decode(String.self, forKey: .zipcodeKey)
         let conditionString = try container.decode([String].self, forKey: .conditionKey)
@@ -140,7 +140,6 @@ struct Profile: Decodable {
         let lookingForString = try container.decode(String.self, forKey: .lookingForKey)
         let bio = try container.decode(String.self, forKey: .biographyKey)
         
-        let dateFormatter = DateFormatter()
        
         
         self.likedMatches = likedContainer
@@ -148,7 +147,7 @@ struct Profile: Decodable {
         self.firstName = first
         self.lastName = last
         self.email = emailAddress
-        self.dob =  dateFormatter.date(from: dateOB)!
+        self.age =  Int(age)!
         self.gender = genderString
         self.zipcode = Int(zip)!
         self.condition = conditionString

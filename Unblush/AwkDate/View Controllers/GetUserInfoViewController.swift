@@ -21,7 +21,7 @@ class GetUserInfoViewController: UIViewController {
     var lastName: String?
     var gender: String?
     var email: String?
-    var dob: Date?
+    var age: Int?
     var zipcode: Int?
     var biography: String?
     
@@ -60,20 +60,19 @@ class GetUserInfoViewController: UIViewController {
         guard let firstName = firstNameTextField.text, !firstName.isEmpty,
             let lastName = lastNameTextField.text,
             let gender = genderTextField.text,
-            let dob = dateOfBirthTextField.text,
-            let zipcode = zipTextField.text,
-            let biography = bioTextField.text else { return }
+            let biography = bioTextField.text,
+            let age = dateOfBirthTextField.text,
+            let zipcode = zipTextField.text else { return }
+
         
         self.firstName = firstName
         self.lastName = lastName
         self.gender = gender
         self.zipcode = Int(zipcode)
         self.biography = biography
+        self.age = Int(age)
+
         
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "MM/dd/yyyy"
-        let date = dateFormatter.date(from: dob)!
-        self.dob = date
         
         DispatchQueue.main.async {
             self.performSegue(withIdentifier: "SaveGetInfo", sender: self)
@@ -184,7 +183,7 @@ class GetUserInfoViewController: UIViewController {
             destination.firstName = self.firstName
             destination.lastName = self.lastName
             destination.gender = self.gender
-            destination.dob = self.dob
+            destination.age = self.age
             destination.zipcode = self.zipcode
             destination.biography = self.biography
             destination.email = self.email

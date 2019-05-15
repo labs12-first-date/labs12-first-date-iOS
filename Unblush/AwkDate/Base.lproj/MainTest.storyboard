@@ -167,9 +167,6 @@
                                         </imageView>
                                     </subviews>
                                 </tableViewCellContentView>
-                                <connections>
-                                    <segue destination="YrM-Ou-ADe" kind="show" identifier="toMessages" id="qLH-h6-f6G"/>
-                                </connections>
                             </tableViewCell>
                         </prototypes>
                         <connections>
@@ -181,7 +178,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="RNP-lh-qgf" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2504.3478260869565" y="112.5"/>
+            <point key="canvasLocation" x="2891" y="104"/>
         </scene>
         <!--Title-->
         <scene sceneID="MdT-Lh-7KR">
@@ -197,7 +194,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="3ps-7l-jAp" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3135" y="115"/>
+            <point key="canvasLocation" x="3748" y="104"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="lHB-eP-Mnw">
