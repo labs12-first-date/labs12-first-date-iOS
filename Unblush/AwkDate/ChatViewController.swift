@@ -109,7 +109,7 @@ class ChatViewController: MessagesViewController {
         
         let cameraItem = InputBarButtonItem(type: .system) // 1
         cameraItem.tintColor = .primary
-        cameraItem.image = UIImage(named: "Image")
+        cameraItem.image = UIImage(named: "Image-1")
         cameraItem.addTarget(
             self,
             action: #selector(cameraButtonPressed), // 2
@@ -289,6 +289,10 @@ extension ChatViewController: MessagesDisplayDelegate {
 
 extension ChatViewController: MessagesLayoutDelegate {
     
+    func configureAvatarView(_ avatarView: AvatarView, for message: MessageType, at indexPath: IndexPath, in messagesCollectionView: MessagesCollectionView) {
+        let nameArray = Array(message.sender.displayName)
+        avatarView.initials = String(nameArray.first!)
+    }
     func avatarSize(for message: MessageType, at indexPath: IndexPath, in messagesCollectionView: MessagesCollectionView) -> CGSize {
         return .zero
     }
@@ -301,6 +305,8 @@ extension ChatViewController: MessagesLayoutDelegate {
         
         return 0
     }
+    
+
     
 }
 
@@ -333,7 +339,29 @@ extension ChatViewController: MessagesDataSource {
         }
         
     }
+
+   
+    func messageBottomLabelHeight(for message: MessageType, at indexPath: IndexPath, in messagesCollectionView: MessagesCollectionView) -> CGFloat {
+        return 15
+    }
+  
     
+    func cellBottomLabelAlignment(for message: MessageType, at indexPath: IndexPath, in messagesCollectionView: MessagesCollectionView) -> LabelAlignment {
+        return LabelAlignment(textAlignment: .natural, textInsets: .zero)
+    }
+    func messageBottomLabelAttributedText(for message: MessageType, at indexPath: IndexPath) -> NSAttributedString? {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "MMM d, h:mm a"
+        let messageDate = dateFormatter.string(from: message.sentDate)
+        
+        return NSAttributedString(
+            string: messageDate,
+            attributes: [
+                .font: UIFont.preferredFont(forTextStyle: .caption1),
+                .foregroundColor: UIColor(white: 0.3, alpha: 1)
+            ]
+        )
+    }
     
     func cellTopLabelAttributedText(for message: MessageType, at indexPath: IndexPath) -> NSAttributedString? {
         print("message sender display name: \(message.sender.displayName)")

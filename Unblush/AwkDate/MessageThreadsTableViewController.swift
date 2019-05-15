@@ -33,8 +33,6 @@ class MessageThreadsTableViewController: UITableViewController {
     var chattingUserUID: String?
     let userController = User2Controller()
     
-   // ar ref: DocumentReference? = nil
-  //  ref = self.db.collection("profilesiOS").document(userID)
     
     private var messageThreadReference: CollectionReference {
         return db.collection("messageThreadsiOS").document(currentUser!.uid).collection("threads")
@@ -214,14 +212,14 @@ class MessageThreadsTableViewController: UITableViewController {
         messageThreads.append(messageThread)
         messageThreads.sort()
         
-        guard let index = messageThreads.index(of: messageThread) else {
+        guard let index = messageThreads.firstIndex(of: messageThread) else {
             return
         }
         tableView.insertRows(at: [IndexPath(row: index, section: 0)], with: .automatic)
     }
     
     private func updateChannelInTable(_ messageThread: MessageThread) {
-        guard let index = messageThreads.index(of: messageThread) else {
+        guard let index = messageThreads.firstIndex(of: messageThread) else {
             return
         }
         
@@ -230,7 +228,7 @@ class MessageThreadsTableViewController: UITableViewController {
     }
     
     private func removeChannelFromTable(_ messageThread: MessageThread) {
-        guard let index = messageThreads.index(of: messageThread) else {
+        guard let index = messageThreads.firstIndex(of: messageThread) else {
             return
         }
         
