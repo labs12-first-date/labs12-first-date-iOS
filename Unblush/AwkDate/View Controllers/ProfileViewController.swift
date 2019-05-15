@@ -18,14 +18,6 @@ class ProfileViewController: UIViewController {
     
     
     //MARK: - Outlets
-    @IBOutlet weak var notLikeButton: UIButton!
-    @IBAction func notLikeButton(_ sender: Any) {
-        
-    }
-    @IBOutlet weak var likeButton: UIButton!
-    @IBAction func likeButton(_ sender: Any) {
-        
-    }
     @IBOutlet weak var matchesButton: UIBarButtonItem!
     @IBAction func matchesButton(_ sender: Any) {
         
@@ -65,6 +57,7 @@ class ProfileViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        setUpPhotoView()
         
         user2Controller?.fetchProfileFromServer(userID: currentUserUID!, completion: { (error) in
             if let error = error {
@@ -81,6 +74,21 @@ class ProfileViewController: UIViewController {
             
         })
 
+    }
+    
+    func setTheme() {
+        AppearanceHelper.style(button: messageButton)
+        AppearanceHelper.style(button: mediaButton)
+        AppearanceHelper.style(button: settingsButton)
+        AppearanceHelper.style(button: editButton)
+        
+        view.backgroundColor = .violet
+        
+    
+    }
+    
+    private func setUpPhotoView() {
+        profileView.layer.cornerRadius = profileView.frame.width / 2
     }
     
     private func load(fileName: String) -> UIImage? {

@@ -70,6 +70,29 @@ class SignupViewController: UIViewController {
         }
     }
     
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        setTheme()
+    }
+    
+    func setTheme() {
+        emailTextField.setPadding()
+        passwordTextField.setPadding()
+        retypePasswordTextField.setPadding()
+        
+        emailTextField.textColor = .grape
+        passwordTextField.textColor = .grape
+        retypePasswordTextField.textColor = .grape
+        
+        emailTextField.backgroundColor = UIColor.grape.withAlphaComponent(0.1)
+        passwordTextField.backgroundColor = UIColor.grape.withAlphaComponent(0.1)
+        retypePasswordTextField.backgroundColor = UIColor.grape.withAlphaComponent(0.1)
+        
+        AppearanceHelper.style(button: signupButton)
+        
+        view.backgroundColor = .violet
+    }
+    
     func displayMessage(userMessage:String) -> Void {
         DispatchQueue.main.async
             {
