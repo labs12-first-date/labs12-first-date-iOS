@@ -69,8 +69,11 @@ class LoginViewController: UIViewController {
         emailTextField.setPadding()
         passwordTextField.setPadding()
         
-        emailTextField.setBottomBorder()
-        passwordTextField.setBottomBorder()
+        emailTextField.textColor = .grape
+        passwordTextField.textColor = .grape
+        
+        emailTextField.backgroundColor = UIColor.grape.withAlphaComponent(0.1)
+        passwordTextField.backgroundColor = UIColor.grape.withAlphaComponent(0.1)
         
         AppearanceHelper.style(button: loginButton)
         

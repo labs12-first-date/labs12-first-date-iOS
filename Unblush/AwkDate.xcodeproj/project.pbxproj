@@ -199,7 +199,7 @@
 			isa = PBXGroup;
 			children = (
 				487554F8228BB6410021C8D1 /* Cell */,
-				4F9ACB6A2289EDF1004A5D2A /* New Group */,
+				4F9ACB6A2289EDF1004A5D2A /* UI */,
 				4F4F40052281D60F00667A92 /* GoogleService-Info.plist */,
 				4FF3274A227B5F1000192934 /* AwkDate.entitlements */,
 				4F3C560722792A44006307A9 /* View Controllers */,
@@ -283,7 +283,7 @@
 			path = "View Controllers";
 			sourceTree = "<group>";
 		};
-		4F9ACB6A2289EDF1004A5D2A /* New Group */ = {
+		4F9ACB6A2289EDF1004A5D2A /* UI */ = {
 			isa = PBXGroup;
 			children = (
 				487554F0228B75170021C8D1 /* ColorConvenience.swift */,
@@ -294,7 +294,7 @@
 				4F9ACB6F2289EE24004A5D2A /* UIImage+Additions.swift */,
 				4F9ACB712289EE4B004A5D2A /* UIView+Additions.swift */,
 			);
-			path = "New Group";
+			path = UI;
 			sourceTree = "<group>";
 		};
 		807AD58B2F91EC3D094EA4A2 /* Pods */ = {

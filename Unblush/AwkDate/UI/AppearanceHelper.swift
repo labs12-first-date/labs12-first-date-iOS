@@ -34,8 +34,9 @@ enum AppearanceHelper {
         UINavigationBar.appearance().largeTitleTextAttributes = textAttributes
         UINavigationBar.appearance().titleTextAttributes = textAttributes
         
-        UITextField.appearance().tintColor = .none
-        UITextView.appearance().tintColor = .none
+        UITextField.appearance().tintColor = .grape
+        
+        //UITextView.appearance().tintColor = .none
         
         
         UINavigationBar.appearance().largeTitleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.grass, NSAttributedString.Key.font: UIFont(name: "Helvetica Neue", size: 30)!]
@@ -50,7 +51,7 @@ enum AppearanceHelper {
     }
     
     static func style(button: UIButton) {
-        button.titleLabel?.font = AppearanceHelper.mediumFont(with: .body, pointSize: 18)
+        button.titleLabel?.font = AppearanceHelper.mediumFont(with: .body, pointSize: 16)
         button.titleLabel?.adjustsFontForContentSizeCategory = true
         
         button.setTitleColor(.grape, for: .normal)

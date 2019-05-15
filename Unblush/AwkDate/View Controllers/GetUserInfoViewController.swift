@@ -142,13 +142,23 @@ class GetUserInfoViewController: UIViewController {
         dateOfBirthTextField.setPadding()
         zipTextField.setPadding()
         bioTextField.setPadding()
+        
+        firstNameTextField.textColor = .grape
+        lastNameTextField.textColor = .grape
+        genderTextField.textColor = .grape
+        dateOfBirthTextField.textColor = .grape
+        zipTextField.textColor = .grape
+        bioTextField.textColor = .grape
+        
+        headerView.backgroundColor = .grape
+        titleLabel.textColor = .violet
 
-        firstNameTextField.setBottomBorder()
-        lastNameTextField.setBottomBorder()
-        genderTextField.setBottomBorder()
-        dateOfBirthTextField.setBottomBorder()
-        zipTextField.setBottomBorder()
-        bioTextField.setBottomBorder()
+        firstNameTextField.backgroundColor = UIColor.grape.withAlphaComponent(0.1)
+        lastNameTextField.backgroundColor = UIColor.grape.withAlphaComponent(0.1)
+        genderTextField.backgroundColor = UIColor.grape.withAlphaComponent(0.1)
+        dateOfBirthTextField.backgroundColor = UIColor.grape.withAlphaComponent(0.1)
+        zipTextField.backgroundColor = UIColor.grape.withAlphaComponent(0.1)
+        bioTextField.backgroundColor = UIColor.grape.withAlphaComponent(0.1)
         
         view.backgroundColor = .violet
         

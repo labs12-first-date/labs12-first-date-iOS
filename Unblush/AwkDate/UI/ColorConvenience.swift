@@ -13,7 +13,7 @@ extension UIColor {
         self.init(red: red/255, green: green/255, blue: blue/255, alpha: alpha)
     }
     
-    static let violet = UIColor(48, 10, 74, 1)
+    static let violet = UIColor(23, 1, 38, 1)
     static let midnight = UIColor(13, 1, 52, 1)
     static let grape = UIColor(182, 18, 209, 1)
     static let water = UIColor(27, 60, 216, 1)
