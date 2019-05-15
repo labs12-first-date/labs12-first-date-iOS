@@ -9,13 +9,13 @@
 import Foundation
 
 enum LookingForType: String {
-    case sameGender
-    case sameCondition
-    case openToAllPossibilities
-    case openToAllConditions
-    case fiveYearAgeGap
-    case tenYearAgeGap
-    case threeYearAgeGap
+    case sameGender = "Same Gender as Me"
+    case sameCondition = "Same Condition as Me"
+    case openToAllPossibilities = "Open to all possibilities"
+    case openToAllConditions = "Open to all conditions"
+    case fiveYearAgeGap = "Only 5 year age gap"
+    case tenYearAgeGap = "Only 10 year age gap"
+    case threeYearAgeGap = "Only 3 year age gap"
 }
 
 enum ConditionType: String {
