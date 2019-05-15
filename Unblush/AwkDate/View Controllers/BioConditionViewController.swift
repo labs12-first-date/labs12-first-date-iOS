@@ -119,6 +119,7 @@ class BioConditionViewController: UIViewController, UITableViewDataSource, UITab
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        setUpPhotoView()
         setTheme()
     }
     
@@ -167,14 +168,10 @@ class BioConditionViewController: UIViewController, UITableViewDataSource, UITab
         dismiss(animated: true, completion: nil)
     }
     
-//    private func updateImage() {
-//        if let profileImage = profileImage {
-//            addPhoto.isHidden = true
-//        } else {
-//            profileView.image = nil
-//        }
-//    }
-
+    private func setUpPhotoView() {
+        photoView.layer.cornerRadius = photoView.frame.width / 2
+    }
+    
     // MARK: - Navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "profile" {
