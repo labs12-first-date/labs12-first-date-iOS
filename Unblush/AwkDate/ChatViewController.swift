@@ -27,21 +27,24 @@ class ChatViewController: MessagesViewController {
     
     private let db = Firestore.firestore()
     private var reference: CollectionReference?
+    private var chattingUserReference: CollectionReference?
     private let storage = Storage.storage().reference()
     
-    private var messages: [Message] = []
+    var messages: [Message] = []
     private var messageListener: ListenerRegistration?
     
-    private let user: User
-    private let messageThread: MessageThread
+    let user: User
+    let messageThread: MessageThread
+    let chattingUserUID: String
     
     deinit {
         messageListener?.remove()
     }
     
-    init(user: User, messageThread: MessageThread) {
+    init(user: User, messageThread: MessageThread, chattingUserUID: String) {
         self.user = user
         self.messageThread = messageThread
+        self.chattingUserUID = chattingUserUID
         super.init(nibName: nil, bundle: nil)
         
         title = messageThread.name
@@ -58,8 +61,9 @@ class ChatViewController: MessagesViewController {
             navigationController?.popViewController(animated: true)
             return
         }
-        
-        reference = db.collection(["messageThreadsiOS", id, "messages"].joined(separator: "/"))
+    
+        reference = db.collection(["messageThreadsiOS", user.uid, "threads", id, "messages"].joined(separator: "/"))
+        chattingUserReference = db.collection(["messageThreadsiOS", chattingUserUID, "threads", id, "messages"].joined(separator: "/"))
         
         messageListener = reference?.addSnapshotListener { querySnapshot, error in
             guard let snapshot = querySnapshot else {
@@ -71,6 +75,26 @@ class ChatViewController: MessagesViewController {
                 self.handleDocumentChange(change)
             }
         }
+        reference?.getDocuments(completion: { (querySnapshot, error) in
+            if let error = error {
+                print("Error fetching messages from id: \(error)")
+                return
+            }
+            
+            guard let querySnap = querySnapshot else {
+                print("No query snapshot")
+                return
+            }
+            
+            for document in querySnap.documents {
+                print("Document msg: \(document)")
+                let msg = Message(document: document)!
+                guard !self.messages.contains(msg) else {
+                    return
+                }
+                self.messages.append(msg)
+            }
+        })
         
         navigationItem.largeTitleDisplayMode = .never
         
@@ -78,14 +102,14 @@ class ChatViewController: MessagesViewController {
         messageInputBar.inputTextView.tintColor = .primary
         messageInputBar.sendButton.setTitleColor(.primary, for: .normal)
         
-        messageInputBar.delegate = self as! MessageInputBarDelegate
+        messageInputBar.delegate = self
         messagesCollectionView.messagesDataSource = self
         messagesCollectionView.messagesLayoutDelegate = self
         messagesCollectionView.messagesDisplayDelegate = self
         
         let cameraItem = InputBarButtonItem(type: .system) // 1
         cameraItem.tintColor = .primary
-        cameraItem.image = UIImage(named: "Image")
+        cameraItem.image = UIImage(named: "Image-1")
         cameraItem.addTarget(
             self,
             action: #selector(cameraButtonPressed), // 2
@@ -117,6 +141,7 @@ class ChatViewController: MessagesViewController {
     // MARK: - Helpers
     
     private func save(_ message: Message) {
+        chattingUserReference?.addDocument(data: message.representation)
         reference?.addDocument(data: message.representation) { error in
             if let e = error {
                 print("Error sending message: \(e.localizedDescription)")
@@ -135,10 +160,13 @@ class ChatViewController: MessagesViewController {
         messages.append(message)
         messages.sort()
         
-        let isLatestMessage = messages.index(of: message) == (messages.count - 1)
+        let isLatestMessage = messages.firstIndex(of: message) == (messages.count - 1)
         let shouldScrollToBottom = messagesCollectionView.isAtBottom && isLatestMessage
         
-        messagesCollectionView.reloadData()
+        DispatchQueue.main.async {
+            self.messagesCollectionView.reloadData()
+        }
+        
         
         if shouldScrollToBottom {
             DispatchQueue.main.async {
@@ -261,6 +289,10 @@ extension ChatViewController: MessagesDisplayDelegate {
 
 extension ChatViewController: MessagesLayoutDelegate {
     
+    func configureAvatarView(_ avatarView: AvatarView, for message: MessageType, at indexPath: IndexPath, in messagesCollectionView: MessagesCollectionView) {
+        let nameArray = Array(message.sender.displayName)
+        avatarView.initials = String(nameArray.first!)
+    }
     func avatarSize(for message: MessageType, at indexPath: IndexPath, in messagesCollectionView: MessagesCollectionView) -> CGSize {
         return .zero
     }
@@ -274,21 +306,25 @@ extension ChatViewController: MessagesLayoutDelegate {
         return 0
     }
     
+
+    
 }
 
 // MARK: - MessagesDataSource
 
 extension ChatViewController: MessagesDataSource {
     func numberOfSections(in messagesCollectionView: MessagesCollectionView) -> Int {
-        return 1
+        return messages.count
     }
     
     
     func currentSender() -> Sender {
-        return Sender(id: user.uid, displayName: AppSettings.displayName)
+        //print("current sender: \(AppSettings.displayName) \(user.uid)")
+        return Sender(id: user.uid, displayName: AppSettings.displayName!)
     }
     
     func numberOfMessages(in messagesCollectionView: MessagesCollectionView) -> Int {
+        print("Message count: \(messages.count)")
         return messages.count
     }
     
@@ -296,16 +332,39 @@ extension ChatViewController: MessagesDataSource {
     func messageForItem(at indexPath: IndexPath, in messagesCollectionView: MessagesCollectionView) -> MessageType {
         
         if messages.count == 0 {
+            print("Messages are zero")
             return Message(user: self.user, content: "Let's Start Chatting!")
         } else {
            return messages[indexPath.section]
         }
         
-            //?? Message(user: self.user, content: "Let's Start Chatting!")
+    }
+
+   
+    func messageBottomLabelHeight(for message: MessageType, at indexPath: IndexPath, in messagesCollectionView: MessagesCollectionView) -> CGFloat {
+        return 15
+    }
+  
+    
+    func cellBottomLabelAlignment(for message: MessageType, at indexPath: IndexPath, in messagesCollectionView: MessagesCollectionView) -> LabelAlignment {
+        return LabelAlignment(textAlignment: .natural, textInsets: .zero)
+    }
+    func messageBottomLabelAttributedText(for message: MessageType, at indexPath: IndexPath) -> NSAttributedString? {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "MMM d, h:mm a"
+        let messageDate = dateFormatter.string(from: message.sentDate)
+        
+        return NSAttributedString(
+            string: messageDate,
+            attributes: [
+                .font: UIFont.preferredFont(forTextStyle: .caption1),
+                .foregroundColor: UIColor(white: 0.3, alpha: 1)
+            ]
+        )
     }
     
-    
     func cellTopLabelAttributedText(for message: MessageType, at indexPath: IndexPath) -> NSAttributedString? {
+        print("message sender display name: \(message.sender.displayName)")
         let name = message.sender.displayName
         return NSAttributedString(
             string: name,
@@ -325,6 +384,7 @@ extension ChatViewController: MessageInputBarDelegate {
     func messageInputBar(_ inputBar: MessageInputBar, didPressSendButtonWith text: String) {
         let message = Message(user: user, content: text)
         
+       // insertNewMessage(message)
         save(message)
         inputBar.inputTextView.text = ""
     }
