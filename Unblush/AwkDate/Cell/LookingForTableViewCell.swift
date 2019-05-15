@@ -11,7 +11,11 @@ import UIKit
 class LookingForTableViewCell: UITableViewCell {
     
     //MARK: - Properties
-    var lookingFor: String?
+    var lookingFor: LookingForType?
+    
+    func updateViews() {
+        guard let lookingFor = lookingFor else { return }
+    }
     
     //MARK: - Outlets
     @IBOutlet weak var lookingForLabel: UILabel!
@@ -28,20 +32,17 @@ class LookingForTableViewCell: UITableViewCell {
             DispatchQueue.main.async {
                 self.uncheckButton.setImage(buttonEmptyImage, for: .normal)
             }
-            let indexOfSTD = conditionsFromTableView.firstIndex(of: condition.rawValue)
-            conditionsFromTableView.remove(at: indexOfSTD!)
-            print("Current conditions 2: \(conditionsFromTableView)")
+            let indexOfLookFor = lookingForFromTableView.firstIndex(of: lookingFor.rawValue)
+            lookingForFromTableView.remove(at: indexOfLookFor!)
+            //print("Current conditions 2: \(conditionsFromTableView)")
         } else {
             DispatchQueue.main.async {
                 self.uncheckButton.setImage(buttonCheckImage, for: .normal)
             }
-            conditionsFromTableView.append(condition.rawValue)
-            print("Current looking for 1: \(conditionsFromTableView)")
+            lookingForFromTableView.append(lookingFor.rawValue)
+            //print("Current looking for 1: \(conditionsFromTableView)")
         }
     }
-    
-    func updateViews() {
-        guard let lookingFor = lookingFor else { return }
-    }
-
 }
+
+var lookingForFromTableView: [String] = []
