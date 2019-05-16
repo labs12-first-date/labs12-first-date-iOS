@@ -13,6 +13,11 @@ private let reuseIdentifier = "LikedCell"
 class LikedCollectionViewController: UICollectionViewController {
     
     //MARK: - Properties
+    var profile: Profile?
+    var user2Controller: User2Controller?
+    
+    let likedMatches = [(UIImage(named: "234")!, firstName: "Bob", age: "36", location: "23457", bio: "I read a lot"), (UIImage(named: "234")!, firstName: "Terry", age: "31", location: "23346", bio: "I run every day")
+    ]
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -48,11 +53,11 @@ class LikedCollectionViewController: UICollectionViewController {
 
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of items
-        return 0
+        return likedMatches.count
     }
 
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath)
+        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath) as? LikedCollectionViewCell else { fatalError() }
     
     
         return cell

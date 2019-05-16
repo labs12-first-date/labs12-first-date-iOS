@@ -10,6 +10,10 @@ import UIKit
 
 class LikedCollectionViewCell: UICollectionViewCell {
     
+    //MARK: - Properties
+    var profile: Profile?
+    var photo: UIImage?
+    
     //MARK: - Outlets
     @IBOutlet weak var chatButton: UIButton!
     @IBAction func chatButton(_ sender: Any) {
@@ -24,10 +28,20 @@ class LikedCollectionViewCell: UICollectionViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         setTheme()
+        updateViews()
     }
     
     func setTheme() {
         AppearanceHelper.style(button: chatButton)
         
+    }
+    
+    func updateViews() {
+        guard let photo = photo else { return }
+        photoView.image = photo
+        nameLabel.text = profile?.firstName
+        ageLabel.text = "\(profile?.age))"
+        locationLabel.text = "\(profile?.zipcode)"
+        bioLabel.text = profile?.biography
     }
 }
