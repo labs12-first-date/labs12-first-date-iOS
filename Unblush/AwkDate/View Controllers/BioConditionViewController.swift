@@ -69,21 +69,28 @@ class BioConditionViewController: UIViewController, UITableViewDataSource, UITab
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        var cell: UITableViewCell?
+        //var cell: UITableViewCell?
         if tableView == self.conditionsTableView {
-            cell = tableView.dequeueReusableCell(withIdentifier: "conditionCell")
+            let cell = tableView.dequeueReusableCell(withIdentifier: "conditionCell", for: indexPath) as! CondTableViewCell
             let condition = conditions[indexPath.row]
-            cell?.textLabel?.text = condition.rawValue
+            cell.conditionNameLabel.text = condition.rawValue
+            //cell?.textLabel?.text = condition.rawValue
+            style(cell: cell)
+            return cell
         }
         
         if tableView == self.lookingTableView {
-            cell = tableView.dequeueReusableCell(withIdentifier: "LookingForCell")
+            let cell = tableView.dequeueReusableCell(withIdentifier: "LookingForCell", for: indexPath) as! LookingForTableViewCell
+            
             let lookingFor = lookingForCriteria[indexPath.row]
-            cell?.textLabel?.text = lookingFor.rawValue
+            cell.lookingForLabel.text = lookingFor.rawValue
+            //cell?.textLabel?.text = lookingFor.rawValue
+            style(cell: cell)
+            return cell
         }
         
-        style(cell: cell!)
-        return cell!
+        let cell = UITableViewCell()
+        return cell
     }
     
     func style(cell: UITableViewCell) {
