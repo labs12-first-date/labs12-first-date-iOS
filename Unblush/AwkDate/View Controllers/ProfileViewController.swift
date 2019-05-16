@@ -15,8 +15,6 @@ class ProfileViewController: UIViewController {
     var currentUserUID: String?
     var profile: Profile?
     
-    
-    
     //MARK: - Outlets
     @IBOutlet weak var matchesButton: UIBarButtonItem!
     @IBAction func matchesButton(_ sender: Any) {
@@ -54,10 +52,10 @@ class ProfileViewController: UIViewController {
 
     }
     
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         setUpPhotoView()
+        setTheme()
         
         user2Controller?.fetchProfileFromServer(userID: currentUserUID!, completion: { (error) in
             if let error = error {
@@ -71,9 +69,7 @@ class ProfileViewController: UIViewController {
             DispatchQueue.main.async {
                 self.updateViews()
             }
-            
         })
-
     }
     
     func setTheme() {
@@ -84,7 +80,6 @@ class ProfileViewController: UIViewController {
         
         view.backgroundColor = .violet
         
-    
     }
     
     private func setUpPhotoView() {
@@ -107,7 +102,5 @@ class ProfileViewController: UIViewController {
         }
         return nil
     }
-    
-    
-    
+
 }

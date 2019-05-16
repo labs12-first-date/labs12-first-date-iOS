@@ -31,11 +31,18 @@ class BioConditionViewController: UIViewController, UITableViewDataSource, UITab
     
     let lookingForCriteria: [LookingForType] = [.sameGender, .sameCondition, .openToAllPossibilities, .openToAllConditions, .fiveYearAgeGap, .tenYearAgeGap, .threeYearAgeGap]
     
+//    private var scaledImage: UIImage? {
+//        didSet {
+//            updateImage()
+//        }
+//    }
+    
     //MARK: - Outlets
     @IBOutlet weak var conditionLabel: UILabel!
     @IBOutlet weak var conditionsTableView: UITableView!
     
-    @IBOutlet weak var addButton: UIButton!
+    @IBOutlet weak var addButton: UIButton! 
+        
     @IBAction func addButton(_ sender: Any) {
         presentImagePickerController()
     }
@@ -160,6 +167,15 @@ class BioConditionViewController: UIViewController, UITableViewDataSource, UITab
         lookingTableView.separatorColor = .grape
         view.backgroundColor = .violet
     }
+    
+//    private func updateImage() {
+//        if let scaledImage = scaledImage {
+//            addButton.isHidden = true
+//            photoView.image = scaledImage
+//        } else {
+//            photoView.image = nil
+//        }
+//    }
     
     private func presentImagePickerController() {
         guard UIImagePickerController.isSourceTypeAvailable(.photoLibrary) else {

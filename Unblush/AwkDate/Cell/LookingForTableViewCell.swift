@@ -21,7 +21,7 @@ class LookingForTableViewCell: UITableViewCell {
     @IBOutlet weak var lookingForLabel: UILabel!
     @IBOutlet weak var uncheckButton: UIButton!
     
-    @IBAction func buttonTapped(_ sender: Any) {
+    @IBAction func buttonTapped(_ sender: UIButton) {
     
     guard let lookingFor = lookingFor else { return }
         let currentImage = uncheckButton.currentImage!
@@ -35,13 +35,13 @@ class LookingForTableViewCell: UITableViewCell {
             }
             let indexOfLookFor = lookingForFromTableView.firstIndex(of: lookingFor.rawValue)
             lookingForFromTableView.remove(at: indexOfLookFor!)
-            //print("Current conditions 2: \(conditionsFromTableView)")
+            print("Current lookingFor 2: \(lookingForFromTableView)")
         } else {
             DispatchQueue.main.async {
                 self.uncheckButton.setImage(buttonCheckImage, for: .normal)
             }
             lookingForFromTableView.append(lookingFor.rawValue)
-            //print("Current looking for 1: \(conditionsFromTableView)")
+            print("Current lookingFor 1: \(lookingForFromTableView)")
         }
     }
 }

@@ -26,4 +26,14 @@ class MatchesCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var locationLabel: UILabel!
     @IBOutlet weak var bioLabel: UILabel!
     
+    override func awakeFromNib() {
+        super.awakeFromNib()
+        setTheme()
+    }
+    
+    func setTheme() {
+        AppearanceHelper.style(button: donotLikeButton)
+        AppearanceHelper.style(button: likeButton)
+                
+    }
 }

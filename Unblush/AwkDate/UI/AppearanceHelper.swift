@@ -30,7 +30,7 @@ enum AppearanceHelper {
         //navigationbar
         UINavigationBar.appearance().barTintColor = .violet
         
-        let textAttributes = [NSAttributedString.Key.foregroundColor: UIColor.grass]
+        let textAttributes = [NSAttributedString.Key.foregroundColor: UIColor.grape]
         UINavigationBar.appearance().largeTitleTextAttributes = textAttributes
         UINavigationBar.appearance().titleTextAttributes = textAttributes
         
@@ -39,7 +39,7 @@ enum AppearanceHelper {
         //UITextView.appearance().tintColor = .none
         
         
-        UINavigationBar.appearance().largeTitleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.grass, NSAttributedString.Key.font: UIFont(name: "Helvetica Neue", size: 30)!]
+        UINavigationBar.appearance().largeTitleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.grape, NSAttributedString.Key.font: UIFont(name: "Helvetica Neue", size: 30)!]
         
         //bar button item
         UIBarButtonItem.appearance().tintColor = .grape
