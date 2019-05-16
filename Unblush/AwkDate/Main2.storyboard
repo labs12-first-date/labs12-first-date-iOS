@@ -1149,8 +1149,8 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="9" translatesAutoresizingMaskIntoConstraints="NO" id="M8W-xk-tEH">
-                                <rect key="frame" x="20" y="108" width="335" height="688.33333333333337"/>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="M8W-xk-tEH">
+                                <rect key="frame" x="20" y="108" width="335" height="654.33333333333337"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="0d2-lQ-Otv" userLabel="conditions table">
                                         <rect key="frame" x="0.0" y="0.0" width="335" height="220"/>
@@ -1217,8 +1217,8 @@
                                             <constraint firstAttribute="height" constant="220" id="YGd-DD-dDm"/>
                                         </constraints>
                                     </stackView>
-                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="7Zf-sX-CuJ">
-                                        <rect key="frame" x="0.0" y="229" width="335" height="220.33333333333337"/>
+                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="7Zf-sX-CuJ" userLabel="lookingfor">
+                                        <rect key="frame" x="0.0" y="240" width="335" height="220.33333333333337"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Looking for" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9Tv-VU-Czw">
                                                 <rect key="frame" x="0.0" y="0.0" width="335" height="20.333333333333332"/>
@@ -1278,20 +1278,20 @@
                                             </tableView>
                                         </subviews>
                                     </stackView>
-                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="HCk-I1-D4c" userLabel="image">
-                                        <rect key="frame" x="0.0" y="458.33333333333337" width="335" height="230"/>
+                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillProportionally" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="HCk-I1-D4c" userLabel="image">
+                                        <rect key="frame" x="0.0" y="480.33333333333337" width="335" height="174"/>
                                         <subviews>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yhc-r4-2r1">
-                                                <rect key="frame" x="0.0" y="0.0" width="335" height="30"/>
+                                                <rect key="frame" x="132.66666666666666" y="0.0" width="70" height="30"/>
                                                 <state key="normal" title="add photo"/>
                                                 <connections>
                                                     <action selector="addButton:" destination="kmG-yk-po1" eventType="touchUpInside" id="KyP-Pg-CKr"/>
                                                 </connections>
                                             </button>
                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="tbF-r1-oND">
-                                                <rect key="frame" x="0.0" y="30" width="335" height="200"/>
+                                                <rect key="frame" x="102.66666666666669" y="30" width="130" height="144"/>
                                                 <constraints>
-                                                    <constraint firstAttribute="height" constant="200" id="IWK-I2-xdx"/>
+                                                    <constraint firstAttribute="width" constant="130" id="Qwp-xd-wTw"/>
                                                 </constraints>
                                             </imageView>
                                         </subviews>

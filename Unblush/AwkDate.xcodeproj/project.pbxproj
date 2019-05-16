@@ -180,6 +180,8 @@
 				48755505228C00990021C8D1 /* MatchesCollectionViewCell.swift */,
 				48755507228C00A70021C8D1 /* LikedCollectionViewCell.swift */,
 				48755509228CB0690021C8D1 /* LookingForTableViewCell.swift */,
+				4F507C3B2285F95100A60674 /* CondTableViewCell.swift */,
+				4FE8AE142285B69200975841 /* ConditionTableViewCell.swift */,
 			);
 			path = Cell;
 			sourceTree = "<group>";
@@ -220,7 +222,6 @@
 				4F3C55D922792A1E006307A9 /* ViewController.swift */,
 				4F3C55DB22792A1E006307A9 /* MainTest.storyboard */,
 				4F9ACB73228A1976004A5D2A /* BogusViewController.swift */,
-				4FE8AE142285B69200975841 /* ConditionTableViewCell.swift */,
 				4FE8AE122285B64800975841 /* ConditionsViewController.swift */,
 				4F507C392285E6F900A60674 /* Main2.storyboard */,
 				4F507C362285E5A300A60674 /* LaunchScreen2.storyboard */,
@@ -277,7 +278,6 @@
 		4F3C560722792A44006307A9 /* View Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				4F507C3B2285F95100A60674 /* CondTableViewCell.swift */,
 				4F41309F2284822900CDF247 /* ViewControllerMethods.swift */,
 				4F507C2E2285E4F300A60674 /* ChooseSignupOrLoginViewController.swift */,
 				4F507C322285E50F00A60674 /* SignupViewController.swift */,

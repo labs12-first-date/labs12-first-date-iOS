@@ -25,6 +25,8 @@ class BioConditionViewController: UIViewController, UITableViewDataSource, UITab
     var condition: [String] = [] //not sure of []
     var lookingFor: [String] = []
     
+    //var sourceIndexPath: NSIndexPath? = nil
+    
     let conditions: [ConditionType] = [.aids, .chlamydia, .crabs, .genitalWarts, .gonorrhea, .hepB, .hepC, .hepD, .herpes, .hiv, .syphyllis, .theClap]
     
     let lookingForCriteria: [LookingForType] = [.sameGender, .sameCondition, .openToAllPossibilities, .openToAllConditions, .fiveYearAgeGap, .tenYearAgeGap, .threeYearAgeGap]
@@ -44,19 +46,36 @@ class BioConditionViewController: UIViewController, UITableViewDataSource, UITab
     
     @IBOutlet weak var saveButton: UIBarButtonItem!
     
+    //tableview for conditions
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return self.conditions.count
+        
+        var count: Int?
+        if tableView == self.conditionsTableView {
+            count = conditions.count
+        }
+        if tableView == self.lookingTableView {
+            count = lookingForCriteria.count
+        }
+        return count!
+        //return self.conditions.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "conditionCell", for: indexPath) as! CondTableViewCell
         
-        let condition = self.conditions[indexPath.row]
-        cell.conditionNameLabel.text = condition.rawValue
+        var cell: UITableViewCell?
+        if tableView == self.conditionsTableView {
+            cell = tableView.dequeueReusableCell(withIdentifier: "conditionCell")
+            let condition = conditions[indexPath.row]
+            cell?.textLabel?.text = condition.rawValue
+        }
         
-        cell.condition = condition
-        style(cell: cell)
-        return cell
+        if tableView == self.lookingTableView {
+            cell = tableView.dequeueReusableCell(withIdentifier: "LookingForCell")
+            let lookingFor = lookingForCriteria[indexPath.row]
+            cell?.textLabel?.text = lookingFor.rawValue
+        }
+        style(cell: cell!)
+        return cell!
     }
     
     func style(cell: UITableViewCell) {
@@ -68,9 +87,10 @@ class BioConditionViewController: UIViewController, UITableViewDataSource, UITab
         cell.textLabel?.backgroundColor = .clear
         cell.detailTextLabel?.backgroundColor = .clear
         
-        cell.textLabel?.textColor = .white
-        cell.detailTextLabel?.textColor = .white
-        
+        cell.textLabel?.textColor = .grape
+        cell.detailTextLabel?.textColor = .grape
+        //this makes the white background go away in the back, or cell.selectionStyle = .none
+        cell.selectionStyle = UITableViewCell.SelectionStyle.none
         cell.backgroundColor = .violet
     }
     
@@ -98,10 +118,8 @@ class BioConditionViewController: UIViewController, UITableViewDataSource, UITab
         user2Controller!.uploadPhoto(imageContainer: photoData)
         
         if user2Controller?.currentPhoto != nil {
-            
-//            user2Controller?.putProfileToServer(userID: currentUserUID!, firstName: firstName!, lastName: lastName!, email: email!, age: age!, gender: gender!, zipcode: zipcode!, condition: conditionsFromTableView, mainPhoto: nil, lookingFor: "Not particular", biography: biography!, completion: { (error) in
 
-            user2Controller?.putProfileToServer(userID: currentUserUID!, firstName: firstName!, lastName: lastName!, email: email!, age: age!, gender: gender!, zipcode: zipcode!, condition: conditionsFromTableView, mainPhoto: nil, lookingFor: lookingFor, biography: biography!, completion: { (error) in
+            user2Controller?.putProfileToServer(userID: currentUserUID!, firstName: firstName!, lastName: lastName!, email: email!, age: age!, gender: gender!, zipcode: zipcode!, condition: conditionsFromTableView, mainPhoto: nil, lookingFor: lookingForFromTableView, biography: biography!, completion: { (error) in
 
                 if let error = error {
                     print("Error putting profile to server: \(error)")
@@ -124,11 +142,21 @@ class BioConditionViewController: UIViewController, UITableViewDataSource, UITab
         
         setUpPhotoView()
         setTheme()
+        
+        //for conditionsTableView
+        conditionsTableView.dataSource = self
+        conditionsTableView.delegate = self
+        conditionsTableView.register(UITableViewCell.self, forCellReuseIdentifier: "conditionCell")
+        //for lookingTableView
+        lookingTableView.dataSource = self
+        lookingTableView.delegate = self
+        lookingTableView.register(UITableViewCell.self, forCellReuseIdentifier: "LookingForCell")
     }
     
     func setTheme() {
         AppearanceHelper.style(button: addButton)
-        
+        conditionsTableView.separatorColor = .grape
+        lookingTableView.separatorColor = .grape
         view.backgroundColor = .violet
     }
     
