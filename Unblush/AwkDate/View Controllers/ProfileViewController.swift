@@ -45,7 +45,9 @@ class ProfileViewController: UIViewController {
         
     }
     
+    // share var photo across view controllers, so that we don't have to keep network calling every time we come back to profile
     var photo: UIImage?
+    var currentUserFirstName: String?
     
     func updateViews() {
         guard let photo = photo else { return }
@@ -59,20 +61,25 @@ class ProfileViewController: UIViewController {
         super.viewDidLoad()
         setUpPhotoView()
         
-        user2Controller?.fetchProfileFromServer(userID: currentUserUID!, completion: { (error) in
-            if let error = error {
-                print("Error fetching profile in profile vc: \(error)")
-                return
-            }
-            let photoData = self.load(fileName: self.user2Controller?.singleProfileFromServer["main_photo"] as! String)
-            self.nameLabel.text = (self.user2Controller?.singleProfileFromServer["first_name"] as! String)
-            
-            self.photo = photoData
-            DispatchQueue.main.async {
-                self.updateViews()
-            }
-            
-        })
+        if self.photo == nil {
+            user2Controller?.fetchProfileFromServer(userID: currentUserUID!, completion: { (error) in
+                if let error = error {
+                    print("Error fetching profile in profile vc: \(error)")
+                    return
+                }
+                let photoData = self.load(fileName: self.user2Controller?.singleProfileFromServer["main_photo"] as! String)
+                self.nameLabel.text = (self.user2Controller?.singleProfileFromServer["first_name"] as! String)
+                
+                self.currentUserFirstName = (self.user2Controller?.singleProfileFromServer["first_name"] as! String)
+                self.photo = photoData
+                
+                DispatchQueue.main.async {
+                    self.updateViews()
+                }
+                
+            })
+        }
+        
 
     }
     
