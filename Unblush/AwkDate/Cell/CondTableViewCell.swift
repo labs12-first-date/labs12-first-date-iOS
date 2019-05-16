@@ -18,8 +18,8 @@ class CondTableViewCell: UITableViewCell {
     
     func updateViews() {
         guard let condition = condition else { return }
-        
     }
+    
     //MARK: - Outlets
     @IBOutlet weak var conditionNameLabel: UILabel!
     

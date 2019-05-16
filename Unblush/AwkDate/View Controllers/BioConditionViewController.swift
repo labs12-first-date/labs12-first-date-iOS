@@ -74,6 +74,7 @@ class BioConditionViewController: UIViewController, UITableViewDataSource, UITab
             let lookingFor = lookingForCriteria[indexPath.row]
             cell?.textLabel?.text = lookingFor.rawValue
         }
+        
         style(cell: cell!)
         return cell!
     }
@@ -140,7 +141,7 @@ class BioConditionViewController: UIViewController, UITableViewDataSource, UITab
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        setUpPhotoView()
+        //setUpPhotoView()
         setTheme()
         
         //for conditionsTableView
@@ -187,9 +188,9 @@ class BioConditionViewController: UIViewController, UITableViewDataSource, UITab
         dismiss(animated: true, completion: nil)
     }
     
-    private func setUpPhotoView() {
-        photoView.layer.cornerRadius = photoView.frame.width / 2
-    }
+//    private func setUpPhotoView() {
+//        photoView.layer.cornerRadius = photoView.frame.width / 2
+//    }
     
     // MARK: - Navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {

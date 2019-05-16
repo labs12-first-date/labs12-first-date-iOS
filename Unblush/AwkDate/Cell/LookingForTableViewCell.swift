@@ -22,7 +22,8 @@ class LookingForTableViewCell: UITableViewCell {
     @IBOutlet weak var uncheckButton: UIButton!
     
     @IBAction func buttonTapped(_ sender: Any) {
-        guard let lookingFor = lookingFor else { return }
+    
+    guard let lookingFor = lookingFor else { return }
         let currentImage = uncheckButton.currentImage!
         let buttonEmptyImage = UIImage(named: "emptyCheck")!
         let buttonCheckImage = UIImage(named: "check")!
