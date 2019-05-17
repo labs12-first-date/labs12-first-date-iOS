@@ -121,6 +121,7 @@
                         <viewLayoutGuide key="safeArea" id="r1e-NW-0Hu"/>
                     </view>
                     <navigationItem key="navigationItem" id="n0U-tR-YZ1"/>
+                    <size key="freeformSize" width="375" height="812"/>
                     <connections>
                         <outlet property="collectionView" destination="T3j-on-NuH" id="cmo-j1-lBb"/>
                         <outlet property="loginButton" destination="OdN-Gx-E4o" id="dQl-5C-dlH"/>
@@ -221,6 +222,7 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="fVJ-I4-ziz"/>
                     </view>
+                    <size key="freeformSize" width="375" height="812"/>
                     <connections>
                         <outlet property="emailLabel" destination="Efh-u5-yh1" id="gB1-hu-hTG"/>
                         <outlet property="emailTextField" destination="Vhi-Al-fKs" id="icC-JE-RXf"/>
@@ -306,6 +308,7 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="u1F-Cr-sC0"/>
                     </view>
+                    <size key="freeformSize" width="375" height="812"/>
                     <connections>
                         <outlet property="emailLabel" destination="s62-vb-g3D" id="ueH-97-dT9"/>
                         <outlet property="emailTextField" destination="z1t-bw-hVb" id="FLw-tL-Ohi"/>
@@ -327,78 +330,72 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="40" translatesAutoresizingMaskIntoConstraints="NO" id="weP-cZ-yKw">
-                                <rect key="frame" x="62.666666666666657" y="138.00000000000003" width="249.99999999999997" height="310.66666666666674"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="name" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Sxt-wL-SrF">
+                                <rect key="frame" x="20" y="128" width="335" height="36"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="30"/>
+                                <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <stackView opaque="NO" contentMode="scaleToFill" distribution="fillProportionally" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="KO5-84-aed" userLabel="buttons">
+                                <rect key="frame" x="40" y="392" width="295" height="28"/>
                                 <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="name" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Sxt-wL-SrF">
-                                        <rect key="frame" x="0.0" y="0.0" width="250" height="36"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="30"/>
-                                        <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="dMP-pU-83b" userLabel="photo">
-                                        <rect key="frame" x="0.0" y="75.999999999999986" width="250" height="166.66666666666663"/>
-                                        <subviews>
-                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="SwA-h4-0Zk">
-                                                <rect key="frame" x="0.0" y="0.0" width="250" height="166.66666666666666"/>
-                                                <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                <constraints>
-                                                    <constraint firstAttribute="width" secondItem="SwA-h4-0Zk" secondAttribute="height" multiplier="3:2" id="spg-sd-Ie3"/>
-                                                </constraints>
-                                            </imageView>
-                                        </subviews>
-                                    </stackView>
-                                    <stackView opaque="NO" contentMode="scaleToFill" distribution="fillProportionally" alignment="center" spacing="15" translatesAutoresizingMaskIntoConstraints="NO" id="KO5-84-aed" userLabel="buttons">
-                                        <rect key="frame" x="0.0" y="282.66666666666669" width="250" height="28"/>
-                                        <subviews>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FOK-Xc-Wg1">
-                                                <rect key="frame" x="0.0" y="0.0" width="68.666666666666671" height="28"/>
-                                                <fontDescription key="fontDescription" type="system" pointSize="13"/>
-                                                <state key="normal" title="messages"/>
-                                                <connections>
-                                                    <action selector="messageButton:" destination="NZU-Yv-iKK" eventType="touchUpInside" id="f5d-AE-DjX"/>
-                                                    <segue destination="64e-Fx-fDb" kind="show" identifier="messages" id="xTt-cY-N9g"/>
-                                                </connections>
-                                            </button>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KDl-37-Ri3">
-                                                <rect key="frame" x="83.666666666666686" y="0.0" width="41.666666666666657" height="28"/>
-                                                <fontDescription key="fontDescription" type="system" pointSize="13"/>
-                                                <state key="normal" title="media"/>
-                                                <connections>
-                                                    <action selector="mediaButton:" destination="NZU-Yv-iKK" eventType="touchUpInside" id="wGB-Hz-p0V"/>
-                                                    <segue destination="g8K-Xs-6ff" kind="show" identifier="media" id="1Xw-9x-Wo3"/>
-                                                </connections>
-                                            </button>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fqU-uL-rMK">
-                                                <rect key="frame" x="140.33333333333334" y="0.0" width="55" height="28"/>
-                                                <fontDescription key="fontDescription" type="system" pointSize="13"/>
-                                                <state key="normal" title="settings"/>
-                                                <connections>
-                                                    <action selector="settingsButton:" destination="NZU-Yv-iKK" eventType="touchUpInside" id="sGg-ic-hR4"/>
-                                                    <segue destination="CgO-Yp-CKy" kind="show" identifier="settings" id="ZKQ-R1-heM"/>
-                                                </connections>
-                                            </button>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ofN-AE-m8j">
-                                                <rect key="frame" x="210.33333333333334" y="0.0" width="39.666666666666657" height="28"/>
-                                                <fontDescription key="fontDescription" type="system" pointSize="13"/>
-                                                <state key="normal" title="liked"/>
-                                                <connections>
-                                                    <action selector="editButton:" destination="NZU-Yv-iKK" eventType="touchUpInside" id="3sQ-DO-iYr"/>
-                                                    <segue destination="V5C-Hg-1ZH" kind="show" id="v1G-cJ-uua"/>
-                                                </connections>
-                                            </button>
-                                        </subviews>
-                                    </stackView>
+                                    <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="249" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FOK-Xc-Wg1">
+                                        <rect key="frame" x="0.0" y="0.0" width="101.66666666666667" height="28"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                                        <state key="normal" title="messages"/>
+                                        <connections>
+                                            <action selector="messageButton:" destination="NZU-Yv-iKK" eventType="touchUpInside" id="f5d-AE-DjX"/>
+                                            <segue destination="64e-Fx-fDb" kind="show" identifier="messages" id="xTt-cY-N9g"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KDl-37-Ri3">
+                                        <rect key="frame" x="101.66666666666667" y="0.0" width="61.666666666666671" height="28"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                                        <state key="normal" title="media"/>
+                                        <connections>
+                                            <action selector="mediaButton:" destination="NZU-Yv-iKK" eventType="touchUpInside" id="wGB-Hz-p0V"/>
+                                            <segue destination="g8K-Xs-6ff" kind="show" identifier="media" id="1Xw-9x-Wo3"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fqU-uL-rMK">
+                                        <rect key="frame" x="163.33333333333334" y="0.0" width="81.666666666666657" height="28"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                                        <state key="normal" title="settings"/>
+                                        <connections>
+                                            <action selector="settingsButton:" destination="NZU-Yv-iKK" eventType="touchUpInside" id="sGg-ic-hR4"/>
+                                            <segue destination="CgO-Yp-CKy" kind="show" identifier="settings" id="ZKQ-R1-heM"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ofN-AE-m8j">
+                                        <rect key="frame" x="245" y="0.0" width="50" height="28"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                                        <state key="normal" title="liked"/>
+                                        <connections>
+                                            <action selector="editButton:" destination="NZU-Yv-iKK" eventType="touchUpInside" id="3sQ-DO-iYr"/>
+                                            <segue destination="V5C-Hg-1ZH" kind="show" id="v1G-cJ-uua"/>
+                                        </connections>
+                                    </button>
                                 </subviews>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="250" id="cem-cw-C4i"/>
-                                </constraints>
                             </stackView>
+                            <imageView verifyAmbiguity="ignoreSizes" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="SwA-h4-0Zk">
+                                <rect key="frame" x="113.66666666666669" y="194" width="148" height="148"/>
+                                <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="SwA-h4-0Zk" secondAttribute="height" multiplier="1:1" id="Mxh-w4-aYd"/>
+                                </constraints>
+                            </imageView>
                         </subviews>
                         <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="weP-cZ-yKw" firstAttribute="top" secondItem="dAi-fC-XnI" secondAttribute="top" constant="50" id="19l-Y0-5MK"/>
-                            <constraint firstItem="weP-cZ-yKw" firstAttribute="centerX" secondItem="4fY-mC-3KD" secondAttribute="centerX" id="dbJ-wq-WfS"/>
+                            <constraint firstItem="SwA-h4-0Zk" firstAttribute="centerX" secondItem="4fY-mC-3KD" secondAttribute="centerX" id="8jf-WH-hMn"/>
+                            <constraint firstItem="Sxt-wL-SrF" firstAttribute="leading" secondItem="dAi-fC-XnI" secondAttribute="leading" constant="20" id="CKx-0P-h9q"/>
+                            <constraint firstItem="SwA-h4-0Zk" firstAttribute="top" secondItem="Sxt-wL-SrF" secondAttribute="bottom" constant="30" id="MfH-7o-AUa"/>
+                            <constraint firstItem="dAi-fC-XnI" firstAttribute="trailing" secondItem="Sxt-wL-SrF" secondAttribute="trailing" constant="20" id="OEB-V6-nJp"/>
+                            <constraint firstItem="Sxt-wL-SrF" firstAttribute="top" secondItem="dAi-fC-XnI" secondAttribute="top" constant="40" id="PmV-kO-hWF"/>
+                            <constraint firstItem="dAi-fC-XnI" firstAttribute="trailing" secondItem="KO5-84-aed" secondAttribute="trailing" constant="40" id="dbC-18-vEW"/>
+                            <constraint firstItem="KO5-84-aed" firstAttribute="centerY" secondItem="4fY-mC-3KD" secondAttribute="centerY" id="pcz-IH-bu1"/>
+                            <constraint firstItem="KO5-84-aed" firstAttribute="top" secondItem="SwA-h4-0Zk" secondAttribute="bottom" constant="50" id="qwE-DP-0Xn"/>
+                            <constraint firstItem="KO5-84-aed" firstAttribute="leading" secondItem="dAi-fC-XnI" secondAttribute="leading" constant="40" id="rpT-pZ-hdQ"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="dAi-fC-XnI"/>
                     </view>
@@ -410,6 +407,7 @@
                             </connections>
                         </barButtonItem>
                     </navigationItem>
+                    <size key="freeformSize" width="375" height="812"/>
                     <connections>
                         <outlet property="editButton" destination="ofN-AE-m8j" id="lsy-25-TEB"/>
                         <outlet property="matchesButton" destination="E6l-z4-NtF" id="s5l-TT-0FM"/>
@@ -535,6 +533,7 @@
                             <outlet property="delegate" destination="u2O-ve-c33" id="waX-MC-Onx"/>
                         </connections>
                     </collectionView>
+                    <size key="freeformSize" width="375" height="812"/>
                 </collectionViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="IRw-YJ-yJU" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -632,6 +631,7 @@
                             <outlet property="delegate" destination="V5C-Hg-1ZH" id="9pR-8T-lGr"/>
                         </connections>
                     </collectionView>
+                    <size key="freeformSize" width="375" height="812"/>
                 </collectionViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="q3O-WN-XlS" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -677,6 +677,7 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="Message Threads" id="FBF-Bt-SMQ"/>
+                    <size key="freeformSize" width="375" height="812"/>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="EnW-Kt-Vnm" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -692,6 +693,7 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <viewLayoutGuide key="safeArea" id="rbO-Fg-CFG"/>
                     </view>
+                    <size key="freeformSize" width="375" height="812"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Wt3-Da-c2j" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -743,6 +745,7 @@
                             </connections>
                         </barButtonItem>
                     </navigationItem>
+                    <size key="freeformSize" width="375" height="812"/>
                     <connections>
                         <outlet property="addButton" destination="6Ea-hV-Ge0" id="Dfc-9z-5xt"/>
                     </connections>
@@ -852,13 +855,13 @@
                                                 <rect key="frame" x="0.0" y="64.333333333333314" width="295" height="30"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="maximum distance" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="j1K-31-I0m">
-                                                        <rect key="frame" x="0.0" y="0.0" width="123.66666666666667" height="30"/>
+                                                        <rect key="frame" x="0.0" y="0.0" width="115.66666666666667" height="30"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                         <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.5" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="wU1-zs-vUk">
-                                                        <rect key="frame" x="131.66666666666663" y="0.0" width="165.33333333333337" height="31"/>
+                                                        <rect key="frame" x="123.66666666666664" y="0.0" width="173.33333333333337" height="31"/>
                                                     </slider>
                                                 </subviews>
                                             </stackView>
@@ -921,6 +924,7 @@
                         <viewLayoutGuide key="safeArea" id="0RM-jd-WHK"/>
                     </view>
                     <navigationItem key="navigationItem" title="settings" id="x7G-3M-GOV"/>
+                    <size key="freeformSize" width="375" height="812"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="wIX-0K-d9H" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -1136,6 +1140,7 @@
                             </connections>
                         </barButtonItem>
                     </navigationItem>
+                    <size key="freeformSize" width="375" height="812"/>
                     <connections>
                         <outlet property="bioLabel" destination="BDg-i8-afw" id="gos-nP-ygz"/>
                         <outlet property="bioTextField" destination="X6J-HD-XVp" id="Csi-54-fpz"/>
@@ -1348,6 +1353,7 @@
                             </connections>
                         </barButtonItem>
                     </navigationItem>
+                    <size key="freeformSize" width="375" height="812"/>
                     <connections>
                         <outlet property="addButton" destination="yhc-r4-2r1" id="MQg-9o-SoL"/>
                         <outlet property="conditionLabel" destination="TWX-1D-aMA" id="epv-LU-vMF"/>
@@ -1407,6 +1413,6 @@
         <image name="unblushLogoType" width="984" height="195"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="uxd-LT-KLl"/>
+        <segue reference="zJM-WX-1cQ"/>
     </inferredMetricsTieBreakers>
 </document>

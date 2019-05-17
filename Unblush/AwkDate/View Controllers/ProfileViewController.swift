@@ -49,12 +49,12 @@ class ProfileViewController: UIViewController {
         guard let photo = photo else { return }
         
         profileView.image = photo
-
+        navigationItem.title = profile?.firstName
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        setUpPhotoView()
+        //setUpPhotoView()
         setTheme()
         
         user2Controller?.fetchProfileFromServer(userID: currentUserUID!, completion: { (error) in
@@ -82,9 +82,9 @@ class ProfileViewController: UIViewController {
         
     }
     
-    private func setUpPhotoView() {
-        profileView.layer.cornerRadius = profileView.frame.width / 2
-    }
+//    private func setUpPhotoView() {
+//        profileView.layer.cornerRadius = profileView.frame.width / 2
+//    }
     
     private func load(fileName: String) -> UIImage? {
         print("file name: \(fileName)")
