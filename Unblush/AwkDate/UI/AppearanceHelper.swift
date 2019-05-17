@@ -55,6 +55,7 @@ enum AppearanceHelper {
         button.titleLabel?.adjustsFontForContentSizeCategory = true
         
         button.setTitleColor(.grape, for: .normal)
+        
         //button.backgroundColor = .midnight
         //button.layer.cornerRadius = 8
     }

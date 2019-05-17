@@ -15,6 +15,7 @@ class MatchesCollectionViewController: UICollectionViewController {
     //MARK: - Properties
     var profile: Profile?
     var user2Controller: User2Controller?
+    let cellScaling: CGFloat = 0.6
     
     let dataMatches = [(UIImage(named: "234")!, firstName: "Steve", age: "33", location: "23456", bio: "I love pizza"), (UIImage(named: "234")!, firstName: "Troy", age: "32", location: "23356", bio: "I play sports")
         ]
@@ -22,7 +23,6 @@ class MatchesCollectionViewController: UICollectionViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setTheme()
-
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
 
@@ -39,11 +39,6 @@ class MatchesCollectionViewController: UICollectionViewController {
     }
 
     // MARK: UICollectionViewDataSource
-//    override func numberOfSections(in collectionView: UICollectionView) -> Int {
-//        // #warning Incomplete implementation, return the number of sections
-//        return 0
-//    }
-
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of items
         return dataMatches.count
@@ -52,8 +47,26 @@ class MatchesCollectionViewController: UICollectionViewController {
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath) as? MatchesCollectionViewCell else { fatalError() }
         
+        //put identifiying cell info here like: photo, name, age, location, bio
         
         return cell
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        let screenSize = UIScreen.main.bounds.size
+        let cellWidth = floor(screenSize.width * cellScaling)
+        let cellHeight = floor(screenSize.height * cellScaling)
+        
+        let insetX = (view.bounds.width - cellWidth) / 2.0
+        let insetY = (view.bounds.height - cellHeight) / 2.0
+        
+        guard let layout = collectionView.collectionViewLayout as? UICollectionViewFlowLayout else { fatalError("Unable to retrieve layout")}
+        
+        layout.itemSize = CGSize(width: cellWidth, height: cellHeight)
+        collectionView?.contentInset = UIEdgeInsets(top: insetY, left: insetX, bottom: insetY, right: insetX)
+        
     }
 }
 

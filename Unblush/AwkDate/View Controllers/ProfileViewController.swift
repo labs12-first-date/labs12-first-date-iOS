@@ -62,7 +62,7 @@ class ProfileViewController: UIViewController {
                 print("Error fetching profile in profile vc: \(error)")
                 return
             }
-            let photoData = self.load(fileName: self.user2Controller?.singleProfileFromServer["main_photo"] as! String)
+            let photoData = self.load(fileName: self.user2Controller?.singleProfileFromServer["profile_picture"] as! String)
             self.nameLabel.text = (self.user2Controller?.singleProfileFromServer["first_name"] as! String)
             
             self.photo = photoData

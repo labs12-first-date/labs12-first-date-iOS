@@ -28,7 +28,7 @@ class LikedCollectionViewCell: UICollectionViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         setTheme()
-        updateViews()
+        //updateViews()
     }
     
     func setTheme() {
@@ -36,12 +36,12 @@ class LikedCollectionViewCell: UICollectionViewCell {
         
     }
     
-    func updateViews() {
-        guard let photo = photo else { return }
-        photoView.image = photo
-        nameLabel.text = profile?.firstName
-        ageLabel.text = "\(profile?.age))"
-        locationLabel.text = "\(profile?.zipcode)"
-        bioLabel.text = profile?.biography
-    }
+//    func updateViews() {
+//        guard let photo = photo else { return }
+//        photoView.image = photo
+//        nameLabel.text = profile?.firstName
+//        ageLabel.text = "\(profile?.age))"
+//        locationLabel.text = "\(profile?.zipcode)"
+//        bioLabel.text = profile?.biography
+//    }
 }

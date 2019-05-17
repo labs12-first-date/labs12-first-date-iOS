@@ -67,7 +67,8 @@ class BioConditionViewController: UIViewController, UITableViewDataSource, UITab
             let cell = tableView.dequeueReusableCell(withIdentifier: "conditionCell", for: indexPath) as! CondTableViewCell
             
             let condition = conditions[indexPath.row]
-            cell.textLabel?.text = condition.rawValue
+            cell.conditionNameLabel.text = condition.rawValue
+            cell.condition = condition
             style(cell: cell)
             return cell
             
@@ -76,7 +77,8 @@ class BioConditionViewController: UIViewController, UITableViewDataSource, UITab
                 let cell = tableView.dequeueReusableCell(withIdentifier: "LookingForCell", for: indexPath) as! LookingForTableViewCell
                 
                 let lookingFor = lookingForCriteria[indexPath.row]
-                cell.textLabel?.text = lookingFor.rawValue
+                cell.lookingForLabel.text = lookingFor.rawValue
+                cell.lookingFor = lookingFor
                 style(cell: cell)
                 return cell
             //}
@@ -84,34 +86,6 @@ class BioConditionViewController: UIViewController, UITableViewDataSource, UITab
             //return UITableViewCell()
         }
     }
-        
-        //    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        //
-        //        var cell: UITableViewCell?
-        //
-        //        if tableView == self.conditionsTableView {
-        //            let cell = tableView.dequeueReusableCell(withIdentifier: "conditionCell", for: indexPath) as! CondTableViewCell
-        //
-        //            let condition = conditions[indexPath.row]
-        //            cell.textLabel?.text = condition.rawValue
-        //            //cell?.conditionNameLabel.text = condition.rawValue
-        //            //cell?.textLabel?.text = condition.rawValue
-        //            style(cell: cell)
-        //            return cell
-        //        }
-        //
-        //        if tableView == self.lookingTableView {
-        //            let cell = tableView.dequeueReusableCell(withIdentifier: "LookingForCell", for: indexPath) as! LookingForTableViewCell
-        //
-        //            let lookingFor = lookingForCriteria[indexPath.row]
-        //            cell.textLabel?.text = lookingFor.rawValue
-        //            style(cell: cell)
-        //            return cell
-        //        }
-        //
-        //        //style(cell: cell!)
-        //        return cell!
-        //    }
         
         func style(cell: UITableViewCell) {
             //cell.textLabel?.font = AppearanceHelper.typerighterFont(with: .caption1, pointSize: 30)
@@ -178,15 +152,15 @@ class BioConditionViewController: UIViewController, UITableViewDataSource, UITab
             //setUpPhotoView()
             setTheme()
             
-            //for conditionsTableView
-            conditionsTableView.dataSource = self
-            conditionsTableView.delegate = self
-            conditionsTableView.register(UITableViewCell.self, forCellReuseIdentifier: "conditionCell")
-            
-            //for lookingTableView
-            lookingTableView.dataSource = self
-            lookingTableView.delegate = self
-            lookingTableView.register(UITableViewCell.self, forCellReuseIdentifier: "LookingForCell")
+//            //for conditionsTableView
+//            conditionsTableView.dataSource = self
+//            conditionsTableView.delegate = self
+//            conditionsTableView.register(UITableViewCell.self, forCellReuseIdentifier: "conditionCell")
+//
+//            //for lookingTableView
+//            lookingTableView.dataSource = self
+//            lookingTableView.delegate = self
+//            lookingTableView.register(UITableViewCell.self, forCellReuseIdentifier: "LookingForCell")
         }
         
         func setTheme() {

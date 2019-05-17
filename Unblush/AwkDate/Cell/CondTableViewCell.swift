@@ -48,5 +48,4 @@ class CondTableViewCell: UITableViewCell {
         }
     }
     
-    
 }
