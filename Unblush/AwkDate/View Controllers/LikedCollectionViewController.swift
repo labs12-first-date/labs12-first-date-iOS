@@ -8,13 +8,21 @@
 
 import UIKit
 
-private let reuseIdentifier = "Cell"
+private let reuseIdentifier = "LikedCell"
 
 class LikedCollectionViewController: UICollectionViewController {
+    
+    //MARK: - Properties
+    var profile: Profile?
+    var user2Controller: User2Controller?
+    let cellScaling: CGFloat = 0.6
+    
+    let likedMatches = [(UIImage(named: "234")!, firstName: "Bob", age: "36", location: "23457", bio: "I read a lot"), (UIImage(named: "234")!, firstName: "Terry", age: "31", location: "23346", bio: "I run every day")
+    ]
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        setTheme()
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
 
@@ -23,38 +31,42 @@ class LikedCollectionViewController: UICollectionViewController {
 
         // Do any additional setup after loading the view.
     }
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using [segue destinationViewController].
-        // Pass the selected object to the new view controller.
+    
+    func setTheme() {
+        view.backgroundColor = .violet
     }
-    */
 
     // MARK: UICollectionViewDataSource
-
-    override func numberOfSections(in collectionView: UICollectionView) -> Int {
-        // #warning Incomplete implementation, return the number of sections
-        return 0
-    }
-
-
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of items
-        return 0
+        return likedMatches.count
     }
 
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath)
-    
-        // Configure the cell
+        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath) as? LikedCollectionViewCell else { fatalError() }
+        
+        //put identifiying cell info here like: photo, name, age, location, bio
     
         return cell
     }
-
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        let screenSize = UIScreen.main.bounds.size
+        let cellWidth = floor(screenSize.width * cellScaling)
+        let cellHeight = floor(screenSize.height * cellScaling)
+        
+        let insetX = (view.bounds.width - cellWidth) / 2.0
+        let insetY = (view.bounds.height - cellHeight) / 2.0
+        
+        guard let layout = collectionView.collectionViewLayout as? UICollectionViewFlowLayout else { fatalError("Unable to retrieve layout")}
+        
+        layout.itemSize = CGSize(width: cellWidth, height: cellHeight)
+        collectionView?.contentInset = UIEdgeInsets(top: insetY, left: insetX, bottom: insetY, right: insetX)
+        
+    }
+}
     // MARK: UICollectionViewDelegate
 
     /*
@@ -86,4 +98,3 @@ class LikedCollectionViewController: UICollectionViewController {
     }
     */
 
-}

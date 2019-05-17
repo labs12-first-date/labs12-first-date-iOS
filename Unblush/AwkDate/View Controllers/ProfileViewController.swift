@@ -15,8 +15,6 @@ class ProfileViewController: UIViewController {
     var currentUserUID: String?
     var profile: Profile?
     
-    
-    
     //MARK: - Outlets
     @IBOutlet weak var matchesButton: UIBarButtonItem!
     @IBAction func matchesButton(_ sender: Any) {
@@ -53,13 +51,13 @@ class ProfileViewController: UIViewController {
         guard let photo = photo else { return }
         
         profileView.image = photo
-
+        navigationItem.title = profile?.firstName
     }
-    
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        setUpPhotoView()
+        //setUpPhotoView()
+        setTheme()
         
         if self.photo == nil {
             user2Controller?.fetchProfileFromServer(userID: currentUserUID!, completion: { (error) in
@@ -80,7 +78,6 @@ class ProfileViewController: UIViewController {
             })
         }
         
-
     }
     
     func setTheme() {
@@ -91,12 +88,11 @@ class ProfileViewController: UIViewController {
         
         view.backgroundColor = .violet
         
-    
     }
     
-    private func setUpPhotoView() {
-        profileView.layer.cornerRadius = profileView.frame.width / 2
-    }
+//    private func setUpPhotoView() {
+//        profileView.layer.cornerRadius = profileView.frame.width / 2
+//    }
     
     private func load(fileName: String) -> UIImage? {
         print("file name: \(fileName)")
@@ -114,7 +110,5 @@ class ProfileViewController: UIViewController {
         }
         return nil
     }
-    
-    
-    
+
 }

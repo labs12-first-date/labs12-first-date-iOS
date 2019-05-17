@@ -18,6 +18,7 @@
 		48755504228C00260021C8D1 /* LikedCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48755503228C00260021C8D1 /* LikedCollectionViewController.swift */; };
 		48755506228C00990021C8D1 /* MatchesCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48755505228C00990021C8D1 /* MatchesCollectionViewCell.swift */; };
 		48755508228C00A70021C8D1 /* LikedCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48755507228C00A70021C8D1 /* LikedCollectionViewCell.swift */; };
+		4875550A228CB0690021C8D1 /* LookingForTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48755509228CB0690021C8D1 /* LookingForTableViewCell.swift */; };
 		4F3C55D822792A1E006307A9 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F3C55D722792A1E006307A9 /* AppDelegate.swift */; };
 		4F3C55DA22792A1E006307A9 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F3C55D922792A1E006307A9 /* ViewController.swift */; };
 		4F3C55DD22792A1E006307A9 /* MainTest.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4F3C55DB22792A1E006307A9 /* MainTest.storyboard */; };
@@ -94,6 +95,7 @@
 		48755503228C00260021C8D1 /* LikedCollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LikedCollectionViewController.swift; sourceTree = "<group>"; };
 		48755505228C00990021C8D1 /* MatchesCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MatchesCollectionViewCell.swift; sourceTree = "<group>"; };
 		48755507228C00A70021C8D1 /* LikedCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LikedCollectionViewCell.swift; sourceTree = "<group>"; };
+		48755509228CB0690021C8D1 /* LookingForTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LookingForTableViewCell.swift; sourceTree = "<group>"; };
 		4F3C55D422792A1E006307A9 /* AwkDate.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AwkDate.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4F3C55D722792A1E006307A9 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		4F3C55D922792A1E006307A9 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -188,6 +190,9 @@
 				487554F9228BB6590021C8D1 /* OnboardingCollectionViewCell.swift */,
 				48755505228C00990021C8D1 /* MatchesCollectionViewCell.swift */,
 				48755507228C00A70021C8D1 /* LikedCollectionViewCell.swift */,
+				48755509228CB0690021C8D1 /* LookingForTableViewCell.swift */,
+				4F507C3B2285F95100A60674 /* CondTableViewCell.swift */,
+				4FE8AE142285B69200975841 /* ConditionTableViewCell.swift */,
 			);
 			path = Cell;
 			sourceTree = "<group>";
@@ -230,7 +235,6 @@
 				4F9AFBAD228C814E005F261B /* BogusMatchCollectionViewCell.swift */,
 				4F9AFBAB228C811C005F261B /* BogusMatchesCollectionViewController.swift */,
 				4F9ACB73228A1976004A5D2A /* BogusViewController.swift */,
-				4FE8AE142285B69200975841 /* ConditionTableViewCell.swift */,
 				4FE8AE122285B64800975841 /* ConditionsViewController.swift */,
 				4F507C392285E6F900A60674 /* Main2.storyboard */,
 				4F507C362285E5A300A60674 /* LaunchScreen2.storyboard */,
@@ -294,7 +298,6 @@
 		4F3C560722792A44006307A9 /* View Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				4F507C3B2285F95100A60674 /* CondTableViewCell.swift */,
 				4F41309F2284822900CDF247 /* ViewControllerMethods.swift */,
 				4F507C2E2285E4F300A60674 /* ChooseSignupOrLoginViewController.swift */,
 				4F507C322285E50F00A60674 /* SignupViewController.swift */,
@@ -636,6 +639,7 @@
 				4FE8AE152285B69200975841 /* ConditionTableViewCell.swift in Sources */,
 				4F4F400A2281E6B800667A92 /* Profile.swift in Sources */,
 				4F76E673227A7962004CC709 /* UserController.swift in Sources */,
+				4875550A228CB0690021C8D1 /* LookingForTableViewCell.swift in Sources */,
 				48755508228C00A70021C8D1 /* LikedCollectionViewCell.swift in Sources */,
 				48755506228C00990021C8D1 /* MatchesCollectionViewCell.swift in Sources */,
 				4F507C2D2285E4A500A60674 /* LoginViewController.swift in Sources */,

@@ -21,9 +21,9 @@ class Onboarding {
     
     static func fetchInterests() -> [Onboarding] {
     
-        return [Onboarding(title: "Welcome to a dating app that provides a safe space for people with special health conditions.", color: .grape),
-                Onboarding(title: "You will be matched with people based on age, condition, and location.", color: .midnight),
-                Onboarding(title: "You will only be able to chat with matches that like you back.", color: .grape)
+        return [Onboarding(title: "Welcome to a dating app that provides a safe space for people with special health conditions.", color: UIColor.grape.withAlphaComponent(0.1)),
+                Onboarding(title: "You will be matched with people based on age, condition, and location.", color: UIColor.white.withAlphaComponent(0.15)),
+                Onboarding(title: "You will only be able to chat with matches that like you back.", color: UIColor.grape.withAlphaComponent(0.1))
         ]
     }
 }

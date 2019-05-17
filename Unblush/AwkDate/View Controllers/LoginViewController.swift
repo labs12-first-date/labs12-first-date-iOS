@@ -55,7 +55,7 @@ class LoginViewController: UIViewController {
             
             DispatchQueue.main.async {
                 self.removeActivityIndicator(activityIndicator: myActivityIndicator)
-                self.performSegue(withIdentifier: "getInfoFromLogin", sender: self)
+                self.performSegue(withIdentifier: "loginToProfile", sender: self)
             }
         }
     }
@@ -99,12 +99,11 @@ class LoginViewController: UIViewController {
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "getInfoFromLogin" {
-            guard let destination = segue.destination as? UINavigationController,
-                let vcDestination = destination.topViewController as? GetUserInfoViewController else { return }
+        if segue.identifier == "loginToProfile" {
+            guard let destination = segue.destination as? ProfileViewController else { return }
             
-            vcDestination.currentUserUID = self.currentUserUID
-            vcDestination.user2Controller = user2Controller
+            destination.currentUserUID = self.currentUserUID
+            destination.user2Controller = user2Controller
         }
     }
 }

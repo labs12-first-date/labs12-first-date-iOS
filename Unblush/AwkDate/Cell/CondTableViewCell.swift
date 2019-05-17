@@ -9,7 +9,7 @@
 import UIKit
 
 class CondTableViewCell: UITableViewCell {
-
+    //MARK: - Properties
     var condition: ConditionType? {
         didSet {
             
@@ -18,9 +18,9 @@ class CondTableViewCell: UITableViewCell {
     
     func updateViews() {
         guard let condition = condition else { return }
-        
     }
     
+    //MARK: - Outlets
     @IBOutlet weak var conditionNameLabel: UILabel!
     
     @IBOutlet weak var checkMarkButton: UIButton!
@@ -47,6 +47,5 @@ class CondTableViewCell: UITableViewCell {
             print("Current conditions 1: \(conditionsFromTableView)")
         }
     }
-    
     
 }
