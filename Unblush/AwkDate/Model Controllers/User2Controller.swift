@@ -152,19 +152,27 @@ class User2Controller {
     }
     
     func fetchAllProfilesFromServer(completion: @escaping (Error?) -> Void = {_ in }) {
-        /*
- 
- db.collection("cities").getDocuments() { (querySnapshot, err) in
- if let err = err {
- print("Error getting documents: \(err)")
- } else {
- for document in querySnapshot!.documents {
- print("\(document.documentID) => \(document.data())")
- }
- }
- } */
         
-        
+        db.collection("profilesiOS").getDocuments { (querySnapshot, error) in
+            if let error = error {
+                print("Error fetching ALL profiles: \(error)")
+                return
+            }
+            
+            guard let querySnap = querySnapshot else {
+                print("No querySnapshot!")
+                return
+            }
+            
+            for profile in querySnap.documents {
+                self.profilesFromServer.append(profile.data())
+                if self.profilesFromServer.count == querySnap.documents.count {
+                    completion(nil)
+                }
+            }
+            
+        }
+      
     }
     
     
