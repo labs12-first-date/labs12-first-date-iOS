@@ -15,7 +15,17 @@ class ProfileViewController: UIViewController {
     var currentUserUID: String?
     var profile: Profile?
     
+    
+    
     //MARK: - Outlets
+    @IBOutlet weak var notLikeButton: UIButton!
+    @IBAction func notLikeButton(_ sender: Any) {
+        
+    }
+    @IBOutlet weak var likeButton: UIButton!
+    @IBAction func likeButton(_ sender: Any) {
+        
+    }
     @IBOutlet weak var matchesButton: UIBarButtonItem!
     @IBAction func matchesButton(_ sender: Any) {
         
@@ -51,13 +61,12 @@ class ProfileViewController: UIViewController {
         guard let photo = photo else { return }
         
         profileView.image = photo
-        navigationItem.title = profile?.firstName
+
     }
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        //setUpPhotoView()
-        setTheme()
         
         if self.photo == nil {
             user2Controller?.fetchProfileFromServer(userID: currentUserUID!, completion: { (error) in
@@ -65,7 +74,7 @@ class ProfileViewController: UIViewController {
                     print("Error fetching profile in profile vc: \(error)")
                     return
                 }
-                let photoData = self.load(fileName: self.user2Controller?.singleProfileFromServer["main_photo"] as! String)
+                let photoData = self.load(fileName: self.user2Controller?.singleProfileFromServer["profile_picture"] as! String)
                 self.nameLabel.text = (self.user2Controller?.singleProfileFromServer["first_name"] as! String)
                 
                 self.currentUserFirstName = (self.user2Controller?.singleProfileFromServer["first_name"] as! String)
@@ -78,21 +87,8 @@ class ProfileViewController: UIViewController {
             })
         }
         
+
     }
-    
-    func setTheme() {
-        AppearanceHelper.style(button: messageButton)
-        AppearanceHelper.style(button: mediaButton)
-        AppearanceHelper.style(button: settingsButton)
-        AppearanceHelper.style(button: editButton)
-        
-        view.backgroundColor = .violet
-        
-    }
-    
-//    private func setUpPhotoView() {
-//        profileView.layer.cornerRadius = profileView.frame.width / 2
-//    }
     
     private func load(fileName: String) -> UIImage? {
         print("file name: \(fileName)")
@@ -110,5 +106,7 @@ class ProfileViewController: UIViewController {
         }
         return nil
     }
-
+    
+    
+    
 }

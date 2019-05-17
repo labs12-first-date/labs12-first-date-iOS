@@ -60,6 +60,7 @@ class MessageThreadsTableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        
         clearsSelectionOnViewWillAppear = true
         tableView.register(UITableViewCell.self, forCellReuseIdentifier: messageThreadCellIdentifier)
         
@@ -68,9 +69,9 @@ class MessageThreadsTableViewController: UITableViewController {
             UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil),
             UIBarButtonItem(customView: toolbarLabel),
             UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil),
-            UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(addButtonPressed)),
+           // UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(addButtonPressed)),
         ]
-        toolbarLabel.text = AppSettings.displayName
+       // toolbarLabel.text = currentUser!.displayName
         
         messageThreadListener = messageThreadReference.addSnapshotListener { querySnapshot, error in
             guard let snapshot = querySnapshot else {

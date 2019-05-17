@@ -55,29 +55,14 @@ class LoginViewController: UIViewController {
             
             DispatchQueue.main.async {
                 self.removeActivityIndicator(activityIndicator: myActivityIndicator)
-                self.performSegue(withIdentifier: "loginToProfile", sender: self)
+                self.performSegue(withIdentifier: "getInfoFromLogin", sender: self)
             }
         }
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        setTheme()
-    }
-    
-    func setTheme() {
-        emailTextField.setPadding()
-        passwordTextField.setPadding()
         
-        emailTextField.textColor = .grape
-        passwordTextField.textColor = .grape
-        
-        emailTextField.backgroundColor = UIColor.grape.withAlphaComponent(0.1)
-        passwordTextField.backgroundColor = UIColor.grape.withAlphaComponent(0.1)
-        
-        AppearanceHelper.style(button: loginButton)
-        
-        view.backgroundColor = .violet
     }
     
     func displayMessage(userMessage:String) -> Void {
@@ -99,11 +84,12 @@ class LoginViewController: UIViewController {
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "loginToProfile" {
-            guard let destination = segue.destination as? ProfileViewController else { return }
+        if segue.identifier == "getInfoFromLogin" {
+            guard let destination = segue.destination as? UINavigationController,
+                let vcDestination = destination.topViewController as? GetUserInfoViewController else { return }
             
-            destination.currentUserUID = self.currentUserUID
-            destination.user2Controller = user2Controller
+            vcDestination.currentUserUID = self.currentUserUID
+            vcDestination.user2Controller = user2Controller
         }
     }
 }

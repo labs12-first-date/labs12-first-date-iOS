@@ -19,7 +19,7 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
                 print("Error fetching profile in vc: \(error)")
                 return
             }
-           // let photoData = self.load(fileName: self.user2Controller.singleProfileFromServer["main_photo"] as! String)
+           // let photoData = self.load(fileName: self.user2Controller.singleProfileFromServer["profile_picture"] as! String)
             let photoData = self.load(fileName: "https://firebasestorage.googleapis.com/v0/b/awk-dating.appspot.com/o/images%2F083744af-cdab-4c48-b0a7-6f13e484fff0.jpg?alt=media&token=a156f73e-ca3a-4c6b-a261-d5ea1cdc7432")
             self.photo = photoData
             DispatchQueue.main.async {

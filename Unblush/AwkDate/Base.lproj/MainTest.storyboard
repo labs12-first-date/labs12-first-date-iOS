@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="onm-du-Fzy">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="6kV-Gp-nvn">
     <device id="retina6_1" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -168,6 +168,7 @@
                                 <state key="normal" title="Mutually Liked"/>
                                 <connections>
                                     <action selector="mutallyLikedButtonTapped:" destination="WNR-29-CPv" eventType="touchUpInside" id="FCd-bM-0S7"/>
+                                    <segue destination="ViH-hU-vjn" kind="show" identifier="showMutallyLiked" id="o6m-rF-X1g"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gkc-p4-2Zp">
@@ -270,6 +271,7 @@
                                         </stackView>
                                     </subviews>
                                 </view>
+                                <color key="backgroundColor" name="systemYellowColor" catalog="System" colorSpace="catalog"/>
                                 <constraints>
                                     <constraint firstAttribute="trailingMargin" secondItem="AiD-R9-jVn" secondAttribute="trailing" constant="10" id="4qw-ff-T5p"/>
                                     <constraint firstItem="AiD-R9-jVn" firstAttribute="top" secondItem="c8C-mE-1zr" secondAttribute="bottom" constant="38" id="Efr-iF-8fo"/>
@@ -358,7 +360,7 @@
         <!--Navigation Controller-->
         <scene sceneID="lHB-eP-Mnw">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="6kV-Gp-nvn" customClass="NavigationController" customModule="AwkDate" customModuleProvider="target" sceneMemberID="viewController">
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" hidesBarsWhenVerticallyCompact="YES" id="6kV-Gp-nvn" customClass="NavigationController" customModule="AwkDate" customModuleProvider="target" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="wrs-gf-mfG">
                         <rect key="frame" x="0.0" y="44" width="414" height="44"/>
@@ -419,6 +421,100 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="8ze-zZ-7h4" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="363.768115942029" y="814.95535714285711"/>
+        </scene>
+        <!--Bogus Mutually Liked Collection View Controller-->
+        <scene sceneID="Qog-5C-wCr">
+            <objects>
+                <collectionViewController id="ViH-hU-vjn" customClass="BogusMutuallyLikedCollectionViewController" customModule="AwkDate" customModuleProvider="target" sceneMemberID="viewController">
+                    <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" id="Ndc-FP-cWV">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="pKf-P0-GGM">
+                            <size key="itemSize" width="414" height="563"/>
+                            <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                            <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                            <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                        </collectionViewFlowLayout>
+                        <cells>
+                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="MutualCell" id="Gjj-A0-ThH" customClass="BogusMutualCollectionViewCell" customModule="AwkDate" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="563"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO">
+                                    <rect key="frame" x="0.0" y="0.0" width="414" height="563"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="SSb-wO-D5Y">
+                                            <rect key="frame" x="20" y="32" width="374" height="291"/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="291" id="Icy-T3-olU"/>
+                                                <constraint firstAttribute="width" constant="374" id="Zsw-tn-AH4"/>
+                                            </constraints>
+                                        </imageView>
+                                        <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="M5r-Uh-DMt">
+                                            <rect key="frame" x="18" y="361" width="378" height="144"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4cf-qh-e6t">
+                                                    <rect key="frame" x="0.0" y="0.0" width="378" height="20.5"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Age" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="25x-mS-ncA">
+                                                    <rect key="frame" x="0.0" y="28.5" width="378" height="20.5"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Location" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DW3-W0-pd9">
+                                                    <rect key="frame" x="0.0" y="57" width="378" height="20.5"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Bio" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mUK-Id-2Ck">
+                                                    <rect key="frame" x="0.0" y="85.5" width="378" height="20.5"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FDd-bb-QgD">
+                                                    <rect key="frame" x="0.0" y="114" width="378" height="30"/>
+                                                    <state key="normal" title="Chat now!"/>
+                                                    <connections>
+                                                        <action selector="chatButtonTapped:" destination="Gjj-A0-ThH" eventType="touchUpInside" id="kYP-Sc-Kpd"/>
+                                                    </connections>
+                                                </button>
+                                            </subviews>
+                                        </stackView>
+                                    </subviews>
+                                </view>
+                                <color key="backgroundColor" name="systemYellowColor" catalog="System" colorSpace="catalog"/>
+                                <constraints>
+                                    <constraint firstItem="M5r-Uh-DMt" firstAttribute="top" secondItem="SSb-wO-D5Y" secondAttribute="bottom" constant="38" id="2h4-Tr-sk3"/>
+                                    <constraint firstAttribute="trailingMargin" secondItem="M5r-Uh-DMt" secondAttribute="trailing" constant="10" id="Byf-3F-bGS"/>
+                                    <constraint firstItem="M5r-Uh-DMt" firstAttribute="leading" secondItem="Gjj-A0-ThH" secondAttribute="leadingMargin" constant="10" id="TiO-iC-kiK"/>
+                                    <constraint firstAttribute="bottomMargin" secondItem="M5r-Uh-DMt" secondAttribute="bottom" constant="50" id="ayY-bU-Vs9"/>
+                                </constraints>
+                                <connections>
+                                    <outlet property="ageLabel" destination="25x-mS-ncA" id="x1K-ca-8K7"/>
+                                    <outlet property="bioLabel" destination="mUK-Id-2Ck" id="lNY-bq-DRq"/>
+                                    <outlet property="chatButton" destination="FDd-bb-QgD" id="1On-K3-FOZ"/>
+                                    <outlet property="locationLabel" destination="DW3-W0-pd9" id="Q8d-Bz-HYm"/>
+                                    <outlet property="nameLabel" destination="4cf-qh-e6t" id="1Sk-Rx-p9G"/>
+                                    <outlet property="profileImageView" destination="SSb-wO-D5Y" id="xjZ-VY-ETY"/>
+                                </connections>
+                            </collectionViewCell>
+                        </cells>
+                        <connections>
+                            <outlet property="dataSource" destination="ViH-hU-vjn" id="7k8-t4-xfn"/>
+                            <outlet property="delegate" destination="ViH-hU-vjn" id="gDh-Hy-cwp"/>
+                        </connections>
+                    </collectionView>
+                </collectionViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Vb7-uH-T73" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1677" y="1471"/>
         </scene>
     </scenes>
     <resources>
