@@ -8,6 +8,18 @@
 
 /* Begin PBXBuildFile section */
 		23AA840CDFE724BB0287990E /* Pods_AwkDate.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E7F9A0579D89A2E32923A6C8 /* Pods_AwkDate.framework */; };
+		485F5B0D22933B4300927FA9 /* AppSignupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 485F5B0822933B4300927FA9 /* AppSignupViewController.swift */; };
+		485F5B0E22933B4300927FA9 /* AppLoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 485F5B0922933B4300927FA9 /* AppLoginViewController.swift */; };
+		485F5B0F22933B4300927FA9 /* ConditionLookingForViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 485F5B0A22933B4300927FA9 /* ConditionLookingForViewController.swift */; };
+		485F5B1022933B4300927FA9 /* SignupOrLoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 485F5B0B22933B4300927FA9 /* SignupOrLoginViewController.swift */; };
+		485F5B1122933B4300927FA9 /* UserInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 485F5B0C22933B4300927FA9 /* UserInfoViewController.swift */; };
+		485F5B1422933D4F00927FA9 /* AppearanceHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 485F5B1222933D4F00927FA9 /* AppearanceHelper.swift */; };
+		485F5B1522933D4F00927FA9 /* TextFieldAppearance.swift in Sources */ = {isa = PBXBuildFile; fileRef = 485F5B1322933D4F00927FA9 /* TextFieldAppearance.swift */; };
+		485F5B1B22933FBC00927FA9 /* LikedCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 485F5B1722933FBB00927FA9 /* LikedCollectionViewCell.swift */; };
+		485F5B1C22933FBC00927FA9 /* OnboardingCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 485F5B1822933FBC00927FA9 /* OnboardingCollectionViewCell.swift */; };
+		485F5B1D22933FBC00927FA9 /* LookingForTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 485F5B1922933FBC00927FA9 /* LookingForTableViewCell.swift */; };
+		485F5B1E22933FBC00927FA9 /* MatchesCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 485F5B1A22933FBC00927FA9 /* MatchesCollectionViewCell.swift */; };
+		485F5B202293413B00927FA9 /* Onboarding.swift in Sources */ = {isa = PBXBuildFile; fileRef = 485F5B1F2293413B00927FA9 /* Onboarding.swift */; };
 		48840F402293162900BE3389 /* ColorConvenience.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48840F3F2293162900BE3389 /* ColorConvenience.swift */; };
 		48840F422293216700BE3389 /* RevisedMain.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 48840F412293216700BE3389 /* RevisedMain.storyboard */; };
 		4F15063D228E3F2C00C96D8B /* BogusMutuallyLikedCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F15063C228E3F2C00C96D8B /* BogusMutuallyLikedCollectionViewController.swift */; };
@@ -78,6 +90,18 @@
 		012238BD4CFFD1B891F13654 /* Pods-AwkDateTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AwkDateTests.release.xcconfig"; path = "Target Support Files/Pods-AwkDateTests/Pods-AwkDateTests.release.xcconfig"; sourceTree = "<group>"; };
 		1224DB312B4A1660FC47D00D /* Pods-AwkDate.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AwkDate.debug.xcconfig"; path = "Target Support Files/Pods-AwkDate/Pods-AwkDate.debug.xcconfig"; sourceTree = "<group>"; };
 		1BC226744CAFF4D4FDE02EB1 /* Pods-AwkDateUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AwkDateUITests.debug.xcconfig"; path = "Target Support Files/Pods-AwkDateUITests/Pods-AwkDateUITests.debug.xcconfig"; sourceTree = "<group>"; };
+		485F5B0822933B4300927FA9 /* AppSignupViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppSignupViewController.swift; sourceTree = "<group>"; };
+		485F5B0922933B4300927FA9 /* AppLoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppLoginViewController.swift; sourceTree = "<group>"; };
+		485F5B0A22933B4300927FA9 /* ConditionLookingForViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConditionLookingForViewController.swift; sourceTree = "<group>"; };
+		485F5B0B22933B4300927FA9 /* SignupOrLoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignupOrLoginViewController.swift; sourceTree = "<group>"; };
+		485F5B0C22933B4300927FA9 /* UserInfoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserInfoViewController.swift; sourceTree = "<group>"; };
+		485F5B1222933D4F00927FA9 /* AppearanceHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppearanceHelper.swift; sourceTree = "<group>"; };
+		485F5B1322933D4F00927FA9 /* TextFieldAppearance.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TextFieldAppearance.swift; sourceTree = "<group>"; };
+		485F5B1722933FBB00927FA9 /* LikedCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LikedCollectionViewCell.swift; sourceTree = "<group>"; };
+		485F5B1822933FBC00927FA9 /* OnboardingCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OnboardingCollectionViewCell.swift; sourceTree = "<group>"; };
+		485F5B1922933FBC00927FA9 /* LookingForTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LookingForTableViewCell.swift; sourceTree = "<group>"; };
+		485F5B1A22933FBC00927FA9 /* MatchesCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MatchesCollectionViewCell.swift; sourceTree = "<group>"; };
+		485F5B1F2293413B00927FA9 /* Onboarding.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Onboarding.swift; sourceTree = "<group>"; };
 		48840F3F2293162900BE3389 /* ColorConvenience.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorConvenience.swift; sourceTree = "<group>"; };
 		48840F412293216700BE3389 /* RevisedMain.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = RevisedMain.storyboard; sourceTree = "<group>"; };
 		4F15063C228E3F2C00C96D8B /* BogusMutuallyLikedCollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BogusMutuallyLikedCollectionViewController.swift; sourceTree = "<group>"; };
@@ -170,6 +194,29 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		485F5B072293390C00927FA9 /* FC View Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				485F5B0922933B4300927FA9 /* AppLoginViewController.swift */,
+				485F5B0822933B4300927FA9 /* AppSignupViewController.swift */,
+				485F5B0A22933B4300927FA9 /* ConditionLookingForViewController.swift */,
+				485F5B0B22933B4300927FA9 /* SignupOrLoginViewController.swift */,
+				485F5B0C22933B4300927FA9 /* UserInfoViewController.swift */,
+			);
+			path = "FC View Controllers";
+			sourceTree = "<group>";
+		};
+		485F5B1622933F7900927FA9 /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				485F5B1722933FBB00927FA9 /* LikedCollectionViewCell.swift */,
+				485F5B1922933FBC00927FA9 /* LookingForTableViewCell.swift */,
+				485F5B1A22933FBC00927FA9 /* MatchesCollectionViewCell.swift */,
+				485F5B1822933FBC00927FA9 /* OnboardingCollectionViewCell.swift */,
+			);
+			path = Cell;
+			sourceTree = "<group>";
+		};
 		4F3C55CB22792A1E006307A9 = {
 			isa = PBXGroup;
 			children = (
@@ -195,6 +242,8 @@
 		4F3C55D622792A1E006307A9 /* AwkDate */ = {
 			isa = PBXGroup;
 			children = (
+				485F5B1622933F7900927FA9 /* Cell */,
+				485F5B072293390C00927FA9 /* FC View Controllers */,
 				4F9ACB6A2289EDF1004A5D2A /* UI */,
 				4F4F40052281D60F00667A92 /* GoogleService-Info.plist */,
 				4FF3274A227B5F1000192934 /* AwkDate.entitlements */,
@@ -242,6 +291,7 @@
 		4F3C560522792A31006307A9 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				485F5B1F2293413B00927FA9 /* Onboarding.swift */,
 				4F9AFBAF228C8BC6005F261B /* AwkDate-Bridging-Header.h */,
 				4F3C560822792A59006307A9 /* User.swift */,
 				4F4F40092281E6B800667A92 /* Profile.swift */,
@@ -289,6 +339,8 @@
 		4F9ACB6A2289EDF1004A5D2A /* UI */ = {
 			isa = PBXGroup;
 			children = (
+				485F5B1222933D4F00927FA9 /* AppearanceHelper.swift */,
+				485F5B1322933D4F00927FA9 /* TextFieldAppearance.swift */,
 				4F9ACB6B2289EE14004A5D2A /* UICollectionView+Additions.swift */,
 				4F9ACB6D2289EE1D004A5D2A /* UIColor+Additions.swift */,
 				4F9ACB6F2289EE24004A5D2A /* UIImage+Additions.swift */,
@@ -574,11 +626,16 @@
 			buildActionMask = 2147483647;
 			files = (
 				4F9ACB74228A1976004A5D2A /* BogusViewController.swift in Sources */,
+				485F5B1422933D4F00927FA9 /* AppearanceHelper.swift in Sources */,
+				485F5B1122933B4300927FA9 /* UserInfoViewController.swift in Sources */,
+				485F5B1C22933FBC00927FA9 /* OnboardingCollectionViewCell.swift in Sources */,
 				4F507C332285E50F00A60674 /* SignupViewController.swift in Sources */,
+				485F5B0F22933B4300927FA9 /* ConditionLookingForViewController.swift in Sources */,
 				4F9ACB6E2289EE1D004A5D2A /* UIColor+Additions.swift in Sources */,
 				4F9AFBAC228C811C005F261B /* BogusMatchesCollectionViewController.swift in Sources */,
 				4F3C55DA22792A1E006307A9 /* ViewController.swift in Sources */,
 				4F9ACB78228A1EF7004A5D2A /* AppController.swift in Sources */,
+				485F5B1022933B4300927FA9 /* SignupOrLoginViewController.swift in Sources */,
 				4F507C2C2285E4A500A60674 /* MediaCollectionViewController.swift in Sources */,
 				4F507C2F2285E4F300A60674 /* ChooseSignupOrLoginViewController.swift in Sources */,
 				48840F402293162900BE3389 /* ColorConvenience.swift in Sources */,
@@ -588,8 +645,11 @@
 				4F9AFBB5228C8F03005F261B /* JCSLocationController.m in Sources */,
 				4F9ACB702289EE24004A5D2A /* UIImage+Additions.swift in Sources */,
 				4F4130A02284822900CDF247 /* ViewControllerMethods.swift in Sources */,
+				485F5B1D22933FBC00927FA9 /* LookingForTableViewCell.swift in Sources */,
 				4F507C3C2285F95100A60674 /* CondTableViewCell.swift in Sources */,
+				485F5B1E22933FBC00927FA9 /* MatchesCollectionViewCell.swift in Sources */,
 				4F4F40082281E3BA00667A92 /* User2Controller.swift in Sources */,
+				485F5B1522933D4F00927FA9 /* TextFieldAppearance.swift in Sources */,
 				4F9ACB722289EE4B004A5D2A /* UIView+Additions.swift in Sources */,
 				4F507C212285E49300A60674 /* GetUserInfoViewController.swift in Sources */,
 				4F9ACB692289E784004A5D2A /* ChatViewController.swift in Sources */,
@@ -597,6 +657,8 @@
 				4F507C2A2285E4A500A60674 /* ProfileViewController.swift in Sources */,
 				4FE8AE132285B64800975841 /* ConditionsViewController.swift in Sources */,
 				4F9AFBAE228C814E005F261B /* BogusMatchCollectionViewCell.swift in Sources */,
+				485F5B0E22933B4300927FA9 /* AppLoginViewController.swift in Sources */,
+				485F5B0D22933B4300927FA9 /* AppSignupViewController.swift in Sources */,
 				4F3C55D822792A1E006307A9 /* AppDelegate.swift in Sources */,
 				4F507C2B2285E4A500A60674 /* OnboardingViewController.swift in Sources */,
 				4F9AFBB2228C8BC6005F261B /* JCSLocation.m in Sources */,
@@ -604,9 +666,11 @@
 				4F4F400A2281E6B800667A92 /* Profile.swift in Sources */,
 				4F76E673227A7962004CC709 /* UserController.swift in Sources */,
 				4F15063F228E3F7F00C96D8B /* BogusMutualCollectionViewCell.swift in Sources */,
+				485F5B1B22933FBC00927FA9 /* LikedCollectionViewCell.swift in Sources */,
 				4F507C2D2285E4A500A60674 /* LoginViewController.swift in Sources */,
 				4F9ACB652289E3D1004A5D2A /* AppSettings.swift in Sources */,
 				4F9ACB612289E235004A5D2A /* Message.swift in Sources */,
+				485F5B202293413B00927FA9 /* Onboarding.swift in Sources */,
 				4F3C560922792A59006307A9 /* User.swift in Sources */,
 				4F6327AA229314C10044237E /* BogusSettingsViewController.swift in Sources */,
 				4F3C560B227948E8006307A9 /* MessageThread.swift in Sources */,
