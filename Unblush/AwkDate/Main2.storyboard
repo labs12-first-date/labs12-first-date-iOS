@@ -336,11 +336,11 @@
                                 <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <stackView opaque="NO" contentMode="scaleToFill" distribution="fillProportionally" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="KO5-84-aed" userLabel="buttons">
+                            <stackView opaque="NO" contentMode="scaleToFill" distribution="equalSpacing" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="KO5-84-aed" userLabel="buttons">
                                 <rect key="frame" x="40" y="392" width="295" height="28"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="249" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FOK-Xc-Wg1">
-                                        <rect key="frame" x="0.0" y="0.0" width="101.66666666666667" height="28"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="61" height="28"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                         <state key="normal" title="messages"/>
                                         <connections>
@@ -348,17 +348,8 @@
                                             <segue destination="64e-Fx-fDb" kind="show" identifier="messages" id="xTt-cY-N9g"/>
                                         </connections>
                                     </button>
-                                    <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KDl-37-Ri3">
-                                        <rect key="frame" x="101.66666666666667" y="0.0" width="61.666666666666671" height="28"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="13"/>
-                                        <state key="normal" title="media"/>
-                                        <connections>
-                                            <action selector="mediaButton:" destination="NZU-Yv-iKK" eventType="touchUpInside" id="wGB-Hz-p0V"/>
-                                            <segue destination="g8K-Xs-6ff" kind="show" identifier="media" id="1Xw-9x-Wo3"/>
-                                        </connections>
-                                    </button>
                                     <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fqU-uL-rMK">
-                                        <rect key="frame" x="163.33333333333334" y="0.0" width="81.666666666666657" height="28"/>
+                                        <rect key="frame" x="138.66666666666666" y="0.0" width="49" height="28"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                         <state key="normal" title="settings"/>
                                         <connections>
@@ -367,7 +358,7 @@
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ofN-AE-m8j">
-                                        <rect key="frame" x="245" y="0.0" width="50" height="28"/>
+                                        <rect key="frame" x="265" y="0.0" width="30" height="28"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                         <state key="normal" title="liked"/>
                                         <connections>
@@ -411,7 +402,6 @@
                     <connections>
                         <outlet property="editButton" destination="ofN-AE-m8j" id="lsy-25-TEB"/>
                         <outlet property="matchesButton" destination="E6l-z4-NtF" id="s5l-TT-0FM"/>
-                        <outlet property="mediaButton" destination="KDl-37-Ri3" id="DEg-lF-Rj7"/>
                         <outlet property="messageButton" destination="FOK-Xc-Wg1" id="dwP-dg-t2Q"/>
                         <outlet property="nameLabel" destination="Sxt-wL-SrF" id="Iso-U2-rW0"/>
                         <outlet property="profileView" destination="SwA-h4-0Zk" id="hAF-MJ-1Ps"/>
@@ -699,61 +689,6 @@
             </objects>
             <point key="canvasLocation" x="3559" y="779"/>
         </scene>
-        <!--media-->
-        <scene sceneID="bAf-Zs-etD">
-            <objects>
-                <collectionViewController id="g8K-Xs-6ff" customClass="MediaCollectionViewController" customModule="AwkDate" customModuleProvider="target" sceneMemberID="viewController">
-                    <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" id="vpI-tF-p3f">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="9Is-1E-qJ7">
-                            <size key="itemSize" width="413" height="760"/>
-                            <size key="headerReferenceSize" width="0.0" height="0.0"/>
-                            <size key="footerReferenceSize" width="0.0" height="0.0"/>
-                            <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
-                        </collectionViewFlowLayout>
-                        <cells>
-                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="MediaCell" id="KlU-Tf-pNK">
-                                <rect key="frame" x="-19" y="0.0" width="413" height="760"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO">
-                                    <rect key="frame" x="0.0" y="0.0" width="413" height="760"/>
-                                    <autoresizingMask key="autoresizingMask"/>
-                                    <subviews>
-                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="cjT-FJ-Yt8">
-                                            <rect key="frame" x="0.0" y="0.0" width="126" height="128"/>
-                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                            <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                        </imageView>
-                                    </subviews>
-                                </view>
-                                <connections>
-                                    <outlet property="mediaVew" destination="cjT-FJ-Yt8" id="6sa-7e-kky"/>
-                                </connections>
-                            </collectionViewCell>
-                        </cells>
-                        <connections>
-                            <outlet property="dataSource" destination="g8K-Xs-6ff" id="LgF-VU-1Ua"/>
-                            <outlet property="delegate" destination="g8K-Xs-6ff" id="ces-gL-yya"/>
-                        </connections>
-                    </collectionView>
-                    <navigationItem key="navigationItem" title="media" id="Bjk-xP-Ndv">
-                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="6Ea-hV-Ge0">
-                            <connections>
-                                <action selector="addButton:" destination="g8K-Xs-6ff" id="LSm-07-Gcj"/>
-                            </connections>
-                        </barButtonItem>
-                    </navigationItem>
-                    <size key="freeformSize" width="375" height="812"/>
-                    <connections>
-                        <outlet property="addButton" destination="6Ea-hV-Ge0" id="Dfc-9z-5xt"/>
-                    </connections>
-                </collectionViewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="ufd-73-y21" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="4298" y="1068"/>
-        </scene>
         <!--settings-->
         <scene sceneID="r6N-SJ-qdq">
             <objects>
@@ -855,13 +790,13 @@
                                                 <rect key="frame" x="0.0" y="64.333333333333314" width="295" height="30"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="maximum distance" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="j1K-31-I0m">
-                                                        <rect key="frame" x="0.0" y="0.0" width="115.66666666666667" height="30"/>
+                                                        <rect key="frame" x="0.0" y="0.0" width="139.66666666666666" height="30"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                         <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.5" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="wU1-zs-vUk">
-                                                        <rect key="frame" x="123.66666666666664" y="0.0" width="173.33333333333337" height="31"/>
+                                                        <rect key="frame" x="147.66666666666663" y="0.0" width="149.33333333333337" height="31"/>
                                                     </slider>
                                                 </subviews>
                                             </stackView>
