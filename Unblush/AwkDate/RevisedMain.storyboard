@@ -79,7 +79,6 @@
                                                 </cells>
                                                 <connections>
                                                     <outlet property="dataSource" destination="xTd-XU-ttU" id="inx-yz-JmM"/>
-                                                    <outlet property="delegate" destination="xTd-XU-ttU" id="L80-Eu-eXQ"/>
                                                 </connections>
                                             </collectionView>
                                         </subviews>
@@ -393,7 +392,7 @@
                         <barButtonItem key="rightBarButtonItem" title="matches" id="E6l-z4-NtF">
                             <connections>
                                 <action selector="matchesButton:" destination="NZU-Yv-iKK" id="YNb-hg-1Bj"/>
-                                <segue destination="u2O-ve-c33" kind="show" id="6DD-AL-UlN"/>
+                                <segue destination="u2O-ve-c33" kind="show" identifier="showMatches" id="6DD-AL-UlN"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -411,10 +410,10 @@
             </objects>
             <point key="canvasLocation" x="3748" y="-61"/>
         </scene>
-        <!--Matches Collection View Controller-->
+        <!--Match Users Collection View Controller-->
         <scene sceneID="QGj-iU-vLu">
             <objects>
-                <collectionViewController id="u2O-ve-c33" customClass="MatchesCollectionViewController" customModule="AwkDate" customModuleProvider="target" sceneMemberID="viewController">
+                <collectionViewController id="u2O-ve-c33" customClass="MatchUsersCollectionViewController" customModule="AwkDate" customModuleProvider="target" sceneMemberID="viewController">
                     <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" id="hIR-yG-rMJ">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>

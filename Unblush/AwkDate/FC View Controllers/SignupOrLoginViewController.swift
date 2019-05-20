@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import FirebaseAuth
 
 class SignupOrLoginViewController: UIViewController {
     
@@ -45,6 +46,15 @@ class SignupOrLoginViewController: UIViewController {
 
         //collectionView?.dataSource = self
        // collectionView?.delegate = self
+        
+        do {
+            try Auth.auth().signOut()
+            print("signed out")
+            //print("User in view did load: \(userController.serverCurrentUser?.uid)")
+            
+        } catch {
+            print("error")
+        }
 
     }
     
