@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		23AA840CDFE724BB0287990E /* Pods_AwkDate.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E7F9A0579D89A2E32923A6C8 /* Pods_AwkDate.framework */; };
 		48840F402293162900BE3389 /* ColorConvenience.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48840F3F2293162900BE3389 /* ColorConvenience.swift */; };
+		48840F422293216700BE3389 /* RevisedMain.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 48840F412293216700BE3389 /* RevisedMain.storyboard */; };
 		4F15063D228E3F2C00C96D8B /* BogusMutuallyLikedCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F15063C228E3F2C00C96D8B /* BogusMutuallyLikedCollectionViewController.swift */; };
 		4F15063F228E3F7F00C96D8B /* BogusMutualCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F15063E228E3F7F00C96D8B /* BogusMutualCollectionViewCell.swift */; };
 		4F3C55D822792A1E006307A9 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F3C55D722792A1E006307A9 /* AppDelegate.swift */; };
@@ -31,7 +32,6 @@
 		4F507C312285E50800A60674 /* BioConditionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F507C302285E50800A60674 /* BioConditionViewController.swift */; };
 		4F507C332285E50F00A60674 /* SignupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F507C322285E50F00A60674 /* SignupViewController.swift */; };
 		4F507C352285E56A00A60674 /* Storyboards in Resources */ = {isa = PBXBuildFile; fileRef = 4F507C342285E56A00A60674 /* Storyboards */; };
-		4F507C3A2285E6F900A60674 /* Main2.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4F507C392285E6F900A60674 /* Main2.storyboard */; };
 		4F507C3C2285F95100A60674 /* CondTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F507C3B2285F95100A60674 /* CondTableViewCell.swift */; };
 		4F76E673227A7962004CC709 /* UserController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F76E672227A7962004CC709 /* UserController.swift */; };
 		4F9ACB612289E235004A5D2A /* Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F9ACB602289E235004A5D2A /* Message.swift */; };
@@ -78,6 +78,7 @@
 		1224DB312B4A1660FC47D00D /* Pods-AwkDate.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AwkDate.debug.xcconfig"; path = "Target Support Files/Pods-AwkDate/Pods-AwkDate.debug.xcconfig"; sourceTree = "<group>"; };
 		1BC226744CAFF4D4FDE02EB1 /* Pods-AwkDateUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AwkDateUITests.debug.xcconfig"; path = "Target Support Files/Pods-AwkDateUITests/Pods-AwkDateUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		48840F3F2293162900BE3389 /* ColorConvenience.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorConvenience.swift; sourceTree = "<group>"; };
+		48840F412293216700BE3389 /* RevisedMain.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = RevisedMain.storyboard; sourceTree = "<group>"; };
 		4F15063C228E3F2C00C96D8B /* BogusMutuallyLikedCollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BogusMutuallyLikedCollectionViewController.swift; sourceTree = "<group>"; };
 		4F15063E228E3F7F00C96D8B /* BogusMutualCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BogusMutualCollectionViewCell.swift; sourceTree = "<group>"; };
 		4F3C55D422792A1E006307A9 /* AwkDate.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AwkDate.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -107,7 +108,6 @@
 		4F507C322285E50F00A60674 /* SignupViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignupViewController.swift; sourceTree = "<group>"; };
 		4F507C342285E56A00A60674 /* Storyboards */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Storyboards; sourceTree = "<group>"; };
 		4F507C362285E5A300A60674 /* LaunchScreen2.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = LaunchScreen2.storyboard; sourceTree = "<group>"; };
-		4F507C392285E6F900A60674 /* Main2.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main2.storyboard; sourceTree = "<group>"; };
 		4F507C3B2285F95100A60674 /* CondTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CondTableViewCell.swift; sourceTree = "<group>"; };
 		4F76E672227A7962004CC709 /* UserController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserController.swift; sourceTree = "<group>"; };
 		4F9ACB602289E235004A5D2A /* Message.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Message.swift; sourceTree = "<group>"; };
@@ -209,7 +209,7 @@
 				4F9AFBAB228C811C005F261B /* BogusMatchesCollectionViewController.swift */,
 				4FE8AE142285B69200975841 /* ConditionTableViewCell.swift */,
 				4FE8AE122285B64800975841 /* ConditionsViewController.swift */,
-				4F507C392285E6F900A60674 /* Main2.storyboard */,
+				48840F412293216700BE3389 /* RevisedMain.storyboard */,
 				4F507C362285E5A300A60674 /* LaunchScreen2.storyboard */,
 				4F507C342285E56A00A60674 /* Storyboards */,
 				4F3C55E322792A20006307A9 /* Info.plist */,
@@ -435,8 +435,8 @@
 				4F4F40062281D60F00667A92 /* GoogleService-Info.plist in Resources */,
 				4FE8AE172285E41900975841 /* Assets.xcassets in Resources */,
 				4F3C55DD22792A1E006307A9 /* MainTest.storyboard in Resources */,
-				4F507C3A2285E6F900A60674 /* Main2.storyboard in Resources */,
 				4F507C352285E56A00A60674 /* Storyboards in Resources */,
+				48840F422293216700BE3389 /* RevisedMain.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
