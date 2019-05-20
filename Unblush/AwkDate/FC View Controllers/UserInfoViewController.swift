@@ -160,7 +160,7 @@ class UserInfoViewController: UIViewController {
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "SaveGetInfo" {
-            guard let destination = segue.destination as? BioConditionViewController else { return }
+            guard let destination = segue.destination as? ConditionLookingForViewController else { return }
             
             destination.firstName = self.firstName
             destination.lastName = self.lastName
@@ -171,7 +171,7 @@ class UserInfoViewController: UIViewController {
             destination.email = self.email
             
             destination.currentUserUID = self.currentUserUID
-            destination.user2Controller = user2Controller
+            destination.user2Controller = self.user2Controller
             
         }
     }

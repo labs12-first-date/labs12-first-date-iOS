@@ -43,8 +43,8 @@ class SignupOrLoginViewController: UIViewController {
         layout.itemSize = CGSize(width: cellWidth, height: cellHeight)
         collectionView?.contentInset = UIEdgeInsets(top: insetY, left: insetX, bottom: insetY, right: insetX)
 
-        collectionView?.dataSource = self
-        collectionView?.delegate = self
+        //collectionView?.dataSource = self
+       // collectionView?.delegate = self
 
     }
     
@@ -56,7 +56,7 @@ class SignupOrLoginViewController: UIViewController {
     }
 }
 
-extension ChooseSignupOrLoginViewController: UICollectionViewDataSource {
+extension SignupOrLoginViewController: UICollectionViewDataSource {
     func numberOfSections(in collectionView: UICollectionView) -> Int {
         return 1
     }
@@ -74,7 +74,7 @@ extension ChooseSignupOrLoginViewController: UICollectionViewDataSource {
     }
 }
 
-extension AppSignupOrLoginViewController: UIScrollViewDelegate, UICollectionViewDelegate {
+extension SignupOrLoginViewController: UIScrollViewDelegate, UICollectionViewDelegate {
     func scrollViewWillEndDragging(_ scrollView: UIScrollView, withVelocity velocity: CGPoint, targetContentOffset: UnsafeMutablePointer<CGPoint>) {
         
         let layout = self.collectionView?.collectionViewLayout as! UICollectionViewFlowLayout
@@ -89,3 +89,4 @@ extension AppSignupOrLoginViewController: UIScrollViewDelegate, UICollectionView
         targetContentOffset.pointee = offset
     }
 }
+
