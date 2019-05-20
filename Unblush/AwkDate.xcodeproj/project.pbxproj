@@ -31,7 +31,6 @@
 		4F507C312285E50800A60674 /* BioConditionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F507C302285E50800A60674 /* BioConditionViewController.swift */; };
 		4F507C332285E50F00A60674 /* SignupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F507C322285E50F00A60674 /* SignupViewController.swift */; };
 		4F507C352285E56A00A60674 /* Storyboards in Resources */ = {isa = PBXBuildFile; fileRef = 4F507C342285E56A00A60674 /* Storyboards */; };
-		4F507C3A2285E6F900A60674 /* Main2.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4F507C392285E6F900A60674 /* Main2.storyboard */; };
 		4F507C3C2285F95100A60674 /* CondTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F507C3B2285F95100A60674 /* CondTableViewCell.swift */; };
 		4F76E673227A7962004CC709 /* UserController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F76E672227A7962004CC709 /* UserController.swift */; };
 		4F9ACB612289E235004A5D2A /* Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F9ACB602289E235004A5D2A /* Message.swift */; };
@@ -107,7 +106,6 @@
 		4F507C322285E50F00A60674 /* SignupViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignupViewController.swift; sourceTree = "<group>"; };
 		4F507C342285E56A00A60674 /* Storyboards */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Storyboards; sourceTree = "<group>"; };
 		4F507C362285E5A300A60674 /* LaunchScreen2.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = LaunchScreen2.storyboard; sourceTree = "<group>"; };
-		4F507C392285E6F900A60674 /* Main2.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main2.storyboard; sourceTree = "<group>"; };
 		4F507C3B2285F95100A60674 /* CondTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CondTableViewCell.swift; sourceTree = "<group>"; };
 		4F76E672227A7962004CC709 /* UserController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserController.swift; sourceTree = "<group>"; };
 		4F9ACB602289E235004A5D2A /* Message.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Message.swift; sourceTree = "<group>"; };
@@ -209,7 +207,6 @@
 				4F9AFBAB228C811C005F261B /* BogusMatchesCollectionViewController.swift */,
 				4FE8AE142285B69200975841 /* ConditionTableViewCell.swift */,
 				4FE8AE122285B64800975841 /* ConditionsViewController.swift */,
-				4F507C392285E6F900A60674 /* Main2.storyboard */,
 				4F507C362285E5A300A60674 /* LaunchScreen2.storyboard */,
 				4F507C342285E56A00A60674 /* Storyboards */,
 				4F3C55E322792A20006307A9 /* Info.plist */,
@@ -435,7 +432,6 @@
 				4F4F40062281D60F00667A92 /* GoogleService-Info.plist in Resources */,
 				4FE8AE172285E41900975841 /* Assets.xcassets in Resources */,
 				4F3C55DD22792A1E006307A9 /* MainTest.storyboard in Resources */,
-				4F507C3A2285E6F900A60674 /* Main2.storyboard in Resources */,
 				4F507C352285E56A00A60674 /* Storyboards in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
