@@ -9,10 +9,10 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Choose Signup Or Login View Controller-->
+        <!--Signup Or Login View Controller-->
         <scene sceneID="Bvg-mN-tuh">
             <objects>
-                <viewController id="xTd-XU-ttU" customClass="ChooseSignupOrLoginViewController" customModule="AwkDate" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="xTd-XU-ttU" customClass="SignupOrLoginViewController" customModule="AwkDate" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="ovn-rk-apZ">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -124,10 +124,10 @@
             </objects>
             <point key="canvasLocation" x="2868" y="-904"/>
         </scene>
-        <!--Signup View Controller-->
+        <!--App Signup View Controller-->
         <scene sceneID="c5Q-xQ-jxP">
             <objects>
-                <viewController id="Txt-3x-IHZ" customClass="SignupViewController" customModule="AwkDate" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="Txt-3x-IHZ" customClass="AppSignupViewController" customModule="AwkDate" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="p17-1k-5eQ">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -226,10 +226,10 @@
             </objects>
             <point key="canvasLocation" x="3712.8000000000002" y="-902.21674876847294"/>
         </scene>
-        <!--Login View Controller-->
+        <!--App Login View Controller-->
         <scene sceneID="pwG-Dn-Ehz">
             <objects>
-                <viewController id="gte-Nk-yGk" customClass="LoginViewController" customModule="AwkDate" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="gte-Nk-yGk" customClass="AppLoginViewController" customModule="AwkDate" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="BP4-6e-kjj">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -302,7 +302,7 @@
                         <outlet property="loginButton" destination="BlR-f9-pNG" id="dKX-Qc-d58"/>
                         <outlet property="passwordLabel" destination="BtD-UW-dUE" id="497-Ft-rvs"/>
                         <outlet property="passwordTextField" destination="CWH-W0-ra4" id="qgO-dN-gZA"/>
-                        <segue destination="zuh-Tr-nwp" kind="show" identifier="getInfoFromLogin" id="Y1S-Er-adq"/>
+                        <segue destination="NZU-Yv-iKK" kind="show" identifier="loginToProfile" id="foW-Z4-4Yb"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="gII-ii-T6k" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -835,13 +835,13 @@
                                                 <rect key="frame" x="0.0" y="64.333333333333314" width="295" height="30"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="maximum distance" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="j1K-31-I0m">
-                                                        <rect key="frame" x="0.0" y="0.0" width="127.66666666666667" height="30"/>
+                                                        <rect key="frame" x="0.0" y="0.0" width="123.66666666666667" height="30"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                         <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.5" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="wU1-zs-vUk">
-                                                        <rect key="frame" x="135.66666666666663" y="0.0" width="161.33333333333337" height="31"/>
+                                                        <rect key="frame" x="131.66666666666663" y="0.0" width="165.33333333333337" height="31"/>
                                                     </slider>
                                                 </subviews>
                                             </stackView>
@@ -958,10 +958,10 @@
             </objects>
             <point key="canvasLocation" x="6138" y="-324"/>
         </scene>
-        <!--Get User Info View Controller-->
+        <!--User Info View Controller-->
         <scene sceneID="DIC-je-VPY">
             <objects>
-                <viewController id="xWg-40-8O5" customClass="GetUserInfoViewController" customModule="AwkDate" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="xWg-40-8O5" customClass="UserInfoViewController" customModule="AwkDate" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="dos-4T-EKW">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -1141,10 +1141,10 @@
             </objects>
             <point key="canvasLocation" x="2377" y="-61"/>
         </scene>
-        <!--Bio Condition View Controller-->
+        <!--Condition Looking For View Controller-->
         <scene sceneID="Kjp-qQ-QJE">
             <objects>
-                <viewController id="kmG-yk-po1" customClass="BioConditionViewController" customModule="AwkDate" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="kmG-yk-po1" customClass="ConditionLookingForViewController" customModule="AwkDate" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="ZYW-AD-RWo">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -1233,7 +1233,7 @@
                                                     <constraint firstAttribute="height" constant="200" id="mp1-bS-5hl"/>
                                                 </constraints>
                                                 <prototypes>
-                                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="ti5-cr-lU5">
+                                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="LookingForCell" id="ti5-cr-lU5" customClass="LookingForTableViewCell" customModule="AwkDate" customModuleProvider="target">
                                                         <rect key="frame" x="0.0" y="28" width="335" height="44"/>
                                                         <autoresizingMask key="autoresizingMask"/>
                                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="ti5-cr-lU5" id="aNb-x3-dBM">
@@ -1338,6 +1338,6 @@
         <image name="unblushLogoType" width="984" height="195"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="cKK-6n-2GY"/>
+        <segue reference="zJM-WX-1cQ"/>
     </inferredMetricsTieBreakers>
 </document>
