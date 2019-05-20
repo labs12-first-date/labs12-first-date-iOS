@@ -345,7 +345,7 @@
                                                 <state key="normal" title="messages"/>
                                                 <connections>
                                                     <action selector="messageButton:" destination="NZU-Yv-iKK" eventType="touchUpInside" id="f5d-AE-DjX"/>
-                                                    <segue destination="64e-Fx-fDb" kind="show" identifier="messages" id="xTt-cY-N9g"/>
+                                                    <segue destination="64e-Fx-fDb" kind="show" identifier="toThreads" id="xTt-cY-N9g"/>
                                                 </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fqU-uL-rMK">

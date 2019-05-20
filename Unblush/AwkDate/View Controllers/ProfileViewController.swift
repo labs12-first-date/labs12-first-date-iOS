@@ -18,6 +18,10 @@ class ProfileViewController: UIViewController {
     var currentUserUID: String?
     var profile: Profile?
     
+    // Messaging
+    var chattingUserUID: String?
+    
+    // Matches
     var currentUser: User?
     var age: Int?
     var zipcode: Int?
@@ -43,7 +47,7 @@ class ProfileViewController: UIViewController {
    
     @IBOutlet weak var messageButton: UIButton!
     @IBAction func messageButton(_ sender: Any) {
-        performSegue(withIdentifier: "messages", sender: self)
+        performSegue(withIdentifier: "toThreads", sender: self)
 
     }
     @IBOutlet weak var mediaButton: UIButton!
@@ -90,7 +94,7 @@ class ProfileViewController: UIViewController {
                 
                 
                 // Properties for Matches
-                AppSettings.displayName = self.user2Controller!.serverCurrentUser?.displayName
+                AppSettings.displayName = self.currentUserFirstName!
                 self.currentUser = self.user2Controller!.serverCurrentUser!
                 
                 let ageString = self.user2Controller!.singleProfileFromServer["age"] as! String
@@ -115,9 +119,11 @@ class ProfileViewController: UIViewController {
                     self.userCondition.append(ConditionType(rawValue: cond)!)
                 }
                 
-                //self.chattingUserUID = "qgWMqM5HWtTEMMygiJIWTOvR4m63" // uid of test23
-                //self.chattingUserUID = "AMi53uJuuubUv3gp5coQ7ZRk1xH3"
+            
                 print("User in profile vc: \(self.currentUser!.uid)")
+                
+
+                self.chattingUserUID = "qSQ3rFkLvAY976huM75w3E5ex0i2"
                 
                 
                 DispatchQueue.main.async {
@@ -170,6 +176,12 @@ class ProfileViewController: UIViewController {
             vc.userController = self.user2Controller
             
             //vc.chattingUserUID = self.chattingUserUID
+        }
+        if segue.identifier == "toThreads" {
+            guard let vc = segue.destination as? MessageThreadsTableViewController else { return }
+            
+            vc.currentUser = self.currentUser
+            vc.chattingUserUID = self.chattingUserUID
         }
     }
 }
