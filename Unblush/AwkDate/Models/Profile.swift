@@ -35,10 +35,10 @@ enum ConditionType: String {
 }
 
 enum GenderType: String {
-    case female
-    case male
-    case nonbinary
-    case transgender
+    case female = "Female"
+    case male = "Male"
+    case nonbinary = "Non-binary"
+    case transgender = "Trans"
 }
 
 struct Profile: Decodable {

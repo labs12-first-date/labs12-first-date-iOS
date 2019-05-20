@@ -58,7 +58,7 @@
         }
         
         self.internalLocations = locations;
-        NSLog(@"Successfully fetched all locations in radius!");
+        NSLog(@"Successfully fetched all locations in radius! count = %lu", (unsigned long)self.internalLocations.count);
         completion(locations, nil);
         
     }];

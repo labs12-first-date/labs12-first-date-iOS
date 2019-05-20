@@ -15,8 +15,9 @@ class User2Controller {
     
     let db = Firestore.firestore()
     var singleProfileFromServer: [String: Any] = [:]
-    var profilesFromServer: [[String: Any]] = [[:]]
+    var profilesFromServer = [[String: Any]]()
     var currentUserUID: String?
+    var compareProfileFromServer = [String: Any]()
     
     var currentPhoto: Data?
     var currentPhotoURL: URL?
@@ -151,6 +152,34 @@ class User2Controller {
         
     }
     
+    func fetchCompareProfileFromServer(userID: String, completion: @escaping (Error?) -> Void = {_ in }) {
+        let profileRef = db.collection("profilesiOS").document(userID)
+        
+        profileRef.getDocument { (document, error) in
+            
+            if let error = error {
+                print("Error fetching single profile from server: \(error)")
+                completion(error)
+                return
+            }
+            
+            // let jsonDecoder = JSONDecoder()
+            
+            if let document = document, document.exists {
+                self.compareProfileFromServer = document.data()!
+                completion(nil)
+            } else {
+                print("Document does not exist")
+                completion(error)
+                return
+            }
+            
+            
+        }
+        
+        
+    }
+    
     func fetchAllProfilesFromServer(completion: @escaping (Error?) -> Void = {_ in }) {
         
         db.collection("profilesiOS").getDocuments { (querySnapshot, error) in
@@ -164,15 +193,76 @@ class User2Controller {
                 return
             }
             
+            var count = 0
             for profile in querySnap.documents {
-                self.profilesFromServer.append(profile.data())
-                if self.profilesFromServer.count == querySnap.documents.count {
+               
+                let likedArray = profile["liked"] as! [[String:Any]]
+                if likedArray.count == 0 {
+                    if (profile["email"] as! String) != self.serverCurrentUser?.email! {
+                        self.profilesFromServer.append(profile.data())
+                    }
+                    
+                } else {
+                    if (profile["email"] as! String) != self.serverCurrentUser?.email! {
+                        for prof in likedArray {
+                            if (prof["email"] as! String) != (profile["email"] as! String) {
+                                self.profilesFromServer.append(profile.data())
+                            } else {
+                                count += 1
+                            }
+                        }
+                    }
+                }
+                
+                if self.profilesFromServer.count == (querySnap.documents.count - (count + 1)) {
                     completion(nil)
                 }
             }
             
+            
         }
       
+    }
+    
+    func updateLikedMatchesOnServer(userUID: String, likedMatch: [String:Any], completion: @escaping (Error?) -> Void = {_ in }) {
+        
+        let profileRef = db.collection("profilesiOS").document(userUID)
+        
+        var oldLiked = self.singleProfileFromServer["liked"] as! [[String:Any]]
+        oldLiked.append(likedMatch)
+        print("Updated liked matches: \(oldLiked)")
+        
+        profileRef.updateData(["liked" : oldLiked]) { (error) in
+            if let error = error {
+                print("Error updating data: \(error)")
+                completion(error)
+                return
+            }
+            print("Successfully updated liked matches")
+            completion(nil)
+        }
+        
+        
+    }
+    
+    func updateDisLikedMatchesOnServer(userUID: String, dislikedMatch: [String:Any], completion: @escaping (Error?) -> Void = {_ in }) {
+        
+        let profileRef = db.collection("profilesiOS").document(userUID)
+        
+        var olddisLiked = self.singleProfileFromServer["matches"] as! [[String:Any]]
+        olddisLiked.append(dislikedMatch)
+        print("Updated liked matches: \(olddisLiked)")
+        
+        profileRef.updateData(["matches" : olddisLiked]) { (error) in
+            if let error = error {
+                print("Error updating data: \(error)")
+                completion(error)
+                return
+            }
+            print("Successfully updated liked matches")
+        }
+        
+        
     }
     
     
