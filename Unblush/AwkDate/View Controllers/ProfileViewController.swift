@@ -161,5 +161,15 @@ class ProfileViewController: UIViewController {
             vc.userCondition = self.userCondition
             
         }
+        if segue.identifier == "showMutallyLiked" {
+            guard let vc = segue.destination as? MutuallyLikedCollectionViewController else { return }
+            
+            //vc.init(currentUser: self.currentUser)
+            //(currentUser: self.currentUser)
+            // vc.currentUser = self.currentUser
+            vc.userController = self.user2Controller
+            
+            //vc.chattingUserUID = self.chattingUserUID
+        }
     }
 }

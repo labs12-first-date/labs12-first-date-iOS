@@ -47,6 +47,7 @@
 		4F507C3C2285F95100A60674 /* CondTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F507C3B2285F95100A60674 /* CondTableViewCell.swift */; };
 		4F6327AA229314C10044237E /* BogusSettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F6327A9229314C10044237E /* BogusSettingsViewController.swift */; };
 		4F6327AD2293593A0044237E /* MatchUsersCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F6327AC229359390044237E /* MatchUsersCollectionViewController.swift */; };
+		4F6327AF229362300044237E /* MutuallyLikedCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F6327AE229362300044237E /* MutuallyLikedCollectionViewController.swift */; };
 		4F76E673227A7962004CC709 /* UserController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F76E672227A7962004CC709 /* UserController.swift */; };
 		4F9ACB612289E235004A5D2A /* Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F9ACB602289E235004A5D2A /* Message.swift */; };
 		4F9ACB632289E2FF004A5D2A /* DatabaseRepresentation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F9ACB622289E2FF004A5D2A /* DatabaseRepresentation.swift */; };
@@ -137,6 +138,7 @@
 		4F507C3B2285F95100A60674 /* CondTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CondTableViewCell.swift; sourceTree = "<group>"; };
 		4F6327A9229314C10044237E /* BogusSettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BogusSettingsViewController.swift; sourceTree = "<group>"; };
 		4F6327AC229359390044237E /* MatchUsersCollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MatchUsersCollectionViewController.swift; sourceTree = "<group>"; };
+		4F6327AE229362300044237E /* MutuallyLikedCollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = MutuallyLikedCollectionViewController.swift; path = ../Cell/MutuallyLikedCollectionViewController.swift; sourceTree = "<group>"; };
 		4F76E672227A7962004CC709 /* UserController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserController.swift; sourceTree = "<group>"; };
 		4F9ACB602289E235004A5D2A /* Message.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Message.swift; sourceTree = "<group>"; };
 		4F9ACB622289E2FF004A5D2A /* DatabaseRepresentation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatabaseRepresentation.swift; sourceTree = "<group>"; };
@@ -205,6 +207,7 @@
 				485F5B0B22933B4300927FA9 /* SignupOrLoginViewController.swift */,
 				485F5B0C22933B4300927FA9 /* UserInfoViewController.swift */,
 				4F6327AC229359390044237E /* MatchUsersCollectionViewController.swift */,
+				4F6327AE229362300044237E /* MutuallyLikedCollectionViewController.swift */,
 			);
 			path = "FC View Controllers";
 			sourceTree = "<group>";
@@ -671,6 +674,7 @@
 				4F9AFBAE228C814E005F261B /* BogusMatchCollectionViewCell.swift in Sources */,
 				485F5B0E22933B4300927FA9 /* AppLoginViewController.swift in Sources */,
 				485F5B0D22933B4300927FA9 /* AppSignupViewController.swift in Sources */,
+				4F6327AF229362300044237E /* MutuallyLikedCollectionViewController.swift in Sources */,
 				4F3C55D822792A1E006307A9 /* AppDelegate.swift in Sources */,
 				4F507C2B2285E4A500A60674 /* OnboardingViewController.swift in Sources */,
 				4F9AFBB2228C8BC6005F261B /* JCSLocation.m in Sources */,
