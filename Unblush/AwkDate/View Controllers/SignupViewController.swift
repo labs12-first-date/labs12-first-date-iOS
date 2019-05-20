@@ -100,7 +100,7 @@ class SignupViewController: UIViewController {
     }
 }
 
-extension SignupViewController {
+/*extension SignupViewController {
     
     func removeActivityIndicator(activityIndicator: UIActivityIndicatorView)
     {
@@ -111,4 +111,4 @@ extension SignupViewController {
         }
     }
     
-}
+}*/

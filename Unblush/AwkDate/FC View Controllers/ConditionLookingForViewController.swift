@@ -68,6 +68,7 @@ class ConditionLookingForViewController: UIViewController, UITableViewDataSource
             
             let condition = conditions[indexPath.row]
             cell.conditionNameLabel.text = condition.rawValue
+            cell.condition = condition
             style(cell: cell)
             return cell
             
@@ -77,6 +78,7 @@ class ConditionLookingForViewController: UIViewController, UITableViewDataSource
                 
                 let lookingFor = lookingForCriteria[indexPath.row]
                 cell.lookingForLabel.text = lookingFor.rawValue
+                cell.lookingFor = lookingFor
                 style(cell: cell)
                 return cell
           

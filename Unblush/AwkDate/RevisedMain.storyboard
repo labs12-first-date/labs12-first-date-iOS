@@ -77,6 +77,9 @@
                                                         </connections>
                                                     </collectionViewCell>
                                                 </cells>
+                                                <connections>
+                                                    <outlet property="dataSource" destination="xTd-XU-ttU" id="inx-yz-JmM"/>
+                                                </connections>
                                             </collectionView>
                                         </subviews>
                                     </stackView>
@@ -337,25 +340,16 @@
                                         <rect key="frame" x="0.0" y="391" width="335" height="28"/>
                                         <subviews>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FOK-Xc-Wg1">
-                                                <rect key="frame" x="0.0" y="0.0" width="92" height="28"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="120.33333333333333" height="28"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                                 <state key="normal" title="messages"/>
                                                 <connections>
                                                     <action selector="messageButton:" destination="NZU-Yv-iKK" eventType="touchUpInside" id="f5d-AE-DjX"/>
-                                                    <segue destination="64e-Fx-fDb" kind="show" identifier="messages" id="xTt-cY-N9g"/>
-                                                </connections>
-                                            </button>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KDl-37-Ri3">
-                                                <rect key="frame" x="107" y="0.0" width="56" height="28"/>
-                                                <fontDescription key="fontDescription" type="system" pointSize="13"/>
-                                                <state key="normal" title="media"/>
-                                                <connections>
-                                                    <action selector="mediaButton:" destination="NZU-Yv-iKK" eventType="touchUpInside" id="wGB-Hz-p0V"/>
-                                                    <segue destination="g8K-Xs-6ff" kind="show" identifier="media" id="1Xw-9x-Wo3"/>
+                                                    <segue destination="64e-Fx-fDb" kind="show" identifier="toThreads" id="xTt-cY-N9g"/>
                                                 </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fqU-uL-rMK">
-                                                <rect key="frame" x="178" y="0.0" width="73.666666666666686" height="28"/>
+                                                <rect key="frame" x="135.33333333333334" y="0.0" width="96.333333333333343" height="28"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                                 <state key="normal" title="settings"/>
                                                 <connections>
@@ -364,12 +358,12 @@
                                                 </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ofN-AE-m8j">
-                                                <rect key="frame" x="266.66666666666669" y="0.0" width="68.333333333333314" height="28"/>
+                                                <rect key="frame" x="246.66666666666671" y="0.0" width="88.333333333333343" height="28"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                                 <state key="normal" title="liked"/>
                                                 <connections>
                                                     <action selector="editButton:" destination="NZU-Yv-iKK" eventType="touchUpInside" id="3sQ-DO-iYr"/>
-                                                    <segue destination="V5C-Hg-1ZH" kind="show" id="v1G-cJ-uua"/>
+                                                    <segue destination="V5C-Hg-1ZH" kind="show" identifier="showMutallyLiked" id="v1G-cJ-uua"/>
                                                 </connections>
                                             </button>
                                         </subviews>
@@ -389,14 +383,13 @@
                         <barButtonItem key="rightBarButtonItem" title="matches" id="E6l-z4-NtF">
                             <connections>
                                 <action selector="matchesButton:" destination="NZU-Yv-iKK" id="YNb-hg-1Bj"/>
-                                <segue destination="u2O-ve-c33" kind="show" id="6DD-AL-UlN"/>
+                                <segue destination="u2O-ve-c33" kind="show" identifier="showMatches" id="6DD-AL-UlN"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
                     <connections>
                         <outlet property="editButton" destination="ofN-AE-m8j" id="lsy-25-TEB"/>
                         <outlet property="matchesButton" destination="E6l-z4-NtF" id="s5l-TT-0FM"/>
-                        <outlet property="mediaButton" destination="KDl-37-Ri3" id="DEg-lF-Rj7"/>
                         <outlet property="messageButton" destination="FOK-Xc-Wg1" id="dwP-dg-t2Q"/>
                         <outlet property="nameLabel" destination="Sxt-wL-SrF" id="Iso-U2-rW0"/>
                         <outlet property="profileView" destination="SwA-h4-0Zk" id="hAF-MJ-1Ps"/>
@@ -407,10 +400,10 @@
             </objects>
             <point key="canvasLocation" x="3748" y="-61"/>
         </scene>
-        <!--Matches Collection View Controller-->
+        <!--Match Users Collection View Controller-->
         <scene sceneID="QGj-iU-vLu">
             <objects>
-                <collectionViewController id="u2O-ve-c33" customClass="MatchesCollectionViewController" customModule="AwkDate" customModuleProvider="target" sceneMemberID="viewController">
+                <collectionViewController id="u2O-ve-c33" customClass="MatchUsersCollectionViewController" customModule="AwkDate" customModuleProvider="target" sceneMemberID="viewController">
                     <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" id="hIR-yG-rMJ">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -523,10 +516,10 @@
             </objects>
             <point key="canvasLocation" x="5136.8000000000002" y="-324.38423645320199"/>
         </scene>
-        <!--Liked Collection View Controller-->
+        <!--Mutually Liked Collection View Controller-->
         <scene sceneID="lvg-ar-hpf">
             <objects>
-                <collectionViewController id="V5C-Hg-1ZH" customClass="LikedCollectionViewController" customModule="AwkDate" customModuleProvider="target" sceneMemberID="viewController">
+                <collectionViewController id="V5C-Hg-1ZH" customClass="MutuallyLikedCollectionViewController" customModule="AwkDate" customModuleProvider="target" sceneMemberID="viewController">
                     <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" id="cW7-LN-pKc">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -538,7 +531,7 @@
                             <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                         </collectionViewFlowLayout>
                         <cells>
-                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="LikedCell" id="eQm-rr-1Oh" customClass="LikedCollectionViewCell" customModule="AwkDate" customModuleProvider="target">
+                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="MutualCell" id="eQm-rr-1Oh" customClass="LikedCollectionViewCell" customModule="AwkDate" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="692"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO">
@@ -649,9 +642,6 @@
                                         </imageView>
                                     </subviews>
                                 </tableViewCellContentView>
-                                <connections>
-                                    <segue destination="fSo-s2-8Ju" kind="show" identifier="toMessage" id="5au-ed-esm"/>
-                                </connections>
                             </tableViewCell>
                         </prototypes>
                         <connections>
@@ -679,60 +669,6 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Wt3-Da-c2j" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="3559" y="779"/>
-        </scene>
-        <!--media-->
-        <scene sceneID="bAf-Zs-etD">
-            <objects>
-                <collectionViewController id="g8K-Xs-6ff" customClass="MediaCollectionViewController" customModule="AwkDate" customModuleProvider="target" sceneMemberID="viewController">
-                    <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" id="vpI-tF-p3f">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="9Is-1E-qJ7">
-                            <size key="itemSize" width="413" height="760"/>
-                            <size key="headerReferenceSize" width="0.0" height="0.0"/>
-                            <size key="footerReferenceSize" width="0.0" height="0.0"/>
-                            <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
-                        </collectionViewFlowLayout>
-                        <cells>
-                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="MediaCell" id="KlU-Tf-pNK">
-                                <rect key="frame" x="-19" y="0.0" width="413" height="760"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO">
-                                    <rect key="frame" x="0.0" y="0.0" width="413" height="760"/>
-                                    <autoresizingMask key="autoresizingMask"/>
-                                    <subviews>
-                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="cjT-FJ-Yt8">
-                                            <rect key="frame" x="0.0" y="0.0" width="126" height="128"/>
-                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                            <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                        </imageView>
-                                    </subviews>
-                                </view>
-                                <connections>
-                                    <outlet property="mediaVew" destination="cjT-FJ-Yt8" id="6sa-7e-kky"/>
-                                </connections>
-                            </collectionViewCell>
-                        </cells>
-                        <connections>
-                            <outlet property="dataSource" destination="g8K-Xs-6ff" id="LgF-VU-1Ua"/>
-                            <outlet property="delegate" destination="g8K-Xs-6ff" id="ces-gL-yya"/>
-                        </connections>
-                    </collectionView>
-                    <navigationItem key="navigationItem" title="media" id="Bjk-xP-Ndv">
-                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="6Ea-hV-Ge0">
-                            <connections>
-                                <action selector="addButton:" destination="g8K-Xs-6ff" id="LSm-07-Gcj"/>
-                            </connections>
-                        </barButtonItem>
-                    </navigationItem>
-                    <connections>
-                        <outlet property="addButton" destination="6Ea-hV-Ge0" id="Dfc-9z-5xt"/>
-                    </connections>
-                </collectionViewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="ufd-73-y21" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="4298" y="1068"/>
         </scene>
         <!--settings-->
         <scene sceneID="r6N-SJ-qdq">
@@ -835,13 +771,13 @@
                                                 <rect key="frame" x="0.0" y="64.333333333333314" width="295" height="30"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="maximum distance" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="j1K-31-I0m">
-                                                        <rect key="frame" x="0.0" y="0.0" width="123.66666666666667" height="30"/>
+                                                        <rect key="frame" x="0.0" y="0.0" width="119.66666666666667" height="30"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                         <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.5" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="wU1-zs-vUk">
-                                                        <rect key="frame" x="131.66666666666663" y="0.0" width="165.33333333333337" height="31"/>
+                                                        <rect key="frame" x="127.66666666666663" y="0.0" width="169.33333333333337" height="31"/>
                                                     </slider>
                                                 </subviews>
                                             </stackView>
@@ -1233,15 +1169,51 @@
                                                     <constraint firstAttribute="height" constant="200" id="mp1-bS-5hl"/>
                                                 </constraints>
                                                 <prototypes>
-                                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="LookingForCell" id="ti5-cr-lU5" customClass="LookingForTableViewCell" customModule="AwkDate" customModuleProvider="target">
-                                                        <rect key="frame" x="0.0" y="28" width="335" height="44"/>
+                                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="LookingForCell" rowHeight="61" id="ti5-cr-lU5" customClass="LookingForTableViewCell" customModule="AwkDate" customModuleProvider="target">
+                                                        <rect key="frame" x="0.0" y="28" width="335" height="61"/>
                                                         <autoresizingMask key="autoresizingMask"/>
                                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="ti5-cr-lU5" id="aNb-x3-dBM">
-                                                            <rect key="frame" x="0.0" y="0.0" width="335" height="43.666666666666664"/>
+                                                            <rect key="frame" x="0.0" y="0.0" width="335" height="60.666666666666664"/>
                                                             <autoresizingMask key="autoresizingMask"/>
+                                                            <subviews>
+                                                                <stackView opaque="NO" contentMode="scaleToFill" ambiguous="YES" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="QhB-Vm-9RU">
+                                                                    <rect key="frame" x="16" y="15" width="303" height="30"/>
+                                                                    <subviews>
+                                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2vk-8r-6pa">
+                                                                            <rect key="frame" x="0.0" y="0.0" width="263" height="30"/>
+                                                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                                            <nil key="textColor"/>
+                                                                            <nil key="highlightedColor"/>
+                                                                        </label>
+                                                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="88O-ft-2Ag">
+                                                                            <rect key="frame" x="273" y="0.0" width="30" height="30"/>
+                                                                            <constraints>
+                                                                                <constraint firstAttribute="width" constant="30" id="HIj-Zw-wVT"/>
+                                                                                <constraint firstAttribute="height" constant="30" id="vvs-P8-f4E"/>
+                                                                            </constraints>
+                                                                            <state key="normal" image="emptyCheck"/>
+                                                                            <connections>
+                                                                                <action selector="buttonTapped:" destination="ti5-cr-lU5" eventType="touchUpInside" id="nbd-2c-CSu"/>
+                                                                            </connections>
+                                                                        </button>
+                                                                    </subviews>
+                                                                </stackView>
+                                                            </subviews>
+                                                            <constraints>
+                                                                <constraint firstAttribute="trailingMargin" secondItem="QhB-Vm-9RU" secondAttribute="trailing" constant="8" id="b4B-H1-c82"/>
+                                                                <constraint firstItem="QhB-Vm-9RU" firstAttribute="leading" secondItem="aNb-x3-dBM" secondAttribute="leadingMargin" constant="8" id="bXt-ZO-VxT"/>
+                                                            </constraints>
                                                         </tableViewCellContentView>
+                                                        <connections>
+                                                            <outlet property="lookingForLabel" destination="2vk-8r-6pa" id="KNA-uW-uVZ"/>
+                                                            <outlet property="uncheckButton" destination="88O-ft-2Ag" id="ZoF-1u-YxX"/>
+                                                        </connections>
                                                     </tableViewCell>
                                                 </prototypes>
+                                                <connections>
+                                                    <outlet property="dataSource" destination="kmG-yk-po1" id="vq2-Zv-Yts"/>
+                                                    <outlet property="delegate" destination="kmG-yk-po1" id="j5b-H3-D5s"/>
+                                                </connections>
                                             </tableView>
                                         </subviews>
                                     </stackView>
@@ -1285,6 +1257,8 @@
                         <outlet property="addButton" destination="yhc-r4-2r1" id="MQg-9o-SoL"/>
                         <outlet property="conditionLabel" destination="TWX-1D-aMA" id="epv-LU-vMF"/>
                         <outlet property="conditionsTableView" destination="8Ar-3x-t1X" id="2g6-Gc-nTo"/>
+                        <outlet property="lookingForLabel" destination="9Tv-VU-Czw" id="cVY-69-CfL"/>
+                        <outlet property="lookingTableView" destination="Mia-0M-vWC" id="Koa-ta-QkR"/>
                         <outlet property="photoView" destination="tbF-r1-oND" id="fbk-yE-Ppw"/>
                         <outlet property="saveButton" destination="E9z-Bz-S0f" id="0Pf-gF-rEW"/>
                         <segue destination="NZU-Yv-iKK" kind="show" identifier="profile" id="zJM-WX-1cQ"/>
@@ -1292,7 +1266,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ila-FW-Z5b" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3079.7101449275365" y="-60.267857142857139"/>
+            <point key="canvasLocation" x="3079.1999999999998" y="-60.591133004926114"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="8my-Ga-JeW">

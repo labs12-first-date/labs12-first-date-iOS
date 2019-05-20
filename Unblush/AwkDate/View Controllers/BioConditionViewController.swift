@@ -6,6 +6,7 @@
 //  Copyright © 2019 JS. All rights reserved.
 //
 
+/*
 import UIKit
 
 class BioConditionViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
@@ -170,7 +171,7 @@ class BioConditionViewController: UIViewController, UITableViewDataSource, UITab
     }
 }
 
-extension BioConditionViewController {
+/*extension BioConditionViewController {
     
     func removeActivityIndicator(activityIndicator: UIActivityIndicatorView)
     {
@@ -181,4 +182,5 @@ extension BioConditionViewController {
         }
     }
     
-}
+}*/
+*/

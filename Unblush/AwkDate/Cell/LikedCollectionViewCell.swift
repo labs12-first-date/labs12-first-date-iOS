@@ -11,8 +11,9 @@ import UIKit
 class LikedCollectionViewCell: UICollectionViewCell {
     
     //MARK: - Properties
-    var profile: Profile?
+    var profile: [String:Any]?
     var photo: UIImage?
+    var userController: User2Controller?
     
     //MARK: - Outlets
     @IBOutlet weak var chatButton: UIButton!
@@ -28,7 +29,7 @@ class LikedCollectionViewCell: UICollectionViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         setTheme()
-        updateViews()
+        //updateViews()
     }
     
     func setTheme() {
@@ -36,12 +37,12 @@ class LikedCollectionViewCell: UICollectionViewCell {
         
     }
     
-    func updateViews() {
+   /* func updateViews() {
         guard let photo = photo else { return }
         photoView.image = photo
         nameLabel.text = profile?.firstName
         ageLabel.text = "\(profile?.age))"
         locationLabel.text = "\(profile?.zipcode)"
         bioLabel.text = profile?.biography
-    }
+    }*/
 }

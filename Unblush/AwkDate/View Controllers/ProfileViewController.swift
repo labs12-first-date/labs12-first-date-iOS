@@ -7,6 +7,9 @@
 //
 
 import UIKit
+import FirebaseAuth
+import FirebaseFirestore
+import Firebase
 
 class ProfileViewController: UIViewController {
     
@@ -15,7 +18,16 @@ class ProfileViewController: UIViewController {
     var currentUserUID: String?
     var profile: Profile?
     
+    // Messaging
+    var chattingUserUID: String?
     
+    // Matches
+    var currentUser: User?
+    var age: Int?
+    var zipcode: Int?
+    var gender: GenderType?
+    var lookingFor = [LookingForType]()
+    var userCondition = [ConditionType]()
     
     //MARK: - Outlets
     @IBOutlet weak var notLikeButton: UIButton!
@@ -35,7 +47,7 @@ class ProfileViewController: UIViewController {
    
     @IBOutlet weak var messageButton: UIButton!
     @IBAction func messageButton(_ sender: Any) {
-        performSegue(withIdentifier: "messages", sender: self)
+        performSegue(withIdentifier: "toThreads", sender: self)
 
     }
     @IBOutlet weak var mediaButton: UIButton!
@@ -80,6 +92,40 @@ class ProfileViewController: UIViewController {
                 self.currentUserFirstName = (self.user2Controller?.singleProfileFromServer["first_name"] as! String)
                 self.photo = photoData
                 
+                
+                // Properties for Matches
+                AppSettings.displayName = self.currentUserFirstName!
+                self.currentUser = self.user2Controller!.serverCurrentUser!
+                
+                let ageString = self.user2Controller!.singleProfileFromServer["age"] as! String
+                self.age = Int(ageString)!
+                
+                let zipString = self.user2Controller!.singleProfileFromServer["zip_code"] as! String
+                self.zipcode = Int(zipString)!
+                
+                let genderString = self.user2Controller!.singleProfileFromServer["gender"] as! String
+                self.gender = GenderType(rawValue: genderString)!
+                
+                let lookingStringArray = self.user2Controller!.singleProfileFromServer["looking_for"] as! [String]
+                
+                for look in lookingStringArray {
+                    self.lookingFor.append(LookingForType(rawValue: look)!)
+                }
+                
+                
+                let conditionStringArray = self.user2Controller!.singleProfileFromServer["condition"] as! [String]
+                
+                for cond in conditionStringArray {
+                    self.userCondition.append(ConditionType(rawValue: cond)!)
+                }
+                
+            
+                print("User in profile vc: \(self.currentUser!.uid)")
+                
+
+                self.chattingUserUID = "qSQ3rFkLvAY976huM75w3E5ex0i2"
+                
+                
                 DispatchQueue.main.async {
                     self.updateViews()
                 }
@@ -108,5 +154,34 @@ class ProfileViewController: UIViewController {
     }
     
     
-    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "showMatches" {
+            guard let vc = segue.destination as? MatchUsersCollectionViewController else { return }
+            
+            vc.currentUser = self.currentUser
+            vc.userController = self.user2Controller
+            vc.age = self.age
+            vc.gender = self.gender
+            vc.zipcode = self.zipcode
+            vc.lookingFor = self.lookingFor
+            vc.userCondition = self.userCondition
+            
+        }
+        if segue.identifier == "showMutallyLiked" {
+            guard let vc = segue.destination as? MutuallyLikedCollectionViewController else { return }
+            
+            //vc.init(currentUser: self.currentUser)
+            //(currentUser: self.currentUser)
+            // vc.currentUser = self.currentUser
+            vc.userController = self.user2Controller
+            
+            //vc.chattingUserUID = self.chattingUserUID
+        }
+        if segue.identifier == "toThreads" {
+            guard let vc = segue.destination as? MessageThreadsTableViewController else { return }
+            
+            vc.currentUser = self.currentUser
+            vc.chattingUserUID = self.chattingUserUID
+        }
+    }
 }
