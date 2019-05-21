@@ -15,6 +15,7 @@ extension UITextField {
         self.leftView = paddingView
         self.leftViewMode = .always
         //self.layer.backgroundColor = UIColor.violet.cgColor
+        self.keyboardAppearance = .dark
 
     }
 }
