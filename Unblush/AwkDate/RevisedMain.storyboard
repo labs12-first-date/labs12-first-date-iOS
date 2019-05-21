@@ -285,62 +285,74 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="A6p-Nn-UWa">
-                                <rect key="frame" x="20" y="128" width="335" height="419"/>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="18" translatesAutoresizingMaskIntoConstraints="NO" id="VPv-uj-fLA">
+                                <rect key="frame" x="100" y="138" width="160" height="214"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="name" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Sxt-wL-SrF">
-                                        <rect key="frame" x="0.0" y="0.0" width="335" height="36"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="160" height="36"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="30"/>
                                         <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="SwA-h4-0Zk">
-                                        <rect key="frame" x="0.0" y="46" width="335" height="335"/>
+                                        <rect key="frame" x="0.0" y="54" width="160" height="160"/>
                                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
                                             <constraint firstAttribute="width" secondItem="SwA-h4-0Zk" secondAttribute="height" multiplier="1:1" id="POs-49-jsm"/>
                                         </constraints>
                                     </imageView>
-                                    <stackView opaque="NO" contentMode="scaleToFill" distribution="fillProportionally" alignment="center" spacing="15" translatesAutoresizingMaskIntoConstraints="NO" id="KO5-84-aed">
-                                        <rect key="frame" x="0.0" y="391" width="335" height="28"/>
-                                        <subviews>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FOK-Xc-Wg1">
-                                                <rect key="frame" x="0.0" y="0.0" width="120.33333333333333" height="28"/>
-                                                <fontDescription key="fontDescription" type="system" pointSize="13"/>
-                                                <state key="normal" title="messages"/>
-                                                <connections>
-                                                    <action selector="messageButton:" destination="NZU-Yv-iKK" eventType="touchUpInside" id="f5d-AE-DjX"/>
-                                                    <segue destination="64e-Fx-fDb" kind="show" identifier="toThreads" id="xTt-cY-N9g"/>
-                                                </connections>
-                                            </button>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fqU-uL-rMK">
-                                                <rect key="frame" x="135.33333333333334" y="0.0" width="96.333333333333343" height="28"/>
-                                                <fontDescription key="fontDescription" type="system" pointSize="13"/>
-                                                <state key="normal" title="settings"/>
-                                                <connections>
-                                                    <action selector="settingsButton:" destination="NZU-Yv-iKK" eventType="touchUpInside" id="sGg-ic-hR4"/>
-                                                    <segue destination="CgO-Yp-CKy" kind="show" identifier="settings" id="ZKQ-R1-heM"/>
-                                                </connections>
-                                            </button>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ofN-AE-m8j">
-                                                <rect key="frame" x="246.66666666666671" y="0.0" width="88.333333333333343" height="28"/>
-                                                <fontDescription key="fontDescription" type="system" pointSize="13"/>
-                                                <state key="normal" title="liked"/>
-                                                <connections>
-                                                    <action selector="editButton:" destination="NZU-Yv-iKK" eventType="touchUpInside" id="3sQ-DO-iYr"/>
-                                                    <segue destination="V5C-Hg-1ZH" kind="show" identifier="showMutallyLiked" id="v1G-cJ-uua"/>
-                                                </connections>
-                                            </button>
-                                        </subviews>
-                                    </stackView>
+                                </subviews>
+                            </stackView>
+                            <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" alignment="center" spacing="50" translatesAutoresizingMaskIntoConstraints="NO" id="KO5-84-aed">
+                                <rect key="frame" x="70" y="392" width="220" height="40"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FOK-Xc-Wg1">
+                                        <rect key="frame" x="0.0" y="0.0" width="40" height="40"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="40" id="C4z-9x-AcH"/>
+                                            <constraint firstAttribute="width" constant="40" id="EB3-YD-kej"/>
+                                        </constraints>
+                                        <state key="normal" title="messages" image="messages"/>
+                                        <connections>
+                                            <action selector="messageButton:" destination="NZU-Yv-iKK" eventType="touchUpInside" id="f5d-AE-DjX"/>
+                                            <segue destination="64e-Fx-fDb" kind="show" identifier="toThreads" id="xTt-cY-N9g"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fqU-uL-rMK">
+                                        <rect key="frame" x="89.999999999999986" y="0.0" width="40.000000000000014" height="40"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="40" id="HCi-nu-ipH"/>
+                                            <constraint firstAttribute="height" constant="40" id="fL3-Ty-ega"/>
+                                        </constraints>
+                                        <state key="normal" title="settings" image="settings"/>
+                                        <connections>
+                                            <action selector="settingsButton:" destination="NZU-Yv-iKK" eventType="touchUpInside" id="sGg-ic-hR4"/>
+                                            <segue destination="CgO-Yp-CKy" kind="show" identifier="settings" id="ZKQ-R1-heM"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ofN-AE-m8j">
+                                        <rect key="frame" x="180" y="0.0" width="40" height="40"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="40" id="MWU-ON-y9f"/>
+                                            <constraint firstAttribute="width" constant="40" id="yL4-d4-EC5"/>
+                                        </constraints>
+                                        <state key="normal" title="liked" image="liked"/>
+                                        <connections>
+                                            <action selector="editButton:" destination="NZU-Yv-iKK" eventType="touchUpInside" id="3sQ-DO-iYr"/>
+                                            <segue destination="V5C-Hg-1ZH" kind="show" identifier="showMutallyLiked" id="v1G-cJ-uua"/>
+                                        </connections>
+                                    </button>
                                 </subviews>
                             </stackView>
                         </subviews>
                         <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="A6p-Nn-UWa" firstAttribute="top" secondItem="dAi-fC-XnI" secondAttribute="top" constant="40" id="Aky-xB-dTQ"/>
-                            <constraint firstItem="dAi-fC-XnI" firstAttribute="trailing" secondItem="A6p-Nn-UWa" secondAttribute="trailing" constant="20" id="NQB-HY-fOY"/>
-                            <constraint firstItem="A6p-Nn-UWa" firstAttribute="leading" secondItem="dAi-fC-XnI" secondAttribute="leading" constant="20" id="elp-xH-fXG"/>
+                            <constraint firstItem="dAi-fC-XnI" firstAttribute="trailing" secondItem="VPv-uj-fLA" secondAttribute="trailing" constant="100" id="I6a-19-tXf"/>
+                            <constraint firstItem="KO5-84-aed" firstAttribute="leading" secondItem="dAi-fC-XnI" secondAttribute="leading" constant="70" id="RHZ-fu-eDD"/>
+                            <constraint firstItem="VPv-uj-fLA" firstAttribute="top" secondItem="dAi-fC-XnI" secondAttribute="top" constant="50" id="cD1-4h-jn5"/>
+                            <constraint firstItem="KO5-84-aed" firstAttribute="top" secondItem="VPv-uj-fLA" secondAttribute="bottom" constant="40" id="dDZ-oG-QZu"/>
+                            <constraint firstItem="VPv-uj-fLA" firstAttribute="leading" secondItem="dAi-fC-XnI" secondAttribute="leading" constant="100" id="i4S-Q0-5eR"/>
+                            <constraint firstItem="dAi-fC-XnI" firstAttribute="trailing" secondItem="KO5-84-aed" secondAttribute="trailing" constant="70" id="jLe-pL-FzF"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="dAi-fC-XnI"/>
                     </view>
@@ -507,15 +519,19 @@
                                             <rect key="frame" x="48" y="43" width="280" height="398"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             <subviews>
-                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Vsd-o8-kZh">
-                                                    <rect key="frame" x="132" y="0.0" width="31" height="30"/>
-                                                    <state key="normal" title="chat"/>
+                                                <button opaque="NO" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Vsd-o8-kZh">
+                                                    <rect key="frame" x="127.66666666666669" y="0.0" width="40" height="40"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="40" id="aPN-mh-WRS"/>
+                                                        <constraint firstAttribute="height" constant="40" id="rsV-HJ-w9a"/>
+                                                    </constraints>
+                                                    <state key="normal" title="chat" image="chat"/>
                                                     <connections>
                                                         <action selector="chatButton:" destination="eQm-rr-1Oh" eventType="touchUpInside" id="Wpa-Ew-4Qb"/>
                                                     </connections>
                                                 </button>
                                                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="DA4-4q-j9L">
-                                                    <rect key="frame" x="0.0" y="45" width="295" height="300"/>
+                                                    <rect key="frame" x="0.0" y="55" width="295" height="300"/>
                                                     <subviews>
                                                         <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="xd2-11-SN0">
                                                             <rect key="frame" x="0.0" y="0.0" width="295" height="300"/>
@@ -526,7 +542,7 @@
                                                     </subviews>
                                                 </stackView>
                                                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="4" translatesAutoresizingMaskIntoConstraints="NO" id="Rfb-bH-xZ2">
-                                                    <rect key="frame" x="117.33333333333333" y="360" width="60.666666666666671" height="93.333333333333314"/>
+                                                    <rect key="frame" x="117.33333333333333" y="370" width="60.666666666666671" height="93.333333333333314"/>
                                                     <subviews>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="name" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vO0-Gt-1l0">
                                                             <rect key="frame" x="9" y="0.0" width="42.333333333333336" height="20.333333333333332"/>
@@ -1318,7 +1334,11 @@
     </scenes>
     <resources>
         <image name="Image" width="980" height="980"/>
+        <image name="chat" width="374" height="372"/>
         <image name="emptyCheck" width="512" height="512"/>
+        <image name="liked" width="225" height="197"/>
+        <image name="messages" width="320" height="321"/>
+        <image name="settings" width="273" height="273"/>
         <image name="unblushLogo" width="796" height="838"/>
         <image name="unblushLogoType" width="984" height="195"/>
     </resources>
