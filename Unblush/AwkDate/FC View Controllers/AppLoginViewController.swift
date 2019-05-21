@@ -14,6 +14,10 @@ class AppLoginViewController: UIViewController {
     let user2Controller = User2Controller()
     var currentUserUID: String?
     
+    override var preferredStatusBarStyle: UIStatusBarStyle {
+        return .lightContent
+    }
+    
     //MARK: - Outlets
     @IBOutlet weak var emailLabel: UILabel!
     @IBOutlet weak var emailTextField: UITextField!
@@ -63,6 +67,8 @@ class AppLoginViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setTheme()
+        setNeedsStatusBarAppearanceUpdate()
+
     }
     
     func setTheme() {

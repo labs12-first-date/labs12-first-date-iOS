@@ -28,9 +28,13 @@ class MatchUsersCollectionViewController: UICollectionViewController {
     
     var filteredProfiles: [[String:Any]] = []
     
+    override var preferredStatusBarStyle: UIStatusBarStyle {
+        return .lightContent
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        setNeedsStatusBarAppearanceUpdate()
         // Register cell classes
         /* self.collectionView!.register(UICollectionViewCell.self, forCellWithReuseIdentifier: reuseIdentifier) */
         

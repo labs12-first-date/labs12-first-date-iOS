@@ -29,6 +29,10 @@ class ProfileViewController: UIViewController {
     var lookingFor = [LookingForType]()
     var userCondition = [ConditionType]()
     
+    override var preferredStatusBarStyle: UIStatusBarStyle {
+        return .lightContent
+    }
+    
     //MARK: - Outlets
     @IBOutlet weak var notLikeButton: UIButton!
     @IBAction func notLikeButton(_ sender: Any) {
@@ -79,6 +83,8 @@ class ProfileViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        setNeedsStatusBarAppearanceUpdate()
+
         
         if self.photo == nil {
             user2Controller?.fetchProfileFromServer(userID: currentUserUID!, completion: { (error) in

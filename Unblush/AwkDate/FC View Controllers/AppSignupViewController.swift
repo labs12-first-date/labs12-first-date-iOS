@@ -15,6 +15,10 @@ class AppSignupViewController: UIViewController {
     var currentUserUID: String?
     var email: String?
     
+    override var preferredStatusBarStyle: UIStatusBarStyle {
+        return .lightContent
+    }
+    
     //MARK: - Outlets
     @IBOutlet weak var emailLabel: UILabel!
     @IBOutlet weak var emailTextField: UITextField!
@@ -73,6 +77,8 @@ class AppSignupViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setTheme()
+        setNeedsStatusBarAppearanceUpdate()
+
     }
     
     func setTheme() {
