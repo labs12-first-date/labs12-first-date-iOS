@@ -1093,10 +1093,10 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="9" translatesAutoresizingMaskIntoConstraints="NO" id="M8W-xk-tEH">
-                                <rect key="frame" x="20" y="108" width="335" height="708.33333333333337"/>
+                                <rect key="frame" x="20" y="108" width="335" height="608.33333333333337"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="0d2-lQ-Otv" userLabel="conditions Table View">
-                                        <rect key="frame" x="0.0" y="0.0" width="335" height="220"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="335" height="170"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="751" text="Condition" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TWX-1D-aMA">
                                                 <rect key="frame" x="0.0" y="0.0" width="335" height="20.333333333333332"/>
@@ -1105,7 +1105,7 @@
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="8Ar-3x-t1X">
-                                                <rect key="frame" x="0.0" y="20.333333333333343" width="335" height="199.66666666666666"/>
+                                                <rect key="frame" x="0.0" y="20.333333333333343" width="335" height="149.66666666666666"/>
                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <prototypes>
                                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="conditionCell" rowHeight="50" id="wkL-BZ-iQW" customClass="CondTableViewCell" customModule="AwkDate" customModuleProvider="target">
@@ -1130,6 +1130,7 @@
                                                                                 <constraint firstAttribute="width" constant="30" id="H1M-Sz-jQM"/>
                                                                                 <constraint firstAttribute="height" constant="30" id="uz5-bc-ScW"/>
                                                                             </constraints>
+                                                                            <color key="tintColor" red="0.61000312410000002" green="0.2065402599" blue="0.61403011659999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                             <state key="normal" image="emptyCheck"/>
                                                                             <connections>
                                                                                 <action selector="checkMarkTapped:" destination="wkL-BZ-iQW" eventType="touchUpInside" id="fhe-TO-anv"/>
@@ -1157,11 +1158,11 @@
                                             </tableView>
                                         </subviews>
                                         <constraints>
-                                            <constraint firstAttribute="height" constant="220" id="YGd-DD-dDm"/>
+                                            <constraint firstAttribute="height" constant="170" id="YGd-DD-dDm"/>
                                         </constraints>
                                     </stackView>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="7Zf-sX-CuJ">
-                                        <rect key="frame" x="0.0" y="229" width="335" height="240.33333333333337"/>
+                                        <rect key="frame" x="0.0" y="179" width="335" height="190.33333333333337"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Looking for" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9Tv-VU-Czw">
                                                 <rect key="frame" x="0.0" y="0.0" width="335" height="20.333333333333332"/>
@@ -1170,10 +1171,10 @@
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Mia-0M-vWC">
-                                                <rect key="frame" x="0.0" y="20.333333333333314" width="335" height="220"/>
+                                                <rect key="frame" x="0.0" y="20.333333333333314" width="335" height="170"/>
                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <constraints>
-                                                    <constraint firstAttribute="height" constant="220" id="mp1-bS-5hl"/>
+                                                    <constraint firstAttribute="height" constant="170" id="mp1-bS-5hl"/>
                                                 </constraints>
                                                 <prototypes>
                                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="LookingForCell" rowHeight="50" id="ti5-cr-lU5" customClass="LookingForTableViewCell" customModule="AwkDate" customModuleProvider="target">
@@ -1198,6 +1199,7 @@
                                                                                 <constraint firstAttribute="width" constant="30" id="HIj-Zw-wVT"/>
                                                                                 <constraint firstAttribute="height" constant="30" id="vvs-P8-f4E"/>
                                                                             </constraints>
+                                                                            <color key="tintColor" red="0.61000312410000002" green="0.2065402599" blue="0.61403011659999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                             <state key="normal" image="emptyCheck"/>
                                                                             <connections>
                                                                                 <action selector="buttonTapped:" destination="ti5-cr-lU5" eventType="touchUpInside" id="nbd-2c-CSu"/>
@@ -1226,7 +1228,7 @@
                                         </subviews>
                                     </stackView>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="HCk-I1-D4c" userLabel="image">
-                                        <rect key="frame" x="0.0" y="478.33333333333337" width="335" height="230"/>
+                                        <rect key="frame" x="0.0" y="378.33333333333331" width="335" height="229.99999999999994"/>
                                         <subviews>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yhc-r4-2r1">
                                                 <rect key="frame" x="0.0" y="0.0" width="335" height="30"/>
@@ -1236,7 +1238,7 @@
                                                 </connections>
                                             </button>
                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="tbF-r1-oND">
-                                                <rect key="frame" x="0.0" y="30" width="335" height="200"/>
+                                                <rect key="frame" x="0.0" y="30.000000000000057" width="335" height="200"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="200" id="IWK-I2-xdx"/>
                                                 </constraints>
