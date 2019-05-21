@@ -12,12 +12,16 @@ class CondTableViewCell: UITableViewCell {
 
     var condition: ConditionType? {
         didSet {
-            
+            updateViews()
         }
     }
     
     func updateViews() {
         guard let condition = condition else { return }
+        
+        conditionNameLabel.textColor = .grape
+        conditionNameLabel.font = AppearanceHelper.lightFont(with: .body, pointSize: 15)
+        checkMarkButton.tintColor = .grape
         
     }
     
@@ -50,3 +54,4 @@ class CondTableViewCell: UITableViewCell {
     
     
 }
+var conditionsFromTableView: [String] = []

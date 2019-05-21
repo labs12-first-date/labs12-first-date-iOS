@@ -39,7 +39,7 @@ enum AppearanceHelper {
         //UITextView.appearance().tintColor = .none
         
         
-        UINavigationBar.appearance().largeTitleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.grape, NSAttributedString.Key.font: UIFont(name: "Helvetica Neue", size: 30)!]
+        UINavigationBar.appearance().largeTitleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.grape, NSAttributedString.Key.font: UIFont(name: "HelveticaNeue-Light", size: 30)!]
         
         //bar button item
         UIBarButtonItem.appearance().tintColor = .grape

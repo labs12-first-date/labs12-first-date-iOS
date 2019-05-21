@@ -148,6 +148,20 @@ class UserInfoViewController: UIViewController {
         zipTextField.textColor = .grape
         bioTextField.textColor = .grape
         
+        firstNameLabel.textColor = .grass
+        lastNameLabel.textColor = .grass
+        genderLabel.textColor = .grass
+        dateOfBirthLabel.textColor = .grass
+        zipLabel.textColor = .grass
+        bioLabel.textColor = .grass
+        
+        firstNameLabel.font = AppearanceHelper.lightFont(with: .body, pointSize: 16)
+        lastNameLabel.font = AppearanceHelper.lightFont(with: .body, pointSize: 16)
+        genderLabel.font = AppearanceHelper.lightFont(with: .body, pointSize: 16)
+        dateOfBirthLabel.font = AppearanceHelper.lightFont(with: .body, pointSize: 16)
+        zipLabel.font = AppearanceHelper.lightFont(with: .body, pointSize: 16)
+        bioLabel.font = AppearanceHelper.lightFont(with: .body, pointSize: 16)
+        
         headerView.backgroundColor = .violet
         
 

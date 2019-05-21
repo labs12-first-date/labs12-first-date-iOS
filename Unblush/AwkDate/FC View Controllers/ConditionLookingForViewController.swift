@@ -159,6 +159,13 @@ class ConditionLookingForViewController: UIViewController, UITableViewDataSource
             AppearanceHelper.style(button: addButton)
             conditionsTableView.separatorColor = .grape
             lookingTableView.separatorColor = .grape
+            
+            conditionLabel.textColor = .grass
+            lookingForLabel.textColor = .grass
+            
+            conditionLabel.font = AppearanceHelper.lightFont(with: .body, pointSize: 16)
+            lookingForLabel.font = AppearanceHelper.lightFont(with: .body, pointSize: 16)
+            
             view.backgroundColor = .violet
         }
         

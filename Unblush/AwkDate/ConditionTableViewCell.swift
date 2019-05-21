@@ -62,4 +62,4 @@ class ConditionTableViewCell: UITableViewCell {
 
 }
 
-var conditionsFromTableView: [String] = []
+//var conditionsFromTableView: [String] = []

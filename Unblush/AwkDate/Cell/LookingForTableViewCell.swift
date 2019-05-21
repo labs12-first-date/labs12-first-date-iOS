@@ -11,10 +11,18 @@ import UIKit
 class LookingForTableViewCell: UITableViewCell {
     
     //MARK: - Properties
-    var lookingFor: LookingForType?
+    var lookingFor: LookingForType? {
+        didSet {
+            updateViews()
+        }
+    }
     
     func updateViews() {
         guard let lookingFor = lookingFor else { return }
+        
+        lookingForLabel.textColor = .grape
+        lookingForLabel.font = AppearanceHelper.lightFont(with: .body, pointSize: 15)
+        uncheckButton.tintColor = .grape
     }
     
     //MARK: - Outlets
