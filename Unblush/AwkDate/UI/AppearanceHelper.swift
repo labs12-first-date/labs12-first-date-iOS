@@ -51,7 +51,7 @@ enum AppearanceHelper {
     }
     
     static func style(button: UIButton) {
-        button.titleLabel?.font = AppearanceHelper.mediumFont(with: .body, pointSize: 16)
+        button.titleLabel?.font = AppearanceHelper.lightFont(with: .body, pointSize: 16)
         button.titleLabel?.adjustsFontForContentSizeCategory = true
         
         button.setTitleColor(.grape, for: .normal)

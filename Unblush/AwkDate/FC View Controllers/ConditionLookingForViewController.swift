@@ -156,16 +156,20 @@ class ConditionLookingForViewController: UIViewController, UITableViewDataSource
         }
         
         func setTheme() {
-            AppearanceHelper.style(button: addButton)
+            //AppearanceHelper.style(button: addButton)
             conditionsTableView.separatorColor = .grape
             lookingTableView.separatorColor = .grape
             
             conditionLabel.textColor = .grass
             lookingForLabel.textColor = .grass
+            addButton.tintColor = .grass
+            addButton.titleLabel?.font = AppearanceHelper.lightFont(with: .body, pointSize: 16)
             
             conditionLabel.font = AppearanceHelper.lightFont(with: .body, pointSize: 16)
             lookingForLabel.font = AppearanceHelper.lightFont(with: .body, pointSize: 16)
             
+            conditionsTableView.backgroundColor = .clear
+            lookingTableView.backgroundColor = .clear
             view.backgroundColor = .violet
         }
         

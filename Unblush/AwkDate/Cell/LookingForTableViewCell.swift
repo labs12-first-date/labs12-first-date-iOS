@@ -22,7 +22,7 @@ class LookingForTableViewCell: UITableViewCell {
         
         lookingForLabel.textColor = .grape
         lookingForLabel.font = AppearanceHelper.lightFont(with: .body, pointSize: 15)
-        uncheckButton.tintColor = .grape
+        //uncheckButton.tintColor = .grape
     }
     
     //MARK: - Outlets

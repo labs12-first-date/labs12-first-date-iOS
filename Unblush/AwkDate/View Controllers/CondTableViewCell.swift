@@ -21,7 +21,7 @@ class CondTableViewCell: UITableViewCell {
         
         conditionNameLabel.textColor = .grape
         conditionNameLabel.font = AppearanceHelper.lightFont(with: .body, pointSize: 15)
-        checkMarkButton.tintColor = .grape
+        //checkMarkButton.tintColor = .grape
         
     }
     
