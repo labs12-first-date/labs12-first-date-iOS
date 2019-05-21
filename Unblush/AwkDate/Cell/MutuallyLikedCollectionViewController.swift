@@ -32,6 +32,22 @@ class MutuallyLikedCollectionViewController: UICollectionViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setNeedsStatusBarAppearanceUpdate()
+        //Create Activity Indicator
+        let myActivityIndicator = UIActivityIndicatorView(frame: CGRect(x: 100,y: 200, width: 200, height: 200))
+        myActivityIndicator.style = (UIActivityIndicatorView.Style.gray)
+        
+        // Position Activity Indicator in the center of the main view
+        myActivityIndicator.center = self.view.center
+        
+        // If needed, you can prevent Acivity Indicator from hiding when stopAnimating() is called
+        myActivityIndicator.hidesWhenStopped = false
+        
+        // Start Activity Indicator
+        myActivityIndicator.startAnimating()
+        
+        DispatchQueue.main.async {
+            self.view.addSubview(myActivityIndicator)
+        }
 
         let userLikedArray = userController!.singleProfileFromServer["liked"] as! [[String:Any]]
         
@@ -47,6 +63,7 @@ class MutuallyLikedCollectionViewController: UICollectionViewController {
                     self.mutallyLikedArray.append(self.userController!.compareProfileFromServer)
                     DispatchQueue.main.async {
                         self.collectionView.reloadData()
+                        self.removeActivityIndicator(activityIndicator: myActivityIndicator)
                     }
                 }
                 

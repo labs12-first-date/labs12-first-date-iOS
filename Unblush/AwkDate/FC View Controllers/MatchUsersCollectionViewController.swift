@@ -38,6 +38,23 @@ class MatchUsersCollectionViewController: UICollectionViewController {
         // Register cell classes
         /* self.collectionView!.register(UICollectionViewCell.self, forCellWithReuseIdentifier: reuseIdentifier) */
         
+        //Create Activity Indicator
+        let myActivityIndicator = UIActivityIndicatorView(frame: CGRect(x: 100,y: 200, width: 200, height: 200))
+        myActivityIndicator.style = (UIActivityIndicatorView.Style.gray)
+        
+        // Position Activity Indicator in the center of the main view
+        myActivityIndicator.center = self.view.center
+        
+        // If needed, you can prevent Acivity Indicator from hiding when stopAnimating() is called
+        myActivityIndicator.hidesWhenStopped = false
+        
+        // Start Activity Indicator
+        myActivityIndicator.startAnimating()
+        
+        DispatchQueue.main.async {
+            self.view.addSubview(myActivityIndicator)
+        }
+        
         let baseURLString = "https://www.zipcodeapi.com/rest/ZYgKxFyo4TVdKUMOEXE0pFFvDqhguLmD4MnHfqGDUJ1rkHq2pqCSMUZ8qtgwfuij/radius.json/\(zipcode!)/\(radius!)/mile"
         print("Base URL: \(baseURLString)")
         
@@ -61,6 +78,7 @@ class MatchUsersCollectionViewController: UICollectionViewController {
                     self.filteredProfiles = locationProfiles
                     DispatchQueue.main.async {
                         self.collectionView.reloadData()
+                        self.removeActivityIndicator(activityIndicator: myActivityIndicator)
                         print("Number of matches: \(self.filteredProfiles.count)")
                     }
                     return
@@ -89,6 +107,7 @@ class MatchUsersCollectionViewController: UICollectionViewController {
                         self.filteredProfiles = genderProfiles
                         DispatchQueue.main.async {
                             self.collectionView.reloadData()
+                            self.removeActivityIndicator(activityIndicator: myActivityIndicator)
                             print("Number of matches: \(self.filteredProfiles.count)")
                         }
                         return
@@ -96,6 +115,7 @@ class MatchUsersCollectionViewController: UICollectionViewController {
                     self.filteredProfiles = conditionProfiles
                     DispatchQueue.main.async {
                         self.collectionView.reloadData()
+                        self.removeActivityIndicator(activityIndicator: myActivityIndicator)
                         print("Number of matches: \(self.filteredProfiles.count)")
                     }
                     return
@@ -106,6 +126,7 @@ class MatchUsersCollectionViewController: UICollectionViewController {
                         self.filteredProfiles = genderProfiles
                         DispatchQueue.main.async {
                             self.collectionView.reloadData()
+                            self.removeActivityIndicator(activityIndicator: myActivityIndicator)
                             print("Number of matches: \(self.filteredProfiles.count)")
                         }
                         return
@@ -113,6 +134,7 @@ class MatchUsersCollectionViewController: UICollectionViewController {
                     self.filteredProfiles = ageProfiles
                     DispatchQueue.main.async {
                         self.collectionView.reloadData()
+                        self.removeActivityIndicator(activityIndicator: myActivityIndicator)
                         print("Number of matches: \(self.filteredProfiles.count)")
                     }
                     return
