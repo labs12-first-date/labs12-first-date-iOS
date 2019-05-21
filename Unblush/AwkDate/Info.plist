@@ -48,6 +48,14 @@
 		<string>UIInterfaceOrientationLandscapeLeft</string>
 		<string>UIInterfaceOrientationLandscapeRight</string>
 	</array>
+	<key>UIAppFonts</key>
+	<array>
+		<string>HelveticaNeueBold.ttf</string>
+		<string>HelveticaNeue-Medium.otf</string>
+		<string>HelveticaNeue-Light.otf</string>
+	</array>
+	<key>LSApplicationCategoryType</key>
+	<string></string>
 	<key>CFBundleShortVersionString</key>
 	<string>1.0</string>
 </dict>

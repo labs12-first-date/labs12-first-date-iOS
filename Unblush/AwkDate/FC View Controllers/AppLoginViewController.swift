@@ -75,6 +75,12 @@ class AppLoginViewController: UIViewController {
         emailTextField.setPadding()
         passwordTextField.setPadding()
         
+        emailLabel.textColor = .grass
+        passwordLabel.textColor = .grass
+        
+        emailLabel.font = AppearanceHelper.mediumFont(with: .body, pointSize: 16)
+        passwordLabel.font = AppearanceHelper.mediumFont(with: .body, pointSize: 16)
+
         emailTextField.textColor = .grape
         passwordTextField.textColor = .grape
         

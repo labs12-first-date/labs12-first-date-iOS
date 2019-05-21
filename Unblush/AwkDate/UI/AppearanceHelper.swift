@@ -12,17 +12,17 @@ enum AppearanceHelper {
     
     //allows for accomodating large type
     static func boldFont(with textStyle: UIFont.TextStyle, pointSize: CGFloat) -> UIFont {
-        guard let font = UIFont(name: "Helvetica Neue Bold", size: pointSize) else { fatalError("Font is nil. Check the name of the font.") }
+        guard let font = UIFont(name: "HelveticaNeueBold", size: pointSize) else { fatalError("Font is nil. Check the name of the font.") }
         return UIFontMetrics(forTextStyle: .caption1).scaledFont(for: font)
     }
     
     static func mediumFont(with textStyle: UIFont.TextStyle, pointSize: CGFloat) -> UIFont {
-        guard let font = UIFont(name: "Helvetica Neue", size: pointSize) else { fatalError("Font is nil. Check the name of the font.") }
+        guard let font = UIFont(name: "HelveticaNeue-Medium", size: pointSize) else { fatalError("Font is nil. Check the name of the font.") }
         return UIFontMetrics(forTextStyle: .body).scaledFont(for: font)
     }
     
     static func lightFont(with textStyle: UIFont.TextStyle, pointSize: CGFloat) -> UIFont {
-        guard let font = UIFont(name: "Helvetica Neue Light", size: pointSize) else { fatalError("Font is nil. Check the name of the font.") }
+        guard let font = UIFont(name: "HelveticaNeue-Light", size: pointSize) else { fatalError("Font is nil. Check the name of the font.") }
         return UIFontMetrics(forTextStyle: .body).scaledFont(for: font)
     }
     
@@ -46,8 +46,8 @@ enum AppearanceHelper {
         UIBarButtonItem.appearance().setTitleTextAttributes([NSAttributedString.Key.font : UIFont(name: "Helvetica Neue", size: 14)!, NSAttributedString.Key.foregroundColor : UIColor.grape], for: .normal)
         
         //labels
-        UILabel.appearance().textColor = .grass
-        UILabel.appearance().font = UIFont(name: "Helvetica Neue", size: 16)
+        //UILabel.appearance().textColor = .grass
+        //UILabel.appearance().font = UIFont(name: "Helvetica Neue", size: 16)
     }
     
     static func style(button: UIButton) {

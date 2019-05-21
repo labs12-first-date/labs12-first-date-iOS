@@ -21,6 +21,9 @@
 		485F5B1E22933FBC00927FA9 /* MatchesCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 485F5B1A22933FBC00927FA9 /* MatchesCollectionViewCell.swift */; };
 		485F5B202293413B00927FA9 /* Onboarding.swift in Sources */ = {isa = PBXBuildFile; fileRef = 485F5B1F2293413B00927FA9 /* Onboarding.swift */; };
 		486A0F45229370080047DF7A /* Launch Screen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 486A0F44229370080047DF7A /* Launch Screen.storyboard */; };
+		486A0F4822939A310047DF7A /* HelveticaNeue-Light.otf in Resources */ = {isa = PBXBuildFile; fileRef = 486A0F4722939A310047DF7A /* HelveticaNeue-Light.otf */; };
+		486A0F4A22939A450047DF7A /* HelveticaNeue-Medium.otf in Resources */ = {isa = PBXBuildFile; fileRef = 486A0F4922939A450047DF7A /* HelveticaNeue-Medium.otf */; };
+		486A0F4C22939A540047DF7A /* HelveticaNeueBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 486A0F4B22939A540047DF7A /* HelveticaNeueBold.ttf */; };
 		48840F402293162900BE3389 /* ColorConvenience.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48840F3F2293162900BE3389 /* ColorConvenience.swift */; };
 		48840F422293216700BE3389 /* RevisedMain.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 48840F412293216700BE3389 /* RevisedMain.storyboard */; };
 		4F15063D228E3F2C00C96D8B /* BogusMutuallyLikedCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F15063C228E3F2C00C96D8B /* BogusMutuallyLikedCollectionViewController.swift */; };
@@ -106,6 +109,9 @@
 		485F5B1A22933FBC00927FA9 /* MatchesCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MatchesCollectionViewCell.swift; sourceTree = "<group>"; };
 		485F5B1F2293413B00927FA9 /* Onboarding.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Onboarding.swift; sourceTree = "<group>"; };
 		486A0F44229370080047DF7A /* Launch Screen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = "Launch Screen.storyboard"; sourceTree = "<group>"; };
+		486A0F4722939A310047DF7A /* HelveticaNeue-Light.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "HelveticaNeue-Light.otf"; sourceTree = "<group>"; };
+		486A0F4922939A450047DF7A /* HelveticaNeue-Medium.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "HelveticaNeue-Medium.otf"; sourceTree = "<group>"; };
+		486A0F4B22939A540047DF7A /* HelveticaNeueBold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = HelveticaNeueBold.ttf; sourceTree = "<group>"; };
 		48840F3F2293162900BE3389 /* ColorConvenience.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorConvenience.swift; sourceTree = "<group>"; };
 		48840F412293216700BE3389 /* RevisedMain.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = RevisedMain.storyboard; path = ../RevisedMain.storyboard; sourceTree = "<group>"; };
 		4F15063C228E3F2C00C96D8B /* BogusMutuallyLikedCollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BogusMutuallyLikedCollectionViewController.swift; sourceTree = "<group>"; };
@@ -234,6 +240,16 @@
 			path = Storyboards;
 			sourceTree = "<group>";
 		};
+		486A0F4622939A010047DF7A /* Fonts */ = {
+			isa = PBXGroup;
+			children = (
+				486A0F4722939A310047DF7A /* HelveticaNeue-Light.otf */,
+				486A0F4922939A450047DF7A /* HelveticaNeue-Medium.otf */,
+				486A0F4B22939A540047DF7A /* HelveticaNeueBold.ttf */,
+			);
+			path = Fonts;
+			sourceTree = "<group>";
+		};
 		4F3C55CB22792A1E006307A9 = {
 			isa = PBXGroup;
 			children = (
@@ -259,6 +275,7 @@
 		4F3C55D622792A1E006307A9 /* AwkDate */ = {
 			isa = PBXGroup;
 			children = (
+				486A0F4622939A010047DF7A /* Fonts */,
 				486A0F4322936F3F0047DF7A /* Storyboards */,
 				485F5B1622933F7900927FA9 /* Cell */,
 				485F5B072293390C00927FA9 /* FC View Controllers */,
@@ -509,7 +526,10 @@
 				4FE8AE172285E41900975841 /* Assets.xcassets in Resources */,
 				4F3C55DD22792A1E006307A9 /* MainTest.storyboard in Resources */,
 				4F507C352285E56A00A60674 /* Storyboards in Resources */,
+				486A0F4822939A310047DF7A /* HelveticaNeue-Light.otf in Resources */,
+				486A0F4C22939A540047DF7A /* HelveticaNeueBold.ttf in Resources */,
 				48840F422293216700BE3389 /* RevisedMain.storyboard in Resources */,
+				486A0F4A22939A450047DF7A /* HelveticaNeue-Medium.otf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
