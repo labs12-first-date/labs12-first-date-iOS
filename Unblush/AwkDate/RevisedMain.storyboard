@@ -17,82 +17,27 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="unblushLogo" translatesAutoresizingMaskIntoConstraints="NO" id="4dF-7t-nAz">
-                                <rect key="frame" x="40" y="138" width="295" height="80"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="80" id="Jr1-OI-Jpt"/>
-                                </constraints>
-                            </imageView>
-                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="l6i-h9-jCM">
-                                <rect key="frame" x="0.0" y="258" width="375" height="400"/>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="27" translatesAutoresizingMaskIntoConstraints="NO" id="b53-8k-ruc">
+                                <rect key="frame" x="20" y="138" width="335" height="137"/>
                                 <subviews>
-                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="6F2-Dc-CUS">
-                                        <rect key="frame" x="0.0" y="0.0" width="375" height="350"/>
-                                        <subviews>
-                                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="1Ok-JI-mNf">
-                                                <rect key="frame" x="0.0" y="0.0" width="375" height="350"/>
-                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="10" minimumInteritemSpacing="10" id="L0N-8T-Cgm">
-                                                    <size key="itemSize" width="200" height="300"/>
-                                                    <size key="headerReferenceSize" width="0.0" height="0.0"/>
-                                                    <size key="footerReferenceSize" width="0.0" height="0.0"/>
-                                                    <inset key="sectionInset" minX="0.0" minY="0.0" maxX="20" maxY="0.0"/>
-                                                </collectionViewFlowLayout>
-                                                <cells>
-                                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="OnboardingCell" id="UET-IK-yhr" customClass="OnboardingCollectionViewCell" customModule="AwkDate" customModuleProvider="target">
-                                                        <rect key="frame" x="0.0" y="25" width="200" height="300"/>
-                                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                        <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO">
-                                                            <rect key="frame" x="0.0" y="0.0" width="200" height="300"/>
-                                                            <autoresizingMask key="autoresizingMask"/>
-                                                            <subviews>
-                                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ZOe-Ld-MB2">
-                                                                    <rect key="frame" x="0.0" y="0.0" width="200" height="300"/>
-                                                                    <subviews>
-                                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uwQ-by-dxa">
-                                                                            <rect key="frame" x="20" y="20" width="160" height="260"/>
-                                                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                                            <nil key="textColor"/>
-                                                                            <nil key="highlightedColor"/>
-                                                                        </label>
-                                                                    </subviews>
-                                                                    <color key="backgroundColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                                    <constraints>
-                                                                        <constraint firstItem="uwQ-by-dxa" firstAttribute="leading" secondItem="ZOe-Ld-MB2" secondAttribute="leading" constant="20" id="2KR-Ro-n6H"/>
-                                                                        <constraint firstAttribute="bottom" secondItem="uwQ-by-dxa" secondAttribute="bottom" constant="20" id="AjJ-K2-va2"/>
-                                                                        <constraint firstItem="uwQ-by-dxa" firstAttribute="top" secondItem="ZOe-Ld-MB2" secondAttribute="top" constant="20" id="O9h-Av-hEy"/>
-                                                                        <constraint firstAttribute="trailing" secondItem="uwQ-by-dxa" secondAttribute="trailing" constant="20" id="lYI-ME-GHh"/>
-                                                                    </constraints>
-                                                                </view>
-                                                            </subviews>
-                                                        </view>
-                                                        <constraints>
-                                                            <constraint firstItem="ZOe-Ld-MB2" firstAttribute="leading" secondItem="UET-IK-yhr" secondAttribute="leading" id="0WG-tU-opo"/>
-                                                            <constraint firstAttribute="bottom" secondItem="ZOe-Ld-MB2" secondAttribute="bottom" id="0a2-3o-klR"/>
-                                                            <constraint firstItem="ZOe-Ld-MB2" firstAttribute="top" secondItem="UET-IK-yhr" secondAttribute="top" id="3qv-9A-7mR"/>
-                                                            <constraint firstAttribute="trailing" secondItem="ZOe-Ld-MB2" secondAttribute="trailing" id="gCo-uV-EQA"/>
-                                                        </constraints>
-                                                        <connections>
-                                                            <outlet property="backgroundColorView" destination="ZOe-Ld-MB2" id="hMs-GN-IJg"/>
-                                                            <outlet property="titleLabel" destination="uwQ-by-dxa" id="tQQ-Ue-yUw"/>
-                                                        </connections>
-                                                    </collectionViewCell>
-                                                </cells>
-                                            </collectionView>
-                                        </subviews>
-                                    </stackView>
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="unblushLogo" translatesAutoresizingMaskIntoConstraints="NO" id="4dF-7t-nAz">
+                                        <rect key="frame" x="0.0" y="0.0" width="335" height="80"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="80" id="Jr1-OI-Jpt"/>
+                                        </constraints>
+                                    </imageView>
                                     <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" alignment="center" spacing="25" translatesAutoresizingMaskIntoConstraints="NO" id="qzp-G3-wTa" userLabel="buttons">
-                                        <rect key="frame" x="0.0" y="370" width="375" height="30"/>
+                                        <rect key="frame" x="105" y="107" width="125" height="30"/>
                                         <subviews>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="trailing" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DI0-en-8Ln">
-                                                <rect key="frame" x="0.0" y="0.0" width="175" height="30"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="50" height="30"/>
                                                 <state key="normal" title="log in"/>
                                                 <connections>
                                                     <action selector="loginButton:" destination="xTd-XU-ttU" eventType="touchUpInside" id="Ze2-6S-lxq"/>
                                                 </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dcp-AA-eSz">
-                                                <rect key="frame" x="200" y="0.0" width="175" height="30"/>
+                                                <rect key="frame" x="75" y="0.0" width="50" height="30"/>
                                                 <state key="normal" title="sign up"/>
                                                 <connections>
                                                     <action selector="signupButton:" destination="xTd-XU-ttU" eventType="touchUpInside" id="wWe-Bj-Oz9"/>
@@ -104,27 +49,40 @@
                                         </constraints>
                                     </stackView>
                                 </subviews>
+                            </stackView>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="0lj-XH-ilw">
+                                <rect key="frame" x="0.0" y="305" width="375" height="420"/>
+                                <subviews>
+                                    <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" pagingEnabled="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Gms-23-xOY">
+                                        <rect key="frame" x="0.0" y="0.0" width="375" height="375"/>
+                                    </scrollView>
+                                    <pageControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" numberOfPages="3" translatesAutoresizingMaskIntoConstraints="NO" id="Try-Q1-cCS">
+                                        <rect key="frame" x="168" y="383" width="39" height="37"/>
+                                    </pageControl>
+                                </subviews>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="400" id="dIw-XM-0DH"/>
+                                    <constraint firstItem="Gms-23-xOY" firstAttribute="leading" secondItem="0lj-XH-ilw" secondAttribute="leading" id="Kai-44-1SJ"/>
                                 </constraints>
                             </stackView>
                         </subviews>
                         <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="4dF-7t-nAz" firstAttribute="leading" secondItem="r1e-NW-0Hu" secondAttribute="leading" constant="40" id="5NN-ld-51G"/>
-                            <constraint firstItem="l6i-h9-jCM" firstAttribute="trailing" secondItem="r1e-NW-0Hu" secondAttribute="trailing" id="KJe-hE-w7p"/>
-                            <constraint firstItem="4dF-7t-nAz" firstAttribute="top" secondItem="r1e-NW-0Hu" secondAttribute="top" constant="50" id="OR6-h6-BSX"/>
-                            <constraint firstItem="l6i-h9-jCM" firstAttribute="leading" secondItem="ovn-rk-apZ" secondAttribute="leading" id="SYO-RK-zkz"/>
-                            <constraint firstItem="l6i-h9-jCM" firstAttribute="top" secondItem="4dF-7t-nAz" secondAttribute="bottom" constant="40" id="jBO-hK-P8B"/>
-                            <constraint firstItem="r1e-NW-0Hu" firstAttribute="trailing" secondItem="4dF-7t-nAz" secondAttribute="trailing" constant="40" id="jdX-0B-H7Y"/>
+                            <constraint firstItem="0lj-XH-ilw" firstAttribute="leading" secondItem="ovn-rk-apZ" secondAttribute="leading" id="KZ4-q2-5Sc"/>
+                            <constraint firstItem="r1e-NW-0Hu" firstAttribute="bottom" secondItem="0lj-XH-ilw" secondAttribute="bottom" constant="53" id="RPS-ya-IEu"/>
+                            <constraint firstItem="r1e-NW-0Hu" firstAttribute="trailing" secondItem="0lj-XH-ilw" secondAttribute="trailing" id="WrM-k2-XNt"/>
+                            <constraint firstItem="b53-8k-ruc" firstAttribute="top" secondItem="r1e-NW-0Hu" secondAttribute="top" constant="50" id="dS2-2U-TRf"/>
+                            <constraint firstItem="0lj-XH-ilw" firstAttribute="top" secondItem="b53-8k-ruc" secondAttribute="bottom" constant="30" id="dop-K0-csG"/>
+                            <constraint firstItem="b53-8k-ruc" firstAttribute="leading" secondItem="r1e-NW-0Hu" secondAttribute="leading" constant="20" id="hdT-YK-Cbs"/>
+                            <constraint firstAttribute="trailing" secondItem="b53-8k-ruc" secondAttribute="trailing" constant="20" id="rM4-EP-c4n"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="r1e-NW-0Hu"/>
                     </view>
                     <navigationItem key="navigationItem" id="n0U-tR-YZ1"/>
                     <connections>
-                        <outlet property="collectionView" destination="1Ok-JI-mNf" id="h2m-uh-d8f"/>
                         <outlet property="loginButton" destination="DI0-en-8Ln" id="YL8-za-ugA"/>
                         <outlet property="logoView" destination="4dF-7t-nAz" id="v3t-bO-5L5"/>
+                        <outlet property="pageControl" destination="Try-Q1-cCS" id="huf-Ut-ohK"/>
+                        <outlet property="scrollView" destination="Gms-23-xOY" id="MBD-7A-yNR"/>
                         <outlet property="signupButton" destination="dcp-AA-eSz" id="7gC-xH-9ug"/>
                         <segue destination="Txt-3x-IHZ" kind="show" identifier="signup" id="UIw-hK-Sfp"/>
                         <segue destination="gte-Nk-yGk" kind="show" identifier="login" id="UnL-7z-Eph"/>
