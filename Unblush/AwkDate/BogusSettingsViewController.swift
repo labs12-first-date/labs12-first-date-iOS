@@ -24,7 +24,33 @@ class BogusSettingsViewController: UIViewController {
     // change location
     //
     
-
+    @IBOutlet weak var saveButton: UIBarButtonItem!
+    
+    @IBAction func saveButtonTapped(_ sender: UIBarButtonItem) {
+    }
+    
+    @IBOutlet weak var currentPasswordTextField: UITextField!
+    
+    @IBOutlet weak var newPasswordTextField: UITextField!
+    
+    @IBOutlet weak var confirmPasswordTextField: UITextField!
+    
+    @IBAction func changePasswordTapped(_ sender: UIButton) {
+    }
+    
+    @IBOutlet weak var zipcodeTextField: UITextField!
+    
+    @IBOutlet weak var distanceSlider: UISlider!
+    
+    @IBAction func distanceSliderMoved(_ sender: UISlider) {
+    }
+    
+    
+    @IBOutlet weak var genderPickerViewTextField: UITextField!
+    
+    @IBOutlet weak var ageRangePickerViewTextField: UITextField!
+    
+    
     /*
     // MARK: - Navigation
 
