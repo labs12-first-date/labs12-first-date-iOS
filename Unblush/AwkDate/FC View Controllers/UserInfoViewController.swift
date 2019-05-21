@@ -88,7 +88,8 @@ class UserInfoViewController: UIViewController {
         genderTextField.inputView = genderPicker
         
         //Customizations
-        //genderPicker.backgroundColor = .white
+        genderPicker.backgroundColor = UIColor.grape.withAlphaComponent(0.2)
+        genderPicker.tintColor = .grape
         
     }
     
@@ -98,7 +99,8 @@ class UserInfoViewController: UIViewController {
         dateOfBirthTextField.inputView = agePicker
         
         //Customizations
-        //genderPicker.backgroundColor = .white
+        agePicker.backgroundColor = UIColor.grape.withAlphaComponent(0.2)
+        agePicker.tintColor = .grape
         
     }
     
@@ -114,9 +116,9 @@ class UserInfoViewController: UIViewController {
         genderTextField.inputAccessoryView = toolBar
         dateOfBirthTextField.inputAccessoryView = toolBar
         
-        //Customization
-        //toolBar.barTintColor = .black
-        //toolBar.tintColor = .white
+        //Customization of toolBar
+        toolBar.barTintColor = .violet //UIColor.grape.withAlphaComponent(0.2)
+        //toolBar.tintColor = UIColor.grape.withAlphaComponent(0.2)
         
     }
     
@@ -165,12 +167,12 @@ class UserInfoViewController: UIViewController {
         headerView.backgroundColor = .violet
         
 
-        firstNameTextField.backgroundColor = UIColor.grape.withAlphaComponent(0.1)
-        lastNameTextField.backgroundColor = UIColor.grape.withAlphaComponent(0.1)
-        genderTextField.backgroundColor = UIColor.grape.withAlphaComponent(0.1)
-        dateOfBirthTextField.backgroundColor = UIColor.grape.withAlphaComponent(0.1)
-        zipTextField.backgroundColor = UIColor.grape.withAlphaComponent(0.1)
-        bioTextField.backgroundColor = UIColor.grape.withAlphaComponent(0.1)
+        firstNameTextField.backgroundColor = UIColor.grape.withAlphaComponent(0.2)
+        lastNameTextField.backgroundColor = UIColor.grape.withAlphaComponent(0.2)
+        genderTextField.backgroundColor = UIColor.grape.withAlphaComponent(0.2)
+        dateOfBirthTextField.backgroundColor = UIColor.grape.withAlphaComponent(0.2)
+        zipTextField.backgroundColor = UIColor.grape.withAlphaComponent(0.2)
+        bioTextField.backgroundColor = UIColor.grape.withAlphaComponent(0.2)
         
         view.backgroundColor = .violet
         
@@ -233,25 +235,25 @@ extension UserInfoViewController: UIPickerViewDelegate, UIPickerViewDataSource {
         }
     }
     
-   
-    
-    
-//   MAY USE FOR FORMATING LATER
-//    func pickerView(_ pickerView: UIPickerView, viewForRow row: Int, forComponent component: Int, reusing view: UIView?) -> UIView {
-//        var label: UILabel
-//
-//        if let view = view as? UILabel {
-//            label = view
-//        } else {
-//            label = UILabel()
-//        }
-//
-//        label.textColor = .white
-//        label.textAlignment = .center
-//        label.font = UIFont(name: "Menlo-Regular", size: 17)
-//
-//        label.text = genderChoice[row]
-//        return label
-//    }
-    
+    func pickerView(_ pickerView: UIPickerView, viewForRow row: Int, forComponent component: Int, reusing view: UIView?) -> UIView {
+        var label: UILabel
+        if let view = view as? UILabel {
+            label = view
+         } else {
+            label = UILabel()
+        }
+            label.textColor = .grape
+            label.textAlignment = .center
+            label.font = UIFont(name: "HelveticaNeue-Light", size: 16)
+        //label.font = AppearanceHelper.lightFont(with: .body, pointSize: 16)
+
+        if pickerView == dateOfBirthTextField.inputView {
+            label.text = ageChoice[row]
+        } else if pickerView == genderTextField.inputView {
+            label.text = genderChoice[row]
+        }
+        
+        return label
+    }
+
 }
