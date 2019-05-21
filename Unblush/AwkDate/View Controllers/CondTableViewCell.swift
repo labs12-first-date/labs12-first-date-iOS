@@ -20,7 +20,7 @@ class CondTableViewCell: UITableViewCell {
         guard let condition = condition else { return }
         
         conditionNameLabel.textColor = .grape
-        conditionNameLabel.font = AppearanceHelper.lightFont(with: .body, pointSize: 15)
+        conditionNameLabel.font = AppearanceHelper.lightFont(with: .body, pointSize: 16)
         //checkMarkButton.tintColor = .grape
         
     }

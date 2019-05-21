@@ -244,7 +244,7 @@ extension UserInfoViewController: UIPickerViewDelegate, UIPickerViewDataSource {
         }
             label.textColor = .grape
             label.textAlignment = .center
-            label.font = UIFont(name: "HelveticaNeue-Light", size: 16)
+            label.font = UIFont(name: "HelveticaNeue-Light", size: 17)
         //label.font = AppearanceHelper.lightFont(with: .body, pointSize: 16)
 
         if pickerView == dateOfBirthTextField.inputView {
