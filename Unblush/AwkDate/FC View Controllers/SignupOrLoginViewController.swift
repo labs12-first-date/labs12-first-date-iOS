@@ -15,6 +15,10 @@ class SignupOrLoginViewController: UIViewController {
     var onboarding = Onboarding.fetchInterests()
     let cellScaling: CGFloat = 0.6
     
+    override var preferredStatusBarStyle: UIStatusBarStyle {
+        return .lightContent
+    }
+    
     //MARK: - Outlets
     @IBOutlet weak var logoView: UIImageView!
     @IBOutlet weak var loginButton: UIButton!
@@ -32,7 +36,8 @@ class SignupOrLoginViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setTheme()
-   
+        setNeedsStatusBarAppearanceUpdate()
+
         let screenSize = UIScreen.main.bounds.size
         let cellWidth = floor(screenSize.width * cellScaling)
         let cellHeight = floor(screenSize.height * cellScaling)

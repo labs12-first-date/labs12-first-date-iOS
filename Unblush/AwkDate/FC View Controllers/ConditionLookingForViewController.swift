@@ -25,6 +25,10 @@ class ConditionLookingForViewController: UIViewController, UITableViewDataSource
     var condition: [String] = [] //not sure of []
     var lookingFor: [String] = []
     
+    override var preferredStatusBarStyle: UIStatusBarStyle {
+        return .lightContent
+    }
+    
     let conditions: [ConditionType] = [.aids, .chlamydia, .crabs, .genitalWarts, .gonorrhea, .hepB, .hepC, .hepD, .herpes, .hiv, .syphyllis, .theClap]
     
     let lookingForCriteria: [LookingForType] = [.sameGender, .sameCondition, .openToAllPossibilities, .openToAllConditions, .fiveYearAgeGap, .tenYearAgeGap, .threeYearAgeGap]
@@ -146,15 +150,26 @@ class ConditionLookingForViewController: UIViewController, UITableViewDataSource
         
         override func viewDidLoad() {
             super.viewDidLoad()
-            
+            setNeedsStatusBarAppearanceUpdate()
             //setUpPhotoView()
             setTheme()
         }
         
         func setTheme() {
-            AppearanceHelper.style(button: addButton)
+            //AppearanceHelper.style(button: addButton)
             conditionsTableView.separatorColor = .grape
             lookingTableView.separatorColor = .grape
+            
+            conditionLabel.textColor = .grass
+            lookingForLabel.textColor = .grass
+            addButton.tintColor = .grass
+            addButton.titleLabel?.font = AppearanceHelper.lightFont(with: .body, pointSize: 16)
+            
+            conditionLabel.font = AppearanceHelper.lightFont(with: .body, pointSize: 16)
+            lookingForLabel.font = AppearanceHelper.lightFont(with: .body, pointSize: 16)
+            
+            conditionsTableView.backgroundColor = .clear
+            lookingTableView.backgroundColor = .clear
             view.backgroundColor = .violet
         }
         

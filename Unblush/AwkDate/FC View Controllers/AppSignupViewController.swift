@@ -15,6 +15,10 @@ class AppSignupViewController: UIViewController {
     var currentUserUID: String?
     var email: String?
     
+    override var preferredStatusBarStyle: UIStatusBarStyle {
+        return .lightContent
+    }
+    
     //MARK: - Outlets
     @IBOutlet weak var emailLabel: UILabel!
     @IBOutlet weak var emailTextField: UITextField!
@@ -73,12 +77,22 @@ class AppSignupViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setTheme()
+        setNeedsStatusBarAppearanceUpdate()
+
     }
     
     func setTheme() {
         emailTextField.setPadding()
         passwordTextField.setPadding()
         retypePasswordTextField.setPadding()
+        
+        emailLabel.textColor = .grass
+        passwordLabel.textColor = .grass
+        retypePasswordLabel.textColor = .grass
+        
+        emailLabel.font = AppearanceHelper.lightFont(with: .body, pointSize: 16)
+        passwordLabel.font = AppearanceHelper.lightFont(with: .body, pointSize: 16)
+        retypePasswordLabel.font = AppearanceHelper.lightFont(with: .body, pointSize: 16)
         
         emailTextField.textColor = .grape
         passwordTextField.textColor = .grape

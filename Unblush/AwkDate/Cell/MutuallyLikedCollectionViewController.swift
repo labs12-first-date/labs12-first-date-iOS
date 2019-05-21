@@ -13,6 +13,9 @@ private let reuseIdentifier = "MutualCell"
 
 class MutuallyLikedCollectionViewController: UICollectionViewController {
     
+    override var preferredStatusBarStyle: UIStatusBarStyle {
+        return .lightContent
+    }
     
     var userController: User2Controller?
     //var currentUser: User?
@@ -28,8 +31,8 @@ class MutuallyLikedCollectionViewController: UICollectionViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        
+        setNeedsStatusBarAppearanceUpdate()
+
         let userLikedArray = userController!.singleProfileFromServer["liked"] as! [[String:Any]]
         
         userController!.fetchCompareProfileFromServer(userID: "qSQ3rFkLvAY976huM75w3E5ex0i2") { (error) in
