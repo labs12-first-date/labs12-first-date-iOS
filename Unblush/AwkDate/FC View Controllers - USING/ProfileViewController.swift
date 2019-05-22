@@ -154,9 +154,10 @@ class ProfileViewController: UIViewController {
     func setupTheme() {
         
         nameLabel.textColor = .grape
-        nameLabel.font = AppearanceHelper.lightFont(with: .subheadline, pointSize: 25)
+        nameLabel.font = AppearanceHelper.mediumFont(with: .subheadline, pointSize: 25)
         
-        profileView.layer.cornerRadius = 8
+        profileView.layer.cornerRadius = profileView.frame.size.width / 2
+        profileView.clipsToBounds = true
         
         view.backgroundColor = .violet
         
@@ -200,3 +201,4 @@ class ProfileViewController: UIViewController {
         }
     }
 }
+
