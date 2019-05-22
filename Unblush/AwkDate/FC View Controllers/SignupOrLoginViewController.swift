@@ -9,22 +9,23 @@
 import UIKit
 import FirebaseAuth
 
-class SignupOrLoginViewController: UIViewController {
+class SignupOrLoginViewController: UIViewController, UIScrollViewDelegate {
     
     //MARk: - Properties
-    var onboarding = Onboarding.fetchInterests()
-    let cellScaling: CGFloat = 0.6
+    var images: [String] = ["0", "1", "2", "3", "4"]
+    var frame = CGRect(x: 0, y: 0, width: 0, height: 0)
     
     override var preferredStatusBarStyle: UIStatusBarStyle {
         return .lightContent
     }
     
     //MARK: - Outlets
-    @IBOutlet weak var logoView: UIImageView!
     @IBOutlet weak var loginButton: UIButton!
     @IBOutlet weak var signupButton: UIButton!
     
-    @IBOutlet weak var collectionView: UICollectionView!
+    @IBOutlet weak var scrollView: UIScrollView!
+    @IBOutlet weak var pageControl: UIPageControl!
+    
     @IBAction func loginButton(_ sender: Any) {
         performSegue(withIdentifier: "login", sender: self)
     }
@@ -36,21 +37,8 @@ class SignupOrLoginViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setTheme()
+        setScrollView()
         setNeedsStatusBarAppearanceUpdate()
-
-        let screenSize = UIScreen.main.bounds.size
-        let cellWidth = floor(screenSize.width * cellScaling)
-        let cellHeight = floor(screenSize.height * cellScaling)
-
-        let insetX = (view.bounds.width - cellWidth) / 2.0
-        let insetY = (view.bounds.height - cellHeight) / 2.0
-
-        let layout = collectionView!.collectionViewLayout as! UICollectionViewFlowLayout
-        layout.itemSize = CGSize(width: cellWidth, height: cellHeight)
-        collectionView?.contentInset = UIEdgeInsets(top: insetY, left: insetX, bottom: insetY, right: insetX)
-
-        //collectionView?.dataSource = self
-       // collectionView?.delegate = self
         
         do {
             try Auth.auth().signOut()
@@ -60,7 +48,27 @@ class SignupOrLoginViewController: UIViewController {
         } catch {
             print("error")
         }
-
+    }
+    
+    func setScrollView() {
+        pageControl.numberOfPages = images.count
+        for index in 0..<images.count {
+            //align scroll view
+            frame.origin.x = scrollView.frame.size.width
+                //equal to the scrollview times the amount of images
+                * CGFloat(index)
+            frame.size = scrollView.frame.size
+            
+            //initialize scrollview to image
+            let imgView = UIImageView(frame: frame)
+            imgView.image = UIImage(named: images[index])
+            self.scrollView.addSubview(imgView)
+        }
+        
+        //set content size of scrollview
+        scrollView.contentSize = CGSize(width: (scrollView.frame.size.width * CGFloat(images.count)), height: scrollView.frame.size.height)
+        //set viewcontroller delegate
+        scrollView.delegate = self
     }
     
     func setTheme() {
@@ -69,39 +77,12 @@ class SignupOrLoginViewController: UIViewController {
         AppearanceHelper.style(button: signupButton)
 
     }
-}
-
-extension SignupOrLoginViewController: UICollectionViewDataSource {
-    func numberOfSections(in collectionView: UICollectionView) -> Int {
-        return 1
-    }
     
-    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return onboarding.count
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "OnboardingCell", for: indexPath) as! OnboardingCollectionViewCell
+    func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
+        //will tell us what page we are on
+        var pageNumber = scrollView.contentOffset.x / scrollView.frame.size.width
         
-        cell.onboarding = onboarding[indexPath.item]
-        
-        return cell
-    }
-}
-
-extension SignupOrLoginViewController: UIScrollViewDelegate, UICollectionViewDelegate {
-    func scrollViewWillEndDragging(_ scrollView: UIScrollView, withVelocity velocity: CGPoint, targetContentOffset: UnsafeMutablePointer<CGPoint>) {
-        
-        let layout = self.collectionView?.collectionViewLayout as! UICollectionViewFlowLayout
-        
-        let cellWidthIncludingSpacing = layout.itemSize.width + layout.minimumLineSpacing
-        
-        var offset = targetContentOffset.pointee
-        let index = (offset.x + scrollView.contentInset.left) / cellWidthIncludingSpacing
-        let roundedIndex = round(index)
-        
-        offset = CGPoint(x: roundedIndex * cellWidthIncludingSpacing - scrollView.contentInset.left, y: -scrollView.contentInset.top)
-        targetContentOffset.pointee = offset
+        pageControl.currentPage = Int(pageNumber)
     }
 }
 

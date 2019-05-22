@@ -21,7 +21,7 @@ class LookingForTableViewCell: UITableViewCell {
         guard let lookingFor = lookingFor else { return }
         
         lookingForLabel.textColor = .grape
-        lookingForLabel.font = AppearanceHelper.lightFont(with: .body, pointSize: 15)
+        lookingForLabel.font = AppearanceHelper.lightFont(with: .body, pointSize: 16)
         //uncheckButton.tintColor = .grape
     }
     
