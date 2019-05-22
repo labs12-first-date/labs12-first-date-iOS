@@ -167,12 +167,12 @@ class UserInfoViewController: UIViewController {
         headerView.backgroundColor = .violet
         
 
-        firstNameTextField.backgroundColor = UIColor.grape.withAlphaComponent(0.2)
-        lastNameTextField.backgroundColor = UIColor.grape.withAlphaComponent(0.2)
-        genderTextField.backgroundColor = UIColor.grape.withAlphaComponent(0.2)
-        dateOfBirthTextField.backgroundColor = UIColor.grape.withAlphaComponent(0.2)
-        zipTextField.backgroundColor = UIColor.grape.withAlphaComponent(0.2)
-        bioTextField.backgroundColor = UIColor.grape.withAlphaComponent(0.2)
+        firstNameTextField.backgroundColor = UIColor.grape.withAlphaComponent(0.1)
+        lastNameTextField.backgroundColor = UIColor.grape.withAlphaComponent(0.1)
+        genderTextField.backgroundColor = UIColor.grape.withAlphaComponent(0.1)
+        dateOfBirthTextField.backgroundColor = UIColor.grape.withAlphaComponent(0.1)
+        zipTextField.backgroundColor = UIColor.grape.withAlphaComponent(0.1)
+        bioTextField.backgroundColor = UIColor.grape.withAlphaComponent(0.1)
         
         view.backgroundColor = .violet
         

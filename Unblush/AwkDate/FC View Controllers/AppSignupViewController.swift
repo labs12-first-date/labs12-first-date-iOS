@@ -98,9 +98,9 @@ class AppSignupViewController: UIViewController {
         passwordTextField.textColor = .grape
         retypePasswordTextField.textColor = .grape
         
-        emailTextField.backgroundColor = UIColor.grape.withAlphaComponent(0.2)
-        passwordTextField.backgroundColor = UIColor.grape.withAlphaComponent(0.2)
-        retypePasswordTextField.backgroundColor = UIColor.grape.withAlphaComponent(0.2)
+        emailTextField.backgroundColor = UIColor.grape.withAlphaComponent(0.1)
+        passwordTextField.backgroundColor = UIColor.grape.withAlphaComponent(0.1)
+        retypePasswordTextField.backgroundColor = UIColor.grape.withAlphaComponent(0.1)
         
         AppearanceHelper.style(button: signupButton)
         

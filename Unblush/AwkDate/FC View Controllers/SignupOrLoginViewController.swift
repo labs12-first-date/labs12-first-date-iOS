@@ -12,7 +12,7 @@ import FirebaseAuth
 class SignupOrLoginViewController: UIViewController, UIScrollViewDelegate {
     
     //MARk: - Properties
-    var images: [String] = ["0", "1", "2"]
+    var images: [String] = ["0", "1", "2", "3", "4"]
     var frame = CGRect(x: 0, y: 0, width: 0, height: 0)
     
     override var preferredStatusBarStyle: UIStatusBarStyle {
@@ -52,7 +52,7 @@ class SignupOrLoginViewController: UIViewController, UIScrollViewDelegate {
     }
     
     func setScrollView() {
-        pageControl.numberofPages = images.count
+        pageControl.numberOfPages = images.count
         for index in 0..<images.count {
             //align scroll view
             frame.origin.x = scrollView.frame.size.width

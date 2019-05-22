@@ -84,8 +84,8 @@ class AppLoginViewController: UIViewController {
         emailTextField.textColor = .grape
         passwordTextField.textColor = .grape
         
-        emailTextField.backgroundColor = UIColor.grape.withAlphaComponent(0.2)
-        passwordTextField.backgroundColor = UIColor.grape.withAlphaComponent(0.2)
+        emailTextField.backgroundColor = UIColor.grape.withAlphaComponent(0.1)
+        passwordTextField.backgroundColor = UIColor.grape.withAlphaComponent(0.1)
         
         AppearanceHelper.style(button: loginButton)
         
