@@ -35,8 +35,6 @@ class MatchesCollectionViewCell: UICollectionViewCell {
             filteredProfiles.remove(at: index!)
             NotificationCenter.default.post(name: .updateCollection, object: nil)
         })
-        
-        
     }
     
     @IBOutlet weak var likeButton: UIButton!
@@ -60,8 +58,6 @@ class MatchesCollectionViewCell: UICollectionViewCell {
             filteredProfiles.remove(at: index!)
             NotificationCenter.default.post(name: .updateCollection, object: nil)
         })
-        
-        
     }
     
     @IBOutlet weak var photoView: UIImageView!
@@ -72,15 +68,21 @@ class MatchesCollectionViewCell: UICollectionViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        setTheme()
-    
+        nameLabel.textColor = .grape
+        nameLabel.font = AppearanceHelper.mediumFont(with: .subheadline, pointSize: 25)
+        ageLabel.textColor = .grape
+        ageLabel.font = AppearanceHelper.lightFont(with: .body, pointSize: 17)
+        locationLabel.textColor = .grape
+        locationLabel.font = AppearanceHelper.lightFont(with: .body, pointSize: 17)
+        bioLabel.textColor = .grape
+        bioLabel.font = AppearanceHelper.lightFont(with: .body, pointSize: 17)
+        
+//        photoView.layer.cornerRadius = photoView.frame.size.width / 2
+//        photoView.clipsToBounds = true
+        
     }
     
-    func setTheme() {
-        AppearanceHelper.style(button: donotLikeButton)
-        AppearanceHelper.style(button: likeButton)
-                
-    }
+    
     
    /* func updateViews() {
         guard let photo = photo else { return }

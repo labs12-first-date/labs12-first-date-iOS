@@ -27,13 +27,17 @@ class MatchUsersCollectionViewController: UICollectionViewController {
     var radius: Int? = 25 //25 miles is default radius
     var zipcodesInRange: [JCSLocation]?
     
-    
     override var preferredStatusBarStyle: UIStatusBarStyle {
         return .lightContent
     }
     
+    func setTheme() {
+        collectionView.backgroundColor = .violet
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        setTheme()
         setNeedsStatusBarAppearanceUpdate()
         NotificationCenter.default.addObserver(self, selector: #selector(updateViews(notification:)), name: .updateCollection, object: nil)
         // Register cell classes
@@ -143,12 +147,8 @@ class MatchUsersCollectionViewController: UICollectionViewController {
                     }
                     return
                 }
-                
             }
         }
-        
-        
-        
     }
     
     @objc func updateViews(notification: NSNotification) {
@@ -270,9 +270,10 @@ class MatchUsersCollectionViewController: UICollectionViewController {
         
         let profile = filteredProfiles[indexPath.item]
         
-        cell.layer.borderWidth = 2
-        cell.layer.borderColor = UIColor.black.cgColor
-        cell.layer.cornerRadius = 8
+        //cell.layer.borderWidth = 2
+        //cell.layer.borderColor = UIColor.black.cgColor
+        cell.layer.cornerRadius = 20
+        cell.layer.backgroundColor = UIColor.violetAlpha.cgColor
         
         cell.photoView.image = self.load(fileName: profile["profile_picture"] as! String)
         cell.ageLabel.text = profile["age"] as! String

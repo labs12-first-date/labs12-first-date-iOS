@@ -12,7 +12,7 @@ enum AppearanceHelper {
     
     //allows for accomodating large type
     static func boldFont(with textStyle: UIFont.TextStyle, pointSize: CGFloat) -> UIFont {
-        guard let font = UIFont(name: "HelveticaNeueBold", size: pointSize) else { fatalError("Font is nil. Check the name of the font.") }
+        guard let font = UIFont(name: "HelveticaNeue-Bold", size: pointSize) else { fatalError("Font is nil. Check the name of the font.") }
         return UIFontMetrics(forTextStyle: .caption1).scaledFont(for: font)
     }
     
