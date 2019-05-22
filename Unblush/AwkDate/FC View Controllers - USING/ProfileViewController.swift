@@ -156,6 +156,8 @@ class ProfileViewController: UIViewController {
         nameLabel.textColor = .grape
         nameLabel.font = AppearanceHelper.lightFont(with: .subheadline, pointSize: 25)
         
+        profileView.layer.cornerRadius = 8
+        
         view.backgroundColor = .violet
         
     }
