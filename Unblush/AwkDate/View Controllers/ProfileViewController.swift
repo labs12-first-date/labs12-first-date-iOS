@@ -28,6 +28,7 @@ class ProfileViewController: UIViewController {
     var gender: GenderType?
     var lookingFor = [LookingForType]()
     var userCondition = [ConditionType]()
+    var radius: Int?
     
     override var preferredStatusBarStyle: UIStatusBarStyle {
         return .lightContent
@@ -51,7 +52,7 @@ class ProfileViewController: UIViewController {
    
     @IBOutlet weak var messageButton: UIButton!
     @IBAction func messageButton(_ sender: Any) {
-        performSegue(withIdentifier: "toThreads", sender: self)
+        //performSegue(withIdentifier: "toThreads", sender: self)
 
     }
     @IBOutlet weak var mediaButton: UIButton!
@@ -61,7 +62,7 @@ class ProfileViewController: UIViewController {
     }
     @IBOutlet weak var settingsButton: UIButton!
     @IBAction func settingsButton(_ sender: Any) {
-        performSegue(withIdentifier: "settings", sender: self)
+       // performSegue(withIdentifier: "settings", sender: self)
 
     }
     @IBOutlet weak var editButton: UIButton!
@@ -102,6 +103,8 @@ class ProfileViewController: UIViewController {
                 // Properties for Matches
                 AppSettings.displayName = self.currentUserFirstName!
                 self.currentUser = self.user2Controller!.serverCurrentUser!
+                let radiusString = self.user2Controller!.singleProfileFromServer["max_distance"] as! String
+                self.radius = Int(radiusString)!
                 
                 let ageString = self.user2Controller!.singleProfileFromServer["age"] as! String
                 self.age = Int(ageString)!
@@ -129,7 +132,7 @@ class ProfileViewController: UIViewController {
                 print("User in profile vc: \(self.currentUser!.uid)")
                 
 
-                self.chattingUserUID = "qSQ3rFkLvAY976huM75w3E5ex0i2"
+                //self.chattingUserUID = "qSQ3rFkLvAY976huM75w3E5ex0i2"
                 
                 
                 DispatchQueue.main.async {
@@ -171,6 +174,7 @@ class ProfileViewController: UIViewController {
             vc.zipcode = self.zipcode
             vc.lookingFor = self.lookingFor
             vc.userCondition = self.userCondition
+            vc.radius = self.radius
             
         }
         if segue.identifier == "showMutallyLiked" {
@@ -188,6 +192,11 @@ class ProfileViewController: UIViewController {
             
             vc.currentUser = self.currentUser
             vc.chattingUserUID = self.chattingUserUID
+        }
+        if segue.identifier == "settings" {
+            guard let vc = segue.destination as? BogusSettingsViewController else { return }
+            
+            vc.userController = self.user2Controller
         }
     }
 }
