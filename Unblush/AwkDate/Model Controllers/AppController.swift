@@ -4,7 +4,7 @@ import Firebase
 
 final class AppController {
   
-  static let shared = AppController()
+/*  static let shared = AppController()
   
   init() {  
     NotificationCenter.default.addObserver(
@@ -58,5 +58,5 @@ final class AppController {
       self.handleAppState()
     }
   }
-  
+  */
 }

@@ -39,6 +39,8 @@ class User2Controller {
             
             if let userLocal = user {
                 self.currentUserUID = userLocal.user.uid
+                self.serverCurrentUser = user?.user
+                print("Current user in create user func: \(user!.user)")
                 completion(nil)
             }
             
@@ -61,6 +63,7 @@ class User2Controller {
                // self.userFound = true
                 self.currentUserUID = userAccount.user.uid
                 self.serverCurrentUser = user?.user
+                print("Current user in login func: \(user!.user)")
                 self.fetchProfileFromServer(userID: userAccount.user.uid, completion: completion)
             }
         }
@@ -72,6 +75,9 @@ class User2Controller {
        // let exampleProfile = Profile(firstName: "Joe", lastName: "Blue", email: "test14@test.com", dob: dateFormatter.date(from: "05/22/1997")!, gender: "Male", zipcode: 23456, condition: ["Herpes"], mainPhoto: self.currentPhotoURL!, likedMatches: [[:]], lookingFor: "Same", biography: "Nothing really", matches: [[:]])
         
         let photoUID = UUID().uuidString
+        let matchesEmpty = [[String:Any]]()
+        let likedEmpty = [[String:Any]]()
+        let dislikedEmpty = [[String:Any]]()
         
         let storageRef = self.storage.reference()
         let imagesRef = storageRef.child("images")
@@ -97,7 +103,8 @@ class User2Controller {
                     return
                 }
                 self.currentPhotoURL = url
-                let profile = Profile(firstName: firstName, lastName: lastName, email: email, age: age, gender: gender, zipcode: zipcode, condition: condition, mainPhoto: self.currentPhotoURL!, likedMatches: [[:]], lookingFor: lookingFor, biography: biography, matches: [[:]])
+                let profile = Profile(firstName: firstName, lastName: lastName, email: email, age: age, gender: gender, zipcode: zipcode, condition: condition, mainPhoto: self.currentPhotoURL!, likedMatches: likedEmpty, lookingFor: lookingFor, biography: biography, matches: matchesEmpty, userUID: userID, dislikedMatches: dislikedEmpty)
+                   // [[:]])
                 
                 var ref: DocumentReference? = nil
                 ref = self.db.collection("profilesiOS").document(userID)
@@ -245,21 +252,99 @@ class User2Controller {
         
     }
     
+    func updateMaxDistanceOnServer(userUID: String, maxDistance: String, completion: @escaping (Error?) -> Void = {_ in }) {
+        
+        let profileRef = db.collection("profilesiOS").document(userUID)
+        
+        profileRef.updateData(["max_distance": maxDistance]) { (error) in
+            if let error = error {
+                print("Error updating max distance: \(error)")
+                completion(error)
+                return
+            }
+            print("Successfully updated distance")
+            completion(nil)
+        }
+        
+    }
+    
+    func updateGenderOnServer(userUID: String, gender: String, completion: @escaping (Error?) -> Void = {_ in }) {
+        
+        let profileRef = db.collection("profilesiOS").document(userUID)
+        
+        profileRef.updateData(["gender": gender]) { (error) in
+            if let error = error {
+                print("Error updating gender: \(error)")
+                completion(error)
+                return
+            }
+            print("Successfully updated gender")
+            completion(nil)
+        }
+        
+    }
+    func updateZipcodeOnServer(userUID: String, zipcode: String, completion: @escaping (Error?) -> Void = {_ in }) {
+        
+        let profileRef = db.collection("profilesiOS").document(userUID)
+        
+        profileRef.updateData(["zip_code": zipcode]) { (error) in
+            if let error = error {
+                print("Error updating gender: \(error)")
+                completion(error)
+                return
+            }
+            print("Successfully updated gender")
+            completion(nil)
+        }
+        
+    }
+    
+    func updateAgeRangeOnServer(userUID: String, ageGap: String, completion: @escaping (Error?) -> Void = {_ in }) {
+        
+        let profileRef = db.collection("profilesiOS").document(userUID)
+        
+        var oldLookingForArray = self.singleProfileFromServer["looking_for"] as! [String]
+        for oldGap in oldLookingForArray {
+            let index = oldLookingForArray.firstIndex(of: oldGap)!
+            if oldGap == LookingForType.fiveYearAgeGap.rawValue && oldGap != ageGap {
+                oldLookingForArray.remove(at: index)
+            } else if oldGap == LookingForType.threeYearAgeGap.rawValue && oldGap != ageGap{
+                oldLookingForArray.remove(at: index)
+            } else if oldGap == LookingForType.tenYearAgeGap.rawValue && oldGap != ageGap {
+                oldLookingForArray.remove(at: index)
+            }
+        }
+        
+        oldLookingForArray.append(ageGap)
+        
+        profileRef.updateData(["looking_for": oldLookingForArray]) { (error) in
+            if let error = error {
+                print("Error updating age gap: \(error)")
+                completion(error)
+                return
+            }
+            print("Successfully updated age gap!")
+            completion(nil)
+        }
+        
+    }
+    
     func updateDisLikedMatchesOnServer(userUID: String, dislikedMatch: [String:Any], completion: @escaping (Error?) -> Void = {_ in }) {
         
         let profileRef = db.collection("profilesiOS").document(userUID)
         
-        var olddisLiked = self.singleProfileFromServer["matches"] as! [[String:Any]]
+        var olddisLiked = self.singleProfileFromServer["disliked"] as! [[String:Any]]
         olddisLiked.append(dislikedMatch)
         print("Updated liked matches: \(olddisLiked)")
         
-        profileRef.updateData(["matches" : olddisLiked]) { (error) in
+        profileRef.updateData(["disliked" : olddisLiked]) { (error) in
             if let error = error {
                 print("Error updating data: \(error)")
                 completion(error)
                 return
             }
             print("Successfully updated liked matches")
+            completion(nil)
         }
         
         

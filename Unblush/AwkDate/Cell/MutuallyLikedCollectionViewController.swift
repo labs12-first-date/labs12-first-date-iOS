@@ -10,6 +10,7 @@ import FirebaseFirestore
 import FirebaseAuth
 
 private let reuseIdentifier = "MutualCell"
+var mutallyLikedArray = [[String:Any]]()
 
 class MutuallyLikedCollectionViewController: UICollectionViewController {
     
@@ -20,7 +21,7 @@ class MutuallyLikedCollectionViewController: UICollectionViewController {
     var userController: User2Controller?
     //var currentUser: User?
     
-    var mutallyLikedArray = [[String:Any]]()
+    
     var messageThread: MessageThread?
     
     private let db = Firestore.firestore()
@@ -32,10 +33,59 @@ class MutuallyLikedCollectionViewController: UICollectionViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setNeedsStatusBarAppearanceUpdate()
+        NotificationCenter.default.addObserver(self, selector: #selector(updateViews(notification:)), name: .updateCollection, object: nil)
+        //Create Activity Indicator
+        let myActivityIndicator = UIActivityIndicatorView(frame: CGRect(x: 100,y: 200, width: 200, height: 200))
+        myActivityIndicator.style = (UIActivityIndicatorView.Style.gray)
+        
+        // Position Activity Indicator in the center of the main view
+        myActivityIndicator.center = self.view.center
+        
+        // If needed, you can prevent Acivity Indicator from hiding when stopAnimating() is called
+        myActivityIndicator.hidesWhenStopped = false
+        
+        // Start Activity Indicator
+        myActivityIndicator.startAnimating()
+        
+        DispatchQueue.main.async {
+            self.view.addSubview(myActivityIndicator)
+        }
+        
+        let emptyArray = [[String:Any]]()
 
         let userLikedArray = userController!.singleProfileFromServer["liked"] as! [[String:Any]]
         
-        userController!.fetchCompareProfileFromServer(userID: "qSQ3rFkLvAY976huM75w3E5ex0i2") { (error) in
+        let userEmail = userController!.singleProfileFromServer["email"] as! String
+        
+        if userLikedArray.count == emptyArray.count {
+            print("No liked users")
+            self.removeActivityIndicator(activityIndicator: myActivityIndicator)
+            return
+        }
+    
+        let filteredArray = filterByDisliked(profiles: userLikedArray)
+        
+        for user in filteredArray {
+           // let id = user["user_uid"] as! String
+            
+            let compareUserLikedArray = user["liked"] as! [[String:Any]]
+            
+            for compareUser in compareUserLikedArray {
+                let compareEmail = compareUser["email"] as! String
+                if compareEmail == userEmail {
+                    mutallyLikedArray.append(user)
+                    
+                }
+            }
+            
+        }
+        DispatchQueue.main.async {
+            self.collectionView.reloadData()
+            self.removeActivityIndicator(activityIndicator: myActivityIndicator)
+            return
+        }
+        
+        /*userController!.fetchCompareProfileFromServer(userID: "qSQ3rFkLvAY976huM75w3E5ex0i2") { (error) in
             if let error = error {
                 print("error fetching compared profile in vc: \(error)")
             }
@@ -47,15 +97,40 @@ class MutuallyLikedCollectionViewController: UICollectionViewController {
                     self.mutallyLikedArray.append(self.userController!.compareProfileFromServer)
                     DispatchQueue.main.async {
                         self.collectionView.reloadData()
+                        self.removeActivityIndicator(activityIndicator: myActivityIndicator)
                     }
                 }
                 
             }
         }
-        
+        */
         
         // we need the current user uid and the other user uid for chatting and checking mutually liked
         
+    }
+    
+    func filterByDisliked(profiles: [[String:Any]]) -> [[String:Any]] {
+        
+        var profilesFiltered = [[String:Any]]()
+        let emptyArray = [[String:Any]]()
+        let userDislikedArray = userController!.singleProfileFromServer["disliked"] as! [[String:Any]]
+        
+        if userDislikedArray.count == emptyArray.count {
+            profilesFiltered = profiles
+            return profilesFiltered
+        }
+        
+        for profile in profiles {
+            let likedEmail = profile["email"] as! String
+            for disliked in userDislikedArray {
+                let dislikedEmail = disliked["email"] as! String
+                if dislikedEmail != likedEmail {
+                    profilesFiltered.append(profile)
+                }
+            }
+        }
+        print("Disliked filter mutually liked: \(profilesFiltered.count)")
+        return profilesFiltered
     }
     
     /*
@@ -86,7 +161,7 @@ class MutuallyLikedCollectionViewController: UICollectionViewController {
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath) as! LikedCollectionViewCell
         
-        let profile = self.mutallyLikedArray[indexPath.item]
+        let profile = mutallyLikedArray[indexPath.item]
         
         cell.layer.borderWidth = 2
         cell.layer.borderColor = UIColor.black.cgColor
@@ -108,10 +183,14 @@ class MutuallyLikedCollectionViewController: UICollectionViewController {
     override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let profile = mutallyLikedArray[indexPath.item]
         let userName = profile["first_name"] as! String
-        let messageThread = MessageThread(name: userName)
+        let chattingUserID = profile["user_uid"] as! String
+        let messageThread = MessageThread(name: userName, chattingUserUID: chattingUserID)
+        let index = mutallyLikedArray.firstIndex(where: { $0["email"] as! String == profile["email"] as! String })
         
         //let messageThreadWithID = MessageThread()
         
+        
+        // check server current user
         messageThreadReference.addDocument(data: messageThread.representation) { error in
             if let e = error {
                 print("Error saving channel: \(e.localizedDescription)")
@@ -132,11 +211,21 @@ class MutuallyLikedCollectionViewController: UICollectionViewController {
                     print("Document msg: \(document)")
                     let thread = MessageThread(document: document)!
                     if thread.name == userName {
-                        let vc =  ChatViewController(user: self.userController!.serverCurrentUser!, messageThread: thread, chattingUserUID: "qSQ3rFkLvAY976huM75w3E5ex0i2")
+                        let vc =  ChatViewController(user: self.userController!.serverCurrentUser!, messageThread: thread, chattingUserUID: chattingUserID)
                         
                         self.navigationController?.pushViewController(vc, animated: true)
                     }
                 }
+                
+                self.userController?.updateDisLikedMatchesOnServer(userUID: self.userController!.currentUserUID!, dislikedMatch: profile, completion: { (error) in
+                    if let error = error {
+                        print("Error updating disliked matches after chat now pressed")
+                        return
+                    }
+                    mutallyLikedArray.remove(at: index!)
+                    print("Successfully updated disliked matches after chat now pressed")
+                    NotificationCenter.default.post(name: .updateCollection, object: nil)
+                })
                 
                 
             })
@@ -145,6 +234,19 @@ class MutuallyLikedCollectionViewController: UICollectionViewController {
         }
         
         
+    }
+    
+    @objc func updateViews(notification: NSNotification) {
+        DispatchQueue.main.async {
+            self.collectionView.reloadData()
+        }
+        userController?.fetchProfileFromServer(userID: userController!.currentUserUID!, completion: { (error) in
+            if let error = error {
+                print("Error fetching profile from server in update views: \(error)")
+                return
+            }
+            print("Successfully fetched new profile after updating views")
+        })
     }
     
     private func load(fileName: String) -> UIImage? {

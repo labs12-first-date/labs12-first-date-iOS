@@ -17,12 +17,20 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         super.init()
         FirebaseApp.configure()
     }
+    
+    let domain = Bundle.main.bundleIdentifier!
+    let defaults = UserDefaults.standard
+    
 
     //let userController = User2Controller()
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
         //AppController.shared.show(in: UIWindow(frame: UIScreen.main.bounds))
+        
+        defaults.removePersistentDomain(forName: domain)
+        defaults.synchronize()
+        print(Array(defaults.dictionaryRepresentation().keys).count)
         AppearanceHelper.Appearance()
         return true
     }

@@ -39,6 +39,8 @@ enum GenderType: String {
     case male = "Male"
     case nonbinary = "Non-binary"
     case transgender = "Trans"
+    case questioning = "Questioning"
+    case other = "Other"
 }
 
 struct Profile: Decodable {
@@ -55,6 +57,9 @@ struct Profile: Decodable {
     static private let likedMatchesKey = "liked"
     static private let matchesKey = "matches"
     static private let lookingForKey = "looking_for"
+    static private let maxDistanceKey = "max_distance"
+    static private let userUIDKey = "user_uid"
+    static private let dislikedMatchesKey = "disliked"
    // static private let photoLibraryKey = "photos"
     
     enum CodingKeys: String, CodingKey {
@@ -70,9 +75,13 @@ struct Profile: Decodable {
         case conditionKey = "condition"
         case biographyKey = "bio"
         case lookingForKey = "looking_for"
+        case maxDistanceKey = "max_distance"
+        case userUIDKey = "user_uid"
+        case dislikedMatchesKey = "disliked"
     }
     
-    
+    var maxDistance: Int
+    var userUID: String
     var firstName: String
     var lastName: String
     var email: String
@@ -83,6 +92,7 @@ struct Profile: Decodable {
     var mainPhoto: URL //Data
     // var photoLibrary: [Photos]
     var likedMatches: [Any] //[Profile] converted to dict in user controller
+    var dislikedMatches: [Any]
     
     var lookingFor: [String] // enum
     var biography: String
@@ -95,12 +105,12 @@ struct Profile: Decodable {
        // let mainPhotoURL = URL(string: String(mainPhotoString))!
         //let mainPhotoURL2 = URL(dataRepresentation: mainPhoto, relativeTo: nil)!
         
-        return [Profile.firstNameKey: firstName, Profile.lastNameKey: lastName, Profile.genderKey: gender, Profile.mainPhotoKey: mainPhoto.absoluteString, Profile.zipcodeKey: NSNumber(value: zipcode).stringValue, Profile.biographyKey: biography, Profile.conditionKey: condition, Profile.ageKey: String(age), Profile.emailKey: email, Profile.lookingForKey: lookingFor, Profile.likedMatchesKey: likedMatches, Profile.matchesKey: matches]
+        return [Profile.userUIDKey: userUID, Profile.firstNameKey: firstName, Profile.lastNameKey: lastName, Profile.genderKey: gender, Profile.mainPhotoKey: mainPhoto.absoluteString, Profile.zipcodeKey: NSNumber(value: zipcode).stringValue, Profile.maxDistanceKey: NSNumber(value: maxDistance).stringValue, Profile.biographyKey: biography, Profile.conditionKey: condition, Profile.ageKey: String(age), Profile.emailKey: email, Profile.lookingForKey: lookingFor, Profile.likedMatchesKey: likedMatches, Profile.matchesKey: matches, Profile.dislikedMatchesKey: dislikedMatches]
     }
     
   
     
-    init(firstName: String, lastName: String, email: String, age: Int, gender: String, zipcode: Int, condition: [String], mainPhoto: URL, likedMatches: [Any], lookingFor: [String], biography: String, matches: [Any]) {
+    init(firstName: String, lastName: String, email: String, age: Int, gender: String, zipcode: Int, condition: [String], mainPhoto: URL, likedMatches: [Any], lookingFor: [String], biography: String, matches: [Any], userUID: String, maxDistance: Int = 25, dislikedMatches: [Any]) {
         
         self.firstName = firstName
         self.lastName = lastName
@@ -114,6 +124,9 @@ struct Profile: Decodable {
         self.lookingFor = lookingFor
         self.biography = biography
         self.matches = matches
+        self.userUID = userUID
+        self.maxDistance = maxDistance
+        self.dislikedMatches = dislikedMatches
         
     }
     
@@ -129,6 +142,7 @@ struct Profile: Decodable {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         let likedContainer = try container.decode([Any].self, forKey: .likedMatches)
         let matchesContainer = try container.decode([Any].self, forKey: .matches)
+        let dislikedContainer = try container.decode([Any].self, forKey: .dislikedMatchesKey)
         let first = try container.decode(String.self, forKey: .firstNameKey)
         let last = try container.decode(String.self, forKey: .lastNameKey)
         let emailAddress = try container.decode(String.self, forKey: .emailKey)
@@ -139,6 +153,8 @@ struct Profile: Decodable {
         let mainPhotoString = try container.decode(String.self, forKey: .mainPhotoKey)
         let lookingForString = try container.decode([String].self, forKey: .lookingForKey)
         let bio = try container.decode(String.self, forKey: .biographyKey)
+        let userID = try container.decode(String.self, forKey: .userUIDKey)
+        let maxD = try container.decode(String.self, forKey: .maxDistanceKey)
         
        
         
@@ -154,6 +170,9 @@ struct Profile: Decodable {
         self.mainPhoto = URL(fileURLWithPath: mainPhotoString)
         self.lookingFor = lookingForString
         self.biography = bio
+        self.userUID = userID
+        self.maxDistance = Int(maxD)!
+        self.dislikedMatches = dislikedContainer
     }
     
 }

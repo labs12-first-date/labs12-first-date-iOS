@@ -38,9 +38,9 @@ class MessageThreadsTableViewController: UITableViewController {
         return db.collection("messageThreadsiOS").document(currentUser!.uid).collection("threads")
     }
     
-    private var chattingUserMessageThreadReference: CollectionReference {
+  /*  private var chattingUserMessageThreadReference: CollectionReference {
         return db.collection("messageThreadsiOS").document(chattingUserUID!).collection("threads")
-    }
+    }*/
     
     deinit {
         messageThreadListener?.remove()
@@ -83,7 +83,7 @@ class MessageThreadsTableViewController: UITableViewController {
                 self.handleDocumentChange(change)
             }
         }
-        chattingUserMessageThreadListener = chattingUserMessageThreadReference.addSnapshotListener { querySnapshot, error in
+       /* chattingUserMessageThreadListener = chattingUserMessageThreadReference.addSnapshotListener { querySnapshot, error in
             guard let snapshot = querySnapshot else {
                 print("Error listening for message thread updates: \(error?.localizedDescription ?? "No error")")
                 return
@@ -92,7 +92,7 @@ class MessageThreadsTableViewController: UITableViewController {
             snapshot.documentChanges.forEach { change in
                 self.handleDocumentChange(change)
             }
-        }
+        }*/
         
         messageThreadReference.getDocuments(completion: { (querySnapshot, error) in
             if let error = error {
@@ -159,7 +159,7 @@ class MessageThreadsTableViewController: UITableViewController {
         }
         
         let createAction = UIAlertAction(title: "Create", style: .default, handler: { _ in
-            self.createChannel()
+           // self.createChannel()
         })
         createAction.isEnabled = false
         ac.addAction(createAction)
@@ -182,7 +182,7 @@ class MessageThreadsTableViewController: UITableViewController {
     // MARK: - Helpers
     
     // when chat is tapped
-    private func createChannel() {
+   /* private func createChannel() {
         guard let ac = currentChannelAlertController else {
             return
         }
@@ -191,7 +191,7 @@ class MessageThreadsTableViewController: UITableViewController {
             return
         }
         
-        let messageThread = MessageThread(name: channelName).representation
+        let messageThread = MessageThread(name: channelName, chattingUserUID: chatting)
         messageThreadReference.addDocument(data: messageThread) { error in
             if let e = error {
                 print("Error saving channel: \(e.localizedDescription)")
@@ -203,7 +203,7 @@ class MessageThreadsTableViewController: UITableViewController {
             }
         }*/
         
-    }
+    }*/
 
     private func addChannelToTable(_ messageThread: MessageThread) {
         guard !messageThreads.contains(messageThread) else {
@@ -283,7 +283,7 @@ class MessageThreadsTableViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let messageThread = messageThreads[indexPath.row]
-        let vc = ChatViewController(user: currentUser!, messageThread: messageThread, chattingUserUID: chattingUserUID!)
+        let vc = ChatViewController(user: currentUser!, messageThread: messageThread, chattingUserUID: messageThread.chattingUserUID)
         navigationController?.pushViewController(vc, animated: true)
     }
     
