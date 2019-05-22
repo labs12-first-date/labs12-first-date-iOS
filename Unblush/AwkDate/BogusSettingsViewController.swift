@@ -24,19 +24,21 @@ class BogusSettingsViewController: UIViewController, UITextFieldDelegate {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        self.zipcodeTextField.delegate = self
         distanceSlider.maximumValue = 70
         distanceSlider.minimumValue = 10
         
         saveButton.isEnabled = false
+        saveButton.tintColor = UIColor.white.withAlphaComponent(0)
         createGenderPicker()
         createAgePicker()
+        createToolbar()
         
         currentGender = userController?.singleProfileFromServer["gender"] as! String
         currentLocation = userController?.singleProfileFromServer["zip_code"] as! String
-        currentMaxDistance = userController?.singleProfileFromServer["maxDistance"] as! String
+        currentMaxDistance = userController?.singleProfileFromServer["max_distance"] as! String
         
-        zipcodeTextField.text = currentLocation
+        zipcodeTextField.placeholder = currentLocation
         genderPickerViewTextField.text = currentGender
         distanceSlider.value = Float(Int(currentMaxDistance!)!)
         
@@ -54,6 +56,7 @@ class BogusSettingsViewController: UIViewController, UITextFieldDelegate {
                 self.currentAgeGap = look
             }
         }
+        
         // Do any additional setup after loading the view.
     }
     
@@ -65,6 +68,29 @@ class BogusSettingsViewController: UIViewController, UITextFieldDelegate {
                         "Other"]
     
     let ageChoice: [LookingForType] = [.fiveYearAgeGap, .threeYearAgeGap, .tenYearAgeGap]
+    
+    func createToolbar() {
+        let toolBar = UIToolbar()
+        toolBar.sizeToFit()
+        
+        let doneButton = UIBarButtonItem(title: "Done", style: .plain, target: self, action: #selector(BogusSettingsViewController.dismissKeyboard))
+        
+        toolBar.setItems([doneButton], animated: false)
+        toolBar.isUserInteractionEnabled = true
+        
+        genderPickerViewTextField.inputAccessoryView = toolBar
+        ageRangePickerViewTextField.inputAccessoryView = toolBar
+        
+        //Customization
+        //toolBar.barTintColor = .black
+        //toolBar.tintColor = .white
+        
+    }
+    
+    @objc func dismissKeyboard() {
+        view.endEditing(true)
+    }
+    
     
     func createGenderPicker() {
         let genderPicker = UIPickerView()
@@ -87,31 +113,28 @@ class BogusSettingsViewController: UIViewController, UITextFieldDelegate {
     }
     
     func textFieldDidBeginEditing(_ textField: UITextField) {
-        <#code#>
+        if zipcodeTextField.text == currentLocation {
+            print("No change in location")
+            return
+        }
+        
+        if zipcodeTextField.text != currentLocation {
+            //zipcodeTextField.resignFirstResponder()
+            saveButton.isEnabled = true
+            saveButton.tintColor = UIColor.white.withAlphaComponent(1)
+            newZipcode = zipcodeTextField.text
+        }
     }
+    
+    
     func textFieldDidEndEditing(_ textField: UITextField) {
-        
-        if ageRangePickerViewTextField.text == currentAgeGap {
-            print("No change in age gap")
-            return
-        } else if ageRangePickerViewTextField.text != currentAgeGap {
-            saveButton.isEnabled = true
-            newAgeGap = ageRangePickerViewTextField.text
-        }
-        
-        if genderPickerViewTextField.text == currentGender {
-            print("No change in gender")
-            return
-        } else if genderPickerViewTextField.text != currentGender {
-            saveButton.isEnabled = true
-            newGender = genderPickerViewTextField.text
-        }
         
         if zipcodeTextField.text == currentLocation {
             print("No change in location")
             return
         } else if zipcodeTextField.text != currentLocation {
             saveButton.isEnabled = true
+            saveButton.tintColor = UIColor.white.withAlphaComponent(1)
             newZipcode = zipcodeTextField.text
         }
         
@@ -158,6 +181,9 @@ class BogusSettingsViewController: UIViewController, UITextFieldDelegate {
                     DispatchQueue.main.async {
                         self.removeActivityIndicator(activityIndicator: myActivityIndicator)
                         self.successDisplayMessage(userMessage: "Successfully updated gender on profile!")
+                        self.newGender = nil
+                        self.saveButton.isEnabled = false
+                        self.saveButton.tintColor = UIColor.white.withAlphaComponent(0)
                     }
                 })
                 // remove activity indicator upon completion
@@ -174,6 +200,9 @@ class BogusSettingsViewController: UIViewController, UITextFieldDelegate {
                     DispatchQueue.main.async {
                         self.removeActivityIndicator(activityIndicator: myActivityIndicator)
                         self.successDisplayMessage(userMessage: "Successfully updated age gap on profile!")
+                        self.newAgeGap = nil
+                        self.saveButton.isEnabled = false
+                        self.saveButton.tintColor = UIColor.white.withAlphaComponent(0)
                     }
                 })
             }
@@ -189,6 +218,26 @@ class BogusSettingsViewController: UIViewController, UITextFieldDelegate {
                     DispatchQueue.main.async {
                         self.removeActivityIndicator(activityIndicator: myActivityIndicator)
                         self.successDisplayMessage(userMessage: "Successfully updated max distance on profile!")
+                        self.newDistance = nil
+                        self.saveButton.isEnabled = false
+                        self.saveButton.tintColor = UIColor.white.withAlphaComponent(0)
+                    }
+                })
+            }
+            if newZipcode != nil && newZipcode != currentLocation {
+                userController?.updateZipcodeOnServer(userUID: userController!.serverCurrentUser!.uid, zipcode: newZipcode!, completion: { (error) in
+                    if let error = error {
+                        print("Error updating zipcode in vc: \(error)")
+                        self.removeActivityIndicator(activityIndicator: myActivityIndicator)
+                        self.displayMessage(userMessage: error.localizedDescription)
+                    }
+                    
+                    DispatchQueue.main.async {
+                        self.removeActivityIndicator(activityIndicator: myActivityIndicator)
+                        self.successDisplayMessage(userMessage: "Successfully updated zipcode on profile!")
+                        self.newZipcode = nil
+                        self.saveButton.isEnabled = false
+                        self.saveButton.tintColor = UIColor.white.withAlphaComponent(0)
                     }
                 })
             }
@@ -355,11 +404,28 @@ extension BogusSettingsViewController: UIPickerViewDelegate, UIPickerViewDataSou
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
         if pickerView == ageRangePickerViewTextField.inputView {
             ageRangePickerViewTextField.text = ageChoice[row].rawValue
+            if ageRangePickerViewTextField.text == currentAgeGap {
+                print("No change in age gap")
+                return
+            } else if ageRangePickerViewTextField.text != currentAgeGap {
+                saveButton.isEnabled = true
+                newAgeGap = ageRangePickerViewTextField.text
+                saveButton.tintColor = UIColor.white.withAlphaComponent(1)
+            }
             //self.view.endEditing(true)
         } else if pickerView == genderPickerViewTextField.inputView {
             genderPickerViewTextField.text = genderChoice[row]
+            if genderPickerViewTextField.text == currentGender {
+                print("No change in gender")
+                return
+            } else if genderPickerViewTextField.text != currentGender {
+                saveButton.isEnabled = true
+                newGender = genderPickerViewTextField.text
+                saveButton.tintColor = UIColor.white.withAlphaComponent(1)
+            }
             //self.view.endEditing(true)
         }
     }
 
 }
+

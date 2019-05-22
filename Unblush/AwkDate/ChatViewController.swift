@@ -28,6 +28,7 @@ class ChatViewController: MessagesViewController {
     private let db = Firestore.firestore()
     private var reference: CollectionReference?
     private var chattingUserReference: CollectionReference?
+    private var chattingUserIdReference: DocumentReference?
     private let storage = Storage.storage().reference()
     
     var messages: [Message] = []
@@ -58,12 +59,16 @@ class ChatViewController: MessagesViewController {
         super.viewDidLoad()
         
         guard let id = messageThread.id else {
-            navigationController?.popViewController(animated: true)
+            //navigationController?.popViewController(animated: true)
+            print("no message thread id")
             return
         }
+        
+        // /messageThreadsiOS/HQccWvMsSHNxYb8RnYvvnJqndq92/threads/6XAgoEq1J8mRDa1AAIqf
     
         reference = db.collection(["messageThreadsiOS", user.uid, "threads", id, "messages"].joined(separator: "/"))
         chattingUserReference = db.collection(["messageThreadsiOS", chattingUserUID, "threads", id, "messages"].joined(separator: "/"))
+        chattingUserIdReference = db.document(["messageThreadsiOS", chattingUserUID, "threads", id].joined(separator: "/"))
         
         messageListener = reference?.addSnapshotListener { querySnapshot, error in
             guard let snapshot = querySnapshot else {
@@ -141,7 +146,14 @@ class ChatViewController: MessagesViewController {
     // MARK: - Helpers
     
     private func save(_ message: Message) {
-        chattingUserReference?.addDocument(data: message.representation)
+        chattingUserIdReference?.setData(["name": AppSettings.displayName!, "chatting_with": user.uid], merge: true, completion: { (error) in
+            if let error = error {
+                print("Error naming message thread: \(error)")
+                return
+            }
+            self.chattingUserReference?.addDocument(data: message.representation)
+        })
+        
         reference?.addDocument(data: message.representation) { error in
             if let e = error {
                 print("Error sending message: \(e.localizedDescription)")
@@ -317,7 +329,7 @@ extension ChatViewController: MessagesDataSource {
         return messages.count
     }
     
-    
+    // check user
     func currentSender() -> Sender {
         //print("current sender: \(AppSettings.displayName) \(user.uid)")
         return Sender(id: user.uid, displayName: AppSettings.displayName!)

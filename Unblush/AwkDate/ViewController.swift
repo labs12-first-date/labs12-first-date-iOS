@@ -11,7 +11,7 @@ import Foundation
 
 class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
 
-    override func viewDidLoad() {
+  /*  override func viewDidLoad() {
         super.viewDidLoad()
         
        /* user2Controller.fetchProfileFromServer(userID: "e1bHvaIJhhPvn7En1ftztHNpWls2") { (error) in
@@ -173,7 +173,7 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     func imagePickerControllerDidCancel(picker: UIImagePickerController) {
         dismiss(animated: true, completion: nil)
     }
-    
+    */
     
 }
 

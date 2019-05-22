@@ -39,6 +39,8 @@ class User2Controller {
             
             if let userLocal = user {
                 self.currentUserUID = userLocal.user.uid
+                self.serverCurrentUser = user?.user
+                print("Current user in create user func: \(user!.user)")
                 completion(nil)
             }
             
@@ -75,6 +77,7 @@ class User2Controller {
         let photoUID = UUID().uuidString
         let matchesEmpty = [[String:Any]]()
         let likedEmpty = [[String:Any]]()
+        let dislikedEmpty = [[String:Any]]()
         
         let storageRef = self.storage.reference()
         let imagesRef = storageRef.child("images")
@@ -100,7 +103,7 @@ class User2Controller {
                     return
                 }
                 self.currentPhotoURL = url
-                let profile = Profile(firstName: firstName, lastName: lastName, email: email, age: age, gender: gender, zipcode: zipcode, condition: condition, mainPhoto: self.currentPhotoURL!, likedMatches: likedEmpty, lookingFor: lookingFor, biography: biography, matches: matchesEmpty, userUID: userID)
+                let profile = Profile(firstName: firstName, lastName: lastName, email: email, age: age, gender: gender, zipcode: zipcode, condition: condition, mainPhoto: self.currentPhotoURL!, likedMatches: likedEmpty, lookingFor: lookingFor, biography: biography, matches: matchesEmpty, userUID: userID, dislikedMatches: dislikedEmpty)
                    // [[:]])
                 
                 var ref: DocumentReference? = nil
@@ -253,7 +256,7 @@ class User2Controller {
         
         let profileRef = db.collection("profilesiOS").document(userUID)
         
-        profileRef.updateData(["maxDistance": maxDistance]) { (error) in
+        profileRef.updateData(["max_distance": maxDistance]) { (error) in
             if let error = error {
                 print("Error updating max distance: \(error)")
                 completion(error)
@@ -270,6 +273,21 @@ class User2Controller {
         let profileRef = db.collection("profilesiOS").document(userUID)
         
         profileRef.updateData(["gender": gender]) { (error) in
+            if let error = error {
+                print("Error updating gender: \(error)")
+                completion(error)
+                return
+            }
+            print("Successfully updated gender")
+            completion(nil)
+        }
+        
+    }
+    func updateZipcodeOnServer(userUID: String, zipcode: String, completion: @escaping (Error?) -> Void = {_ in }) {
+        
+        let profileRef = db.collection("profilesiOS").document(userUID)
+        
+        profileRef.updateData(["zip_code": zipcode]) { (error) in
             if let error = error {
                 print("Error updating gender: \(error)")
                 completion(error)
@@ -315,17 +333,18 @@ class User2Controller {
         
         let profileRef = db.collection("profilesiOS").document(userUID)
         
-        var olddisLiked = self.singleProfileFromServer["matches"] as! [[String:Any]]
+        var olddisLiked = self.singleProfileFromServer["disliked"] as! [[String:Any]]
         olddisLiked.append(dislikedMatch)
         print("Updated liked matches: \(olddisLiked)")
         
-        profileRef.updateData(["matches" : olddisLiked]) { (error) in
+        profileRef.updateData(["disliked" : olddisLiked]) { (error) in
             if let error = error {
                 print("Error updating data: \(error)")
                 completion(error)
                 return
             }
             print("Successfully updated liked matches")
+            completion(nil)
         }
         
         

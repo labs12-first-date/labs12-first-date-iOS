@@ -19,6 +19,7 @@ class MatchesCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var donotLikeButton: UIButton!
     @IBAction func donotLikeButton(_ sender: Any) {
         guard let profile = profile else { return }
+        let index = filteredProfiles.firstIndex(where: { $0["email"] as! String == profile["email"] as! String })
         DispatchQueue.main.async {
             self.donotLikeButton.setTitle("Disliked!", for: .normal)
             self.likeButton.alpha = 0
@@ -26,6 +27,14 @@ class MatchesCollectionViewCell: UICollectionViewCell {
         }
         
         // we need a property to store disliked matches
+        userController?.updateDisLikedMatchesOnServer(userUID: self.userController!.currentUserUID!, dislikedMatch: profile, completion: { (error) in
+            if let error = error {
+                print("error in table view cell disliked matches: \(error)")
+                return
+            }
+            filteredProfiles.remove(at: index!)
+            NotificationCenter.default.post(name: .updateCollection, object: nil)
+        })
         
         
     }
@@ -34,6 +43,7 @@ class MatchesCollectionViewCell: UICollectionViewCell {
     @IBAction func likeButton(_ sender: Any) {
         
         guard let profile = profile else { return }
+        let index = filteredProfiles.firstIndex(where: { $0["email"] as! String == profile["email"] as! String })
         DispatchQueue.main.async {
             self.likeButton.setTitle("Liked!", for: .normal)
             self.donotLikeButton.alpha = 0
@@ -47,6 +57,8 @@ class MatchesCollectionViewCell: UICollectionViewCell {
                 print("error in table view cell liked matches: \(error)")
                 return
             }
+            filteredProfiles.remove(at: index!)
+            NotificationCenter.default.post(name: .updateCollection, object: nil)
         })
         
         
@@ -78,4 +90,8 @@ class MatchesCollectionViewCell: UICollectionViewCell {
         locationLabel.text = "\(profile?.zipcode)"
         bioLabel.text = profile?.biography
     }*/
+}
+
+extension Notification.Name {
+    static let updateCollection = Notification.Name("update")
 }

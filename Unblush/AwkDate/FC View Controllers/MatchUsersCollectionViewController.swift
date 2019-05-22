@@ -9,6 +9,7 @@ import UIKit
 import FirebaseAuth
 
 private let reuseIdentifier = "MatchCell"
+var filteredProfiles: [[String:Any]] = []
 
 class MatchUsersCollectionViewController: UICollectionViewController {
     
@@ -26,7 +27,6 @@ class MatchUsersCollectionViewController: UICollectionViewController {
     var radius: Int? = 25 //25 miles is default radius
     var zipcodesInRange: [JCSLocation]?
     
-    var filteredProfiles: [[String:Any]] = []
     
     override var preferredStatusBarStyle: UIStatusBarStyle {
         return .lightContent
@@ -35,6 +35,7 @@ class MatchUsersCollectionViewController: UICollectionViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setNeedsStatusBarAppearanceUpdate()
+        NotificationCenter.default.addObserver(self, selector: #selector(updateViews(notification:)), name: .updateCollection, object: nil)
         // Register cell classes
         /* self.collectionView!.register(UICollectionViewCell.self, forCellWithReuseIdentifier: reuseIdentifier) */
         
@@ -75,11 +76,11 @@ class MatchUsersCollectionViewController: UICollectionViewController {
                 let locationProfiles = self.filterByLocation(profiles: profilesFromServer)
                 
                 if self.lookingFor!.contains(.openToAllPossibilities) {
-                    self.filteredProfiles = locationProfiles
+                    filteredProfiles = locationProfiles
                     DispatchQueue.main.async {
                         self.collectionView.reloadData()
                         self.removeActivityIndicator(activityIndicator: myActivityIndicator)
-                        print("Number of matches: \(self.filteredProfiles.count)")
+                        print("Number of matches: \(filteredProfiles.count)")
                     }
                     return
                 }
@@ -97,6 +98,9 @@ class MatchUsersCollectionViewController: UICollectionViewController {
                 } else if self.lookingFor!.contains(.tenYearAgeGap) {
                     self.ageGap = 10
                     ageProfiles = self.filterByAge(profiles: locationProfiles)
+                } else {
+                    self.ageGap = 5
+                    ageProfiles = self.filterByAge(profiles: locationProfiles)
                 }
                 
                 if self.lookingFor!.contains(.sameCondition) {
@@ -104,38 +108,38 @@ class MatchUsersCollectionViewController: UICollectionViewController {
                     
                     if self.lookingFor!.contains(.sameGender) {
                         genderProfiles = self.filterByGender(profiles: conditionProfiles)
-                        self.filteredProfiles = genderProfiles
+                        filteredProfiles = genderProfiles
                         DispatchQueue.main.async {
                             self.collectionView.reloadData()
                             self.removeActivityIndicator(activityIndicator: myActivityIndicator)
-                            print("Number of matches: \(self.filteredProfiles.count)")
+                            print("Number of matches: \(filteredProfiles.count)")
                         }
                         return
                     }
-                    self.filteredProfiles = conditionProfiles
+                    filteredProfiles = conditionProfiles
                     DispatchQueue.main.async {
                         self.collectionView.reloadData()
                         self.removeActivityIndicator(activityIndicator: myActivityIndicator)
-                        print("Number of matches: \(self.filteredProfiles.count)")
+                        print("Number of matches: \(filteredProfiles.count)")
                     }
                     return
                 } else if self.lookingFor!.contains(.openToAllConditions) {
                     
                     if self.lookingFor!.contains(.sameGender) {
                         genderProfiles = self.filterByGender(profiles: ageProfiles)
-                        self.filteredProfiles = genderProfiles
+                        filteredProfiles = genderProfiles
                         DispatchQueue.main.async {
                             self.collectionView.reloadData()
                             self.removeActivityIndicator(activityIndicator: myActivityIndicator)
-                            print("Number of matches: \(self.filteredProfiles.count)")
+                            print("Number of matches: \(filteredProfiles.count)")
                         }
                         return
                     }
-                    self.filteredProfiles = ageProfiles
+                    filteredProfiles = ageProfiles
                     DispatchQueue.main.async {
                         self.collectionView.reloadData()
                         self.removeActivityIndicator(activityIndicator: myActivityIndicator)
-                        print("Number of matches: \(self.filteredProfiles.count)")
+                        print("Number of matches: \(filteredProfiles.count)")
                     }
                     return
                 }
@@ -145,6 +149,19 @@ class MatchUsersCollectionViewController: UICollectionViewController {
         
         
         
+    }
+    
+    @objc func updateViews(notification: NSNotification) {
+        DispatchQueue.main.async {
+            self.collectionView.reloadData()
+        }
+        userController?.fetchProfileFromServer(userID: userController!.currentUserUID!, completion: { (error) in
+            if let error = error {
+                print("Error fetching profile from server in update views: \(error)")
+                return
+            }
+            print("Successfully fetched new profile after updating views")
+        })
     }
     
     func filterByLocation(profiles: [[String:Any]]) -> [[String:Any]] {
@@ -251,7 +268,7 @@ class MatchUsersCollectionViewController: UICollectionViewController {
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath) as! MatchesCollectionViewCell
         
-        let profile = self.filteredProfiles[indexPath.item]
+        let profile = filteredProfiles[indexPath.item]
         
         cell.layer.borderWidth = 2
         cell.layer.borderColor = UIColor.black.cgColor
