@@ -20,7 +20,6 @@ class SignupOrLoginViewController: UIViewController, UIScrollViewDelegate {
     }
     
     //MARK: - Outlets
-    @IBOutlet weak var logoView: UIImageView!
     @IBOutlet weak var loginButton: UIButton!
     @IBOutlet weak var signupButton: UIButton!
     
