@@ -59,6 +59,11 @@ class ProfileViewController: UIViewController {
         
     }
     
+    @IBOutlet weak var editButton: UIButton!
+    @IBAction func editButton(_ sender: Any) {
+        
+    }
+    
     @IBOutlet weak var signoutButton: UIBarButtonItem!
     @IBAction func signoutButton(_ sender: Any) {
         do {
