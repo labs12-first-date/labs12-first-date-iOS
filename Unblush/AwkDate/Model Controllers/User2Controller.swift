@@ -200,28 +200,16 @@ class User2Controller {
                 return
             }
             
-            var count = 0
+           // var count = 0
             for profile in querySnap.documents {
                
-                let likedArray = profile["liked"] as! [[String:Any]]
-                if likedArray.count == 0 {
-                    if (profile["email"] as! String) != self.serverCurrentUser?.email! {
-                        self.profilesFromServer.append(profile.data())
-                    }
-                    
-                } else {
-                    if (profile["email"] as! String) != self.serverCurrentUser?.email! {
-                        for prof in likedArray {
-                            if (prof["email"] as! String) != (profile["email"] as! String) {
-                                self.profilesFromServer.append(profile.data())
-                            } else {
-                                count += 1
-                            }
-                        }
-                    }
+               
+                if (profile["email"] as! String) != self.serverCurrentUser?.email! {
+                    self.profilesFromServer.append(profile.data())
                 }
                 
-                if self.profilesFromServer.count == (querySnap.documents.count - (count + 1)) {
+                if self.profilesFromServer.count == (querySnap.documents.count - 1) {
+                    // (querySnap.documents.count - (count + 1))
                     completion(nil)
                 }
             }

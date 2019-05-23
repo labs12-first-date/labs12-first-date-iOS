@@ -11,7 +11,7 @@ import FirebaseAuth
 private let reuseIdentifier = "MatchCell"
 var filteredProfiles: [[String:Any]] = []
 
-class MatchUsersCollectionViewController: UICollectionViewController {
+class MatchUsersCollectionViewController: UICollectionViewController, UINavigationControllerDelegate {
     
     // From Profile VC we need to pass: UserController, Zipcode, Radius, Age, gender, looking for, condition
     
@@ -51,7 +51,11 @@ class MatchUsersCollectionViewController: UICollectionViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+<<<<<<< HEAD:Unblush/AwkDate/FC View Controllers - USING/MatchUsersCollectionViewController.swift
         setTheme()
+=======
+        navigationController?.delegate = self
+>>>>>>> master:Unblush/AwkDate/FC View Controllers/MatchUsersCollectionViewController.swift
         setNeedsStatusBarAppearanceUpdate()
         NotificationCenter.default.addObserver(self, selector: #selector(updateViews(notification:)), name: .updateCollection, object: nil)
         // Register cell classes
@@ -92,9 +96,11 @@ class MatchUsersCollectionViewController: UICollectionViewController {
                 }
                 let profilesFromServer = self.userController!.profilesFromServer
                 let locationProfiles = self.filterByLocation(profiles: profilesFromServer)
+                let likedProfiles = self.filterByLiked(profiles: locationProfiles)
+                let dislikedProfiles = self.filterByDisliked(profiles: likedProfiles)
                 
                 if self.lookingFor!.contains(.openToAllPossibilities) {
-                    filteredProfiles = locationProfiles
+                    filteredProfiles = dislikedProfiles
                     DispatchQueue.main.async {
                         self.collectionView.reloadData()
                         self.removeActivityIndicator(activityIndicator: myActivityIndicator)
@@ -108,17 +114,17 @@ class MatchUsersCollectionViewController: UICollectionViewController {
                 
                 if self.lookingFor!.contains(.fiveYearAgeGap) {
                     self.ageGap = 5
-                    ageProfiles = self.filterByAge(profiles: locationProfiles)
+                    ageProfiles = self.filterByAge(profiles: dislikedProfiles)
                     
                 } else if self.lookingFor!.contains(.threeYearAgeGap) {
                     self.ageGap = 3
-                    ageProfiles = self.filterByAge(profiles: locationProfiles)
+                    ageProfiles = self.filterByAge(profiles: dislikedProfiles)
                 } else if self.lookingFor!.contains(.tenYearAgeGap) {
                     self.ageGap = 10
-                    ageProfiles = self.filterByAge(profiles: locationProfiles)
+                    ageProfiles = self.filterByAge(profiles: dislikedProfiles)
                 } else {
                     self.ageGap = 5
-                    ageProfiles = self.filterByAge(profiles: locationProfiles)
+                    ageProfiles = self.filterByAge(profiles: dislikedProfiles)
                 }
                 
                 if self.lookingFor!.contains(.sameCondition) {
@@ -176,6 +182,53 @@ class MatchUsersCollectionViewController: UICollectionViewController {
             }
             print("Successfully fetched new profile after updating views")
         })
+    }
+    
+    func filterByDisliked(profiles: [[String:Any]]) -> [[String:Any]] {
+        
+        var profilesFiltered = [[String:Any]]()
+        let emptyArray = [[String:Any]]()
+        let userDislikedArray = userController!.singleProfileFromServer["disliked"] as! [[String:Any]]
+        
+        if userDislikedArray.count == emptyArray.count {
+            profilesFiltered = profiles
+            return profilesFiltered
+        }
+        
+        for profile in profiles {
+            let likedEmail = profile["email"] as! String
+            for disliked in userDislikedArray {
+                let dislikedEmail = disliked["email"] as! String
+                if dislikedEmail != likedEmail {
+                    profilesFiltered.append(profile)
+                }
+            }
+        }
+        print("Disliked filter mutually liked: \(profilesFiltered.count)")
+        return profilesFiltered
+    }
+    func filterByLiked(profiles: [[String:Any]]) -> [[String:Any]] {
+        
+        var profilesFiltered = [[String:Any]]()
+        let emptyArray = [[String:Any]]()
+        let userlikedArray = userController!.singleProfileFromServer["liked"] as! [[String:Any]]
+        
+        if userlikedArray.count == emptyArray.count {
+            profilesFiltered = profiles
+            return profilesFiltered
+        }
+        
+        for profile in profiles {
+            let likedEmail = profile["email"] as! String
+            for liked in userlikedArray {
+                let comparelikedEmail = liked["email"] as! String
+                if comparelikedEmail != likedEmail {
+                    profilesFiltered.append(profile)
+                }
+            }
+        }
+        print("Liked filter mutually liked: \(profilesFiltered.count)")
+        return profilesFiltered
     }
     
     func filterByLocation(profiles: [[String:Any]]) -> [[String:Any]] {
@@ -334,3 +387,11 @@ class MatchUsersCollectionViewController: UICollectionViewController {
      */
     
 }
+/*extension MatchUsersCollectionViewController {
+    func navigationController(_ navigationController: UINavigationController, willShow viewController: UIViewController, animated: Bool) {
+        (viewController as? ProfileViewController)?.user2Controller = self.userController
+        (viewController as? ProfileViewController)?. = self.userController
+        
+        // Here you pass the to your original view controller
+    }
+}*/

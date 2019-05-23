@@ -29,6 +29,8 @@ class ConditionLookingForViewController: UIViewController, UITableViewDataSource
         return .lightContent
     }
     
+
+    
     let conditions: [ConditionType] = [.aids, .chlamydia, .crabs, .genitalWarts, .gonorrhea, .hepB, .hepC, .hepD, .herpes, .hiv, .syphyllis, .theClap]
     
     let lookingForCriteria: [LookingForType] = [.sameGender, .sameCondition, .openToAllPossibilities, .openToAllConditions, .fiveYearAgeGap, .tenYearAgeGap, .threeYearAgeGap]
@@ -86,6 +88,25 @@ class ConditionLookingForViewController: UIViewController, UITableViewDataSource
                 style(cell: cell)
                 return cell
           
+        }
+    }
+    
+    @objc func displayMessage(notification: NSNotification) -> Void {
+        guard let userMessage = notification.userInfo!["message"] else { return }
+        DispatchQueue.main.async
+            {
+                let alertController = UIAlertController(title: "Please Try Again", message: userMessage as? String, preferredStyle: .alert)
+                
+                let OKAction = UIAlertAction(title: "OK", style: .default) { (action:UIAlertAction!) in
+                    // Code in this block will trigger when OK button tapped.
+                    print("Ok button tapped")
+                    DispatchQueue.main.async
+                        {
+                            alertController.dismiss(animated: true, completion: nil)
+                    }
+                }
+                alertController.addAction(OKAction)
+                self.present(alertController, animated: true, completion:nil)
         }
     }
         
@@ -153,6 +174,7 @@ class ConditionLookingForViewController: UIViewController, UITableViewDataSource
             setNeedsStatusBarAppearanceUpdate()
             //setUpPhotoView()
             setTheme()
+            NotificationCenter.default.addObserver(self, selector: #selector(displayMessage(notification:)), name: .displayMsg, object: nil)
         }
         
         func setTheme() {

@@ -114,7 +114,7 @@
 		486A0F4B22939A540047DF7A /* HelveticaNeueBold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = HelveticaNeueBold.ttf; sourceTree = "<group>"; };
 		48840F3F2293162900BE3389 /* ColorConvenience.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorConvenience.swift; sourceTree = "<group>"; };
 		48840F412293216700BE3389 /* RevisedMain.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = RevisedMain.storyboard; path = ../RevisedMain.storyboard; sourceTree = "<group>"; };
-		4F15063C228E3F2C00C96D8B /* BogusMutuallyLikedCollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BogusMutuallyLikedCollectionViewController.swift; sourceTree = "<group>"; };
+		4F15063C228E3F2C00C96D8B /* BogusMutuallyLikedCollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = BogusMutuallyLikedCollectionViewController.swift; path = "View Controllers/BogusMutuallyLikedCollectionViewController.swift"; sourceTree = "<group>"; };
 		4F15063E228E3F7F00C96D8B /* BogusMutualCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BogusMutualCollectionViewCell.swift; sourceTree = "<group>"; };
 		4F3C55D422792A1E006307A9 /* AwkDate.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AwkDate.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4F3C55D722792A1E006307A9 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -206,7 +206,7 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		485F5B072293390C00927FA9 /* FC View Controllers - USING */ = {
+		485F5B072293390C00927FA9 /* FC View Controllers */ = {
 			isa = PBXGroup;
 			children = (
 				485F5B0922933B4300927FA9 /* AppLoginViewController.swift */,
@@ -216,9 +216,8 @@
 				485F5B0C22933B4300927FA9 /* UserInfoViewController.swift */,
 				4F6327AC229359390044237E /* MatchUsersCollectionViewController.swift */,
 				4F6327AE229362300044237E /* MutuallyLikedCollectionViewController.swift */,
-				4F507C242285E4A300A60674 /* ProfileViewController.swift */,
 			);
-			path = "FC View Controllers - USING";
+			path = "FC View Controllers";
 			sourceTree = "<group>";
 		};
 		485F5B1622933F7900927FA9 /* Cell */ = {
@@ -278,15 +277,20 @@
 			children = (
 				4F3C55D722792A1E006307A9 /* AppDelegate.swift */,
 				486A0F4622939A010047DF7A /* Fonts */,
+				4F507C362285E5A300A60674 /* LaunchScreen2.storyboard */,
 				486A0F4322936F3F0047DF7A /* Storyboards */,
 				485F5B1622933F7900927FA9 /* Cell */,
-				485F5B072293390C00927FA9 /* FC View Controllers - USING */,
+				485F5B072293390C00927FA9 /* FC View Controllers */,
 				4F9ACB6A2289EDF1004A5D2A /* UI */,
 				4F4F40052281D60F00667A92 /* GoogleService-Info.plist */,
 				4FF3274A227B5F1000192934 /* AwkDate.entitlements */,
-				4F3C560722792A44006307A9 /* View Controllers - NOT USED */,
+				4F3C560722792A44006307A9 /* View Controllers */,
 				4F3C560622792A3D006307A9 /* Model Controllers */,
 				4F3C560522792A31006307A9 /* Models */,
+				4FE8AE142285B69200975841 /* ConditionTableViewCell.swift */,
+				4F3C55D922792A1E006307A9 /* ViewController.swift */,
+				4F15063C228E3F2C00C96D8B /* BogusMutuallyLikedCollectionViewController.swift */,
+				4F15063E228E3F7F00C96D8B /* BogusMutualCollectionViewCell.swift */,
 				4F9AFBAD228C814E005F261B /* BogusMatchCollectionViewCell.swift */,
 				4F9ACB73228A1976004A5D2A /* BogusViewController.swift */,
 				4F6327A9229314C10044237E /* BogusSettingsViewController.swift */,
@@ -346,9 +350,10 @@
 			path = "Model Controllers";
 			sourceTree = "<group>";
 		};
-		4F3C560722792A44006307A9 /* View Controllers - NOT USED */ = {
+		4F3C560722792A44006307A9 /* View Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				4F507C242285E4A300A60674 /* ProfileViewController.swift */,
 				485F5B1822933FBC00927FA9 /* OnboardingCollectionViewCell.swift */,
 				4F41309F2284822900CDF247 /* ViewControllerMethods.swift */,
 				4F507C202285E49300A60674 /* GetUserInfoViewController.swift */,
@@ -360,14 +365,9 @@
 				4F507C322285E50F00A60674 /* SignupViewController.swift */,
 				4F9ACB662289E4C1004A5D2A /* MessageThreadsTableViewController.swift */,
 				4F9ACB682289E784004A5D2A /* ChatViewController.swift */,
-				4FE8AE142285B69200975841 /* ConditionTableViewCell.swift */,
-				4F507C362285E5A300A60674 /* LaunchScreen2.storyboard */,
-				4F3C55D922792A1E006307A9 /* ViewController.swift */,
-				4F15063C228E3F2C00C96D8B /* BogusMutuallyLikedCollectionViewController.swift */,
-				4F15063E228E3F7F00C96D8B /* BogusMutualCollectionViewCell.swift */,
 				4F3C55DB22792A1E006307A9 /* MainTest.storyboard */,
 			);
-			path = "View Controllers - NOT USED";
+			path = "View Controllers";
 			sourceTree = "<group>";
 		};
 		4F9ACB6A2289EDF1004A5D2A /* UI */ = {
