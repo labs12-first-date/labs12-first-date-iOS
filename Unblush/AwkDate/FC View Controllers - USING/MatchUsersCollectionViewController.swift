@@ -32,7 +32,21 @@ class MatchUsersCollectionViewController: UICollectionViewController {
     }
     
     func setTheme() {
-        collectionView.backgroundColor = .violet
+        collectionView.backgroundColor = .cream
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        guard let layout = collectionView.collectionViewLayout as? UICollectionViewFlowLayout else {
+            fatalError("Unable to retrieve layout")
+        }
+        
+        let amount: CGFloat = 20
+        layout.sectionInset = UIEdgeInsets(top: amount, left: amount, bottom: amount, right: amount)
+        layout.itemSize = CGSize(width: 370, height: 410)
+        
+    
     }
     
     override func viewDidLoad() {
@@ -45,7 +59,7 @@ class MatchUsersCollectionViewController: UICollectionViewController {
         
         //Create Activity Indicator
         let myActivityIndicator = UIActivityIndicatorView(frame: CGRect(x: 100,y: 200, width: 200, height: 200))
-        myActivityIndicator.style = (UIActivityIndicatorView.Style.gray)
+        myActivityIndicator.style = (UIActivityIndicatorView.Style.white)
         
         // Position Activity Indicator in the center of the main view
         myActivityIndicator.center = self.view.center
@@ -59,7 +73,7 @@ class MatchUsersCollectionViewController: UICollectionViewController {
         DispatchQueue.main.async {
             self.view.addSubview(myActivityIndicator)
         }
-        
+        //ERROR
         let baseURLString = "https://www.zipcodeapi.com/rest/ZYgKxFyo4TVdKUMOEXE0pFFvDqhguLmD4MnHfqGDUJ1rkHq2pqCSMUZ8qtgwfuij/radius.json/\(zipcode!)/\(radius!)/mile"
         print("Base URL: \(baseURLString)")
         
@@ -273,7 +287,7 @@ class MatchUsersCollectionViewController: UICollectionViewController {
         //cell.layer.borderWidth = 2
         //cell.layer.borderColor = UIColor.black.cgColor
         cell.layer.cornerRadius = 20
-        cell.layer.backgroundColor = UIColor.violetAlpha.cgColor
+        cell.layer.backgroundColor = UIColor.tan.cgColor
         
         cell.photoView.image = self.load(fileName: profile["profile_picture"] as! String)
         cell.ageLabel.text = profile["age"] as! String

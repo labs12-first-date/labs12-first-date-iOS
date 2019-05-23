@@ -28,14 +28,20 @@ class LikedCollectionViewCell: UICollectionViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        setTheme()
-        //updateViews()
+        nameLabel.textColor = .grass
+        nameLabel.font = AppearanceHelper.mediumFont(with: .subheadline, pointSize: 25)
+        ageLabel.textColor = .violet
+        ageLabel.font = AppearanceHelper.lightFont(with: .body, pointSize: 17)
+        locationLabel.textColor = .violet
+        locationLabel.font = AppearanceHelper.lightFont(with: .body, pointSize: 17)
+        bioLabel.textColor = .violet
+        bioLabel.font = AppearanceHelper.lightFont(with: .body, pointSize: 17)
+        
+//        photoView.layer.cornerRadius = photoView.frame.size.width / 2
+//        photoView.clipsToBounds = true
     }
     
-    func setTheme() {
-        AppearanceHelper.style(button: chatButton)
-        
-    }
+    
     
    /* func updateViews() {
         guard let photo = photo else { return }
