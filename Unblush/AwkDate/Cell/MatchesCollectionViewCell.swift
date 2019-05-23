@@ -68,17 +68,17 @@ class MatchesCollectionViewCell: UICollectionViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        nameLabel.textColor = .violet
+        nameLabel.textColor = .cream
         nameLabel.font = AppearanceHelper.mediumFont(with: .subheadline, pointSize: 25)
         ageLabel.textColor = .mustard
-        ageLabel.font = AppearanceHelper.lightFont(with: .body, pointSize: 17)
+        ageLabel.font = AppearanceHelper.mediumFont(with: .body, pointSize: 16)
         locationLabel.textColor = .mustard
-        locationLabel.font = AppearanceHelper.lightFont(with: .body, pointSize: 17)
+        locationLabel.font = AppearanceHelper.mediumFont(with: .body, pointSize: 16)
         bioLabel.textColor = .mustard
-        bioLabel.font = AppearanceHelper.lightFont(with: .body, pointSize: 17)
+        bioLabel.font = AppearanceHelper.mediumFont(with: .body, pointSize: 16)
         
-//        photoView.layer.cornerRadius = photoView.frame.size.width / 2
-//        photoView.clipsToBounds = true
+        photoView.layer.cornerRadius = photoView.frame.size.width / 2
+        photoView.clipsToBounds = true
         
     }
     

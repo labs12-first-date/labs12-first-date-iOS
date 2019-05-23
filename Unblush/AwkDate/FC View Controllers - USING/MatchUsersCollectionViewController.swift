@@ -42,9 +42,9 @@ class MatchUsersCollectionViewController: UICollectionViewController {
             fatalError("Unable to retrieve layout")
         }
         
-        let amount: CGFloat = 10
+        let amount: CGFloat = 20
         layout.sectionInset = UIEdgeInsets(top: amount, left: amount, bottom: amount, right: amount)
-        layout.itemSize = CGSize(width: 320, height: 400)
+        layout.itemSize = CGSize(width: 285, height: 400)
         
     
     }

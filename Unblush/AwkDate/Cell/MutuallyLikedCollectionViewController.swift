@@ -43,7 +43,7 @@ class MutuallyLikedCollectionViewController: UICollectionViewController {
         
         let amount: CGFloat = 20
         layout.sectionInset = UIEdgeInsets(top: amount, left: amount, bottom: amount, right: amount)
-        layout.itemSize = CGSize(width: 300, height: 400)
+        layout.itemSize = CGSize(width: 285, height: 400)
        
         
     }
