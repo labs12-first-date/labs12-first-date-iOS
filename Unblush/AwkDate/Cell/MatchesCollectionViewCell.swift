@@ -70,11 +70,11 @@ class MatchesCollectionViewCell: UICollectionViewCell {
         super.awakeFromNib()
         nameLabel.textColor = .grass
         nameLabel.font = AppearanceHelper.mediumFont(with: .subheadline, pointSize: 25)
-        ageLabel.textColor = .violet
+        ageLabel.textColor = .grape
         ageLabel.font = AppearanceHelper.lightFont(with: .body, pointSize: 17)
-        locationLabel.textColor = .violet
+        locationLabel.textColor = .grape
         locationLabel.font = AppearanceHelper.lightFont(with: .body, pointSize: 17)
-        bioLabel.textColor = .violet
+        bioLabel.textColor = .grape
         bioLabel.font = AppearanceHelper.lightFont(with: .body, pointSize: 17)
         
 //        photoView.layer.cornerRadius = photoView.frame.size.width / 2

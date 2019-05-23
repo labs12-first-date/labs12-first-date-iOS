@@ -17,6 +17,7 @@ extension UIColor {
     static let midnight = UIColor(11, 28, 41, 1)
     static let blueish = UIColor(33, 36, 56, 1)
     static let grape = UIColor(182, 18, 209, 1)
+    static let grapeAlpha = UIColor(182, 18, 209, 0.15)
     static let grass = UIColor(4, 191, 104, 1)
     static let tan = UIColor(217, 202, 173, 1)
     static let cream = UIColor(242, 233, 216, 1)

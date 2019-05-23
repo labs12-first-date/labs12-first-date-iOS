@@ -31,7 +31,7 @@ class MutuallyLikedCollectionViewController: UICollectionViewController {
     }
     
     func setTheme() {
-        collectionView.backgroundColor = .cream
+        collectionView.backgroundColor = .violet
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -185,7 +185,7 @@ class MutuallyLikedCollectionViewController: UICollectionViewController {
 //        cell.layer.borderWidth = 2
 //        cell.layer.borderColor = UIColor.black.cgColor
         cell.layer.cornerRadius = 20
-        cell.layer.backgroundColor = UIColor.tan.cgColor
+        cell.layer.backgroundColor = UIColor.grapeAlpha.cgColor
         
         cell.photoView.image = self.load(fileName: profile["profile_picture"] as! String)
         cell.ageLabel.text = profile["age"] as! String
