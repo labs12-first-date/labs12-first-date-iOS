@@ -15,7 +15,7 @@ private let reuseIdentifier = "MutualCell"
 class BogusMutuallyLikedCollectionViewController: UICollectionViewController {
 
     
-    var userController: User2Controller?
+  /*  var userController: User2Controller?
     //var currentUser: User?
     
     var mutallyLikedArray = [[String:Any]]()
@@ -191,6 +191,6 @@ class BogusMutuallyLikedCollectionViewController: UICollectionViewController {
     override func collectionView(_ collectionView: UICollectionView, performAction action: Selector, forItemAt indexPath: IndexPath, withSender sender: Any?) {
     
     }
-    */
+    */*/
 
 }
