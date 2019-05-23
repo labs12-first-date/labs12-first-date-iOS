@@ -203,7 +203,6 @@ class User2Controller {
            // var count = 0
             for profile in querySnap.documents {
                
-               
                 if (profile["email"] as! String) != self.serverCurrentUser?.email! {
                     self.profilesFromServer.append(profile.data())
                 }

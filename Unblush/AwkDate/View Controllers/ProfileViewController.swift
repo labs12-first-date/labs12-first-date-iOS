@@ -91,6 +91,7 @@ class ProfileViewController: UIViewController {
         super.viewDidLoad()
         setupTheme()
         setNeedsStatusBarAppearanceUpdate()
+        NotificationCenter.default.addObserver(self, selector: #selector(updateViews(notification:)), name: .updateCollection, object: nil)
 
         
         if self.photo == nil {
@@ -187,7 +188,17 @@ class ProfileViewController: UIViewController {
         profileView.clipsToBounds = true
         
         view.backgroundColor = .violet
+    }
         
+    @objc func updateViews(notification: NSNotification) {
+      
+        user2Controller?.fetchProfileFromServer(userID: user2Controller!.currentUserUID!, completion: { (error) in
+            if let error = error {
+                print("Error fetching profile from server in update views: \(error)")
+                return
+            }
+            print("Successfully fetched new profile after updating views")
+        })
     }
     
     

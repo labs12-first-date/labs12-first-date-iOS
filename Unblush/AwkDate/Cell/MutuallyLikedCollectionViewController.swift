@@ -71,6 +71,7 @@ class MutuallyLikedCollectionViewController: UICollectionViewController {
         }
         
         let emptyArray = [[String:Any]]()
+        mutallyLikedArray = [[String:Any]]()
 
         let userLikedArray = userController!.singleProfileFromServer["liked"] as! [[String:Any]]
         

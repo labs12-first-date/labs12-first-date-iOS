@@ -97,4 +97,5 @@ class MatchesCollectionViewCell: UICollectionViewCell {
 extension Notification.Name {
     static let updateCollection = Notification.Name("update")
     static let displayMsg = Notification.Name("displayMessage")
+    static let updateCheck = Notification.Name("updateCheck")
 }
