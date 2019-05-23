@@ -33,6 +33,7 @@ class LookingForTableViewCell: UITableViewCell {
     @IBAction func buttonTapped(_ sender: UIButton) {
     
     guard let lookingFor = lookingFor else { return }
+        
         let currentImage = uncheckButton.currentImage!
         let buttonEmptyImage = UIImage(named: "emptyCheck")!
         let buttonCheckImage = UIImage(named: "check")!
