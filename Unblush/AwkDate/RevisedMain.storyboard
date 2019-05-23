@@ -317,8 +317,8 @@
                                         </constraints>
                                         <state key="normal" title="liked" image="liked"/>
                                         <connections>
-                                            <action selector="likedButton:" destination="NZU-Yv-iKK" eventType="touchUpInside" id="Yy5-18-8lt"/>
-                                            <segue destination="V5C-Hg-1ZH" kind="show" identifier="showMutallyLiked" id="pQc-mU-lxt"/>
+                                            <action selector="heartButtonTapped:" destination="NZU-Yv-iKK" eventType="touchUpInside" id="VOl-xH-51e"/>
+                                            <segue destination="V5C-Hg-1ZH" kind="show" identifier="showMutallyLiked" id="nBw-GC-IMz"/>
                                         </connections>
                                     </button>
                                 </subviews>
@@ -349,24 +349,14 @@
                                     </label>
                                 </subviews>
                             </stackView>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="KvV-m6-fem">
-                                <rect key="frame" x="45" y="109" width="285" height="450"/>
-                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="450" id="7TT-3S-JbB"/>
-                                </constraints>
-                            </view>
                         </subviews>
                         <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="GOZ-eb-q7M" firstAttribute="top" secondItem="VPv-uj-fLA" secondAttribute="bottom" constant="60" id="1Ih-oA-IJp"/>
-                            <constraint firstItem="dAi-fC-XnI" firstAttribute="trailing" secondItem="KvV-m6-fem" secondAttribute="trailing" constant="45" id="7gQ-lp-HkQ"/>
                             <constraint firstItem="dAi-fC-XnI" firstAttribute="trailing" secondItem="4Bj-Y4-JeK" secondAttribute="trailing" constant="70" id="RHK-qc-52O"/>
-                            <constraint firstItem="KvV-m6-fem" firstAttribute="leading" secondItem="dAi-fC-XnI" secondAttribute="leading" constant="45" id="T21-oo-oSZ"/>
                             <constraint firstItem="GOZ-eb-q7M" firstAttribute="leading" secondItem="dAi-fC-XnI" secondAttribute="leading" constant="85" id="WFs-rb-zrT"/>
                             <constraint firstItem="VPv-uj-fLA" firstAttribute="top" secondItem="dAi-fC-XnI" secondAttribute="top" constant="90" id="cD1-4h-jn5"/>
                             <constraint firstItem="4Bj-Y4-JeK" firstAttribute="leading" secondItem="dAi-fC-XnI" secondAttribute="leading" constant="70" id="mg4-fm-QBz"/>
-                            <constraint firstItem="KvV-m6-fem" firstAttribute="top" secondItem="dAi-fC-XnI" secondAttribute="top" constant="45" id="q5l-Tr-svf"/>
                             <constraint firstItem="VPv-uj-fLA" firstAttribute="centerX" secondItem="4fY-mC-3KD" secondAttribute="centerX" id="xHw-Ta-Ouc"/>
                             <constraint firstItem="4Bj-Y4-JeK" firstAttribute="top" secondItem="GOZ-eb-q7M" secondAttribute="bottom" constant="10" id="xLl-dV-Ae7"/>
                         </constraints>
@@ -386,8 +376,7 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
-                        <outlet property="cardView" destination="KvV-m6-fem" id="Nsx-te-slV"/>
-                        <outlet property="likedButton" destination="ofN-AE-m8j" id="Szs-Uy-TL5"/>
+                        <outlet property="heartButton" destination="ofN-AE-m8j" id="o6t-f1-CIU"/>
                         <outlet property="matchesButton" destination="E6l-z4-NtF" id="s5l-TT-0FM"/>
                         <outlet property="messageButton" destination="FOK-Xc-Wg1" id="dwP-dg-t2Q"/>
                         <outlet property="messagesLabel" destination="egC-Mf-PTL" id="5Yp-c6-mig"/>

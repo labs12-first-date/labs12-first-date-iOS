@@ -35,7 +35,6 @@ class ProfileViewController: UIViewController {
     }
     
     //MARK: - Outlets
-    @IBOutlet weak var cardView: UIView!
     @IBOutlet weak var matchesButton: UIBarButtonItem!
     @IBAction func matchesButton(_ sender: Any) {
         
@@ -57,15 +56,10 @@ class ProfileViewController: UIViewController {
        // performSegue(withIdentifier: "settings", sender: self)
 
     }
-    @IBOutlet weak var likedButton: UIButton!
-    @IBAction func likedButton(_ sender: Any) {
-        
+    @IBOutlet weak var heartButton: UIButton!
+    @IBAction func heartButtonTapped(_ sender: Any) {
     }
     
-    @IBOutlet weak var editButton: UIButton!
-    @IBAction func editButton(_ sender: Any) {
-        
-    }
     
     @IBOutlet weak var signoutButton: UIBarButtonItem!
     @IBAction func signoutButton(_ sender: Any) {
@@ -184,8 +178,8 @@ class ProfileViewController: UIViewController {
         mutuallyLikedLabel.font = AppearanceHelper.lightFont(with: .body, pointSize: 16)
 
         
-        cardView.backgroundColor = UIColor.grape.withAlphaComponent(0.15)
-        cardView.layer.cornerRadius = 20
+        //cardView.backgroundColor = UIColor.grape.withAlphaComponent(0.15)
+        //cardView.layer.cornerRadius = 20
         nameLabel.textColor = .grape
         nameLabel.font = AppearanceHelper.mediumFont(with: .subheadline, pointSize: 25)
         
