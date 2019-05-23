@@ -102,7 +102,7 @@ class MatchUsersCollectionViewController: UICollectionViewController, UINavigati
                     self.ageGap = 10
                     ageProfiles = self.filterByAge(profiles: dislikedProfiles)
                 } else {
-                    self.ageGap = 5
+                    self.ageGap = 50 // makes it so there isn't an age gap
                     ageProfiles = self.filterByAge(profiles: dislikedProfiles)
                 }
                 
