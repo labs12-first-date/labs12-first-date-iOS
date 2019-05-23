@@ -283,7 +283,7 @@
                                 </subviews>
                             </stackView>
                             <stackView opaque="NO" contentMode="scaleToFill" spacing="56" translatesAutoresizingMaskIntoConstraints="NO" id="GOZ-eb-q7M" userLabel="icons">
-                                <rect key="frame" x="80" y="435" width="202" height="30"/>
+                                <rect key="frame" x="85" y="435" width="202" height="30"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FOK-Xc-Wg1">
                                         <rect key="frame" x="0.0" y="0.0" width="30" height="30"/>
@@ -361,14 +361,14 @@
                         <constraints>
                             <constraint firstItem="GOZ-eb-q7M" firstAttribute="top" secondItem="VPv-uj-fLA" secondAttribute="bottom" constant="60" id="1Ih-oA-IJp"/>
                             <constraint firstItem="dAi-fC-XnI" firstAttribute="trailing" secondItem="KvV-m6-fem" secondAttribute="trailing" constant="45" id="7gQ-lp-HkQ"/>
-                            <constraint firstItem="4Bj-Y4-JeK" firstAttribute="top" secondItem="GOZ-eb-q7M" secondAttribute="top" constant="40" id="9i4-U1-pgh"/>
                             <constraint firstItem="dAi-fC-XnI" firstAttribute="trailing" secondItem="4Bj-Y4-JeK" secondAttribute="trailing" constant="70" id="RHK-qc-52O"/>
                             <constraint firstItem="KvV-m6-fem" firstAttribute="leading" secondItem="dAi-fC-XnI" secondAttribute="leading" constant="45" id="T21-oo-oSZ"/>
-                            <constraint firstItem="GOZ-eb-q7M" firstAttribute="leading" secondItem="dAi-fC-XnI" secondAttribute="leading" constant="80" id="WFs-rb-zrT"/>
+                            <constraint firstItem="GOZ-eb-q7M" firstAttribute="leading" secondItem="dAi-fC-XnI" secondAttribute="leading" constant="85" id="WFs-rb-zrT"/>
                             <constraint firstItem="VPv-uj-fLA" firstAttribute="top" secondItem="dAi-fC-XnI" secondAttribute="top" constant="90" id="cD1-4h-jn5"/>
                             <constraint firstItem="4Bj-Y4-JeK" firstAttribute="leading" secondItem="dAi-fC-XnI" secondAttribute="leading" constant="70" id="mg4-fm-QBz"/>
                             <constraint firstItem="KvV-m6-fem" firstAttribute="top" secondItem="dAi-fC-XnI" secondAttribute="top" constant="45" id="q5l-Tr-svf"/>
                             <constraint firstItem="VPv-uj-fLA" firstAttribute="centerX" secondItem="4fY-mC-3KD" secondAttribute="centerX" id="xHw-Ta-Ouc"/>
+                            <constraint firstItem="4Bj-Y4-JeK" firstAttribute="top" secondItem="GOZ-eb-q7M" secondAttribute="bottom" constant="10" id="xLl-dV-Ae7"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="dAi-fC-XnI"/>
                     </view>
@@ -841,13 +841,13 @@
                                                 <rect key="frame" x="0.0" y="74" width="295" height="30"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="maximum distance" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="j1K-31-I0m">
-                                                        <rect key="frame" x="0.0" y="0.0" width="67.5" height="30"/>
+                                                        <rect key="frame" x="0.0" y="0.0" width="143.5" height="30"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                         <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.5" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="wU1-zs-vUk">
-                                                        <rect key="frame" x="75.5" y="0.0" width="221.5" height="31"/>
+                                                        <rect key="frame" x="151.5" y="0.0" width="145.5" height="31"/>
                                                         <connections>
                                                             <action selector="distanceSliderMoved:" destination="CgO-Yp-CKy" eventType="valueChanged" id="b4J-vT-dBy"/>
                                                         </connections>

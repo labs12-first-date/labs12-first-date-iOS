@@ -31,7 +31,7 @@ class MutuallyLikedCollectionViewController: UICollectionViewController {
     }
     
     func setTheme() {
-        collectionView.backgroundColor = .violet
+        collectionView.backgroundColor = .cream
     }
     
     override func viewWillAppear(_ animated: Bool) {
