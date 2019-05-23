@@ -59,6 +59,20 @@ class ProfileViewController: UIViewController {
         
     }
     
+    @IBOutlet weak var signoutButton: UIBarButtonItem!
+    @IBAction func signoutButton(_ sender: Any) {
+        do {
+            try Auth.auth().signOut()
+        }
+        catch let signOutError as NSError {
+            print ("Error signing out: %@", signOutError)
+        }
+        
+        let storyboard = UIStoryboard(name: "RevisedMain", bundle: nil)
+        let initial = storyboard.instantiateInitialViewController()
+        UIApplication.shared.keyWindow?.rootViewController = initial
+    }
+    
     // share var photo across view controllers, so that we don't have to keep network calling every time we come back to profile
     var photo: UIImage?
     var currentUserFirstName: String?

@@ -343,6 +343,11 @@
                         <viewLayoutGuide key="safeArea" id="dAi-fC-XnI"/>
                     </view>
                     <navigationItem key="navigationItem" id="nKD-Ve-MrJ">
+                        <barButtonItem key="leftBarButtonItem" title="sign out" id="Plz-kZ-ipe">
+                            <connections>
+                                <action selector="signoutButton:" destination="NZU-Yv-iKK" id="uQE-Qp-eZq"/>
+                            </connections>
+                        </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" title="matches" id="E6l-z4-NtF">
                             <connections>
                                 <action selector="matchesButton:" destination="NZU-Yv-iKK" id="YNb-hg-1Bj"/>
@@ -358,6 +363,7 @@
                         <outlet property="nameLabel" destination="Sxt-wL-SrF" id="Iso-U2-rW0"/>
                         <outlet property="profileView" destination="SwA-h4-0Zk" id="hAF-MJ-1Ps"/>
                         <outlet property="settingsButton" destination="fqU-uL-rMK" id="0qk-ce-G2M"/>
+                        <outlet property="signoutButton" destination="Plz-kZ-ipe" id="4Ak-hC-p9d"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="xQF-Xs-hHV" userLabel="First Responder" sceneMemberID="firstResponder"/>
