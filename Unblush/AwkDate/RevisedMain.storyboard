@@ -750,13 +750,13 @@
                                                 <rect key="frame" x="0.0" y="143.33333333333331" width="295" height="30"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="confirm new password" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Cz5-re-mDZ">
-                                                        <rect key="frame" x="0.0" y="0.0" width="96.333333333333329" height="30"/>
+                                                        <rect key="frame" x="0.0" y="0.0" width="172.66666666666666" height="30"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                         <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <textField opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="exampleEmail@gmail.com" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="hEs-SW-ik1">
-                                                        <rect key="frame" x="106.33333333333336" y="0.0" width="188.66666666666663" height="30"/>
+                                                        <rect key="frame" x="182.66666666666666" y="0.0" width="112.33333333333334" height="30"/>
                                                         <nil key="textColor"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                         <textInputTraits key="textInputTraits"/>
@@ -802,13 +802,13 @@
                                                 <rect key="frame" x="0.0" y="74.000000000000057" width="295" height="30"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="maximum distance" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="j1K-31-I0m">
-                                                        <rect key="frame" x="0.0" y="0.0" width="95.666666666666671" height="30"/>
+                                                        <rect key="frame" x="0.0" y="0.0" width="91.666666666666671" height="30"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                         <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.5" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="wU1-zs-vUk">
-                                                        <rect key="frame" x="103.66666666666664" y="0.0" width="193.33333333333337" height="31"/>
+                                                        <rect key="frame" x="99.666666666666643" y="0.0" width="197.33333333333337" height="31"/>
                                                         <connections>
                                                             <action selector="distanceSliderMoved:" destination="CgO-Yp-CKy" eventType="valueChanged" id="b4J-vT-dBy"/>
                                                         </connections>
@@ -1339,6 +1339,6 @@
         <image name="unblushLogoType" width="984" height="195"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="rhQ-cu-5Wk"/>
+        <segue reference="foW-Z4-4Yb"/>
     </inferredMetricsTieBreakers>
 </document>

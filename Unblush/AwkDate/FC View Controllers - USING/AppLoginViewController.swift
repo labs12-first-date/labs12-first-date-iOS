@@ -112,10 +112,10 @@ class AppLoginViewController: UIViewController {
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "loginToProfile" {
-            guard let destination = segue.destination as? ProfileViewController else { return }
+            guard let destination = segue.destination as? UINavigationController, let vcDestination = destination.topViewController as?  ProfileViewController else { return }
             
-            destination.currentUserUID = self.currentUserUID
-            destination.user2Controller = user2Controller
+            vcDestination.currentUserUID = self.currentUserUID
+            vcDestination.user2Controller = user2Controller
         }
     }
 }
