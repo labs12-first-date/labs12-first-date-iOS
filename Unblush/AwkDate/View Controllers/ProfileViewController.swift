@@ -48,6 +48,9 @@ class ProfileViewController: UIViewController {
         //performSegue(withIdentifier: "toThreads", sender: self)
 
     }
+    @IBOutlet weak var messagesLabel: UILabel!
+    @IBOutlet weak var settingsLabel: UILabel!
+    @IBOutlet weak var mutuallyLikedLabel: UILabel!
     
     @IBOutlet weak var settingsButton: UIButton!
     @IBAction func settingsButton(_ sender: Any) {
@@ -172,6 +175,14 @@ class ProfileViewController: UIViewController {
     }
     
     func setupTheme() {
+        
+        messagesLabel.textColor = .grape
+        messagesLabel.font = AppearanceHelper.lightFont(with: .body, pointSize: 16)
+        settingsLabel.textColor = .grape
+        settingsLabel.font = AppearanceHelper.lightFont(with: .body, pointSize: 16)
+        mutuallyLikedLabel.textColor = .grape
+        mutuallyLikedLabel.font = AppearanceHelper.lightFont(with: .body, pointSize: 16)
+
         
         cardView.backgroundColor = UIColor.grape.withAlphaComponent(0.15)
         cardView.layer.cornerRadius = 20
