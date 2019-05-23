@@ -21,7 +21,7 @@ class MutuallyLikedCollectionViewController: UICollectionViewController {
     var userController: User2Controller?
     //var currentUser: User?
     
-    
+    let opQueue = OperationQueue()
     var messageThread: MessageThread?
     
     private let db = Firestore.firestore()
@@ -168,7 +168,13 @@ class MutuallyLikedCollectionViewController: UICollectionViewController {
         cell.layer.borderColor = UIColor.black.cgColor
         cell.layer.cornerRadius = 8
         
+        let loadPhotoOP = BlockOperation {
+        }
         cell.photoView.image = self.load(fileName: profile["profile_picture"] as! String)
+        
+        let otherOP = BlockOperation {
+            
+        }
         cell.ageLabel.text = profile["age"] as! String
         cell.bioLabel.text = profile["bio"] as! String
         cell.locationLabel.text = profile["zip_code"] as! String
@@ -177,9 +183,16 @@ class MutuallyLikedCollectionViewController: UICollectionViewController {
         cell.profile = profile
         cell.userController = self.userController
         
-        
+       /* otherOP.addDependency(loadPhotoOP)
+        OperationQueue.main.addOperation(otherOP)
+        opQueue.addOperation(loadPhotoOP)*/
+    
         return cell
+    
+        
     }
+    
+    
     
     override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let profile = mutallyLikedArray[indexPath.item]

@@ -361,7 +361,7 @@ class BogusSettingsViewController: UIViewController, UITextFieldDelegate {
                     print("Ok button tapped")
                     DispatchQueue.main.async
                         {
-                            self.dismiss(animated: true, completion: nil)
+                            alertController.dismiss(animated: true, completion: nil)
                     }
                 }
                 alertController.addAction(OKAction)
@@ -379,7 +379,7 @@ class BogusSettingsViewController: UIViewController, UITextFieldDelegate {
                     print("Ok button tapped")
                     DispatchQueue.main.async
                         {
-                            self.dismiss(animated: true, completion: nil)
+                            alertController.dismiss(animated: true, completion: nil)
                     }
                 }
                 alertController.addAction(OKAction)
