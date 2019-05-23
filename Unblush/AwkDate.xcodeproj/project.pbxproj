@@ -277,7 +277,6 @@
 			children = (
 				4F3C55D722792A1E006307A9 /* AppDelegate.swift */,
 				486A0F4622939A010047DF7A /* Fonts */,
-				4F507C362285E5A300A60674 /* LaunchScreen2.storyboard */,
 				486A0F4322936F3F0047DF7A /* Storyboards */,
 				485F5B1622933F7900927FA9 /* Cell */,
 				485F5B072293390C00927FA9 /* FC View Controllers */,
@@ -365,6 +364,7 @@
 				4F507C322285E50F00A60674 /* SignupViewController.swift */,
 				4F9ACB662289E4C1004A5D2A /* MessageThreadsTableViewController.swift */,
 				4F9ACB682289E784004A5D2A /* ChatViewController.swift */,
+				4F507C362285E5A300A60674 /* LaunchScreen2.storyboard */,
 				4F3C55DB22792A1E006307A9 /* MainTest.storyboard */,
 			);
 			path = "View Controllers";
