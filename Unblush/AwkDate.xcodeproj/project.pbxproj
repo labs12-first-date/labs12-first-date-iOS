@@ -24,8 +24,8 @@
 		486A0F4822939A310047DF7A /* HelveticaNeue-Light.otf in Resources */ = {isa = PBXBuildFile; fileRef = 486A0F4722939A310047DF7A /* HelveticaNeue-Light.otf */; };
 		486A0F4A22939A450047DF7A /* HelveticaNeue-Medium.otf in Resources */ = {isa = PBXBuildFile; fileRef = 486A0F4922939A450047DF7A /* HelveticaNeue-Medium.otf */; };
 		486A0F4C22939A540047DF7A /* HelveticaNeueBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 486A0F4B22939A540047DF7A /* HelveticaNeueBold.ttf */; };
+		487E9B4D22973FE20039ACE3 /* RevisedMain.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 487E9B4C22973FE20039ACE3 /* RevisedMain.storyboard */; };
 		48840F402293162900BE3389 /* ColorConvenience.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48840F3F2293162900BE3389 /* ColorConvenience.swift */; };
-		48840F422293216700BE3389 /* RevisedMain.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 48840F412293216700BE3389 /* RevisedMain.storyboard */; };
 		4F15063D228E3F2C00C96D8B /* BogusMutuallyLikedCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F15063C228E3F2C00C96D8B /* BogusMutuallyLikedCollectionViewController.swift */; };
 		4F15063F228E3F7F00C96D8B /* BogusMutualCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F15063E228E3F7F00C96D8B /* BogusMutualCollectionViewCell.swift */; };
 		4F3C55D822792A1E006307A9 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F3C55D722792A1E006307A9 /* AppDelegate.swift */; };
@@ -112,8 +112,8 @@
 		486A0F4722939A310047DF7A /* HelveticaNeue-Light.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "HelveticaNeue-Light.otf"; sourceTree = "<group>"; };
 		486A0F4922939A450047DF7A /* HelveticaNeue-Medium.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "HelveticaNeue-Medium.otf"; sourceTree = "<group>"; };
 		486A0F4B22939A540047DF7A /* HelveticaNeueBold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = HelveticaNeueBold.ttf; sourceTree = "<group>"; };
+		487E9B4C22973FE20039ACE3 /* RevisedMain.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = RevisedMain.storyboard; sourceTree = "<group>"; };
 		48840F3F2293162900BE3389 /* ColorConvenience.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorConvenience.swift; sourceTree = "<group>"; };
-		48840F412293216700BE3389 /* RevisedMain.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = RevisedMain.storyboard; path = ../RevisedMain.storyboard; sourceTree = "<group>"; };
 		4F15063C228E3F2C00C96D8B /* BogusMutuallyLikedCollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = BogusMutuallyLikedCollectionViewController.swift; path = "View Controllers/BogusMutuallyLikedCollectionViewController.swift"; sourceTree = "<group>"; };
 		4F15063E228E3F7F00C96D8B /* BogusMutualCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BogusMutualCollectionViewCell.swift; sourceTree = "<group>"; };
 		4F3C55D422792A1E006307A9 /* AwkDate.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AwkDate.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -234,7 +234,7 @@
 		486A0F4322936F3F0047DF7A /* Storyboards */ = {
 			isa = PBXGroup;
 			children = (
-				48840F412293216700BE3389 /* RevisedMain.storyboard */,
+				487E9B4C22973FE20039ACE3 /* RevisedMain.storyboard */,
 				486A0F44229370080047DF7A /* Launch Screen.storyboard */,
 			);
 			path = Storyboards;
@@ -528,8 +528,8 @@
 				4F507C352285E56A00A60674 /* Storyboards in Resources */,
 				486A0F4822939A310047DF7A /* HelveticaNeue-Light.otf in Resources */,
 				486A0F4C22939A540047DF7A /* HelveticaNeueBold.ttf in Resources */,
-				48840F422293216700BE3389 /* RevisedMain.storyboard in Resources */,
 				486A0F4A22939A450047DF7A /* HelveticaNeue-Medium.otf in Resources */,
+				487E9B4D22973FE20039ACE3 /* RevisedMain.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
