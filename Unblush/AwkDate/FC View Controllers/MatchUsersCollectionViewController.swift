@@ -51,11 +51,8 @@ class MatchUsersCollectionViewController: UICollectionViewController, UINavigati
     
     override func viewDidLoad() {
         super.viewDidLoad()
-<<<<<<< HEAD:Unblush/AwkDate/FC View Controllers - USING/MatchUsersCollectionViewController.swift
         setTheme()
-=======
         navigationController?.delegate = self
->>>>>>> master:Unblush/AwkDate/FC View Controllers/MatchUsersCollectionViewController.swift
         setNeedsStatusBarAppearanceUpdate()
         NotificationCenter.default.addObserver(self, selector: #selector(updateViews(notification:)), name: .updateCollection, object: nil)
         // Register cell classes
