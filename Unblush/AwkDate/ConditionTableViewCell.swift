@@ -51,6 +51,7 @@ class ConditionTableViewCell: UITableViewCell {
             conditionsFromTableView.remove(at: indexOfSTD!)
             print("Current conditions 2: \(conditionsFromTableView)")
         } else {
+            
             DispatchQueue.main.async {
                 self.checkMarkButton.setImage(buttonCheckImage, for: .normal)
             }

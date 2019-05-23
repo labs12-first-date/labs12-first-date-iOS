@@ -85,6 +85,7 @@ class ProfileViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setNeedsStatusBarAppearanceUpdate()
+        NotificationCenter.default.addObserver(self, selector: #selector(updateViews(notification:)), name: .updateCollection, object: nil)
 
         
         if self.photo == nil {
@@ -160,6 +161,17 @@ class ProfileViewController: UIViewController {
             print("Error loading image : \(error)")
         }
         return nil
+    }
+    
+    @objc func updateViews(notification: NSNotification) {
+      
+        user2Controller?.fetchProfileFromServer(userID: user2Controller!.currentUserUID!, completion: { (error) in
+            if let error = error {
+                print("Error fetching profile from server in update views: \(error)")
+                return
+            }
+            print("Successfully fetched new profile after updating views")
+        })
     }
     
     

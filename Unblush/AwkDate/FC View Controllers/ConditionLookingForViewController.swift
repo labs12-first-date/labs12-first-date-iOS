@@ -74,21 +74,28 @@ class ConditionLookingForViewController: UIViewController, UITableViewDataSource
             
             let condition = conditions[indexPath.row]
             cell.conditionNameLabel.text = condition.rawValue
-            cell.condition = condition
+            cell.condition = condition.rawValue
             style(cell: cell)
             return cell
             
         } else {
-            //tableView == lookingTableView {
             let cell = tableView.dequeueReusableCell(withIdentifier: "LookingForCell", for: indexPath) as! LookingForTableViewCell
+            
+            if tableView == lookingTableView {
                 
                 let lookingFor = lookingForCriteria[indexPath.row]
                 cell.lookingForLabel.text = lookingFor.rawValue
                 cell.lookingFor = lookingFor
                 style(cell: cell)
                 return cell
-          
+                
+            }
+            return cell
         }
+    }
+    
+    @objc func changeCheckMark(notification: NSNotification) -> Void {
+    
     }
     
     @objc func displayMessage(notification: NSNotification) -> Void {

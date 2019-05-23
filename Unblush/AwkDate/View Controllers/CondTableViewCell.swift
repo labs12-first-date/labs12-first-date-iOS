@@ -10,12 +10,17 @@ import UIKit
 
 class CondTableViewCell: UITableViewCell {
 
-    var condition: ConditionType? {
+    var condition: String? {
         didSet {
             updateViews()
         }
     }
     
+    var index: Int? {
+        didSet{
+            
+        }
+    }
     func updateViews() {
         guard let condition = condition else { return }
         
@@ -32,6 +37,7 @@ class CondTableViewCell: UITableViewCell {
     @IBAction func checkMarkTapped(_ sender: UIButton) {
         guard let condition = condition else { return }
         let currentImage = checkMarkButton.currentImage!
+        
         let buttonEmptyImage = UIImage(named: "emptyCheck")!
         let buttonCheckImage = UIImage(named: "check")!
         
@@ -40,14 +46,14 @@ class CondTableViewCell: UITableViewCell {
             DispatchQueue.main.async {
                 self.checkMarkButton.setImage(buttonEmptyImage, for: .normal)
             }
-            let indexOfSTD = conditionsFromTableView.firstIndex(of: condition.rawValue)
+            let indexOfSTD = conditionsFromTableView.firstIndex(of: condition)
             conditionsFromTableView.remove(at: indexOfSTD!)
             print("Current conditions 2: \(conditionsFromTableView)")
         } else {
             DispatchQueue.main.async {
                 self.checkMarkButton.setImage(buttonCheckImage, for: .normal)
             }
-            conditionsFromTableView.append(condition.rawValue)
+            conditionsFromTableView.append(condition)
             print("Current conditions 1: \(conditionsFromTableView)")
         }
     }

@@ -51,7 +51,7 @@ class AppSignupViewController: UIViewController {
         }
         
         if password == confirmPassword {
-            user2Controller.createUserAccount(withEmail: email, andPassword: password) { (error) in
+            user2Controller.createUserAccount(withEmail: email.lowercased(), andPassword: password) { (error) in
                 if let error = error {
                     NSLog("Error creating account in vc: \(error.localizedDescription)")
                     self.displayMessage(userMessage: "\(error.localizedDescription)")

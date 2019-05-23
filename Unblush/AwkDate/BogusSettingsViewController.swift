@@ -124,6 +124,7 @@ class BogusSettingsViewController: UIViewController, UITextFieldDelegate {
             saveButton.tintColor = UIColor.white.withAlphaComponent(1)
             newZipcode = zipcodeTextField.text
         }
+        newZipcode = zipcodeTextField.text
     }
     
     
@@ -135,8 +136,9 @@ class BogusSettingsViewController: UIViewController, UITextFieldDelegate {
         } else if zipcodeTextField.text != currentLocation {
             saveButton.isEnabled = true
             saveButton.tintColor = UIColor.white.withAlphaComponent(1)
-            newZipcode = zipcodeTextField.text
+            
         }
+        newZipcode = zipcodeTextField.text
         
     }
     
@@ -177,10 +179,11 @@ class BogusSettingsViewController: UIViewController, UITextFieldDelegate {
                         self.removeActivityIndicator(activityIndicator: myActivityIndicator)
                         self.displayMessage(userMessage: error.localizedDescription)
                     }
+                    NotificationCenter.default.post(name: .updateCollection, object: nil)
                     
                     DispatchQueue.main.async {
                         self.removeActivityIndicator(activityIndicator: myActivityIndicator)
-                        self.successDisplayMessage(userMessage: "Successfully updated gender on profile!")
+                        self.successDisplayMessage(userMessage: "Successfully updated your  profile!")
                         self.newGender = nil
                         self.saveButton.isEnabled = false
                         self.saveButton.tintColor = UIColor.white.withAlphaComponent(0)
@@ -196,10 +199,11 @@ class BogusSettingsViewController: UIViewController, UITextFieldDelegate {
                         self.removeActivityIndicator(activityIndicator: myActivityIndicator)
                         self.displayMessage(userMessage: error.localizedDescription)
                     }
+                    NotificationCenter.default.post(name: .updateCollection, object: nil)
                     
                     DispatchQueue.main.async {
                         self.removeActivityIndicator(activityIndicator: myActivityIndicator)
-                        self.successDisplayMessage(userMessage: "Successfully updated age gap on profile!")
+                        self.successDisplayMessage(userMessage: "Successfully updated your profile!")
                         self.newAgeGap = nil
                         self.saveButton.isEnabled = false
                         self.saveButton.tintColor = UIColor.white.withAlphaComponent(0)
@@ -214,10 +218,11 @@ class BogusSettingsViewController: UIViewController, UITextFieldDelegate {
                         self.removeActivityIndicator(activityIndicator: myActivityIndicator)
                         self.displayMessage(userMessage: error.localizedDescription)
                     }
+                    NotificationCenter.default.post(name: .updateCollection, object: nil)
                     
                     DispatchQueue.main.async {
                         self.removeActivityIndicator(activityIndicator: myActivityIndicator)
-                        self.successDisplayMessage(userMessage: "Successfully updated max distance on profile!")
+                        self.successDisplayMessage(userMessage: "Successfully updated your profile!")
                         self.newDistance = nil
                         self.saveButton.isEnabled = false
                         self.saveButton.tintColor = UIColor.white.withAlphaComponent(0)
@@ -225,6 +230,13 @@ class BogusSettingsViewController: UIViewController, UITextFieldDelegate {
                 })
             }
             if newZipcode != nil && newZipcode != currentLocation {
+                if newZipcode!.count != 5 {
+                    DispatchQueue.main.async {
+                        self.removeActivityIndicator(activityIndicator: myActivityIndicator)
+                        self.displayMessage(userMessage: "Please enter an accurate zipcode!")
+                        return
+                    }
+                }
                 userController?.updateZipcodeOnServer(userUID: userController!.serverCurrentUser!.uid, zipcode: newZipcode!, completion: { (error) in
                     if let error = error {
                         print("Error updating zipcode in vc: \(error)")
@@ -232,9 +244,12 @@ class BogusSettingsViewController: UIViewController, UITextFieldDelegate {
                         self.displayMessage(userMessage: error.localizedDescription)
                     }
                     
+                    NotificationCenter.default.post(name: .updateCollection, object: nil)
+                    
                     DispatchQueue.main.async {
                         self.removeActivityIndicator(activityIndicator: myActivityIndicator)
-                        self.successDisplayMessage(userMessage: "Successfully updated zipcode on profile!")
+                        self.successDisplayMessage(userMessage: "Successfully updated your profile!")
+                       //
                         self.newZipcode = nil
                         self.saveButton.isEnabled = false
                         self.saveButton.tintColor = UIColor.white.withAlphaComponent(0)
