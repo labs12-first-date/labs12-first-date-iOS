@@ -43,7 +43,7 @@ class MutuallyLikedCollectionViewController: UICollectionViewController {
         
         let amount: CGFloat = 20
         layout.sectionInset = UIEdgeInsets(top: amount, left: amount, bottom: amount, right: amount)
-        layout.itemSize = CGSize(width: 370, height: 410)
+        layout.itemSize = CGSize(width: 300, height: 400)
        
         
     }
@@ -185,7 +185,7 @@ class MutuallyLikedCollectionViewController: UICollectionViewController {
 //        cell.layer.borderWidth = 2
 //        cell.layer.borderColor = UIColor.black.cgColor
         cell.layer.cornerRadius = 20
-        cell.layer.backgroundColor = UIColor.grapeAlpha.cgColor
+        cell.layer.backgroundColor = UIColor.tan.cgColor
         
         cell.photoView.image = self.load(fileName: profile["profile_picture"] as! String)
         cell.ageLabel.text = profile["age"] as! String
