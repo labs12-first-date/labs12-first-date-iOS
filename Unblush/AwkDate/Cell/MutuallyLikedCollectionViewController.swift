@@ -84,13 +84,14 @@ class MutuallyLikedCollectionViewController: UICollectionViewController {
             
         }
         DispatchQueue.main.async {
-            if filteredProfiles.count == 0 {
+            if mutallyLikedArray.count == 0 {
                 self.removeActivityIndicator(activityIndicator: myActivityIndicator)
                 imageView.frame = CGRect(x: 110, y: 350, width: 200, height: 200)
                 imageView.center = self.view.center
                 self.view.addSubview(imageView)
                 return
             }
+            imageView.alpha = 0
             self.collectionView.reloadData()
             self.removeActivityIndicator(activityIndicator: myActivityIndicator)
             return
