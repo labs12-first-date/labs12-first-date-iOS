@@ -36,7 +36,7 @@ class MutuallyLikedCollectionViewController: UICollectionViewController {
         NotificationCenter.default.addObserver(self, selector: #selector(updateViews(notification:)), name: .updateCollection, object: nil)
         //Create Activity Indicator
         let myActivityIndicator = UIActivityIndicatorView(frame: CGRect(x: 100,y: 200, width: 200, height: 200))
-        myActivityIndicator.style = (UIActivityIndicatorView.Style.gray)
+        myActivityIndicator.style = (UIActivityIndicatorView.Style.whiteLarge)
         
         // Position Activity Indicator in the center of the main view
         myActivityIndicator.center = self.view.center
@@ -87,6 +87,7 @@ class MutuallyLikedCollectionViewController: UICollectionViewController {
             if filteredProfiles.count == 0 {
                 self.removeActivityIndicator(activityIndicator: myActivityIndicator)
                 imageView.frame = CGRect(x: 110, y: 350, width: 200, height: 200)
+                imageView.center = self.view.center
                 self.view.addSubview(imageView)
                 return
             }

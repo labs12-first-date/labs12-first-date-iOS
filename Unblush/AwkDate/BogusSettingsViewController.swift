@@ -16,11 +16,13 @@ class BogusSettingsViewController: UIViewController, UITextFieldDelegate {
     var currentGender: String?
     var currentLocation: String?
     var currentMaxDistance: String?
+    var currentBio: String?
     
     var newAgeGap: String?
     var newGender: String?
     var newZipcode: String?
     var newDistance: Int?
+    var newBio: String?
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -37,7 +39,9 @@ class BogusSettingsViewController: UIViewController, UITextFieldDelegate {
         currentGender = userController?.singleProfileFromServer["gender"] as! String
         currentLocation = userController?.singleProfileFromServer["zip_code"] as! String
         currentMaxDistance = userController?.singleProfileFromServer["max_distance"] as! String
+        currentBio = userController?.singleProfileFromServer["bio"] as! String
         
+       // bioTextField.placeholder = currentBio
         zipcodeTextField.placeholder = currentLocation
         genderPickerViewTextField.text = currentGender
         distanceSlider.value = Float(Int(currentMaxDistance!)!)
@@ -169,6 +173,32 @@ class BogusSettingsViewController: UIViewController, UITextFieldDelegate {
             
             DispatchQueue.main.async {
                 self.view.addSubview(myActivityIndicator)
+            }
+            
+            if newBio != nil {
+                if newBio == "" {
+                    DispatchQueue.main.async {
+                        self.removeActivityIndicator(activityIndicator: myActivityIndicator)
+                        self.displayMessage(userMessage: "Please enter a bio!")
+                        return
+                    }
+                }
+                userController?.updateBioOnServer(userUID: userController!.serverCurrentUser!.uid, biography: newBio!, completion: { (error) in
+                    if let error = error {
+                        print("Error updating bio in vc: \(error)")
+                        self.removeActivityIndicator(activityIndicator: myActivityIndicator)
+                        self.displayMessage(userMessage: error.localizedDescription)
+                    }
+                    NotificationCenter.default.post(name: .updateCollection, object: nil)
+                    
+                    DispatchQueue.main.async {
+                        self.removeActivityIndicator(activityIndicator: myActivityIndicator)
+                        self.successDisplayMessage(userMessage: "Successfully updated your  profile!")
+                        self.newBio = nil
+                        self.saveButton.isEnabled = false
+                        self.saveButton.tintColor = UIColor.white.withAlphaComponent(0)
+                    }
+                })
             }
             
             if newGender != nil {

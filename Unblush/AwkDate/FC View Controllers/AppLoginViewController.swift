@@ -32,7 +32,7 @@ class AppLoginViewController: UIViewController {
         
         //Create Activity Indicator
         let myActivityIndicator = UIActivityIndicatorView(frame: CGRect(x: 100,y: 200, width: 200, height: 200))
-        myActivityIndicator.style = (UIActivityIndicatorView.Style.gray)
+        myActivityIndicator.style = (UIActivityIndicatorView.Style.whiteLarge)
         
         // Position Activity Indicator in the center of the main view
         myActivityIndicator.center = self.view.center

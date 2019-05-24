@@ -11,7 +11,11 @@ import UIKit
 class MatchesCollectionViewCell: UICollectionViewCell {
     
     //MARK: - Properties
-    var profile: [String:Any]?
+    var profile: [String:Any]? {
+        didSet {
+            setTheme()
+        }
+    }
     var photo: UIImage?
     var userController: User2Controller?
     
@@ -77,6 +81,28 @@ class MatchesCollectionViewCell: UICollectionViewCell {
     }
     
     func setTheme() {
+        guard let profile = profile else { return }
+        
+        
+        if filteredProfiles.contains(where: { $0["email"] as! String == profile["email"] as! String }) {
+            self.likeButton.setTitle("Like", for: .normal)
+            self.donotLikeButton.alpha = 1
+            
+            self.donotLikeButton.setTitle("Dislike", for: .normal)
+            self.likeButton.alpha = 1
+            
+            AppearanceHelper.style(button: donotLikeButton)
+            AppearanceHelper.style(button: likeButton)
+        } else {
+            self.likeButton.setTitle("Like", for: .normal)
+            self.donotLikeButton.alpha = 1
+           
+            self.donotLikeButton.setTitle("Dislike", for: .normal)
+            self.likeButton.alpha = 1
+            
+            AppearanceHelper.style(button: donotLikeButton)
+            AppearanceHelper.style(button: likeButton)
+        }
         AppearanceHelper.style(button: donotLikeButton)
         AppearanceHelper.style(button: likeButton)
                 
