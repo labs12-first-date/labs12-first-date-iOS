@@ -40,6 +40,10 @@ class MatchUsersCollectionViewController: UICollectionViewController, UINavigati
         // Register cell classes
         /* self.collectionView!.register(UICollectionViewCell.self, forCellWithReuseIdentifier: reuseIdentifier) */
         
+        let image = UIImage(named: "NoMatches")
+        let imageView = UIImageView(image: image!)
+        filteredProfiles = [[String:Any]]()
+        
         //Create Activity Indicator
         let myActivityIndicator = UIActivityIndicatorView(frame: CGRect(x: 100,y: 200, width: 200, height: 200))
         myActivityIndicator.style = (UIActivityIndicatorView.Style.gray)
@@ -81,6 +85,12 @@ class MatchUsersCollectionViewController: UICollectionViewController, UINavigati
                 if self.lookingFor!.contains(.openToAllPossibilities) {
                     filteredProfiles = dislikedProfiles
                     DispatchQueue.main.async {
+                        if filteredProfiles.count == 0 {
+                            self.removeActivityIndicator(activityIndicator: myActivityIndicator)
+                            imageView.frame = CGRect(x: 110, y: 350, width: 200, height: 200)
+                            self.view.addSubview(imageView)
+                            return
+                        }
                         self.collectionView.reloadData()
                         self.removeActivityIndicator(activityIndicator: myActivityIndicator)
                         print("Number of matches: \(filteredProfiles.count)")
@@ -113,6 +123,12 @@ class MatchUsersCollectionViewController: UICollectionViewController, UINavigati
                         genderProfiles = self.filterByGender(profiles: conditionProfiles)
                         filteredProfiles = genderProfiles
                         DispatchQueue.main.async {
+                            if filteredProfiles.count == 0 {
+                                self.removeActivityIndicator(activityIndicator: myActivityIndicator)
+                                imageView.frame = CGRect(x: 110, y: 350, width: 200, height: 200)
+                                self.view.addSubview(imageView)
+                                return
+                            }
                             self.collectionView.reloadData()
                             self.removeActivityIndicator(activityIndicator: myActivityIndicator)
                             print("Number of matches: \(filteredProfiles.count)")
@@ -121,6 +137,12 @@ class MatchUsersCollectionViewController: UICollectionViewController, UINavigati
                     }
                     filteredProfiles = conditionProfiles
                     DispatchQueue.main.async {
+                        if filteredProfiles.count == 0 {
+                            self.removeActivityIndicator(activityIndicator: myActivityIndicator)
+                            imageView.frame = CGRect(x: 110, y: 350, width: 200, height: 200)
+                            self.view.addSubview(imageView)
+                            return
+                        }
                         self.collectionView.reloadData()
                         self.removeActivityIndicator(activityIndicator: myActivityIndicator)
                         print("Number of matches: \(filteredProfiles.count)")
@@ -132,6 +154,12 @@ class MatchUsersCollectionViewController: UICollectionViewController, UINavigati
                         genderProfiles = self.filterByGender(profiles: ageProfiles)
                         filteredProfiles = genderProfiles
                         DispatchQueue.main.async {
+                            if filteredProfiles.count == 0 {
+                                self.removeActivityIndicator(activityIndicator: myActivityIndicator)
+                                imageView.frame = CGRect(x: 110, y: 350, width: 200, height: 200)
+                                self.view.addSubview(imageView)
+                                return
+                            }
                             self.collectionView.reloadData()
                             self.removeActivityIndicator(activityIndicator: myActivityIndicator)
                             print("Number of matches: \(filteredProfiles.count)")
@@ -140,6 +168,12 @@ class MatchUsersCollectionViewController: UICollectionViewController, UINavigati
                     }
                     filteredProfiles = ageProfiles
                     DispatchQueue.main.async {
+                        if filteredProfiles.count == 0 {
+                            self.removeActivityIndicator(activityIndicator: myActivityIndicator)
+                            imageView.frame = CGRect(x: 110, y: 350, width: 200, height: 200)
+                            self.view.addSubview(imageView)
+                            return
+                        }
                         self.collectionView.reloadData()
                         self.removeActivityIndicator(activityIndicator: myActivityIndicator)
                         print("Number of matches: \(filteredProfiles.count)")
@@ -179,14 +213,13 @@ class MatchUsersCollectionViewController: UICollectionViewController, UINavigati
         }
         
         for profile in profiles {
-            let likedEmail = profile["email"] as! String
-            for disliked in userDislikedArray {
-                let dislikedEmail = disliked["email"] as! String
-                if dislikedEmail != likedEmail {
-                    profilesFiltered.append(profile)
-                }
+            if userDislikedArray.contains(where: { $0["email"] as! String == profile["email"] as! String }) {
+                print("Contains this: \(profile)")
+            } else {
+                profilesFiltered.append(profile)
             }
         }
+        
         print("Disliked filter mutually liked: \(profilesFiltered.count)")
         return profilesFiltered
     }
@@ -201,13 +234,21 @@ class MatchUsersCollectionViewController: UICollectionViewController, UINavigati
             return profilesFiltered
         }
         
-        for profile in profiles {
+       /* for profile in profiles {
             let likedEmail = profile["email"] as! String
             for liked in userlikedArray {
                 let comparelikedEmail = liked["email"] as! String
                 if comparelikedEmail != likedEmail {
                     profilesFiltered.append(profile)
                 }
+            }
+        }*/
+        
+        for profile in profiles {
+            if userlikedArray.contains(where: { $0["email"] as! String == profile["email"] as! String }) {
+                print("Contains this: \(profile)")
+            } else {
+               profilesFiltered.append(profile)
             }
         }
         print("Liked filter mutually liked: \(profilesFiltered.count)")

@@ -20,6 +20,16 @@ class LookingForTableViewCell: UITableViewCell {
     func updateViews() {
         guard let lookingFor = lookingFor else { return }
         
+        
+        let buttonCheckImage = UIImage(named: "check")!
+        let buttonEmptyImage = UIImage(named: "emptyCheck")!
+        
+        if lookingForFromTableView.contains(lookingFor.rawValue) {
+            uncheckButton.setImage(buttonCheckImage, for: .normal)
+        } else {
+            uncheckButton.setImage(buttonEmptyImage, for: .normal)
+        }
+        
         lookingForLabel.textColor = .grape
         lookingForLabel.font = AppearanceHelper.lightFont(with: .body, pointSize: 16)
         //uncheckButton.tintColor = .grape

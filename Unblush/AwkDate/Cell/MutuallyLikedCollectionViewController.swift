@@ -51,6 +51,9 @@ class MutuallyLikedCollectionViewController: UICollectionViewController {
             self.view.addSubview(myActivityIndicator)
         }
         
+        let image = UIImage(named: "NoMutuals")
+        let imageView = UIImageView(image: image!)
+        
         let emptyArray = [[String:Any]]()
         mutallyLikedArray = [[String:Any]]()
 
@@ -81,6 +84,12 @@ class MutuallyLikedCollectionViewController: UICollectionViewController {
             
         }
         DispatchQueue.main.async {
+            if filteredProfiles.count == 0 {
+                self.removeActivityIndicator(activityIndicator: myActivityIndicator)
+                imageView.frame = CGRect(x: 110, y: 350, width: 200, height: 200)
+                self.view.addSubview(imageView)
+                return
+            }
             self.collectionView.reloadData()
             self.removeActivityIndicator(activityIndicator: myActivityIndicator)
             return
@@ -122,12 +131,10 @@ class MutuallyLikedCollectionViewController: UICollectionViewController {
         }
         
         for profile in profiles {
-            let likedEmail = profile["email"] as! String
-            for disliked in userDislikedArray {
-                let dislikedEmail = disliked["email"] as! String
-                if dislikedEmail != likedEmail {
-                    profilesFiltered.append(profile)
-                }
+            if userDislikedArray.contains(where: { $0["email"] as! String == profile["email"] as! String }) {
+                print("Contains this: \(profile)")
+            } else {
+                profilesFiltered.append(profile)
             }
         }
         print("Disliked filter mutually liked: \(profilesFiltered.count)")
