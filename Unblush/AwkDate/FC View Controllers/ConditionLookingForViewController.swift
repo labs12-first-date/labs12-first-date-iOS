@@ -31,7 +31,7 @@ class ConditionLookingForViewController: UIViewController, UITableViewDataSource
     
 
     
-    let conditions: [ConditionType] = [.aids, .chlamydia, .crabs, .genitalWarts, .gonorrhea, .hepB, .hepC, .hepD, .herpes, .hiv, .syphyllis, .theClap]
+    let conditions: [ConditionType] = [.aids, .chlamydia, .crabs, .genitalWarts, .gonorrhea, .hepB, .hepC, .hepD, .hepA, .herpes, .hiv, .syphyllis, .theClap]
     
     let lookingForCriteria: [LookingForType] = [.sameGender, .sameCondition, .openToAllPossibilities, .openToAllConditions, .fiveYearAgeGap, .tenYearAgeGap, .threeYearAgeGap]
     
@@ -138,7 +138,7 @@ class ConditionLookingForViewController: UIViewController, UITableViewDataSource
             
             //Create Activity Indicator
             let myActivityIndicator = UIActivityIndicatorView(frame: CGRect(x: 100,y: 200, width: 200, height: 200))
-            myActivityIndicator.style = (UIActivityIndicatorView.Style.gray)
+            myActivityIndicator.style = (UIActivityIndicatorView.Style.whiteLarge)
             
             // Position Activity Indicator in the center of the main view
             myActivityIndicator.center = self.view.center

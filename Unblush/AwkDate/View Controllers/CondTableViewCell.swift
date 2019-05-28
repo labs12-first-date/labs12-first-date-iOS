@@ -24,6 +24,15 @@ class CondTableViewCell: UITableViewCell {
     func updateViews() {
         guard let condition = condition else { return }
         
+        let buttonCheckImage = UIImage(named: "check")!
+        let buttonEmptyImage = UIImage(named: "emptyCheck")!
+        
+        if conditionsFromTableView.contains(condition) {
+            checkMarkButton.setImage(buttonCheckImage, for: .normal)
+        } else {
+            checkMarkButton.setImage(buttonEmptyImage, for: .normal)
+        }
+        
         conditionNameLabel.textColor = .grape
         conditionNameLabel.font = AppearanceHelper.lightFont(with: .body, pointSize: 16)
         //checkMarkButton.tintColor = .grape

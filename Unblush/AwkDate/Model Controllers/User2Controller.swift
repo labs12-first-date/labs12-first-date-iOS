@@ -199,7 +199,7 @@ class User2Controller {
                 print("No querySnapshot!")
                 return
             }
-            
+            self.profilesFromServer = [[String:Any]]()
            // var count = 0
             for profile in querySnap.documents {
                
@@ -250,6 +250,22 @@ class User2Controller {
                 return
             }
             print("Successfully updated distance")
+            completion(nil)
+        }
+        
+    }
+    
+    func updateBioOnServer(userUID: String, biography: String, completion: @escaping (Error?) -> Void = {_ in }) {
+        
+        let profileRef = db.collection("profilesiOS").document(userUID)
+        
+        profileRef.updateData(["bio": biography]) { (error) in
+            if let error = error {
+                print("Error updating bio: \(error)")
+                completion(error)
+                return
+            }
+            print("Successfully updated bio")
             completion(nil)
         }
         

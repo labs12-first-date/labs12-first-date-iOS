@@ -30,13 +30,35 @@ class MutuallyLikedCollectionViewController: UICollectionViewController {
         return db.collection("messageThreadsiOS").document(self.userController!.serverCurrentUser!.uid).collection("threads")
     }
     
+    func setTheme() {
+        collectionView.backgroundColor = .violet
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        guard let layout = collectionView.collectionViewLayout as? UICollectionViewFlowLayout else {
+            fatalError("Unable to retrieve layout")
+        }
+        
+        let amount: CGFloat = 40
+        layout.sectionInset = UIEdgeInsets(top: amount, left: amount, bottom: amount, right: amount)
+        layout.itemSize = CGSize(width: 285, height: 400)
+        DispatchQueue.main.async {
+            self.collectionView.reloadData()
+        }
+        
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        setTheme()
         setNeedsStatusBarAppearanceUpdate()
+        
         NotificationCenter.default.addObserver(self, selector: #selector(updateViews(notification:)), name: .updateCollection, object: nil)
         //Create Activity Indicator
         let myActivityIndicator = UIActivityIndicatorView(frame: CGRect(x: 100,y: 200, width: 200, height: 200))
-        myActivityIndicator.style = (UIActivityIndicatorView.Style.gray)
+        myActivityIndicator.style = (UIActivityIndicatorView.Style.whiteLarge)
         
         // Position Activity Indicator in the center of the main view
         myActivityIndicator.center = self.view.center
@@ -50,6 +72,9 @@ class MutuallyLikedCollectionViewController: UICollectionViewController {
         DispatchQueue.main.async {
             self.view.addSubview(myActivityIndicator)
         }
+        
+        let image = UIImage(named: "NoMutuals")
+        let imageView = UIImageView(image: image!)
         
         let emptyArray = [[String:Any]]()
         mutallyLikedArray = [[String:Any]]()
@@ -81,6 +106,14 @@ class MutuallyLikedCollectionViewController: UICollectionViewController {
             
         }
         DispatchQueue.main.async {
+            if mutallyLikedArray.count == 0 {
+                self.removeActivityIndicator(activityIndicator: myActivityIndicator)
+                imageView.frame = CGRect(x: 110, y: 350, width: 200, height: 200)
+                imageView.center = self.view.center
+                self.view.addSubview(imageView)
+                return
+            }
+            imageView.alpha = 0
             self.collectionView.reloadData()
             self.removeActivityIndicator(activityIndicator: myActivityIndicator)
             return
@@ -122,12 +155,10 @@ class MutuallyLikedCollectionViewController: UICollectionViewController {
         }
         
         for profile in profiles {
-            let likedEmail = profile["email"] as! String
-            for disliked in userDislikedArray {
-                let dislikedEmail = disliked["email"] as! String
-                if dislikedEmail != likedEmail {
-                    profilesFiltered.append(profile)
-                }
+            if userDislikedArray.contains(where: { $0["email"] as! String == profile["email"] as! String }) {
+                print("Contains this: \(profile)")
+            } else {
+                profilesFiltered.append(profile)
             }
         }
         print("Disliked filter mutually liked: \(profilesFiltered.count)")
@@ -147,7 +178,6 @@ class MutuallyLikedCollectionViewController: UICollectionViewController {
      */
     
     // MARK: UICollectionViewDataSource
-    
     override func numberOfSections(in collectionView: UICollectionView) -> Int {
         // #warning Incomplete implementation, return the number of sections
         return 1
@@ -164,21 +194,22 @@ class MutuallyLikedCollectionViewController: UICollectionViewController {
         
         let profile = mutallyLikedArray[indexPath.item]
         
-        cell.layer.borderWidth = 2
-        cell.layer.borderColor = UIColor.black.cgColor
-        cell.layer.cornerRadius = 8
+        //cell.layer.borderWidth = 2
+        //cell.layer.borderColor = UIColor.black.cgColor
+        cell.layer.cornerRadius = 20
+        cell.layer.backgroundColor = UIColor.grape.cgColor
         
         let loadPhotoOP = BlockOperation {
         }
-        cell.photoView.image = self.load(fileName: profile["profile_picture"] as! String)
+        cell.personPhotoView.image = self.load(fileName: profile["profile_picture"] as! String)
         
         let otherOP = BlockOperation {
             
         }
-        cell.ageLabel.text = profile["age"] as! String
-        cell.bioLabel.text = profile["bio"] as! String
-        cell.locationLabel.text = profile["zip_code"] as! String
-        cell.nameLabel.text = profile["first_name"] as! String
+        cell.theirAgeLabel.text = profile["age"] as! String
+        cell.biographyLabel.text = profile["bio"] as! String
+        cell.zipcodeLabel.text = profile["zip_code"] as! String
+        cell.firstNameLabel.text = profile["first_name"] as! String
         
         cell.profile = profile
         cell.userController = self.userController
@@ -188,11 +219,7 @@ class MutuallyLikedCollectionViewController: UICollectionViewController {
         opQueue.addOperation(loadPhotoOP)*/
     
         return cell
-    
-        
     }
-    
-    
     
     override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let profile = mutallyLikedArray[indexPath.item]
@@ -240,14 +267,8 @@ class MutuallyLikedCollectionViewController: UICollectionViewController {
                     print("Successfully updated disliked matches after chat now pressed")
                     NotificationCenter.default.post(name: .updateCollection, object: nil)
                 })
-                
-                
             })
-            
-            
         }
-        
-        
     }
     
     @objc func updateViews(notification: NSNotification) {
@@ -279,24 +300,19 @@ class MutuallyLikedCollectionViewController: UICollectionViewController {
         }
         return nil
     }
-    
+}
     // MARK: UICollectionViewDelegate
-    
     /*
      // Uncomment this method to specify if the specified item should be highlighted during tracking
      override func collectionView(_ collectionView: UICollectionView, shouldHighlightItemAt indexPath: IndexPath) -> Bool {
      return true
      }
-     */
-    
-    /*
+ 
      // Uncomment this method to specify if the specified item should be selected
      override func collectionView(_ collectionView: UICollectionView, shouldSelectItemAt indexPath: IndexPath) -> Bool {
      return true
      }
-     */
-    
-    /*
+ 
      // Uncomment these methods to specify if an action menu should be displayed for the specified item, and react to actions performed on the item
      override func collectionView(_ collectionView: UICollectionView, shouldShowMenuForItemAt indexPath: IndexPath) -> Bool {
      return false
@@ -311,4 +327,3 @@ class MutuallyLikedCollectionViewController: UICollectionViewController {
      }
      */
     
-}

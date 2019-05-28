@@ -16,15 +16,24 @@ class BogusSettingsViewController: UIViewController, UITextFieldDelegate {
     var currentGender: String?
     var currentLocation: String?
     var currentMaxDistance: String?
+    var currentBio: String?
     
     var newAgeGap: String?
     var newGender: String?
     var newZipcode: String?
     var newDistance: Int?
+    var newBio: String?
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        setTheme()
+        
+        self.zipcodeTextField.tag = 1
+        self.bioTextField.tag = 2
+        
         self.zipcodeTextField.delegate = self
+        self.bioTextField.delegate = self
+        
         distanceSlider.maximumValue = 70
         distanceSlider.minimumValue = 10
         
@@ -37,23 +46,34 @@ class BogusSettingsViewController: UIViewController, UITextFieldDelegate {
         currentGender = userController?.singleProfileFromServer["gender"] as! String
         currentLocation = userController?.singleProfileFromServer["zip_code"] as! String
         currentMaxDistance = userController?.singleProfileFromServer["max_distance"] as! String
+        currentBio = userController?.singleProfileFromServer["bio"] as! String
+       // currentAgeRange = userController?.singleProfileFromServer[""] as! String
         
-        zipcodeTextField.placeholder = currentLocation
-        genderPickerViewTextField.text = currentGender
+        
+        bioTextField.attributedPlaceholder = NSAttributedString(string: currentBio!, attributes: [NSAttributedString.Key.foregroundColor: UIColor.grape])
+        zipcodeTextField.attributedPlaceholder = NSAttributedString(string: currentLocation!, attributes: [NSAttributedString.Key.foregroundColor: UIColor.grape])
+        genderPickerViewTextField.attributedPlaceholder = NSAttributedString(string: currentGender!, attributes: [NSAttributedString.Key.foregroundColor: UIColor.grape])
         distanceSlider.value = Float(Int(currentMaxDistance!)!)
+        sliderNumberLabel.text = "\(Float(Int(currentMaxDistance!)!))"
         
         let lookingForArray = userController?.singleProfileFromServer["looking_for"] as! [String]
         
         for look in lookingForArray {
             if LookingForType(rawValue: look) == LookingForType.fiveYearAgeGap {
-                ageRangePickerViewTextField.text = look
+               // ageRangePickerViewTextField.text = look
                 self.currentAgeGap = look
+                ageRangePickerViewTextField.attributedPlaceholder = NSAttributedString(string: look, attributes: [NSAttributedString.Key.foregroundColor: UIColor.grape])
             } else if LookingForType(rawValue: look) == LookingForType.threeYearAgeGap {
-                ageRangePickerViewTextField.text = look
+               // ageRangePickerViewTextField.text = look
                 self.currentAgeGap = look
+                ageRangePickerViewTextField.attributedPlaceholder = NSAttributedString(string: look, attributes: [NSAttributedString.Key.foregroundColor: UIColor.grape])
             } else if LookingForType(rawValue: look) == LookingForType.tenYearAgeGap {
-                ageRangePickerViewTextField.text = look
+               // ageRangePickerViewTextField.text = look
                 self.currentAgeGap = look
+                ageRangePickerViewTextField.attributedPlaceholder = NSAttributedString(string: look, attributes: [NSAttributedString.Key.foregroundColor: UIColor.grape])
+            } else {
+               // ageRangePickerViewTextField.text = "No Age Gap"
+                ageRangePickerViewTextField.attributedPlaceholder = NSAttributedString(string: "No Age Gap", attributes: [NSAttributedString.Key.foregroundColor: UIColor.grape])
             }
         }
         
@@ -69,6 +89,59 @@ class BogusSettingsViewController: UIViewController, UITextFieldDelegate {
     
     let ageChoice: [LookingForType] = [.fiveYearAgeGap, .threeYearAgeGap, .tenYearAgeGap]
     
+    func setTheme() {
+        AppearanceHelper.style(button: changepwButton)
+        
+        //Labels
+        currentpwLabel.textColor = .grass
+        currentpwLabel.font = AppearanceHelper.lightFont(with: .body, pointSize: 16)
+        newpwLabel.textColor = .grass
+        newpwLabel.font = AppearanceHelper.lightFont(with: .body, pointSize: 16)
+        confirmpwLabel.textColor = .grass
+        confirmpwLabel.font = AppearanceHelper.lightFont(with: .body, pointSize: 16)
+        locationLabel.textColor = .grass
+        locationLabel.font = AppearanceHelper.lightFont(with: .body, pointSize: 16)
+        maximumLabel.textColor = .grass
+        maximumLabel.font = AppearanceHelper.lightFont(with: .body, pointSize: 16)
+        genderLabel.textColor = .grass
+        genderLabel.font = AppearanceHelper.lightFont(with: .body, pointSize: 16)
+        ageLabel.textColor = .grass
+        ageLabel.font = AppearanceHelper.lightFont(with: .body, pointSize: 16)
+        bioLabel.textColor = .grass
+        bioLabel.font = AppearanceHelper.lightFont(with: .body, pointSize: 16)
+        milesLabel.textColor = .grass
+        milesLabel.font = AppearanceHelper.lightFont(with: .body, pointSize: 14)
+        sliderNumberLabel.textColor = .grass
+        sliderNumberLabel.font = AppearanceHelper.lightFont(with: .body, pointSize: 14)
+        
+        //Textfields
+        currentpwTextField.setPadding()
+        currentpwTextField.textColor = .grape
+        currentpwTextField.backgroundColor = UIColor.grape.withAlphaComponent(0.1)
+        newpwTextField.setPadding()
+        newpwTextField.textColor = .grape
+        newpwTextField.backgroundColor = UIColor.grape.withAlphaComponent(0.1)
+        confirmpwTextField.setPadding()
+        confirmpwTextField.textColor = .grape
+        confirmpwTextField.backgroundColor = UIColor.grape.withAlphaComponent(0.1)
+        zipcodeTextField.setPadding()
+        zipcodeTextField.textColor = .grape
+        zipcodeTextField.backgroundColor = UIColor.grape.withAlphaComponent(0.1)
+        genderTextField.setPadding()
+        genderTextField.textColor = .grape
+        genderTextField.backgroundColor = UIColor.grape.withAlphaComponent(0.1)
+        ageTextField.setPadding()
+        ageTextField.textColor = .grape
+        ageTextField.backgroundColor = UIColor.grape.withAlphaComponent(0.1)
+        bioTextField.setPadding()
+        bioTextField.textColor = .grape
+        bioTextField.backgroundColor = UIColor.grape.withAlphaComponent(0.1)
+        
+        distanceSlider.tintColor = .grape
+        
+        view.backgroundColor = .violet
+    }
+    
     func createToolbar() {
         let toolBar = UIToolbar()
         toolBar.sizeToFit()
@@ -82,8 +155,7 @@ class BogusSettingsViewController: UIViewController, UITextFieldDelegate {
         ageRangePickerViewTextField.inputAccessoryView = toolBar
         
         //Customization
-        //toolBar.barTintColor = .black
-        //toolBar.tintColor = .white
+        toolBar.barTintColor = .violet
         
     }
     
@@ -98,7 +170,8 @@ class BogusSettingsViewController: UIViewController, UITextFieldDelegate {
         genderPickerViewTextField.inputView = genderPicker
         
         //Customizations
-        //genderPicker.backgroundColor = .white
+        genderPicker.backgroundColor = UIColor.grape.withAlphaComponent(0.2)
+        genderPicker.tintColor = .grape
         
     }
     
@@ -108,36 +181,69 @@ class BogusSettingsViewController: UIViewController, UITextFieldDelegate {
         ageRangePickerViewTextField.inputView = agePicker
         
         //Customizations
-        //genderPicker.backgroundColor = .white
+        agePicker.backgroundColor = UIColor.grape.withAlphaComponent(0.2)
+        agePicker.tintColor = .grape
         
     }
     
     func textFieldDidBeginEditing(_ textField: UITextField) {
-        if zipcodeTextField.text == currentLocation {
-            print("No change in location")
-            return
+        if textField.tag == 1 {
+            if zipcodeTextField.text == currentLocation {
+                print("No change in location")
+                return
+            } else if zipcodeTextField.text != currentLocation {
+                //zipcodeTextField.resignFirstResponder()
+                saveButton.isEnabled = true
+                saveButton.tintColor = UIColor.white.withAlphaComponent(1)
+                newZipcode = zipcodeTextField.text
+            }
         }
         
-        if zipcodeTextField.text != currentLocation {
-            //zipcodeTextField.resignFirstResponder()
-            saveButton.isEnabled = true
-            saveButton.tintColor = UIColor.white.withAlphaComponent(1)
-            newZipcode = zipcodeTextField.text
+        if textField.tag == 2 {
+           if bioTextField.text == currentBio {
+                print("No change in bio")
+                return
+            } else if bioTextField.text != currentBio {
+                saveButton.isEnabled = true
+                saveButton.tintColor = UIColor.white.withAlphaComponent(1)
+                newBio = bioTextField.text
+            }
         }
-        newZipcode = zipcodeTextField.text
+        
+        
+       // newZipcode = zipcodeTextField.text
+        newBio = bioTextField.text
+        
     }
     
     
     func textFieldDidEndEditing(_ textField: UITextField) {
         
-        if zipcodeTextField.text == currentLocation {
-            print("No change in location")
-            return
-        } else if zipcodeTextField.text != currentLocation {
-            saveButton.isEnabled = true
-            saveButton.tintColor = UIColor.white.withAlphaComponent(1)
-            
+        if textField.tag == 1 {
+            if zipcodeTextField.text == currentLocation {
+                print("No change in location")
+                return
+            } else if zipcodeTextField.text != currentLocation {
+                //zipcodeTextField.resignFirstResponder()
+                saveButton.isEnabled = true
+                saveButton.tintColor = UIColor.white.withAlphaComponent(1)
+                newZipcode = zipcodeTextField.text
+            }
         }
+        
+        if textField.tag == 2 {
+            if bioTextField.text == currentBio {
+                print("No change in bio")
+                saveButton.isEnabled = true
+                saveButton.tintColor = UIColor.white.withAlphaComponent(1)
+                return
+            } else if bioTextField.text != currentBio {
+                saveButton.isEnabled = true
+                saveButton.tintColor = UIColor.white.withAlphaComponent(1)
+                newBio = bioTextField.text
+            }
+        }
+        newBio = bioTextField.text
         newZipcode = zipcodeTextField.text
         
     }
@@ -150,13 +256,30 @@ class BogusSettingsViewController: UIViewController, UITextFieldDelegate {
     // change location
     //
     
+    @IBOutlet weak var milesLabel: UILabel!
+    @IBOutlet weak var sliderNumberLabel: UILabel!
     @IBOutlet weak var saveButton: UIBarButtonItem!
+    @IBOutlet weak var currentpwLabel: UILabel!
+    @IBOutlet weak var currentpwTextField: UITextField!
+    @IBOutlet weak var newpwLabel: UILabel!
+    @IBOutlet weak var newpwTextField: UITextField!
+    @IBOutlet weak var confirmpwLabel: UILabel!
+    @IBOutlet weak var confirmpwTextField: UITextField!
+    @IBOutlet weak var locationLabel: UILabel!
+   // @IBOutlet weak var locationTextField: UITextField!
+    @IBOutlet weak var maximumLabel: UILabel!
+    @IBOutlet weak var genderLabel: UILabel!
+    @IBOutlet weak var genderTextField: UITextField!
+    @IBOutlet weak var ageLabel: UILabel!
+    @IBOutlet weak var ageTextField: UITextField!
+    @IBOutlet weak var bioLabel: UILabel!
+    @IBOutlet weak var bioTextField: UITextField!
     
     @IBAction func saveButtonTapped(_ sender: UIBarButtonItem) {
         if saveButton.isEnabled == true {
             //Create Activity Indicator
             let myActivityIndicator = UIActivityIndicatorView(frame: CGRect(x: 100,y: 200, width: 200, height: 200))
-            myActivityIndicator.style = (UIActivityIndicatorView.Style.gray)
+            myActivityIndicator.style = (UIActivityIndicatorView.Style.whiteLarge)
             
             // Position Activity Indicator in the center of the main view
             myActivityIndicator.center = self.view.center
@@ -171,6 +294,33 @@ class BogusSettingsViewController: UIViewController, UITextFieldDelegate {
                 self.view.addSubview(myActivityIndicator)
             }
             
+            if bioTextField.text != nil && bioTextField.text != currentBio && bioTextField.text != "" {
+                if bioTextField.text!.count < 5 {
+                    DispatchQueue.main.async {
+                        self.removeActivityIndicator(activityIndicator: myActivityIndicator)
+                        self.displayMessage(userMessage: "Please enter a full bio!")
+                        return
+                    }
+                } else {
+                newBio = bioTextField.text
+                userController?.updateBioOnServer(userUID: userController!.serverCurrentUser!.uid, biography: newBio!, completion: { (error) in
+                    if let error = error {
+                        print("Error updating bio in vc: \(error)")
+                        self.removeActivityIndicator(activityIndicator: myActivityIndicator)
+                        self.displayMessage(userMessage: error.localizedDescription)
+                    }
+                    NotificationCenter.default.post(name: .updateCollection, object: nil)
+                    
+                    DispatchQueue.main.async {
+                        self.removeActivityIndicator(activityIndicator: myActivityIndicator)
+                        self.successDisplayMessage(userMessage: "Successfully updated your  profile!")
+                        //self.newBio = nil
+                        self.saveButton.isEnabled = false
+                        self.saveButton.tintColor = UIColor.white.withAlphaComponent(0)
+                        }
+                    })
+                }
+            }
             if newGender != nil {
                 // update document
                 userController?.updateGenderOnServer(userUID: userController!.serverCurrentUser!.uid, gender: newGender!, completion: { (error) in
@@ -229,14 +379,15 @@ class BogusSettingsViewController: UIViewController, UITextFieldDelegate {
                     }
                 })
             }
-            if newZipcode != nil && newZipcode != currentLocation {
+            if zipcodeTextField.text != nil && zipcodeTextField.text != currentLocation && zipcodeTextField.text != "" {
+                newZipcode = zipcodeTextField.text!
                 if newZipcode!.count != 5 {
                     DispatchQueue.main.async {
                         self.removeActivityIndicator(activityIndicator: myActivityIndicator)
                         self.displayMessage(userMessage: "Please enter an accurate zipcode!")
                         return
                     }
-                }
+                } else {
                 userController?.updateZipcodeOnServer(userUID: userController!.serverCurrentUser!.uid, zipcode: newZipcode!, completion: { (error) in
                     if let error = error {
                         print("Error updating zipcode in vc: \(error)")
@@ -253,23 +404,24 @@ class BogusSettingsViewController: UIViewController, UITextFieldDelegate {
                         self.newZipcode = nil
                         self.saveButton.isEnabled = false
                         self.saveButton.tintColor = UIColor.white.withAlphaComponent(0)
-                    }
-                })
+                        }
+                    })
+                }
             }
         }
     }
-    
     @IBOutlet weak var currentPasswordTextField: UITextField!
     
     @IBOutlet weak var newPasswordTextField: UITextField!
     
     @IBOutlet weak var confirmPasswordTextField: UITextField!
     
+    @IBOutlet weak var changepwButton: UIButton!
     @IBAction func changePasswordTapped(_ sender: UIButton) {
         if let oldPw = currentPasswordTextField.text, let newPw = newPasswordTextField.text, let confirmPw = confirmPasswordTextField.text {
             
             let myActivityIndicator = UIActivityIndicatorView(frame: CGRect(x: 100,y: 200, width: 200, height: 200))
-            myActivityIndicator.style = (UIActivityIndicatorView.Style.gray)
+            myActivityIndicator.style = (UIActivityIndicatorView.Style.whiteLarge)
             
             // Position Activity Indicator in the center of the main view
             myActivityIndicator.center = self.view.center
@@ -332,7 +484,11 @@ class BogusSettingsViewController: UIViewController, UITextFieldDelegate {
     @IBAction func distanceSliderMoved(_ sender: UISlider) {
         newDistance = Int(sender.value)
         print("Current Distance value: \(newDistance)")
-        saveButton.isEnabled = true
+        DispatchQueue.main.async {
+            self.sliderNumberLabel.text = "\(self.newDistance!)"
+            self.saveButton.isEnabled = true
+        }
+        
     }
     
     
@@ -386,8 +542,8 @@ class BogusSettingsViewController: UIViewController, UITextFieldDelegate {
                 self.present(alertController, animated: true, completion:nil)
         }
     }
-
 }
+
 extension BogusSettingsViewController: UIPickerViewDelegate, UIPickerViewDataSource {
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
         return 1
@@ -440,6 +596,27 @@ extension BogusSettingsViewController: UIPickerViewDelegate, UIPickerViewDataSou
             }
             //self.view.endEditing(true)
         }
+    }
+    //FIX
+    func pickerView(_ pickerView: UIPickerView, viewForRow row: Int, forComponent component: Int, reusing view: UIView?) -> UIView {
+        var label: UILabel
+        if let view = view as? UILabel {
+            label = view
+        } else {
+            label = UILabel()
+        }
+        label.textColor = .grape
+        label.textAlignment = .center
+        label.font = UIFont(name: "HelveticaNeue-Light", size: 17)
+        //label.font = AppearanceHelper.lightFont(with: .body, pointSize: 16)
+        
+        if pickerView == ageRangePickerViewTextField.inputView {
+            label.text = ageChoice[row].rawValue
+        } else if pickerView == genderPickerViewTextField.inputView {
+            label.text = genderChoice[row]
+        }
+        
+        return label
     }
 
 }

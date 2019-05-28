@@ -27,22 +27,48 @@ class MatchUsersCollectionViewController: UICollectionViewController, UINavigati
     var radius: Int? = 25 //25 miles is default radius
     var zipcodesInRange: [JCSLocation]?
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        guard let layout = collectionView.collectionViewLayout as? UICollectionViewFlowLayout else {
+            fatalError("Unable to retrieve layout")
+        }
+        
+        let amount: CGFloat = 40
+        layout.sectionInset = UIEdgeInsets(top: amount, left: amount, bottom: amount, right: amount)
+        layout.itemSize = CGSize(width: 285, height: 400)
+        DispatchQueue.main.async {
+            self.collectionView.reloadData()
+        }
+        
+    }
     
     override var preferredStatusBarStyle: UIStatusBarStyle {
         return .lightContent
     }
     
+    func setTheme() {
+        collectionView.backgroundColor = .violet
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        setTheme()
+        
         navigationController?.delegate = self
         setNeedsStatusBarAppearanceUpdate()
         NotificationCenter.default.addObserver(self, selector: #selector(updateViews(notification:)), name: .updateCollection, object: nil)
         // Register cell classes
         /* self.collectionView!.register(UICollectionViewCell.self, forCellWithReuseIdentifier: reuseIdentifier) */
         
+        let image = UIImage(named: "NoMatches")
+        let imageView = UIImageView(image: image!)
+        filteredProfiles = [[String:Any]]()
+        
+        
         //Create Activity Indicator
         let myActivityIndicator = UIActivityIndicatorView(frame: CGRect(x: 100,y: 200, width: 200, height: 200))
-        myActivityIndicator.style = (UIActivityIndicatorView.Style.gray)
+        myActivityIndicator.style = (UIActivityIndicatorView.Style.whiteLarge)
         
         // Position Activity Indicator in the center of the main view
         myActivityIndicator.center = self.view.center
@@ -81,6 +107,13 @@ class MatchUsersCollectionViewController: UICollectionViewController, UINavigati
                 if self.lookingFor!.contains(.openToAllPossibilities) {
                     filteredProfiles = dislikedProfiles
                     DispatchQueue.main.async {
+                        if filteredProfiles.count == 0 {
+                            self.removeActivityIndicator(activityIndicator: myActivityIndicator)
+                            imageView.frame = CGRect(x: 110, y: 350, width: 200, height: 200)
+                            imageView.center = self.view.center
+                            self.view.addSubview(imageView)
+                            return
+                        }
                         self.collectionView.reloadData()
                         self.removeActivityIndicator(activityIndicator: myActivityIndicator)
                         print("Number of matches: \(filteredProfiles.count)")
@@ -113,6 +146,13 @@ class MatchUsersCollectionViewController: UICollectionViewController, UINavigati
                         genderProfiles = self.filterByGender(profiles: conditionProfiles)
                         filteredProfiles = genderProfiles
                         DispatchQueue.main.async {
+                            if filteredProfiles.count == 0 {
+                                self.removeActivityIndicator(activityIndicator: myActivityIndicator)
+                                imageView.frame = CGRect(x: 110, y: 350, width: 200, height: 200)
+                                imageView.center = self.view.center
+                                self.view.addSubview(imageView)
+                                return
+                            }
                             self.collectionView.reloadData()
                             self.removeActivityIndicator(activityIndicator: myActivityIndicator)
                             print("Number of matches: \(filteredProfiles.count)")
@@ -121,6 +161,13 @@ class MatchUsersCollectionViewController: UICollectionViewController, UINavigati
                     }
                     filteredProfiles = conditionProfiles
                     DispatchQueue.main.async {
+                        if filteredProfiles.count == 0 {
+                            self.removeActivityIndicator(activityIndicator: myActivityIndicator)
+                            imageView.frame = CGRect(x: 110, y: 350, width: 200, height: 200)
+                            imageView.center = self.view.center
+                            self.view.addSubview(imageView)
+                            return
+                        }
                         self.collectionView.reloadData()
                         self.removeActivityIndicator(activityIndicator: myActivityIndicator)
                         print("Number of matches: \(filteredProfiles.count)")
@@ -132,6 +179,13 @@ class MatchUsersCollectionViewController: UICollectionViewController, UINavigati
                         genderProfiles = self.filterByGender(profiles: ageProfiles)
                         filteredProfiles = genderProfiles
                         DispatchQueue.main.async {
+                            if filteredProfiles.count == 0 {
+                                self.removeActivityIndicator(activityIndicator: myActivityIndicator)
+                                imageView.frame = CGRect(x: 110, y: 350, width: 200, height: 200)
+                                imageView.center = self.view.center
+                                self.view.addSubview(imageView)
+                                return
+                            }
                             self.collectionView.reloadData()
                             self.removeActivityIndicator(activityIndicator: myActivityIndicator)
                             print("Number of matches: \(filteredProfiles.count)")
@@ -140,11 +194,35 @@ class MatchUsersCollectionViewController: UICollectionViewController, UINavigati
                     }
                     filteredProfiles = ageProfiles
                     DispatchQueue.main.async {
+                        if filteredProfiles.count == 0 {
+                            self.removeActivityIndicator(activityIndicator: myActivityIndicator)
+                            imageView.frame = CGRect(x: 110, y: 350, width: 200, height: 200)
+                            imageView.center = self.view.center
+                            self.view.addSubview(imageView)
+                            return
+                        }
                         self.collectionView.reloadData()
                         self.removeActivityIndicator(activityIndicator: myActivityIndicator)
                         print("Number of matches: \(filteredProfiles.count)")
                     }
                     return
+                } else if self.lookingFor!.contains(.sameGender) {
+                    genderProfiles = self.filterByGender(profiles: ageProfiles)
+                    filteredProfiles = genderProfiles
+                    DispatchQueue.main.async {
+                        if filteredProfiles.count == 0 {
+                            self.removeActivityIndicator(activityIndicator: myActivityIndicator)
+                            imageView.frame = CGRect(x: 110, y: 350, width: 200, height: 200)
+                            imageView.center = self.view.center
+                            self.view.addSubview(imageView)
+                            return
+                        }
+                        self.collectionView.reloadData()
+                        self.removeActivityIndicator(activityIndicator: myActivityIndicator)
+                        print("Number of matches: \(filteredProfiles.count)")
+                    }
+                    return
+                    
                 }
                 
             }
@@ -179,12 +257,10 @@ class MatchUsersCollectionViewController: UICollectionViewController, UINavigati
         }
         
         for profile in profiles {
-            let likedEmail = profile["email"] as! String
-            for disliked in userDislikedArray {
-                let dislikedEmail = disliked["email"] as! String
-                if dislikedEmail != likedEmail {
-                    profilesFiltered.append(profile)
-                }
+            if userDislikedArray.contains(where: { $0["email"] as! String == profile["email"] as! String }) {
+                print("Contains this: \(profile)")
+            } else {
+                profilesFiltered.append(profile)
             }
         }
         print("Disliked filter mutually liked: \(profilesFiltered.count)")
@@ -202,12 +278,10 @@ class MatchUsersCollectionViewController: UICollectionViewController, UINavigati
         }
         
         for profile in profiles {
-            let likedEmail = profile["email"] as! String
-            for liked in userlikedArray {
-                let comparelikedEmail = liked["email"] as! String
-                if comparelikedEmail != likedEmail {
-                    profilesFiltered.append(profile)
-                }
+            if userlikedArray.contains(where: { $0["email"] as! String == profile["email"] as! String }) {
+                print("Contains this: \(profile)")
+            } else {
+                profilesFiltered.append(profile)
             }
         }
         print("Liked filter mutually liked: \(profilesFiltered.count)")
@@ -303,12 +377,10 @@ class MatchUsersCollectionViewController: UICollectionViewController, UINavigati
     }
     
     // MARK: UICollectionViewDataSource
-    
     override func numberOfSections(in collectionView: UICollectionView) -> Int {
         // #warning Incomplete implementation, return the number of sections
         return 1
     }
-    
     
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of items
@@ -320,15 +392,16 @@ class MatchUsersCollectionViewController: UICollectionViewController, UINavigati
         
         let profile = filteredProfiles[indexPath.item]
         
-        cell.layer.borderWidth = 2
-        cell.layer.borderColor = UIColor.black.cgColor
-        cell.layer.cornerRadius = 8
+        //cell.layer.borderWidth = 2
+        //cell.layer.borderColor = UIColor.black.cgColor
+        cell.layer.cornerRadius = 20
+        cell.layer.backgroundColor = UIColor.tan.cgColor
         
-        cell.photoView.image = self.load(fileName: profile["profile_picture"] as! String)
-        cell.ageLabel.text = profile["age"] as! String
-        cell.bioLabel.text = profile["bio"] as! String
-        cell.locationLabel.text = profile["zip_code"] as! String
-        cell.nameLabel.text = profile["first_name"] as! String
+        cell.matchPhotoView.image = self.load(fileName: profile["profile_picture"] as! String)
+        cell.theirAgeLabel.text = profile["age"] as! String
+        cell.biographyLabel.text = profile["bio"] as! String
+        cell.zipcodeLabel.text = profile["zip_code"] as! String
+        cell.firstNameLabel.text = profile["first_name"] as! String
         
         cell.profile = profile
         cell.userController = self.userController
@@ -336,24 +409,21 @@ class MatchUsersCollectionViewController: UICollectionViewController, UINavigati
         
         return cell
     }
+}
+
     
     // MARK: UICollectionViewDelegate
-    
     /*
      // Uncomment this method to specify if the specified item should be highlighted during tracking
      override func collectionView(_ collectionView: UICollectionView, shouldHighlightItemAt indexPath: IndexPath) -> Bool {
      return true
      }
-     */
-    
-    /*
+     
      // Uncomment this method to specify if the specified item should be selected
      override func collectionView(_ collectionView: UICollectionView, shouldSelectItemAt indexPath: IndexPath) -> Bool {
      return true
      }
-     */
-    
-    /*
+     
      // Uncomment these methods to specify if an action menu should be displayed for the specified item, and react to actions performed on the item
      override func collectionView(_ collectionView: UICollectionView, shouldShowMenuForItemAt indexPath: IndexPath) -> Bool {
      return false
@@ -364,11 +434,8 @@ class MatchUsersCollectionViewController: UICollectionViewController, UINavigati
      }
      
      override func collectionView(_ collectionView: UICollectionView, performAction action: Selector, forItemAt indexPath: IndexPath, withSender sender: Any?) {
-     
      }
-     */
-    
-}
+ 
 /*extension MatchUsersCollectionViewController {
     func navigationController(_ navigationController: UINavigationController, willShow viewController: UIViewController, animated: Bool) {
         (viewController as? ProfileViewController)?.user2Controller = self.userController
@@ -376,4 +443,5 @@ class MatchUsersCollectionViewController: UICollectionViewController, UINavigati
         
         // Here you pass the to your original view controller
     }
-}*/
+}
+ */*/

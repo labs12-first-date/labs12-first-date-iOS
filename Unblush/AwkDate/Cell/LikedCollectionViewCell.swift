@@ -16,26 +16,38 @@ class LikedCollectionViewCell: UICollectionViewCell {
     var userController: User2Controller?
     
     //MARK: - Outlets
-    @IBOutlet weak var chatButton: UIButton!
-    @IBAction func chatButton(_ sender: Any) {
     
+    @IBOutlet weak var chatLabel: UILabel!
+    @IBAction func startChatTapped(_ sender: Any) {
+        //when clicked should go to chat roome
     }
-    @IBOutlet weak var photoView: UIImageView!
-    @IBOutlet weak var nameLabel: UILabel!
-    @IBOutlet weak var ageLabel: UILabel!
-    @IBOutlet weak var locationLabel: UILabel!
-    @IBOutlet weak var bioLabel: UILabel!
     
+    @IBOutlet weak var startChatButton: UIButton!
+    @IBOutlet weak var personPhotoView: UIImageView!
+    @IBOutlet weak var firstNameLabel: UILabel!
+    @IBOutlet weak var theirAgeLabel: UILabel!
+    @IBOutlet weak var zipcodeLabel: UILabel!
+    @IBOutlet weak var biographyLabel: UILabel!
+    
+  
     override func awakeFromNib() {
         super.awakeFromNib()
-        setTheme()
-        //updateViews()
-    }
-    
-    func setTheme() {
-        AppearanceHelper.style(button: chatButton)
+        firstNameLabel.textColor = .cream
+        firstNameLabel.font = AppearanceHelper.mediumFont(with: .subheadline, pointSize: 25)
+        theirAgeLabel.textColor = .violet
+        theirAgeLabel.font = AppearanceHelper.mediumFont(with: .body, pointSize: 16)
+        zipcodeLabel.textColor = .violet
+        zipcodeLabel.font = AppearanceHelper.mediumFont(with: .body, pointSize: 16)
+        biographyLabel.textColor = .violet
+        biographyLabel.font = AppearanceHelper.mediumFont(with: .body, pointSize: 16)
+        chatLabel.textColor = .cream
+        chatLabel.font = AppearanceHelper.lightFont(with: .caption1, pointSize: 13)
         
+        personPhotoView.layer.cornerRadius = personPhotoView.frame.size.width / 2
+        personPhotoView.clipsToBounds = true
     }
+}
+
     
    /* func updateViews() {
         guard let photo = photo else { return }
@@ -45,4 +57,3 @@ class LikedCollectionViewCell: UICollectionViewCell {
         locationLabel.text = "\(profile?.zipcode)"
         bioLabel.text = profile?.biography
     }*/
-}

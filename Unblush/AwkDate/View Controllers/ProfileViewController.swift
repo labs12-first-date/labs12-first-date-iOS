@@ -35,39 +35,31 @@ class ProfileViewController: UIViewController {
     }
     
     //MARK: - Outlets
-    @IBOutlet weak var notLikeButton: UIButton!
-    @IBAction func notLikeButton(_ sender: Any) {
-        
-    }
-    @IBOutlet weak var likeButton: UIButton!
-    @IBAction func likeButton(_ sender: Any) {
-        
-    }
     @IBOutlet weak var matchesButton: UIBarButtonItem!
-    @IBAction func matchesButton(_ sender: Any) {
-        
-    }
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var profileView: UIImageView!
-   
+    @IBOutlet weak var bioLabel: UILabel!
+    
     @IBOutlet weak var messageButton: UIButton!
-    @IBAction func messageButton(_ sender: Any) {
-        //performSegue(withIdentifier: "toThreads", sender: self)
-
-    }
-    @IBOutlet weak var mediaButton: UIButton!
-    @IBAction func mediaButton(_ sender: Any) {
-        performSegue(withIdentifier: "media", sender: self)
-
-    }
     @IBOutlet weak var settingsButton: UIButton!
-    @IBAction func settingsButton(_ sender: Any) {
-       // performSegue(withIdentifier: "settings", sender: self)
-
-    }
     @IBOutlet weak var editButton: UIButton!
-    @IBAction func editButton(_ sender: Any) {
+    
+    @IBOutlet weak var signOutButton: UIButton!
+    @IBOutlet weak var messagesLabel: UILabel!
+    @IBOutlet weak var settingsLabel: UILabel!
+    @IBOutlet weak var mutuallyLikedLabel: UILabel!
+    
+    @IBAction func signOutButton(_ sender: Any) {
+        do {
+            try Auth.auth().signOut()
+        }
+        catch let signOutError as NSError {
+            print ("Error signing out: %@", signOutError)
+        }
         
+        let storyboard = UIStoryboard(name: "RevisedMain", bundle: nil)
+        let initial = storyboard.instantiateInitialViewController()
+        UIApplication.shared.keyWindow?.rootViewController = initial
     }
     
     // share var photo across view controllers, so that we don't have to keep network calling every time we come back to profile
@@ -85,79 +77,104 @@ class ProfileViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        setupTheme()
+        
+        //to hide back bar item
+        self.navigationItem.setHidesBackButton(true, animated: true)
+        
+        //for status bar to be white
         setNeedsStatusBarAppearanceUpdate()
+        
         NotificationCenter.default.addObserver(self, selector: #selector(updateViews(notification:)), name: .updateCollection, object: nil)
 
         
-        if self.photo == nil {
-            user2Controller?.fetchProfileFromServer(userID: currentUserUID!, completion: { (error) in
-                if let error = error {
-                    print("Error fetching profile in profile vc: \(error)")
-                    return
-                }
-                
-                var photoImage = UIImage()
-                
-                let photoData = BlockOperation {
-                    photoImage = self.load(fileName: self.user2Controller?.singleProfileFromServer["profile_picture"] as! String)!
-               
-                }
-                
-                let setProperties = BlockOperation {
-                    
-                    self.nameLabel.text = (self.user2Controller?.singleProfileFromServer["first_name"] as! String)
-                    
-                    self.currentUserFirstName = (self.user2Controller?.singleProfileFromServer["first_name"] as! String)
-                    self.photo = photoImage
-                    
-                    // Properties for Matches
-                    AppSettings.displayName = self.currentUserFirstName!
-                    self.currentUser = self.user2Controller!.serverCurrentUser!
-                    let radiusString = self.user2Controller!.singleProfileFromServer["max_distance"] as! String
-                    self.radius = Int(radiusString)!
-                    
-                    let ageString = self.user2Controller!.singleProfileFromServer["age"] as! String
-                    self.age = Int(ageString)!
-                    
-                    let zipString = self.user2Controller!.singleProfileFromServer["zip_code"] as! String
-                    self.zipcode = Int(zipString)!
-                    
-                    let genderString = self.user2Controller!.singleProfileFromServer["gender"] as! String
-                    self.gender = GenderType(rawValue: genderString)!
-                    
-                    let lookingStringArray = self.user2Controller!.singleProfileFromServer["looking_for"] as! [String]
-                    
-                    for look in lookingStringArray {
-                        self.lookingFor.append(LookingForType(rawValue: look)!)
-                    }
-                    
-                    
-                    let conditionStringArray = self.user2Controller!.singleProfileFromServer["condition"] as! [String]
-                    
-                    for cond in conditionStringArray {
-                        self.userCondition.append(ConditionType(rawValue: cond)!)
-                    }
-                    
-                    
-                    print("User in profile vc: \(self.currentUser!.uid)")
-                    
-                    
-                    //self.chattingUserUID = "qSQ3rFkLvAY976huM75w3E5ex0i2"
-                    
-                    
-                    DispatchQueue.main.async {
-                        self.updateViews()
-                    }
-                }
-                
-                setProperties.addDependency(photoData)
-                OperationQueue.main.addOperation(setProperties)
-                self.opQueue.addOperation(photoData)
-                
-            })
+        if self.photo != nil {
+            var photoImage = UIImage()
+            photoImage = self.load(fileName: self.user2Controller?.singleProfileFromServer["profile_picture"] as! String)!
+            self.nameLabel.text = (self.user2Controller?.singleProfileFromServer["first_name"] as! String)
+            self.photo = photoImage
         }
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
         
-
+        user2Controller?.fetchProfileFromServer(userID: currentUserUID!, completion: { (error) in
+            if let error = error {
+                print("Error fetching profile in profile vc: \(error)")
+                return
+            }
+            
+            if self.photo == nil {
+                var photoImage = UIImage()
+                photoImage = self.load(fileName: self.user2Controller?.singleProfileFromServer["profile_picture"] as! String)!
+                self.nameLabel.text = (self.user2Controller?.singleProfileFromServer["first_name"] as! String)
+                self.bioLabel.text = (self.user2Controller?.singleProfileFromServer["bio"] as! String)
+                self.photo = photoImage
+            }
+            
+            self.bioLabel.text = (self.user2Controller?.singleProfileFromServer["bio"] as! String)
+            
+            
+            
+            let photoData = BlockOperation {
+                
+            }
+            
+            let setProperties = BlockOperation {
+                
+            }
+            //self.bioLabel.text = (self.user2Controller?.singleProfileFromServer["bio"] as! String)
+            
+            self.currentUserFirstName = (self.user2Controller?.singleProfileFromServer["first_name"] as! String)
+            
+            
+            // Properties for Matches
+            AppSettings.displayName = self.currentUserFirstName!
+            self.currentUser = self.user2Controller!.serverCurrentUser!
+            let radiusString = self.user2Controller!.singleProfileFromServer["max_distance"] as! String
+            self.radius = Int(radiusString)!
+            
+            let ageString = self.user2Controller!.singleProfileFromServer["age"] as! String
+            self.age = Int(ageString)!
+            
+            let zipString = self.user2Controller!.singleProfileFromServer["zip_code"] as! String
+            self.zipcode = Int(zipString)!
+            
+            let genderString = self.user2Controller!.singleProfileFromServer["gender"] as! String
+            self.gender = GenderType(rawValue: genderString)!
+            
+            let lookingStringArray = self.user2Controller!.singleProfileFromServer["looking_for"] as! [String]
+            
+            for look in lookingStringArray {
+                self.lookingFor.append(LookingForType(rawValue: look)!)
+            }
+            
+            
+            let conditionStringArray = self.user2Controller!.singleProfileFromServer["condition"] as! [String]
+            
+            for cond in conditionStringArray {
+                self.userCondition.append(ConditionType(rawValue: cond)!)
+            }
+            
+            
+            print("User in profile vc: \(self.currentUser!.uid)")
+            
+            
+            //self.chattingUserUID = "qSQ3rFkLvAY976huM75w3E5ex0i2"
+            
+            
+            DispatchQueue.main.async {
+                self.updateViews()
+            }
+            
+            
+            /* setProperties.addDependency(photoData)
+             OperationQueue.main.addOperation(setProperties)
+             self.opQueue.addOperation(photoData)*/
+            
+        })
+        
+        
     }
     
     private func load(fileName: String) -> UIImage? {
@@ -175,6 +192,30 @@ class ProfileViewController: UIViewController {
             print("Error loading image : \(error)")
         }
         return nil
+    }
+    
+    func setupTheme() {
+        bioLabel.textColor = .grape
+        bioLabel.font = AppearanceHelper.lightFont(with: .caption1, pointSize: 17)
+        
+        messagesLabel.textColor = .grass
+        messagesLabel.font = AppearanceHelper.lightFont(with: .body, pointSize: 13)
+        settingsLabel.textColor = .grass
+        settingsLabel.font = AppearanceHelper.lightFont(with: .body, pointSize: 13)
+        mutuallyLikedLabel.textColor = .grass
+        mutuallyLikedLabel.font = AppearanceHelper.lightFont(with: .body, pointSize: 13)
+        
+        //cardView.backgroundColor = UIColor.grape.withAlphaComponent(0.15)
+        //cardView.layer.cornerRadius = 20
+        nameLabel.textColor = .grape
+        nameLabel.font = AppearanceHelper.lightFont(with: .subheadline, pointSize: 33)
+        
+        profileView.layer.cornerRadius = profileView.frame.size.width / 2
+        profileView.clipsToBounds = true
+        
+        AppearanceHelper.style(button: signOutButton)
+        
+        view.backgroundColor = .violet
     }
     
     @objc func updateViews(notification: NSNotification) {
@@ -226,3 +267,4 @@ class ProfileViewController: UIViewController {
         }
     }
 }
+

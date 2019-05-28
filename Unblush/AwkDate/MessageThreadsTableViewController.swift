@@ -60,12 +60,13 @@ class MessageThreadsTableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        tableView.separatorColor = .grape
         
         clearsSelectionOnViewWillAppear = true
         tableView.register(UITableViewCell.self, forCellReuseIdentifier: messageThreadCellIdentifier)
         
         toolbarItems = [
-            UIBarButtonItem(title: "Sign Out", style: .plain, target: self, action: #selector(signOut)),
+            //UIBarButtonItem(title: "Sign Out", style: .plain, target: self, action: #selector(signOut)),
             UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil),
             UIBarButtonItem(customView: toolbarLabel),
             UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil),
@@ -276,6 +277,7 @@ class MessageThreadsTableViewController: UITableViewController {
         let cell = tableView.dequeueReusableCell(withIdentifier: messageThreadCellIdentifier, for: indexPath)
 
         cell.accessoryType = .disclosureIndicator
+        cell.textLabel?.textColor = .grape
         cell.textLabel?.text = messageThreads[indexPath.row].name
         
         return cell
