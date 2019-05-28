@@ -63,6 +63,7 @@
                         <outlet property="signupButton" destination="dcp-AA-eSz" id="7gC-xH-9ug"/>
                         <segue destination="Txt-3x-IHZ" kind="show" identifier="signup" id="UIw-hK-Sfp"/>
                         <segue destination="gte-Nk-yGk" kind="show" identifier="login" id="UnL-7z-Eph"/>
+                        <segue destination="NZU-Yv-iKK" kind="show" identifier="profile" id="gXS-ic-sQT"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Xel-8q-XuA" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -1393,6 +1394,6 @@
         <image name="unblushLogoType" width="984" height="195"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="foW-Z4-4Yb"/>
+        <segue reference="gXS-ic-sQT"/>
     </inferredMetricsTieBreakers>
 </document>

@@ -19,6 +19,10 @@ class SignupOrLoginViewController: UIViewController, UIScrollViewDelegate {
         return .lightContent
     }
     
+    var serverCurrentUserInitial = Auth.auth().currentUser
+    var userController: User2Controller?
+    var currentUserUID: String?
+    
     //MARK: - Outlets
     @IBOutlet weak var loginButton: UIButton!
     @IBOutlet weak var signupButton: UIButton!
@@ -40,13 +44,29 @@ class SignupOrLoginViewController: UIViewController, UIScrollViewDelegate {
         setScrollView()
         setNeedsStatusBarAppearanceUpdate()
         
-        do {
+        if serverCurrentUserInitial != nil {
+            print("Initial Current User: \(serverCurrentUserInitial?.email)")
+            currentUserUID = serverCurrentUserInitial!.uid
+            userController = User2Controller()
+            performSegue(withIdentifier: "profile", sender: self)
+        }
+        
+       /* do {
             try Auth.auth().signOut()
             print("signed out")
             //print("User in view did load: \(userController.serverCurrentUser?.uid)")
             
         } catch {
             print("error")
+        }*/
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "profile" {
+            guard let destination = segue.destination as? ProfileViewController else { return }
+            
+            destination.currentUserUID = self.currentUserUID
+            destination.user2Controller = self.userController
         }
     }
     

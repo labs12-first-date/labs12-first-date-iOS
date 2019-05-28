@@ -49,9 +49,15 @@ class ProfileViewController: UIViewController {
     @IBOutlet weak var settingsLabel: UILabel!
     @IBOutlet weak var mutuallyLikedLabel: UILabel!
     
+    let domain = Bundle.main.bundleIdentifier!
+    let defaults = UserDefaults.standard
+    
     @IBAction func signOutButton(_ sender: Any) {
         do {
             try Auth.auth().signOut()
+            defaults.removePersistentDomain(forName: domain)
+            defaults.synchronize()
+            print(Array(defaults.dictionaryRepresentation().keys).count)
         }
         catch let signOutError as NSError {
             print ("Error signing out: %@", signOutError)
