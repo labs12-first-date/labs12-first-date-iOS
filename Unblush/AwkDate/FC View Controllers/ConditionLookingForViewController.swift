@@ -31,7 +31,7 @@ class ConditionLookingForViewController: UIViewController, UITableViewDataSource
     
 
     
-    let conditions: [ConditionType] = [.aids, .chlamydia, .crabs, .genitalWarts, .gonorrhea, .hepB, .hepC, .hepD, .herpes, .hiv, .syphyllis, .theClap]
+    let conditions: [ConditionType] = [.aids, .chlamydia, .crabs, .genitalWarts, .gonorrhea, .hepB, .hepC, .hepD, .hepA, .herpes, .hiv, .syphyllis, .theClap]
     
     let lookingForCriteria: [LookingForType] = [.sameGender, .sameCondition, .openToAllPossibilities, .openToAllConditions, .fiveYearAgeGap, .tenYearAgeGap, .threeYearAgeGap]
     

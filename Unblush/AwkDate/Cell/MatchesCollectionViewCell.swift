@@ -20,14 +20,15 @@ class MatchesCollectionViewCell: UICollectionViewCell {
     var userController: User2Controller?
     
     //MARK: - Outlets
-    @IBOutlet weak var donotLikeButton: UIButton!
-    @IBAction func donotLikeButton(_ sender: Any) {
+    
+    @IBOutlet weak var notLikeButton: UIButton!
+    @IBAction func notLikeButtonTapped(_ sender: Any) {
         guard let profile = profile else { return }
         let index = filteredProfiles.firstIndex(where: { $0["email"] as! String == profile["email"] as! String })
         DispatchQueue.main.async {
-            self.donotLikeButton.setTitle("Disliked!", for: .normal)
-            self.likeButton.alpha = 0
-            self.donotLikeButton.setTitleColor(.red, for: .normal)
+            self.notLikeButton.setTitle("Disliked!", for: .normal)
+            self.didLikeButton.alpha = 0
+            self.notLikeButton.setTitleColor(.red, for: .normal)
         }
         
         // we need a property to store disliked matches
@@ -39,19 +40,16 @@ class MatchesCollectionViewCell: UICollectionViewCell {
             filteredProfiles.remove(at: index!)
             NotificationCenter.default.post(name: .updateCollection, object: nil)
         })
-        
-        
     }
     
-    @IBOutlet weak var likeButton: UIButton!
-    @IBAction func likeButton(_ sender: Any) {
-        
+    @IBOutlet weak var didLikeButton: UIButton!
+    @IBAction func didLikeButton(_ sender: Any) {
         guard let profile = profile else { return }
         let index = filteredProfiles.firstIndex(where: { $0["email"] as! String == profile["email"] as! String })
         DispatchQueue.main.async {
-            self.likeButton.setTitle("Liked!", for: .normal)
-            self.donotLikeButton.alpha = 0
-            self.likeButton.setTitleColor(.red, for: .normal)
+            self.didLikeButton.setTitle("Liked!", for: .normal)
+            self.notLikeButton.alpha = 0
+            self.didLikeButton.setTitleColor(.red, for: .normal)
         }
         /*  let ageString = self.userController?.singleProfileFromServer["age"] as! String
          let zipString = self.userController?.singleProfileFromServer["zip_code"] as! String*/
@@ -64,58 +62,54 @@ class MatchesCollectionViewCell: UICollectionViewCell {
             filteredProfiles.remove(at: index!)
             NotificationCenter.default.post(name: .updateCollection, object: nil)
         })
-        
-        
     }
     
-    @IBOutlet weak var photoView: UIImageView!
-    @IBOutlet weak var nameLabel: UILabel!
-    @IBOutlet weak var ageLabel: UILabel!
-    @IBOutlet weak var locationLabel: UILabel!
-    @IBOutlet weak var bioLabel: UILabel!
+    @IBOutlet weak var matchPhotoView: UIImageView!
+    @IBOutlet weak var firstNameLabel: UILabel!
+    @IBOutlet weak var theirAgeLabel: UILabel!
+    @IBOutlet weak var zipcodeLabel: UILabel!
+    @IBOutlet weak var biographyLabel: UILabel!
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        setTheme()
-    
+        firstNameLabel.textColor = .cream
+        firstNameLabel.font = AppearanceHelper.mediumFont(with: .subheadline, pointSize: 25)
+        theirAgeLabel.textColor = .mustard
+        theirAgeLabel.font = AppearanceHelper.mediumFont(with: .body, pointSize: 16)
+        zipcodeLabel.textColor = .mustard
+        zipcodeLabel.font = AppearanceHelper.mediumFont(with: .body, pointSize: 16)
+        biographyLabel.textColor = .mustard
+        biographyLabel.font = AppearanceHelper.mediumFont(with: .body, pointSize: 16)
+        
+        matchPhotoView.layer.cornerRadius = matchPhotoView.frame.size.width / 2
+        matchPhotoView.clipsToBounds = true
+        
     }
     
     func setTheme() {
         guard let profile = profile else { return }
         
-        
         if filteredProfiles.contains(where: { $0["email"] as! String == profile["email"] as! String }) {
-            self.likeButton.setTitle("Like", for: .normal)
-            self.donotLikeButton.alpha = 1
+            self.didLikeButton.setTitle("Like", for: .normal)
+            self.notLikeButton.alpha = 1
             
-            self.donotLikeButton.setTitle("Dislike", for: .normal)
-            self.likeButton.alpha = 1
+            self.notLikeButton.setTitle("Dislike", for: .normal)
+            self.didLikeButton.alpha = 1
             
-            AppearanceHelper.style(button: donotLikeButton)
-            AppearanceHelper.style(button: likeButton)
+           /* AppearanceHelper.style(button: donotLikeButton)
+            AppearanceHelper.style(button: likeButton)*/
         } else {
-            self.likeButton.setTitle("Like", for: .normal)
-            self.donotLikeButton.alpha = 1
-           
-            self.donotLikeButton.setTitle("Dislike", for: .normal)
-            self.likeButton.alpha = 1
+            self.didLikeButton.setTitle("Like", for: .normal)
+            self.notLikeButton.alpha = 1
             
-            AppearanceHelper.style(button: donotLikeButton)
-            AppearanceHelper.style(button: likeButton)
+            self.notLikeButton.setTitle("Dislike", for: .normal)
+            self.didLikeButton.alpha = 1
+            
+            /*AppearanceHelper.style(button: donotLikeButton)
+            AppearanceHelper.style(button: likeButton)*/
         }
-        AppearanceHelper.style(button: donotLikeButton)
-        AppearanceHelper.style(button: likeButton)
-                
+        
     }
-    
-   /* func updateViews() {
-        guard let photo = photo else { return }
-        photoView.image = photo
-        nameLabel.text = profile?.firstName
-        ageLabel.text = "\(profile?.age))"
-        locationLabel.text = "\(profile?.zipcode)"
-        bioLabel.text = profile?.biography
-    }*/
 }
 
 extension Notification.Name {

@@ -20,7 +20,6 @@ class LookingForTableViewCell: UITableViewCell {
     func updateViews() {
         guard let lookingFor = lookingFor else { return }
         
-        
         let buttonCheckImage = UIImage(named: "check")!
         let buttonEmptyImage = UIImage(named: "emptyCheck")!
         

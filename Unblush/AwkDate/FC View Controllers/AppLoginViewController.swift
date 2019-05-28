@@ -102,7 +102,7 @@ class AppLoginViewController: UIViewController {
                     print("Ok button tapped")
                     DispatchQueue.main.async
                         {
-                            self.dismiss(animated: true, completion: nil)
+                            alertController.dismiss(animated: true, completion: nil)
                     }
                 }
                 alertController.addAction(OKAction)

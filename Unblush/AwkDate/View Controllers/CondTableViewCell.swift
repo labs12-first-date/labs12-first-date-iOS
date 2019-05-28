@@ -21,10 +21,6 @@ class CondTableViewCell: UITableViewCell {
             
         }
     }
-    override func prepareForReuse() {
-        
-        
-    }
     func updateViews() {
         guard let condition = condition else { return }
         
