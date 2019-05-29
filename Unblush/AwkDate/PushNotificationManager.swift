@@ -17,6 +17,8 @@ class PushNotificationManager: NSObject, MessagingDelegate, UNUserNotificationCe
         self.userID = userID
         super.init()
     }
+    
+    
     func registerForPushNotifications() {
         if #available(iOS 10.0, *) {
             // For iOS 10 display notification (sent via APNS)
@@ -31,6 +33,7 @@ class PushNotificationManager: NSObject, MessagingDelegate, UNUserNotificationCe
             let settings: UIUserNotificationSettings =
                 UIUserNotificationSettings(types: [.alert, .badge, .sound], categories: nil)
             UIApplication.shared.registerUserNotificationSettings(settings)
+            
         }
         UIApplication.shared.registerForRemoteNotifications()
         updateFirestorePushTokenIfNeeded()

@@ -52,6 +52,7 @@ class SignupOrLoginViewController: UIViewController, UIScrollViewDelegate {
             
             currentUserUID = serverCurrentUserInitial!.uid
             userController = User2Controller()
+            self.userController?.currentUserUID = serverCurrentUserInitial!.uid
             performSegue(withIdentifier: "profile", sender: self)
         }
         

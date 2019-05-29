@@ -183,7 +183,11 @@ class ProfileViewController: UIViewController {
         
     }
     
+    private let cache = Cache<String, UIImage>()
+    private let photoConvertQueue = OperationQueue()
+    
     private func load(fileName: String) -> UIImage? {
+        
         print("file name: \(fileName)")
         let url = NSURL(string: fileName)
         let newURL = NSURL(string: fileName)
@@ -198,6 +202,38 @@ class ProfileViewController: UIViewController {
             print("Error loading image : \(error)")
         }
         return nil
+        
+       /* if let cachedImage = cache.value(for: fileName) {
+            return cachedImage
+        }
+        print("file name: \(fileName)")
+        var loadedPhoto: UIImage?
+        
+        let cacheOp = BlockOperation {
+            if let photo = loadedPhoto {
+                self.cache.cache(value: photo, for: fileName)
+            }
+            //return photo
+        }
+        
+        let makePhotoOp = BlockOperation {
+            let url = NSURL(string: fileName)
+            let newURL = NSURL(string: fileName)
+            
+            let imagePath: String = url!.path! //"\(NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)[0])/\(url).png"
+            let imageUrl: URL = URL(fileURLWithPath: imagePath)
+            do {
+                let imageData = try Data(contentsOf: newURL! as URL)
+                loadedPhoto = UIImage(data: imageData)!
+               // print("Image data: \(imageData)")
+                //return UIImage(data: imageData)
+            } catch {
+                print("Error loading image : \(error)")
+                }
+        }
+        cacheOp.addDependency(makePhotoOp)
+        photoConvertQueue.addOperation(makePhotoOp)
+        //return nil*/
     }
     
     func setupTheme() {
