@@ -8,9 +8,10 @@
 
 import UIKit
 import Firebase
+import UserNotifications
 
 @UIApplicationMain
-class AppDelegate: UIResponder, UIApplicationDelegate {
+class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterDelegate {
 
     var window: UIWindow?
     override init() {
@@ -28,11 +29,17 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
         //AppController.shared.show(in: UIWindow(frame: UIScreen.main.bounds))
+        let userController = User2Controller()
         
-       /* defaults.removePersistentDomain(forName: domain)
+        /*defaults.removePersistentDomain(forName: domain)
         defaults.synchronize()
         print(Array(defaults.dictionaryRepresentation().keys).count)*/
         
+        if userController.serverCurrentUser != nil {
+            print("User in App Delegate!")
+            let pushManager = PushNotificationManager(userID: userController.serverCurrentUser!.uid)
+            pushManager.registerForPushNotifications()
+        }
         
         AppearanceHelper.Appearance()
         return true

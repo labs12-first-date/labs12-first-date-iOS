@@ -359,22 +359,7 @@ class MatchUsersCollectionViewController: UICollectionViewController, UINavigati
      }
      */
     
-    private func load(fileName: String) -> UIImage? {
-        print("file name: \(fileName)")
-        let url = NSURL(string: fileName)
-        let newURL = NSURL(string: fileName)
-        
-        let imagePath: String = url!.path! //"\(NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)[0])/\(url).png"
-        let imageUrl: URL = URL(fileURLWithPath: imagePath)
-        do {
-            let imageData = try Data(contentsOf: newURL! as URL)
-            print("Image data: \(imageData)")
-            return UIImage(data: imageData)
-        } catch {
-            print("Error loading image : \(error)")
-        }
-        return nil
-    }
+
     
     // MARK: UICollectionViewDataSource
     override func numberOfSections(in collectionView: UICollectionView) -> Int {
@@ -391,57 +376,83 @@ class MatchUsersCollectionViewController: UICollectionViewController, UINavigati
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath) as! MatchesCollectionViewCell
         
         let profile = filteredProfiles[indexPath.item]
+        cell.profile = profile
+        loadImage(forCell: cell, forItemAt: indexPath)
         
         //cell.layer.borderWidth = 2
         //cell.layer.borderColor = UIColor.black.cgColor
         cell.layer.cornerRadius = 20
         cell.layer.backgroundColor = UIColor.tan.cgColor
         
-        cell.matchPhotoView.image = self.load(fileName: profile["profile_picture"] as! String)
+       // cell.matchPhotoView.image = self.load(fileName: profile["profile_picture"] as! String)
         cell.theirAgeLabel.text = profile["age"] as! String
         cell.biographyLabel.text = profile["bio"] as! String
         cell.zipcodeLabel.text = profile["zip_code"] as! String
         cell.firstNameLabel.text = profile["first_name"] as! String
         
-        cell.profile = profile
+        
         cell.userController = self.userController
         
         
         return cell
     }
-}
-
     
-    // MARK: UICollectionViewDelegate
-    /*
-     // Uncomment this method to specify if the specified item should be highlighted during tracking
-     override func collectionView(_ collectionView: UICollectionView, shouldHighlightItemAt indexPath: IndexPath) -> Bool {
-     return true
-     }
-     
-     // Uncomment this method to specify if the specified item should be selected
-     override func collectionView(_ collectionView: UICollectionView, shouldSelectItemAt indexPath: IndexPath) -> Bool {
-     return true
-     }
-     
-     // Uncomment these methods to specify if an action menu should be displayed for the specified item, and react to actions performed on the item
-     override func collectionView(_ collectionView: UICollectionView, shouldShowMenuForItemAt indexPath: IndexPath) -> Bool {
-     return false
-     }
-     
-     override func collectionView(_ collectionView: UICollectionView, canPerformAction action: Selector, forItemAt indexPath: IndexPath, withSender sender: Any?) -> Bool {
-     return false
-     }
-     
-     override func collectionView(_ collectionView: UICollectionView, performAction action: Selector, forItemAt indexPath: IndexPath, withSender sender: Any?) {
-     }
- 
-/*extension MatchUsersCollectionViewController {
-    func navigationController(_ navigationController: UINavigationController, willShow viewController: UIViewController, animated: Bool) {
-        (viewController as? ProfileViewController)?.user2Controller = self.userController
-        (viewController as? ProfileViewController)?. = self.userController
+    private let cache = Cache<String, UIImage>()
+    var convertOperations: [String: ConvertPhotoOperation] = [:]
+    let photoConvertQueue = OperationQueue()
+    
+    override func collectionView(_ collectionView: UICollectionView, didEndDisplaying cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
+        let profileRef = filteredProfiles[indexPath.item]
         
-        // Here you pass the to your original view controller
+        let name = profileRef["profile_picture"] as! String
+        
+        if let operation = convertOperations[name] {
+            operation.cancel()
+        }
     }
+    
+    private func loadImage(forCell cell: MatchesCollectionViewCell, forItemAt indexPath: IndexPath) {
+        let profileRef = filteredProfiles[indexPath.item]
+        
+        let name = profileRef["profile_picture"] as! String
+        
+        if let cacheImage = cache.value(for: name) {
+            cell.matchPhotoView.image = cacheImage
+        } else {
+            
+            let convertPhotoOp = ConvertPhotoOperation(fileName: name)
+            convertOperations[name] = convertPhotoOp
+            
+            let storeImageOp = BlockOperation {
+                guard let loadedPhoto = convertPhotoOp.image else { return }
+                self.cache.cache(value: loadedPhoto, for: name)
+            }
+            
+            let reuseOp = BlockOperation {
+                guard let currentIndex = self.collectionView.indexPath(for: cell), let loadedPhoto = convertPhotoOp.image else { return }
+                
+                if currentIndex == indexPath {
+                    cell.matchPhotoView.image = loadedPhoto
+                    
+                } else {
+                    return
+                }
+                
+            }
+            
+            storeImageOp.addDependency(convertPhotoOp)
+            reuseOp.addDependency(convertPhotoOp)
+            
+            photoConvertQueue.addOperation(convertPhotoOp)
+            photoConvertQueue.addOperation(storeImageOp)
+            OperationQueue.main.addOperation(reuseOp)
+            
+        }
+        
+        
+        
+        
+    }
+    
+    
 }
- */*/

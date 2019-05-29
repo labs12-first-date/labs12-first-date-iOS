@@ -193,25 +193,20 @@ class MutuallyLikedCollectionViewController: UICollectionViewController {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath) as! LikedCollectionViewCell
         
         let profile = mutallyLikedArray[indexPath.item]
+        cell.profile = profile
+        loadImage(forCell: cell, forItemAt: indexPath)
         
         //cell.layer.borderWidth = 2
         //cell.layer.borderColor = UIColor.black.cgColor
         cell.layer.cornerRadius = 20
         cell.layer.backgroundColor = UIColor.grape.cgColor
         
-        let loadPhotoOP = BlockOperation {
-        }
-        cell.personPhotoView.image = self.load(fileName: profile["profile_picture"] as! String)
-        
-        let otherOP = BlockOperation {
-            
-        }
         cell.theirAgeLabel.text = profile["age"] as! String
         cell.biographyLabel.text = profile["bio"] as! String
         cell.zipcodeLabel.text = profile["zip_code"] as! String
         cell.firstNameLabel.text = profile["first_name"] as! String
         
-        cell.profile = profile
+        
         cell.userController = self.userController
         
        /* otherOP.addDependency(loadPhotoOP)
@@ -271,6 +266,16 @@ class MutuallyLikedCollectionViewController: UICollectionViewController {
         }
     }
     
+    override func collectionView(_ collectionView: UICollectionView, didEndDisplaying cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
+        let profileRef = filteredProfiles[indexPath.item]
+        
+        let name = profileRef["profile_picture"] as! String
+        
+        if let operation = convertOperations[name] {
+            operation.cancel()
+        }
+    }
+    
     @objc func updateViews(notification: NSNotification) {
         DispatchQueue.main.async {
             self.collectionView.reloadData()
@@ -284,46 +289,51 @@ class MutuallyLikedCollectionViewController: UICollectionViewController {
         })
     }
     
-    private func load(fileName: String) -> UIImage? {
-        print("file name: \(fileName)")
-        let url = NSURL(string: fileName)
-        let newURL = NSURL(string: fileName)
+    private let cache = Cache<String, UIImage>()
+    var convertOperations: [String: ConvertPhotoOperation] = [:]
+    let photoConvertQueue = OperationQueue()
+    
+    private func loadImage(forCell cell: LikedCollectionViewCell, forItemAt indexPath: IndexPath) {
+        let profileRef = mutallyLikedArray[indexPath.item]
         
-        let imagePath: String = url!.path! //"\(NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)[0])/\(url).png"
-        let imageUrl: URL = URL(fileURLWithPath: imagePath)
-        do {
-            let imageData = try Data(contentsOf: newURL! as URL)
-            print("Image data: \(imageData)")
-            return UIImage(data: imageData)
-        } catch {
-            print("Error loading image : \(error)")
+        let name = profileRef["profile_picture"] as! String
+        
+        if let cacheImage = cache.value(for: name) {
+            cell.personPhotoView.image = cacheImage
+        } else {
+            
+            let convertPhotoOp = ConvertPhotoOperation(fileName: name)
+            convertOperations[name] = convertPhotoOp
+            
+            let storeImageOp = BlockOperation {
+                guard let loadedPhoto = convertPhotoOp.image else { return }
+                self.cache.cache(value: loadedPhoto, for: name)
+            }
+            
+            let reuseOp = BlockOperation {
+                guard let currentIndex = self.collectionView.indexPath(for: cell), let loadedPhoto = convertPhotoOp.image else { return }
+                
+                if currentIndex == indexPath {
+                    cell.personPhotoView.image = loadedPhoto
+                    
+                } else {
+                    return
+                }
+                
+            }
+            
+            storeImageOp.addDependency(convertPhotoOp)
+            reuseOp.addDependency(convertPhotoOp)
+            
+            photoConvertQueue.addOperation(convertPhotoOp)
+            photoConvertQueue.addOperation(storeImageOp)
+            OperationQueue.main.addOperation(reuseOp)
+            
         }
-        return nil
+        
+        
+        
+        
     }
 }
-    // MARK: UICollectionViewDelegate
-    /*
-     // Uncomment this method to specify if the specified item should be highlighted during tracking
-     override func collectionView(_ collectionView: UICollectionView, shouldHighlightItemAt indexPath: IndexPath) -> Bool {
-     return true
-     }
- 
-     // Uncomment this method to specify if the specified item should be selected
-     override func collectionView(_ collectionView: UICollectionView, shouldSelectItemAt indexPath: IndexPath) -> Bool {
-     return true
-     }
- 
-     // Uncomment these methods to specify if an action menu should be displayed for the specified item, and react to actions performed on the item
-     override func collectionView(_ collectionView: UICollectionView, shouldShowMenuForItemAt indexPath: IndexPath) -> Bool {
-     return false
-     }
-     
-     override func collectionView(_ collectionView: UICollectionView, canPerformAction action: Selector, forItemAt indexPath: IndexPath, withSender sender: Any?) -> Bool {
-     return false
-     }
-     
-     override func collectionView(_ collectionView: UICollectionView, performAction action: Selector, forItemAt indexPath: IndexPath, withSender sender: Any?) {
-     
-     }
-     */
-    
+
