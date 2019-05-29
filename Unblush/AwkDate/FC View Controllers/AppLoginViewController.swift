@@ -56,6 +56,8 @@ class AppLoginViewController: UIViewController {
             }
             
             self.currentUserUID = self.user2Controller.currentUserUID
+            /*let pushManager = PushNotificationManager(userID: self.currentUserUID!)
+            pushManager.registerForPushNotifications()*/
             
             DispatchQueue.main.async {
                 self.removeActivityIndicator(activityIndicator: myActivityIndicator)

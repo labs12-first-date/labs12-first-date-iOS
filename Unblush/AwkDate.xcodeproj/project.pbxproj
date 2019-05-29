@@ -53,6 +53,8 @@
 		4F6327AA229314C10044237E /* BogusSettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F6327A9229314C10044237E /* BogusSettingsViewController.swift */; };
 		4F6327AD2293593A0044237E /* MatchUsersCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F6327AC229359390044237E /* MatchUsersCollectionViewController.swift */; };
 		4F6327AF229362300044237E /* MutuallyLikedCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F6327AE229362300044237E /* MutuallyLikedCollectionViewController.swift */; };
+		4F7368E1229DCC8E00760C73 /* PushNotificationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F7368E0229DCC8E00760C73 /* PushNotificationManager.swift */; };
+		4F7368E3229DEA0A00760C73 /* PushNotificationSender.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F7368E2229DEA0A00760C73 /* PushNotificationSender.swift */; };
 		4F76E673227A7962004CC709 /* UserController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F76E672227A7962004CC709 /* UserController.swift */; };
 		4F9ACB612289E235004A5D2A /* Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F9ACB602289E235004A5D2A /* Message.swift */; };
 		4F9ACB632289E2FF004A5D2A /* DatabaseRepresentation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F9ACB622289E2FF004A5D2A /* DatabaseRepresentation.swift */; };
@@ -72,6 +74,9 @@
 		4FE8AE132285B64800975841 /* ConditionsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FE8AE122285B64800975841 /* ConditionsViewController.swift */; };
 		4FE8AE152285B69200975841 /* ConditionTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FE8AE142285B69200975841 /* ConditionTableViewCell.swift */; };
 		4FE8AE172285E41900975841 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4FE8AE162285E41900975841 /* Assets.xcassets */; };
+		4FF1FDDF229F03A900AEC711 /* Cache.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FF1FDDE229F03A900AEC711 /* Cache.swift */; };
+		4FF1FDE1229F05EB00AEC711 /* ConcurrentOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FF1FDE0229F05EB00AEC711 /* ConcurrentOperation.swift */; };
+		4FF1FDE3229F061400AEC711 /* ConvertPhotoOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FF1FDE2229F061400AEC711 /* ConvertPhotoOperation.swift */; };
 		7C8A7E0B204A2237D3961EBE /* Pods_AwkDateTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 79B8CF5230FC66BD53FBFEBF /* Pods_AwkDateTests.framework */; };
 		F63BC0D0FB87348B0AC6AD59 /* Pods_AwkDateUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 93F8567FA63E53C74DAB5D78 /* Pods_AwkDateUITests.framework */; };
 /* End PBXBuildFile section */
@@ -149,6 +154,8 @@
 		4F6327A9229314C10044237E /* BogusSettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BogusSettingsViewController.swift; sourceTree = "<group>"; };
 		4F6327AC229359390044237E /* MatchUsersCollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MatchUsersCollectionViewController.swift; sourceTree = "<group>"; };
 		4F6327AE229362300044237E /* MutuallyLikedCollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = MutuallyLikedCollectionViewController.swift; path = ../Cell/MutuallyLikedCollectionViewController.swift; sourceTree = "<group>"; };
+		4F7368E0229DCC8E00760C73 /* PushNotificationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PushNotificationManager.swift; sourceTree = "<group>"; };
+		4F7368E2229DEA0A00760C73 /* PushNotificationSender.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PushNotificationSender.swift; sourceTree = "<group>"; };
 		4F76E672227A7962004CC709 /* UserController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserController.swift; sourceTree = "<group>"; };
 		4F9ACB602289E235004A5D2A /* Message.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Message.swift; sourceTree = "<group>"; };
 		4F9ACB622289E2FF004A5D2A /* DatabaseRepresentation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatabaseRepresentation.swift; sourceTree = "<group>"; };
@@ -171,6 +178,9 @@
 		4FE8AE122285B64800975841 /* ConditionsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConditionsViewController.swift; sourceTree = "<group>"; };
 		4FE8AE142285B69200975841 /* ConditionTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConditionTableViewCell.swift; sourceTree = "<group>"; };
 		4FE8AE162285E41900975841 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		4FF1FDDE229F03A900AEC711 /* Cache.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Cache.swift; sourceTree = "<group>"; };
+		4FF1FDE0229F05EB00AEC711 /* ConcurrentOperation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConcurrentOperation.swift; sourceTree = "<group>"; };
+		4FF1FDE2229F061400AEC711 /* ConvertPhotoOperation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConvertPhotoOperation.swift; sourceTree = "<group>"; };
 		4FF3274A227B5F1000192934 /* AwkDate.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = AwkDate.entitlements; sourceTree = "<group>"; };
 		6DD244BB161B0869426CEE15 /* Pods-AwkDate.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AwkDate.release.xcconfig"; path = "Target Support Files/Pods-AwkDate/Pods-AwkDate.release.xcconfig"; sourceTree = "<group>"; };
 		79B8CF5230FC66BD53FBFEBF /* Pods_AwkDateTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_AwkDateTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -302,6 +312,8 @@
 				4F507C342285E56A00A60674 /* Storyboards */,
 				4F3C55E322792A20006307A9 /* Info.plist */,
 				4FE8AE162285E41900975841 /* Assets.xcassets */,
+				4F7368E0229DCC8E00760C73 /* PushNotificationManager.swift */,
+				4F7368E2229DEA0A00760C73 /* PushNotificationSender.swift */,
 			);
 			path = AwkDate;
 			sourceTree = "<group>";
@@ -327,6 +339,7 @@
 		4F3C560522792A31006307A9 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				4FF1FDDE229F03A900AEC711 /* Cache.swift */,
 				485F5B1F2293413B00927FA9 /* Onboarding.swift */,
 				4F9AFBAF228C8BC6005F261B /* AwkDate-Bridging-Header.h */,
 				4F3C560822792A59006307A9 /* User.swift */,
@@ -336,6 +349,8 @@
 				4F9ACB622289E2FF004A5D2A /* DatabaseRepresentation.swift */,
 				4F9AFBB0228C8BC6005F261B /* JCSLocation.h */,
 				4F9AFBB1228C8BC6005F261B /* JCSLocation.m */,
+				4FF1FDE0229F05EB00AEC711 /* ConcurrentOperation.swift */,
+				4FF1FDE2229F061400AEC711 /* ConvertPhotoOperation.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -484,6 +499,9 @@
 						CreatedOnToolsVersion = 10.2.1;
 						LastSwiftMigration = 1020;
 						SystemCapabilities = {
+							com.apple.BackgroundModes = {
+								enabled = 1;
+							};
 							com.apple.Push = {
 								enabled = 1;
 							};
@@ -670,6 +688,7 @@
 				485F5B1422933D4F00927FA9 /* AppearanceHelper.swift in Sources */,
 				485F5B1122933B4300927FA9 /* UserInfoViewController.swift in Sources */,
 				485F5B1C22933FBC00927FA9 /* OnboardingCollectionViewCell.swift in Sources */,
+				4F7368E1229DCC8E00760C73 /* PushNotificationManager.swift in Sources */,
 				4F507C332285E50F00A60674 /* SignupViewController.swift in Sources */,
 				4F6327AD2293593A0044237E /* MatchUsersCollectionViewController.swift in Sources */,
 				485F5B0F22933B4300927FA9 /* ConditionLookingForViewController.swift in Sources */,
@@ -690,8 +709,10 @@
 				4F4130A02284822900CDF247 /* ViewControllerMethods.swift in Sources */,
 				485F5B1D22933FBC00927FA9 /* LookingForTableViewCell.swift in Sources */,
 				4F507C3C2285F95100A60674 /* CondTableViewCell.swift in Sources */,
+				4FF1FDE1229F05EB00AEC711 /* ConcurrentOperation.swift in Sources */,
 				485F5B1E22933FBC00927FA9 /* MatchesCollectionViewCell.swift in Sources */,
 				4F4F40082281E3BA00667A92 /* User2Controller.swift in Sources */,
+				4FF1FDDF229F03A900AEC711 /* Cache.swift in Sources */,
 				485F5B1522933D4F00927FA9 /* TextFieldAppearance.swift in Sources */,
 				4F9ACB722289EE4B004A5D2A /* UIView+Additions.swift in Sources */,
 				4F507C212285E49300A60674 /* GetUserInfoViewController.swift in Sources */,
@@ -707,6 +728,7 @@
 				4F507C2B2285E4A500A60674 /* OnboardingViewController.swift in Sources */,
 				4F9AFBB2228C8BC6005F261B /* JCSLocation.m in Sources */,
 				4FE8AE152285B69200975841 /* ConditionTableViewCell.swift in Sources */,
+				4FF1FDE3229F061400AEC711 /* ConvertPhotoOperation.swift in Sources */,
 				4F4F400A2281E6B800667A92 /* Profile.swift in Sources */,
 				4F76E673227A7962004CC709 /* UserController.swift in Sources */,
 				4F15063F228E3F7F00C96D8B /* BogusMutualCollectionViewCell.swift in Sources */,
@@ -715,6 +737,7 @@
 				4F9ACB652289E3D1004A5D2A /* AppSettings.swift in Sources */,
 				4F9ACB612289E235004A5D2A /* Message.swift in Sources */,
 				485F5B202293413B00927FA9 /* Onboarding.swift in Sources */,
+				4F7368E3229DEA0A00760C73 /* PushNotificationSender.swift in Sources */,
 				4F3C560922792A59006307A9 /* User.swift in Sources */,
 				4F6327AA229314C10044237E /* BogusSettingsViewController.swift in Sources */,
 				4F3C560B227948E8006307A9 /* MessageThread.swift in Sources */,
