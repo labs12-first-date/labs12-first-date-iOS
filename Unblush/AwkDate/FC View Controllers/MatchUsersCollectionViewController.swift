@@ -401,6 +401,16 @@ class MatchUsersCollectionViewController: UICollectionViewController, UINavigati
     var convertOperations: [String: ConvertPhotoOperation] = [:]
     let photoConvertQueue = OperationQueue()
     
+    override func collectionView(_ collectionView: UICollectionView, didEndDisplaying cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
+        let profileRef = filteredProfiles[indexPath.item]
+        
+        let name = profileRef["profile_picture"] as! String
+        
+        if let operation = convertOperations[name] {
+            operation.cancel()
+        }
+    }
+    
     private func loadImage(forCell cell: MatchesCollectionViewCell, forItemAt indexPath: IndexPath) {
         let profileRef = filteredProfiles[indexPath.item]
         
