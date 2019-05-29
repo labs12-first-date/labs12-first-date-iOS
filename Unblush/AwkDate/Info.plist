@@ -58,6 +58,8 @@
 	<string></string>
 	<key>UIViewControllerBasedStatusBarAppearance</key>
 	<false/>
+	<key>NSPhotoLibraryUsageDescription</key>
+	<string>$(PRODUCT_NAME) </string>
 	<key>CFBundleShortVersionString</key>
 	<string>1.0</string>
 </dict>

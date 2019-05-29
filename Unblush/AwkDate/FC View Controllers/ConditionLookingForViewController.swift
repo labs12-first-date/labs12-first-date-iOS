@@ -32,7 +32,7 @@ class ConditionLookingForViewController: UIViewController, UITableViewDataSource
     }
     
     private let context = CIContext(options: nil)
-    private let filter = CIFilter(name: "CIPhotoEffectChrome")!
+    private let filter = CIFilter(name: "CILanczosScaleTransform")! //CIPhotoEffectChrome
     
     private var originalImage: UIImage? {
         didSet {
@@ -189,7 +189,7 @@ class ConditionLookingForViewController: UIViewController, UITableViewDataSource
                 
                 DispatchQueue.main.async {
                     self.view.addSubview(myActivityIndicator)
-                    self.presentSuccessfulSaveAlert()
+                    //self.presentSuccessfulSaveAlert()
                     
                 }
             })
@@ -261,15 +261,15 @@ class ConditionLookingForViewController: UIViewController, UITableViewDataSource
             photoView.image = nil
         }
     }
-    
-    private func presentSuccessfulSaveAlert() {
-        let alert = UIAlertController(title: "Photo Saved!", message: "The photo has been saved to your Photo Library!", preferredStyle: .alert)
-        let okayAction = UIAlertAction(title: "Okay", style: .default, handler: nil)
-        
-        alert.addAction(okayAction)
-        present(alert, animated: true, completion: nil)
-    }
-    
+
+//    private func presentSuccessfulSaveAlert() {
+//        let alert = UIAlertController(title: "Photo Saved!", message: "The photo has been saved to your Photo Library!", preferredStyle: .alert)
+//        let okayAction = UIAlertAction(title: "Okay", style: .default, handler: nil)
+//
+//        alert.addAction(okayAction)
+//        present(alert, animated: true, completion: nil)
+//    }
+
     private func presentImagePickerController() {
         guard UIImagePickerController.isSourceTypeAvailable(.photoLibrary) else {
             NSLog("The photo library is not available")

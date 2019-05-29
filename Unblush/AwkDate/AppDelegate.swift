@@ -29,9 +29,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Override point for customization after application launch.
         //AppController.shared.show(in: UIWindow(frame: UIScreen.main.bounds))
         
-       /* defaults.removePersistentDomain(forName: domain)
+       defaults.removePersistentDomain(forName: domain)
         defaults.synchronize()
-        print(Array(defaults.dictionaryRepresentation().keys).count)*/
+        print(Array(defaults.dictionaryRepresentation().keys).count)
         
         
         AppearanceHelper.Appearance()
