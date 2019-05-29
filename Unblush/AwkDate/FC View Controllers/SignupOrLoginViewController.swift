@@ -56,6 +56,7 @@ class SignupOrLoginViewController: UIViewController, UIScrollViewDelegate {
             performSegue(withIdentifier: "profile", sender: self)
         }
         */
+        
         do {
             try Auth.auth().signOut()
             print("signed out")
@@ -64,6 +65,7 @@ class SignupOrLoginViewController: UIViewController, UIScrollViewDelegate {
         } catch {
             print("error")
         }
+        
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {

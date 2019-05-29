@@ -45,9 +45,6 @@ class ProfileViewController: UIViewController {
     @IBOutlet weak var editButton: UIButton!
     
     @IBOutlet weak var signOutButton: UIButton!
-    @IBOutlet weak var messagesLabel: UILabel!
-    @IBOutlet weak var settingsLabel: UILabel!
-    @IBOutlet weak var mutuallyLikedLabel: UILabel!
     
     let domain = Bundle.main.bundleIdentifier!
     let defaults = UserDefaults.standard
@@ -239,16 +236,7 @@ class ProfileViewController: UIViewController {
     func setupTheme() {
         bioLabel.textColor = .grape
         bioLabel.font = AppearanceHelper.lightFont(with: .caption1, pointSize: 17)
-        
-        messagesLabel.textColor = .grass
-        messagesLabel.font = AppearanceHelper.lightFont(with: .body, pointSize: 13)
-        settingsLabel.textColor = .grass
-        settingsLabel.font = AppearanceHelper.lightFont(with: .body, pointSize: 13)
-        mutuallyLikedLabel.textColor = .grass
-        mutuallyLikedLabel.font = AppearanceHelper.lightFont(with: .body, pointSize: 13)
-        
-        //cardView.backgroundColor = UIColor.grape.withAlphaComponent(0.15)
-        //cardView.layer.cornerRadius = 20
+    
         nameLabel.textColor = .grape
         nameLabel.font = AppearanceHelper.lightFont(with: .subheadline, pointSize: 33)
         
