@@ -52,6 +52,8 @@
 		4F6327AA229314C10044237E /* BogusSettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F6327A9229314C10044237E /* BogusSettingsViewController.swift */; };
 		4F6327AD2293593A0044237E /* MatchUsersCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F6327AC229359390044237E /* MatchUsersCollectionViewController.swift */; };
 		4F6327AF229362300044237E /* MutuallyLikedCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F6327AE229362300044237E /* MutuallyLikedCollectionViewController.swift */; };
+		4F7368E1229DCC8E00760C73 /* PushNotificationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F7368E0229DCC8E00760C73 /* PushNotificationManager.swift */; };
+		4F7368E3229DEA0A00760C73 /* PushNotificationSender.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F7368E2229DEA0A00760C73 /* PushNotificationSender.swift */; };
 		4F76E673227A7962004CC709 /* UserController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F76E672227A7962004CC709 /* UserController.swift */; };
 		4F9ACB612289E235004A5D2A /* Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F9ACB602289E235004A5D2A /* Message.swift */; };
 		4F9ACB632289E2FF004A5D2A /* DatabaseRepresentation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F9ACB622289E2FF004A5D2A /* DatabaseRepresentation.swift */; };
@@ -147,6 +149,8 @@
 		4F6327A9229314C10044237E /* BogusSettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BogusSettingsViewController.swift; sourceTree = "<group>"; };
 		4F6327AC229359390044237E /* MatchUsersCollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MatchUsersCollectionViewController.swift; sourceTree = "<group>"; };
 		4F6327AE229362300044237E /* MutuallyLikedCollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = MutuallyLikedCollectionViewController.swift; path = ../Cell/MutuallyLikedCollectionViewController.swift; sourceTree = "<group>"; };
+		4F7368E0229DCC8E00760C73 /* PushNotificationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PushNotificationManager.swift; sourceTree = "<group>"; };
+		4F7368E2229DEA0A00760C73 /* PushNotificationSender.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PushNotificationSender.swift; sourceTree = "<group>"; };
 		4F76E672227A7962004CC709 /* UserController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserController.swift; sourceTree = "<group>"; };
 		4F9ACB602289E235004A5D2A /* Message.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Message.swift; sourceTree = "<group>"; };
 		4F9ACB622289E2FF004A5D2A /* DatabaseRepresentation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatabaseRepresentation.swift; sourceTree = "<group>"; };
@@ -300,6 +304,8 @@
 				4F507C342285E56A00A60674 /* Storyboards */,
 				4F3C55E322792A20006307A9 /* Info.plist */,
 				4FE8AE162285E41900975841 /* Assets.xcassets */,
+				4F7368E0229DCC8E00760C73 /* PushNotificationManager.swift */,
+				4F7368E2229DEA0A00760C73 /* PushNotificationSender.swift */,
 			);
 			path = AwkDate;
 			sourceTree = "<group>";
@@ -667,6 +673,7 @@
 				485F5B1422933D4F00927FA9 /* AppearanceHelper.swift in Sources */,
 				485F5B1122933B4300927FA9 /* UserInfoViewController.swift in Sources */,
 				485F5B1C22933FBC00927FA9 /* OnboardingCollectionViewCell.swift in Sources */,
+				4F7368E1229DCC8E00760C73 /* PushNotificationManager.swift in Sources */,
 				4F507C332285E50F00A60674 /* SignupViewController.swift in Sources */,
 				4F6327AD2293593A0044237E /* MatchUsersCollectionViewController.swift in Sources */,
 				485F5B0F22933B4300927FA9 /* ConditionLookingForViewController.swift in Sources */,
@@ -711,6 +718,7 @@
 				4F9ACB652289E3D1004A5D2A /* AppSettings.swift in Sources */,
 				4F9ACB612289E235004A5D2A /* Message.swift in Sources */,
 				485F5B202293413B00927FA9 /* Onboarding.swift in Sources */,
+				4F7368E3229DEA0A00760C73 /* PushNotificationSender.swift in Sources */,
 				4F3C560922792A59006307A9 /* User.swift in Sources */,
 				4F6327AA229314C10044237E /* BogusSettingsViewController.swift in Sources */,
 				4F3C560B227948E8006307A9 /* MessageThread.swift in Sources */,

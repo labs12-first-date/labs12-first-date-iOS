@@ -46,6 +46,10 @@ class SignupOrLoginViewController: UIViewController, UIScrollViewDelegate {
         
         if serverCurrentUserInitial != nil {
             print("Initial Current User: \(serverCurrentUserInitial?.email)")
+            
+           /* let pushManager = PushNotificationManager(userID: serverCurrentUserInitial!.uid)
+            pushManager.registerForPushNotifications()*/
+            
             currentUserUID = serverCurrentUserInitial!.uid
             userController = User2Controller()
             performSegue(withIdentifier: "profile", sender: self)
@@ -54,7 +58,7 @@ class SignupOrLoginViewController: UIViewController, UIScrollViewDelegate {
        /* do {
             try Auth.auth().signOut()
             print("signed out")
-            //print("User in view did load: \(userController.serverCurrentUser?.uid)")
+            print("User in view did load: \(serverCurrentUserInitial?.uid)")
             
         } catch {
             print("error")

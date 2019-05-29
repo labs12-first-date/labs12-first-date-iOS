@@ -8,7 +8,7 @@
 
 import UIKit
 
-class AppSignupViewController: UIViewController {
+class AppSignupViewController: UIViewController, UITextFieldDelegate {
     
     //MARK: - Properties
     let user2Controller = User2Controller()
@@ -60,6 +60,8 @@ class AppSignupViewController: UIViewController {
                 }
                 self.email = email
                 self.currentUserUID = self.user2Controller.currentUserUID
+                let pushManager = PushNotificationManager(userID: self.currentUserUID!)
+                pushManager.registerForPushNotifications()
                 
                 DispatchQueue.main.async {
                     self.removeActivityIndicator(activityIndicator: myActivityIndicator)
@@ -73,11 +75,18 @@ class AppSignupViewController: UIViewController {
             return
         }
     }
+    /*
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        self.view.endEditing(true)
+        return false
+    }*/
     
     override func viewDidLoad() {
         super.viewDidLoad()
         setTheme()
         setNeedsStatusBarAppearanceUpdate()
+        
+       // self.retypePasswordTextField.delegate = self
 
     }
     
@@ -134,6 +143,40 @@ class AppSignupViewController: UIViewController {
                 vcDestination.user2Controller = self.user2Controller
                 vcDestination.email = self.email
             }
+    }
+}
+
+extension UITextField {
+    
+    @IBInspectable var doneAccessory: Bool{
+        get{
+            return self.doneAccessory
+        }
+        set (hasDone) {
+            if hasDone{
+                addDoneButtonOnKeyboard()
+            }
+        }
+    }
+    
+    func addDoneButtonOnKeyboard()
+    {
+        let doneToolbar: UIToolbar = UIToolbar(frame: CGRect.init(x: 0, y: 0, width: UIScreen.main.bounds.width, height: 50))
+        doneToolbar.barStyle = .default
+        
+        let flexSpace = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil)
+        let done: UIBarButtonItem = UIBarButtonItem(title: "Done", style: .done, target: self, action: #selector(self.doneButtonAction))
+        
+        let items = [flexSpace, done]
+        doneToolbar.items = items
+        doneToolbar.sizeToFit()
+        
+        self.inputAccessoryView = doneToolbar
+    }
+    
+    @objc func doneButtonAction()
+    {
+        self.resignFirstResponder()
     }
 }
 

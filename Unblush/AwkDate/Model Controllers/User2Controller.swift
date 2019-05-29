@@ -144,7 +144,7 @@ class User2Controller {
             
             if let document = document, document.exists {
                 self.singleProfileFromServer = document.data()!
-                print("Document data: \(document.data()!)")
+                //print("Document data: \(document.data()!)")
                 print("Photo from fetch: \( self.singleProfileFromServer["first_name"])")
                 completion(nil)
             } else {

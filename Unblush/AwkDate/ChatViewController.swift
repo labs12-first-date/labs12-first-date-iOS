@@ -29,10 +29,13 @@ class ChatViewController: MessagesViewController {
     private var reference: CollectionReference?
     private var chattingUserReference: CollectionReference?
     private var chattingUserIdReference: DocumentReference?
+    private var userFCMTokenReference: DocumentReference?
+    private var chattingUserFCMTokenReference: DocumentReference?
     private let storage = Storage.storage().reference()
     
     var messages: [Message] = []
     private var messageListener: ListenerRegistration?
+    var chattingUserFCMToken: String?
     
     let user: User
     let messageThread: MessageThread
@@ -69,6 +72,8 @@ class ChatViewController: MessagesViewController {
         reference = db.collection(["messageThreadsiOS", user.uid, "threads", id, "messages"].joined(separator: "/"))
         chattingUserReference = db.collection(["messageThreadsiOS", chattingUserUID, "threads", id, "messages"].joined(separator: "/"))
         chattingUserIdReference = db.document(["messageThreadsiOS", chattingUserUID, "threads", id].joined(separator: "/"))
+        userFCMTokenReference = db.document(["users_table", user.uid].joined(separator: "/"))
+        chattingUserFCMTokenReference = db.document(["users_table", chattingUserUID].joined(separator: "/"))
         
         messageListener = reference?.addSnapshotListener { querySnapshot, error in
             guard let snapshot = querySnapshot else {
@@ -99,6 +104,21 @@ class ChatViewController: MessagesViewController {
                 }
                 self.messages.append(msg)
             }
+        })
+        
+        chattingUserFCMTokenReference?.getDocument(completion: { (querySnapshot, error) in
+            if let error = error {
+                print("Error fetching messages from id: \(error)")
+                return
+            }
+            guard let querySnap = querySnapshot else {
+                print("No query snapshot")
+                return
+            }
+            
+            let data = querySnap.data()
+            self.chattingUserFCMToken = data!["fcmToken"] as! String
+            
         })
         
         navigationItem.largeTitleDisplayMode = .never
@@ -154,6 +174,7 @@ class ChatViewController: MessagesViewController {
             self.chattingUserReference?.addDocument(data: message.representation)
         })
         
+        
         reference?.addDocument(data: message.representation) { error in
             if let e = error {
                 print("Error sending message: \(e.localizedDescription)")
@@ -161,6 +182,9 @@ class ChatViewController: MessagesViewController {
             }
             
             self.messagesCollectionView.scrollToBottom()
+            
+            let sender = PushNotificationSender()
+            sender.sendPushNotification(to: self.chattingUserFCMToken!, title: "New Message", body: "Reply to \(AppSettings.displayName!)")
         }
     }
     
