@@ -151,11 +151,10 @@ class ConditionLookingForViewController: UIViewController, UITableViewDataSource
                     
                 }
   
-        
-        self.user2Controller!.uploadPhoto(imageContainer: photoData)
-        if self.user2Controller?.currentPhoto != nil {
+        user2Controller!.uploadPhoto(imageContainer: photoData)
+        if user2Controller?.currentPhoto != nil {
             
-            self.user2Controller?.putProfileToServer(userID: self.currentUserUID!, firstName: self.firstName!, lastName: self.lastName!, email: self.email!, age: self.age!, gender: self.gender!, zipcode: self.zipcode!, condition: conditionsFromTableView, mainPhoto: nil, lookingFor: lookingForFromTableView, biography: self.biography!, completion: { (error) in
+            user2Controller?.putProfileToServer(userID: currentUserUID!, firstName: firstName!, lastName: lastName!, email: email!, age: age!, gender: gender!, zipcode: zipcode!, condition: conditionsFromTableView, mainPhoto: nil, lookingFor: lookingForFromTableView, biography: biography!, completion: { (error) in
                 if let error = error {
                     print("Error putting profile to server: \(error)")
                     self.removeActivityIndicator(activityIndicator: myActivityIndicator)
@@ -167,7 +166,6 @@ class ConditionLookingForViewController: UIViewController, UITableViewDataSource
                 }
             })
         }
-        
     }
     
     override func viewDidLoad() {
