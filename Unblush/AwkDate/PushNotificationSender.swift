@@ -14,7 +14,7 @@ class PushNotificationSender {
         let url = NSURL(string: urlString)!
         let paramString: [String : Any] = ["to" : token,
                                            "notification" : ["title" : title, "body" : body, "sound": "default", "badge": "1"],
-                                           "data" : ["user" : "test_id"], "priority": "high"
+                                           "data" : ["user" : "test_id"]
         ]
         let request = NSMutableURLRequest(url: url as URL)
         request.httpMethod = "POST"

@@ -19,7 +19,7 @@ class SignupOrLoginViewController: UIViewController, UIScrollViewDelegate {
         return .lightContent
     }
     
-    var serverCurrentUserInitial = Auth.auth().currentUser
+    var serverCurrentUserInitial: User?
     var userController: User2Controller?
     var currentUserUID: String?
     
@@ -43,6 +43,8 @@ class SignupOrLoginViewController: UIViewController, UIScrollViewDelegate {
         setTheme()
         setScrollView()
         setNeedsStatusBarAppearanceUpdate()
+        
+        serverCurrentUserInitial = Auth.auth().currentUser
         
         if serverCurrentUserInitial != nil {
             print("Initial Current User: \(serverCurrentUserInitial?.email)")
