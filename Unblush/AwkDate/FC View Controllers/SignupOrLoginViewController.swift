@@ -44,13 +44,11 @@ class SignupOrLoginViewController: UIViewController, UIScrollViewDelegate {
         setScrollView()
         setNeedsStatusBarAppearanceUpdate()
         
-<<<<<<< HEAD
-        serverCurrentUserInitial = Auth.auth().currentUser
+       // serverCurrentUserInitial = Auth.auth().currentUser
         
-        if serverCurrentUserInitial != nil {
-=======
+
         /*if serverCurrentUserInitial != nil {
->>>>>>> master
+
             print("Initial Current User: \(serverCurrentUserInitial?.email)")
             
            /* let pushManager = PushNotificationManager(userID: serverCurrentUserInitial!.uid)

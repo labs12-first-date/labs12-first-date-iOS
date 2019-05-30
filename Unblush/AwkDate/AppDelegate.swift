@@ -15,8 +15,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
    
-   /* let domain = Bundle.main.bundleIdentifier!
-    let defaults = UserDefaults.standard*/
+    let domain = Bundle.main.bundleIdentifier!
+    let defaults = UserDefaults.standard
     
    // var serverCurrentUserAppDelegate = Auth.auth().currentUser
 
@@ -28,9 +28,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         //AppController.shared.show(in: UIWindow(frame: UIScreen.main.bounds))
         //let userController = User2Controller()
         
-      /*  defaults.removePersistentDomain(forName: domain)
+        defaults.removePersistentDomain(forName: domain)
         defaults.synchronize()
-        print(Array(defaults.dictionaryRepresentation().keys).count) */
+        print(Array(defaults.dictionaryRepresentation().keys).count) 
         
         /*if userController.serverCurrentUser != nil {
             print("User in App Delegate!")
