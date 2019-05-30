@@ -86,12 +86,17 @@ class MutuallyLikedCollectionViewController: UICollectionViewController {
         if userLikedArray.count == emptyArray.count {
             print("No liked users")
             self.removeActivityIndicator(activityIndicator: myActivityIndicator)
+            imageView.frame = CGRect(x: 110, y: 350, width: 200, height: 200)
+            imageView.center = self.view.center
+            self.view.addSubview(imageView)
             return
         }
     
         let filteredArray = filterByDisliked(profiles: userLikedArray)
+        let mutualsArray = filterIfMutuallyLiked(profiles: filteredArray)
+        mutallyLikedArray.append(contentsOf: mutualsArray)
         
-        for user in filteredArray {
+       /* for user in filteredArray {
            // let id = user["user_uid"] as! String
             
             let compareUserLikedArray = user["liked"] as! [[String:Any]]
@@ -100,11 +105,12 @@ class MutuallyLikedCollectionViewController: UICollectionViewController {
                 let compareEmail = compareUser["email"] as! String
                 if compareEmail == userEmail {
                     mutallyLikedArray.append(user)
-                    
                 }
             }
             
-        }
+        }*/
+        
+        
         DispatchQueue.main.async {
             if mutallyLikedArray.count == 0 {
                 self.removeActivityIndicator(activityIndicator: myActivityIndicator)
@@ -113,6 +119,7 @@ class MutuallyLikedCollectionViewController: UICollectionViewController {
                 self.view.addSubview(imageView)
                 return
             }
+            print("In Mutually Liked Array: \(mutallyLikedArray.count)")
             imageView.alpha = 0
             self.collectionView.reloadData()
             self.removeActivityIndicator(activityIndicator: myActivityIndicator)
@@ -143,6 +150,24 @@ class MutuallyLikedCollectionViewController: UICollectionViewController {
         
     }
     
+    func filterIfMutuallyLiked(profiles: [[String:Any]]) -> [[String:Any]] {
+        var profilesFiltered = [[String:Any]]()
+        let userEmail = userController!.singleProfileFromServer["email"] as! String
+        
+        for user in profiles {
+            // let id = user["user_uid"] as! String
+            print("Entering loop")
+            let compareUserLikedArray = user["liked"] as! [[String:Any]]
+            if compareUserLikedArray.contains(where: { $0["email"] as! String == userEmail }) {
+                profilesFiltered.append(user)
+            }
+            
+        }
+
+        print("Mutually liked filter: \(profilesFiltered.count)")
+        return profilesFiltered
+    }
+    
     func filterByDisliked(profiles: [[String:Any]]) -> [[String:Any]] {
         
         var profilesFiltered = [[String:Any]]()
@@ -165,18 +190,7 @@ class MutuallyLikedCollectionViewController: UICollectionViewController {
         return profilesFiltered
     }
     
-    /*
-     // MARK: - Navigation
-     
-     // In a storyboard-based application, you will often want to do a little preparation before navigation
-     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-     // Get the new view controller using [segue destinationViewController].
-     // Pass the selected object to the new view controller.
-     
-     // showMutallyLiked
-     }
-     */
-    
+  
     // MARK: UICollectionViewDataSource
     override func numberOfSections(in collectionView: UICollectionView) -> Int {
         // #warning Incomplete implementation, return the number of sections
@@ -266,15 +280,15 @@ class MutuallyLikedCollectionViewController: UICollectionViewController {
         }
     }
     
-    override func collectionView(_ collectionView: UICollectionView, didEndDisplaying cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
-        let profileRef = filteredProfiles[indexPath.item]
+   /* override func collectionView(_ collectionView: UICollectionView, didEndDisplaying cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
+        let profileRef = mutallyLikedArray[indexPath.item]
         
         let name = profileRef["profile_picture"] as! String
         
         if let operation = convertOperations[name] {
             operation.cancel()
         }
-    }
+    }*/
     
     @objc func updateViews(notification: NSNotification) {
         DispatchQueue.main.async {

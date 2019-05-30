@@ -32,11 +32,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         defaults.synchronize()
         print(Array(defaults.dictionaryRepresentation().keys).count) 
         
-        /*if userController.serverCurrentUser != nil {
+       /* if userController.serverCurrentUser != nil {
             print("User in App Delegate!")
             let pushManager = PushNotificationManager(userID: userController.serverCurrentUser!.uid)
             pushManager.registerForPushNotifications()
-        }*/
+        } */
         
        /* let pushManager = PushNotificationManager(userID: "gRU36yUbDBbxY3pDPrhNfVNddF93")
         pushManager.registerForPushNotifications()*/
