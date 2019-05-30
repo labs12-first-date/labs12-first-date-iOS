@@ -218,6 +218,47 @@ class User2Controller {
       
     }
     
+    func updatePhotoOnServer(userUID: String, completion: @escaping (Error?) -> Void = {_ in }) {
+        
+        let photoUID = UUID().uuidString
+        let storageRef = self.storage.reference()
+        let imagesRef = storageRef.child("images")
+        let profileRef = db.collection("profilesiOS").document(userUID)
+        
+        let userPhotosRef = storageRef.child("images/\(photoUID).png")
+        
+        userPhotosRef.putData(self.currentPhoto!, metadata: nil, completion: { (metadata, error) in
+            
+            if let error = error {
+                print("Error putting image to storage: \(error)")
+                return
+            }
+            
+        
+            userPhotosRef.downloadURL(completion: { (url, error) in
+                if let error = error {
+                    print("Error downloading url: \(error)")
+                    return
+                }
+                self.currentPhotoURL = url
+                let urlString = self.currentPhotoURL!.absoluteString
+                
+                profileRef.updateData(["profile_picture": urlString], completion: { (error) in
+                    if let error = error {
+                        print("Error updating data: \(error)")
+                        completion(error)
+                        return
+                    }
+                    print("Successfully updated profile picture")
+                    completion(nil)
+                })
+                
+            })
+            
+        })
+        
+    }
+    
     func updateLikedMatchesOnServer(userUID: String, likedMatch: [String:Any], completion: @escaping (Error?) -> Void = {_ in }) {
         
         let profileRef = db.collection("profilesiOS").document(userUID)

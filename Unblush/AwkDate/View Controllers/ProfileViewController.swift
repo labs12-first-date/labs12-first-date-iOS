@@ -197,7 +197,7 @@ class ProfileViewController: UIViewController, UIImagePickerControllerDelegate, 
         let imageUrl: URL = URL(fileURLWithPath: imagePath)
         do {
             let imageData = try Data(contentsOf: newURL! as URL)
-            print("Image data: \(imageData)")
+           // print("Image data: \(imageData)")
             return UIImage(data: imageData)
         } catch {
             print("Error loading image : \(error)")
@@ -243,24 +243,96 @@ class ProfileViewController: UIViewController, UIImagePickerControllerDelegate, 
             return
         }
         
+        let myActivityIndicator = UIActivityIndicatorView(frame: CGRect(x: 100,y: 200, width: 200, height: 200))
+        myActivityIndicator.style = (UIActivityIndicatorView.Style.whiteLarge)
+        // Position Activity Indicator in the center of the main view
+        myActivityIndicator.center = self.view.center
+        // If needed, you can prevent Acivity Indicator from hiding when stopAnimating() is called
+        myActivityIndicator.hidesWhenStopped = false
+        // Start Activity Indicator
+        myActivityIndicator.startAnimating()
+        
+        DispatchQueue.main.async {
+            self.view.addSubview(myActivityIndicator)
+        }
+        
         let imagePicker = UIImagePickerController()
         imagePicker.delegate = self
         imagePicker.sourceType = .photoLibrary
         //imagePicker.allowsEditing = false
         
         present(imagePicker, animated: true, completion: nil)
+        self.removeActivityIndicator(activityIndicator: myActivityIndicator)
     }
     
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
         guard let image = info[.originalImage] as? UIImage else { return }
         //imageView.contentMode = .scaleAspectFit
-        //profileView.image = image
+        print("Image data: \(image.pngData())")
+        let compressedImage = image.compressImage(image: image)
+        print("compressed image data: \(compressedImage)")
+        profileView.image = UIImage(data: compressedImage!)
+        self.photo = UIImage(data: compressedImage!)
+        changeProfilePicture(photoData: compressedImage!)
         
         dismiss(animated: true, completion: nil)
     }
     
     private func imagePickerControllerDidCancel(picker: UIImagePickerController) {
         dismiss(animated: true, completion: nil)
+    }
+    
+    private func changeProfilePicture(photoData: Data) {
+        
+        let myActivityIndicator = UIActivityIndicatorView(frame: CGRect(x: 100,y: 200, width: 200, height: 200))
+        myActivityIndicator.style = (UIActivityIndicatorView.Style.whiteLarge)
+        // Position Activity Indicator in the center of the main view
+        myActivityIndicator.center = self.view.center
+        // If needed, you can prevent Acivity Indicator from hiding when stopAnimating() is called
+        myActivityIndicator.hidesWhenStopped = false
+        // Start Activity Indicator
+        myActivityIndicator.startAnimating()
+        
+        DispatchQueue.main.async {
+            self.view.addSubview(myActivityIndicator)
+        }
+        
+        user2Controller!.uploadPhoto(imageContainer: photoData)
+        if user2Controller?.currentPhoto != nil {
+            
+            user2Controller!.updatePhotoOnServer(userUID: currentUserUID!) { (error) in
+                if let error = error {
+                    print("Error updating photo on server in vc: \(error)")
+                    self.displayMessage(userMessage: "Error updating photo")
+                    return
+                }
+                DispatchQueue.main.async {
+                    self.removeActivityIndicator(activityIndicator: myActivityIndicator)
+                    print("Success! Update Profile Pic!")
+                }
+                
+            }
+            
+        }
+        
+    }
+    
+    func displayMessage(userMessage:String) -> Void {
+        DispatchQueue.main.async
+            {
+                let alertController = UIAlertController(title: "Please Try Again", message: userMessage, preferredStyle: .alert)
+                
+                let OKAction = UIAlertAction(title: "OK", style: .default) { (action:UIAlertAction!) in
+                    // Code in this block will trigger when OK button tapped.
+                    print("Ok button tapped")
+                    DispatchQueue.main.async
+                        {
+                            alertController.dismiss(animated: true, completion: nil)
+                    }
+                }
+                alertController.addAction(OKAction)
+                self.present(alertController, animated: true, completion:nil)
+        }
     }
     
     func setupTheme() {

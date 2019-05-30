@@ -211,6 +211,7 @@ class ConditionLookingForViewController: UIViewController, UITableViewDataSource
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
         guard let image = info[.originalImage] as? UIImage else { return }
         //imageView.contentMode = .scaleAspectFit
+        print("Image data: \(image.pngData())")
         let compressedImage = image.compressImage(image: image)
         print("Compressed image data: \(compressedImage)")
         photoView.image = UIImage(data: compressedImage!)

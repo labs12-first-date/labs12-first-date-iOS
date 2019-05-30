@@ -332,7 +332,7 @@ class MatchUsersCollectionViewController: UICollectionViewController, UINavigati
                 }
             }
         }
-        print("Condition filter matches: \(profilesFiltered.count)")
+        print("Condition filter matches: \(profilesFiltered.count) and \(profilesFiltered)")
         return profilesFiltered
     }
     
