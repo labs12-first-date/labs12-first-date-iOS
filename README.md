@@ -10,21 +10,15 @@ This is a Lambda Labs Capstone Project designed as a dating app that provides a 
 ### iOS Development
 |  ![Jocelyn](https://img.shields.io/badge/Jocelyn-Stuart-blueviolet.svg)                                                      |                                                  ![Frulwinn](https://img.shields.io/badge/Frulwinn-Collick-ff69b4.svg)                                                       |                                                      
 | :-----------------------------------------------------------------------------------------------------------------------------------------: | :-------------------------------------------------------------------------------------------------------------------------------------------: | 
-| <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTRIUUZb9WpQPm7eAwp1MA_TwA5_c9qgsnMbTneJbVf4BNrq0OK" width = "200" /> | 
-<img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTAQ2hTxRAECl0pPCzSz3kBBOV3SBWFrvswkJ0ZN72FmeMO0VTJ" width = "200" /> | 
-|  [<img src="https://github.com/favicon.ico" width="35"> ](https://github.com/jocate)                                |                                                  
-[<img src="https://github.com/favicon.ico" width="35"> ](https://github.com/Frulwinn)  
+| <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTRIUUZb9WpQPm7eAwp1MA_TwA5_c9qgsnMbTneJbVf4BNrq0OK" width = "200" /> | <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTAQ2hTxRAECl0pPCzSz3kBBOV3SBWFrvswkJ0ZN72FmeMO0VTJ" width = "200" /> | 
+|  [<img src="https://github.com/favicon.ico" width="35"> ](https://github.com/jocate)                                |                                                  [<img src="https://github.com/favicon.ico" width="35"> ](https://github.com/Frulwinn)  
 <br>
 
 ### Web Development
-|  ![Gill](https://img.shields.io/badge/Gill-Abada-orange.svg)                                                      |                                                  ![James](https://img.shields.io/badge/James-Basile-brightgreen.svg)                                                       |                                                      ![Joel](https://img.shields.io/badge/Joel-Bartlett-red.svg)                                                       |                                                       ![Jonas](https://img.shields.io/badge/Jonas-Walden-yellow.svg)                                                       |                                                      ![Steve](https://img.shields.io/badge/Steve-Alverson-blue.svg)                                                      |
+|                                                      ![Gill](https://img.shields.io/badge/Gill-Abada-orange.svg)                                                      |                                                       ![James](https://img.shields.io/badge/James-Basile-brightgreen.svg)                                                       |                                                      ![Joel](https://img.shields.io/badge/Joel-Bartlett-red.svg)                                                       |                                                       ![Jonas](https://img.shields.io/badge/Jonas-Walden-yellow.svg)                                                       |                                                      ![Steve](https://img.shields.io/badge/Steve-Alverson-blue.svg)                                                      |
 | :-----------------------------------------------------------------------------------------------------------------------------------------: | :-------------------------------------------------------------------------------------------------------------------------------------------: | :-----------------------------------------------------------------------------------------------------------------------------------------: | :-------------------------------------------------------------------------------------------------------------------------------------------: | :-----------------------------------------------------------------------------------------------------------------------------------------: |
 | <img src="https://www.dalesjewelers.com/wp-content/uploads/2018/10/placeholder-silhouette-male.png" width = "200" /> | <img src="https://www.dalesjewelers.com/wp-content/uploads/2018/10/placeholder-silhouette-male.png" width = "200" /> | <img src="https://www.dalesjewelers.com/wp-content/uploads/2018/10/placeholder-silhouette-male.png" width = "200" /> | <img src="https://www.dalesjewelers.com/wp-content/uploads/2018/10/placeholder-silhouette-male.png" width = "200" /> | <img src="https://www.dalesjewelers.com/wp-content/uploads/2018/10/placeholder-silhouette-male.png" width = "200" /> |
-|  [<img src="https://github.com/favicon.ico" width="35"> ](https://github.com/gabada)                                |                           
-[<img src="https://github.com/favicon.ico" width="35"> ](https://github.com/jbasile6)                             |                         
-[<img src="https://github.com/favicon.ico" width="35"> ](https://github.com/murbar)                           |                          
-[<img src="https://github.com/favicon.ico" width="35"> ](https://github.com/UnknownMonk)                           |                          
-[<img src="https://github.com/favicon.ico" width="35"> ](https://github.com/VaderSteve76)  
+|                                [<img src="https://github.com/favicon.ico" width="35"> ](https://github.com/gabada)                                |                            [<img src="https://github.com/favicon.ico" width="35"> ](https://github.com/jbasile6)                             |                          [<img src="https://github.com/favicon.ico" width="35"> ](https://github.com/murbar)                           |                          [<img src="https://github.com/favicon.ico" width="35"> ](https://github.com/UnknownMonk)                           |                           [<img src="https://github.com/favicon.ico" width="35"> ](https://github.com/VaderSteve76)  
 <br>
 
 ### Project Managers
@@ -68,14 +62,14 @@ This app uses Firebase to allow users to login using Google, Facebook, Twitter, 
 To install this app you will need Xcode version 10.2.1 and you will need to install all the pods mentioned in the tech stack.
 
 ## Features
-* Sign up via email or Google Account
+* Sign up via email
 * Upload image to Profile
 * Add bio information
 * Check off which STD(s) the user has
 * Check off which STD(s) the user is open to a partner having
 * Match recommendations based off user's disclosed/"open to" STD(s), age, gender, and distance
-* Swipe yes/no on other users' profiles resulting in a match if a yes is reciprocated
-* In-App chat once users are matched
+* Liked or Disliked on other users' profiles resulting in a match if a yes is reciprocated
+* In-App chat once users mutually like each other
 
 ## Contributing
 When contributing to this repository, please first discuss the change you wish to make via issue, email, or any other method with the owners of this repository before making a change.
