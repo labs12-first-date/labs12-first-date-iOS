@@ -236,13 +236,13 @@ class MatchUsersCollectionViewController: UICollectionViewController, UINavigati
         DispatchQueue.main.async {
             self.collectionView.reloadData()
         }
-        userController?.fetchProfileFromServer(userID: userController!.currentUserUID!, completion: { (error) in
+        /*userController?.fetchProfileFromServer(userID: userController!.currentUserUID!, completion: { (error) in
             if let error = error {
                 print("Error fetching profile from server in update views: \(error)")
                 return
             }
             print("Successfully fetched new profile after updating views")
-        })
+        })*/
     }
     
     func filterByDisliked(profiles: [[String:Any]]) -> [[String:Any]] {
@@ -401,7 +401,7 @@ class MatchUsersCollectionViewController: UICollectionViewController, UINavigati
     var convertOperations: [String: ConvertPhotoOperation] = [:]
     let photoConvertQueue = OperationQueue()
     
-    override func collectionView(_ collectionView: UICollectionView, didEndDisplaying cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
+   /* override func collectionView(_ collectionView: UICollectionView, didEndDisplaying cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
         let profileRef = filteredProfiles[indexPath.item]
         
         let name = profileRef["profile_picture"] as! String
@@ -409,7 +409,7 @@ class MatchUsersCollectionViewController: UICollectionViewController, UINavigati
         if let operation = convertOperations[name] {
             operation.cancel()
         }
-    }
+    }*/
     
     private func loadImage(forCell cell: MatchesCollectionViewCell, forItemAt indexPath: IndexPath) {
         let profileRef = filteredProfiles[indexPath.item]

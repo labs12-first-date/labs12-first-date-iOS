@@ -273,6 +273,44 @@ class User2Controller {
                 completion(error)
                 return
             }
+            self.fetchProfileFromServer(userID: userUID, completion: { (error) in
+                if let error = error {
+                    print("Error fetching profile in update: \(error)")
+                    completion(error)
+                    return
+                }
+                
+                self.fetchAllProfilesFromServer(completion: { (error) in
+                    if let error = error {
+                        print("Error fetching all profiles from serv: \(error)")
+                        completion(error)
+                        return
+                    }
+                    
+                    for profile in self.profilesFromServer {
+                        // let id = user["user_uid"] as! String
+                       // print("Entering loop")
+                        var compareUserLikedArray = profile["liked"] as! [[String:Any]]
+                        
+                        if let index = compareUserLikedArray.firstIndex(where: { $0["user_uid"] as! String == userUID }) {
+                            
+                            compareUserLikedArray.remove(at: index)
+                            compareUserLikedArray.append(self.singleProfileFromServer)
+                            let profRef = self.db.collection("profilesiOS").document(profile["user_uid"] as! String)
+                            profRef.updateData(["liked": compareUserLikedArray])
+                            completion(nil)
+                            
+                        }
+                        
+                    }
+                    
+                    
+                })
+                
+            })
+            
+            
+            
             print("Successfully updated liked matches")
             completion(nil)
         }
