@@ -46,8 +46,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
        /* let sender = PushNotificationSender()
         sender.sendPushNotification(to: token ?? "token", title:
             "Notification title", body: "Notification body")*/
-        
-        
+     
         AppearanceHelper.Appearance()
         return true
     }
@@ -90,6 +89,4 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
     }
 
-
 }
-

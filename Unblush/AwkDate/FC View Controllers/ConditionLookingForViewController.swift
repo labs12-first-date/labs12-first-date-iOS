@@ -7,6 +7,8 @@
 //
 
 import UIKit
+import Photos
+import CoreImage
 
 class ConditionLookingForViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     
@@ -28,8 +30,6 @@ class ConditionLookingForViewController: UIViewController, UITableViewDataSource
     override var preferredStatusBarStyle: UIStatusBarStyle {
         return .lightContent
     }
-    
-
     
     let conditions: [ConditionType] = [.aids, .chlamydia, .crabs, .genitalWarts, .gonorrhea, .hepB, .hepC, .hepD, .hepA, .herpes, .hiv, .syphyllis, .theClap]
     
@@ -95,7 +95,7 @@ class ConditionLookingForViewController: UIViewController, UITableViewDataSource
     }
     
     @objc func changeCheckMark(notification: NSNotification) -> Void {
-    
+        
     }
     
     @objc func displayMessage(notification: NSNotification) -> Void {
@@ -116,140 +116,118 @@ class ConditionLookingForViewController: UIViewController, UITableViewDataSource
                 self.present(alertController, animated: true, completion:nil)
         }
     }
+    
+    func style(cell: UITableViewCell) {
+        //cell.textLabel?.font = AppearanceHelper.typerighterFont(with: .caption1, pointSize: 30)
+        cell.textLabel?.adjustsFontForContentSizeCategory = true
+        //cell.detailTextLabel?.font = AppearanceHelper.typerighterFont(with: .caption2, pointSize: 25)
+        cell.detailTextLabel?.adjustsFontForContentSizeCategory = true
         
-        func style(cell: UITableViewCell) {
-            //cell.textLabel?.font = AppearanceHelper.typerighterFont(with: .caption1, pointSize: 30)
-            cell.textLabel?.adjustsFontForContentSizeCategory = true
-            //cell.detailTextLabel?.font = AppearanceHelper.typerighterFont(with: .caption2, pointSize: 25)
-            cell.detailTextLabel?.adjustsFontForContentSizeCategory = true
-            
-            cell.textLabel?.backgroundColor = .clear
-            cell.detailTextLabel?.backgroundColor = .clear
-            
-            cell.textLabel?.textColor = .grape
-            cell.detailTextLabel?.textColor = .grape
-            //this makes the white background go away in the back, or cell.selectionStyle = .none
-            cell.selectionStyle = UITableViewCell.SelectionStyle.none
-            cell.backgroundColor = .violet
-        }
+        cell.textLabel?.backgroundColor = .clear
+        cell.detailTextLabel?.backgroundColor = .clear
         
-        @IBAction func saveButton(_ sender: Any) {
-            guard let photo = photoView.image, let photoData = photo.pngData() else { return }
-            
-            //Create Activity Indicator
-            let myActivityIndicator = UIActivityIndicatorView(frame: CGRect(x: 100,y: 200, width: 200, height: 200))
-            myActivityIndicator.style = (UIActivityIndicatorView.Style.whiteLarge)
-            
-            // Position Activity Indicator in the center of the main view
-            myActivityIndicator.center = self.view.center
-            
-            // If needed, you can prevent Acivity Indicator from hiding when stopAnimating() is called
-            myActivityIndicator.hidesWhenStopped = false
-            
-            // Start Activity Indicator
-            myActivityIndicator.startAnimating()
-            
-            DispatchQueue.main.async {
-                self.view.addSubview(myActivityIndicator)
-            }
-            
-            
-            user2Controller!.uploadPhoto(imageContainer: photoData)
-            
-            if user2Controller?.currentPhoto != nil {
-                
-                user2Controller?.putProfileToServer(userID: currentUserUID!, firstName: firstName!, lastName: lastName!, email: email!, age: age!, gender: gender!, zipcode: zipcode!, condition: conditionsFromTableView, mainPhoto: nil, lookingFor: lookingForFromTableView, biography: biography!, completion: { (error) in
+        cell.textLabel?.textColor = .grape
+        cell.detailTextLabel?.textColor = .grape
+        //this makes the white background go away in the back, or cell.selectionStyle = .none
+        cell.selectionStyle = UITableViewCell.SelectionStyle.none
+        cell.backgroundColor = .violet
+    }
+    
+    @IBAction func saveButton(_ sender: Any) {
+        //Create Activity Indicator
+        let myActivityIndicator = UIActivityIndicatorView(frame: CGRect(x: 100,y: 200, width: 200, height: 200))
+        myActivityIndicator.style = (UIActivityIndicatorView.Style.whiteLarge)
+        // Position Activity Indicator in the center of the main view
+        myActivityIndicator.center = self.view.center
+        // If needed, you can prevent Acivity Indicator from hiding when stopAnimating() is called
+        myActivityIndicator.hidesWhenStopped = false
+        // Start Activity Indicator
+        myActivityIndicator.startAnimating()
+        
+        guard let photo = photoView.image, let photoData = photo.pngData() else { return }
+        
+                DispatchQueue.main.async {
+                    self.view.addSubview(myActivityIndicator)
                     
-                    if let error = error {
-                        print("Error putting profile to server: \(error)")
-                        self.removeActivityIndicator(activityIndicator: myActivityIndicator)
-                        return
-                    }
-                    
-                    DispatchQueue.main.async {
-                        self.removeActivityIndicator(activityIndicator: myActivityIndicator)
-                        self.performSegue(withIdentifier: "profile", sender: self)
-                    }
-                    
-                })
-            }
+                }
+  
+        user2Controller!.uploadPhoto(imageContainer: photoData)
+        if user2Controller?.currentPhoto != nil {
             
+            user2Controller?.putProfileToServer(userID: currentUserUID!, firstName: firstName!, lastName: lastName!, email: email!, age: age!, gender: gender!, zipcode: zipcode!, condition: conditionsFromTableView, mainPhoto: nil, lookingFor: lookingForFromTableView, biography: biography!, completion: { (error) in
+                if let error = error {
+                    print("Error putting profile to server: \(error)")
+                    self.removeActivityIndicator(activityIndicator: myActivityIndicator)
+                    return
+                }
+                DispatchQueue.main.async {
+                    self.removeActivityIndicator(activityIndicator: myActivityIndicator)
+                    self.performSegue(withIdentifier: "profile", sender: self)
+                }
+            })
+        }
+    }
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        setNeedsStatusBarAppearanceUpdate()
+        //setUpPhotoView()
+        setTheme()
+        NotificationCenter.default.addObserver(self, selector: #selector(displayMessage(notification:)), name: .displayMsg, object: nil)
+    }
+    
+    func setTheme() {
+        //AppearanceHelper.style(button: addButton)
+        conditionsTableView.separatorColor = .grape
+        lookingTableView.separatorColor = .grape
+        
+        conditionLabel.textColor = .grass
+        lookingForLabel.textColor = .grass
+        addButton.tintColor = .grass
+        addButton.titleLabel?.font = AppearanceHelper.lightFont(with: .body, pointSize: 16)
+        
+        conditionLabel.font = AppearanceHelper.lightFont(with: .body, pointSize: 16)
+        lookingForLabel.font = AppearanceHelper.lightFont(with: .body, pointSize: 16)
+        
+        conditionsTableView.backgroundColor = .clear
+        lookingTableView.backgroundColor = .clear
+        view.backgroundColor = .violet
+    }
+
+    private func presentImagePickerController() {
+        guard UIImagePickerController.isSourceTypeAvailable(.photoLibrary) else {
+            NSLog("The photo library is not available")
+            return
         }
         
-        override func viewDidLoad() {
-            super.viewDidLoad()
-            setNeedsStatusBarAppearanceUpdate()
-            //setUpPhotoView()
-            setTheme()
-            NotificationCenter.default.addObserver(self, selector: #selector(displayMessage(notification:)), name: .displayMsg, object: nil)
+        let imagePicker = UIImagePickerController()
+        imagePicker.delegate = self
+        imagePicker.sourceType = .photoLibrary
+        //imagePicker.allowsEditing = false
+        
+        present(imagePicker, animated: true, completion: nil)
+    }
+    
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+        guard let image = info[.originalImage] as? UIImage else { return }
+        //imageView.contentMode = .scaleAspectFit
+        photoView.image = image
+        
+        dismiss(animated: true, completion: nil)
+    }
+    
+    private func imagePickerControllerDidCancel(picker: UIImagePickerController) {
+        dismiss(animated: true, completion: nil)
+    }
+    
+    // MARK: - Navigation
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "profile" {
+            guard let destination = segue.destination as? ProfileViewController else { return }
+            
+            destination.currentUserUID = self.currentUserUID
+            destination.user2Controller = user2Controller
+            
         }
-        
-        func setTheme() {
-            //AppearanceHelper.style(button: addButton)
-            conditionsTableView.separatorColor = .grape
-            lookingTableView.separatorColor = .grape
-            
-            conditionLabel.textColor = .grass
-            lookingForLabel.textColor = .grass
-            addButton.tintColor = .grass
-            addButton.titleLabel?.font = AppearanceHelper.lightFont(with: .body, pointSize: 16)
-            
-            conditionLabel.font = AppearanceHelper.lightFont(with: .body, pointSize: 16)
-            lookingForLabel.font = AppearanceHelper.lightFont(with: .body, pointSize: 16)
-            
-            conditionsTableView.backgroundColor = .clear
-            lookingTableView.backgroundColor = .clear
-            view.backgroundColor = .violet
-        }
-        
-        //    private func updateImage() {
-        //        if let scaledImage = scaledImage {
-        //            addButton.isHidden = true
-        //            photoView.image = scaledImage
-        //        } else {
-        //            photoView.image = nil
-        //        }
-        //    }
-        
-        private func presentImagePickerController() {
-            guard UIImagePickerController.isSourceTypeAvailable(.photoLibrary) else {
-                NSLog("The photo library is not available")
-                return
-            }
-            
-            let imagePicker = UIImagePickerController()
-            imagePicker.delegate = self
-            
-            imagePicker.allowsEditing = false
-            imagePicker.sourceType = .photoLibrary
-            
-            present(imagePicker, animated: true, completion: nil)
-        }
-        
-        func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
-            guard let original = info[.originalImage] as? UIImage else { return }
-            //imageView.contentMode = .scaleAspectFit
-            photoView.image = original
-            
-            dismiss(animated: true, completion: nil)
-        }
-        
-        func imagePickerControllerDidCancel(picker: UIImagePickerController) {
-            dismiss(animated: true, completion: nil)
-        }
-        
-        //    private func setUpPhotoView() {
-        //        photoView.layer.cornerRadius = photoView.frame.width / 2
-        //    }
-        
-        // MARK: - Navigation
-        override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-            if segue.identifier == "profile" {
-                guard let destination = segue.destination as? ProfileViewController else { return }
-                
-                destination.currentUserUID = self.currentUserUID
-                destination.user2Controller = user2Controller
-                
-            }
-        }
+    }
 }

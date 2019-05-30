@@ -44,9 +44,13 @@ class SignupOrLoginViewController: UIViewController, UIScrollViewDelegate {
         setScrollView()
         setNeedsStatusBarAppearanceUpdate()
         
+<<<<<<< HEAD
         serverCurrentUserInitial = Auth.auth().currentUser
         
         if serverCurrentUserInitial != nil {
+=======
+        /*if serverCurrentUserInitial != nil {
+>>>>>>> master
             print("Initial Current User: \(serverCurrentUserInitial?.email)")
             
            /* let pushManager = PushNotificationManager(userID: serverCurrentUserInitial!.uid)
@@ -57,15 +61,17 @@ class SignupOrLoginViewController: UIViewController, UIScrollViewDelegate {
             self.userController?.currentUserUID = serverCurrentUserInitial!.uid
             performSegue(withIdentifier: "profile", sender: self)
         }
+        */
         
-       /* do {
+        do {
             try Auth.auth().signOut()
             print("signed out")
             print("User in view did load: \(serverCurrentUserInitial?.uid)")
             
         } catch {
             print("error")
-        }*/
+        }
+        
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {

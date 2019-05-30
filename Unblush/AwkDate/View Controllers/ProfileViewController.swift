@@ -11,7 +11,7 @@ import FirebaseAuth
 import FirebaseFirestore
 import Firebase
 
-class ProfileViewController: UIViewController {
+class ProfileViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     
     //MARK: - Properties
     var user2Controller: User2Controller?
@@ -45,12 +45,13 @@ class ProfileViewController: UIViewController {
     @IBOutlet weak var editButton: UIButton!
     
     @IBOutlet weak var signOutButton: UIButton!
-    @IBOutlet weak var messagesLabel: UILabel!
-    @IBOutlet weak var settingsLabel: UILabel!
-    @IBOutlet weak var mutuallyLikedLabel: UILabel!
     
     let domain = Bundle.main.bundleIdentifier!
     let defaults = UserDefaults.standard
+    @IBOutlet weak var editPicButton: UIButton!
+    @IBAction func editPicButtonTapped(_ sender: Any) {
+        presentImagePickerController()
+    }
     
     @IBAction func signOutButton(_ sender: Any) {
         do {
@@ -236,19 +237,38 @@ class ProfileViewController: UIViewController {
         //return nil*/
     }
     
+    private func presentImagePickerController() {
+        guard UIImagePickerController.isSourceTypeAvailable(.photoLibrary) else {
+            NSLog("The photo library is not available")
+            return
+        }
+        
+        let imagePicker = UIImagePickerController()
+        imagePicker.delegate = self
+        imagePicker.sourceType = .photoLibrary
+        //imagePicker.allowsEditing = false
+        
+        present(imagePicker, animated: true, completion: nil)
+    }
+    
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+        guard let image = info[.originalImage] as? UIImage else { return }
+        //imageView.contentMode = .scaleAspectFit
+        //profileView.image = image
+        
+        dismiss(animated: true, completion: nil)
+    }
+    
+    private func imagePickerControllerDidCancel(picker: UIImagePickerController) {
+        dismiss(animated: true, completion: nil)
+    }
+    
     func setupTheme() {
+        editPicButton.tintColor = UIColor.grape.withAlphaComponent(0.2)
+        
         bioLabel.textColor = .grape
         bioLabel.font = AppearanceHelper.lightFont(with: .caption1, pointSize: 17)
-        
-        messagesLabel.textColor = .grass
-        messagesLabel.font = AppearanceHelper.lightFont(with: .body, pointSize: 13)
-        settingsLabel.textColor = .grass
-        settingsLabel.font = AppearanceHelper.lightFont(with: .body, pointSize: 13)
-        mutuallyLikedLabel.textColor = .grass
-        mutuallyLikedLabel.font = AppearanceHelper.lightFont(with: .body, pointSize: 13)
-        
-        //cardView.backgroundColor = UIColor.grape.withAlphaComponent(0.15)
-        //cardView.layer.cornerRadius = 20
+    
         nameLabel.textColor = .grape
         nameLabel.font = AppearanceHelper.lightFont(with: .subheadline, pointSize: 33)
         
