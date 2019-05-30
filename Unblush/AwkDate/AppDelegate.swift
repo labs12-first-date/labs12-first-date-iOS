@@ -31,16 +31,19 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         //AppController.shared.show(in: UIWindow(frame: UIScreen.main.bounds))
         let userController = User2Controller()
         
+       defaults.removePersistentDomain(forName: domain)
+
         /*defaults.removePersistentDomain(forName: domain)
         defaults.synchronize()
-        print(Array(defaults.dictionaryRepresentation().keys).count)*/
-        
+        print(Array(defaults.dictionaryRepresentation().keys).count)
+
         if userController.serverCurrentUser != nil {
             print("User in App Delegate!")
             let pushManager = PushNotificationManager(userID: userController.serverCurrentUser!.uid)
             pushManager.registerForPushNotifications()
         }
-        
+     */
+
         AppearanceHelper.Appearance()
         return true
     }
@@ -67,6 +70,4 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
     }
 
-
 }
-
