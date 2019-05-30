@@ -22,15 +22,15 @@ This is a Lambda Labs Capstone Project designed as a dating app that provides a 
 <br>
 
 ### Project Managers
-Austin Cole 
-Michael Ney 
-
-[Deployed App](add link to deployed app here)
+|  ![Michael](https://img.shields.io/badge/Michael-Ney-lightgrey.svg)                                                      |                                                  ![Austin](https://img.shields.io/badge/Austin-Cole-yellowgreen.svg)                                                       |                                                      
+| :-----------------------------------------------------------------------------------------------------------------------------------------: | :-------------------------------------------------------------------------------------------------------------------------------------------: | 
+| <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQMSW2zrZZtmUo6mEqTMlZTYsFkm2OHUtZQ2CjIxHkQFuWpaNxlLg" width = "200" /> | <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTAw7Vnnx1BdUXIHi2nIRpfsCnz6EEgMqjoBtHtwbW5OSKxIjaI" width = "200" /> | 
+|  [<img src="https://github.com/favicon.ico" width="35"> ](https://github.com/MichaelNey)                                |                                                  [<img src="https://github.com/favicon.ico" width="35"> ](https://github.com/AustinBCole)  
+<br>
 
 ## Tech Stack
 ### iOS
 Xcode version 10.2.1
-[![Swift Version][swift-image]][swift-url]
 
 Cocoa Pods Used
 Boring SSL-GRPC
