@@ -31,34 +31,6 @@ class ConditionLookingForViewController: UIViewController, UITableViewDataSource
         return .lightContent
     }
     
-    private let context = CIContext(options: nil)
-    private let filter = CIFilter(name: "CILanczosScaleTransform")! //CIPhotoEffectChrome
-    
-    private var originalImage: UIImage? {
-        didSet {
-            guard let originalImage = originalImage else { return }
-            scaledImage = resize(image: originalImage, toSize: photoView.bounds.size)
-        }
-    }
-    
-    private var scaledImage: UIImage? {
-        didSet {
-            updateImage()
-        }
-    }
-    
-    func resize(image: UIImage, toSize size: CGSize) -> UIImage? {
-        // Height and width
-        var scaledSize = size
-        
-        // 1x, 2x, or 3x
-        let scale = UIScreen.main.scale
-        scaledSize = CGSize(width: scaledSize.width * scale,
-                            height: scaledSize.height * scale)
-        
-        return image.imageByScaling(toSize: scaledSize)
-    }
-    
     let conditions: [ConditionType] = [.aids, .chlamydia, .crabs, .genitalWarts, .gonorrhea, .hepB, .hepC, .hepD, .hepA, .herpes, .hiv, .syphyllis, .theClap]
     
     let lookingForCriteria: [LookingForType] = [.sameGender, .sameCondition, .openToAllPossibilities, .openToAllConditions, .fiveYearAgeGap, .tenYearAgeGap, .threeYearAgeGap]
@@ -172,33 +144,17 @@ class ConditionLookingForViewController: UIViewController, UITableViewDataSource
         // Start Activity Indicator
         myActivityIndicator.startAnimating()
         
-        guard let originalImage = photoView.image, let photoData = originalImage.pngData() else { return }
-        let processedImage = self.image(byFiltering: originalImage.flattened)
+        guard let photo = photoView.image, let photoData = photo.pngData() else { return }
         
-        PHPhotoLibrary.requestAuthorization { (status) in
-            guard status == .authorized else { return }
-            // Let the library know we are going to make changes
-            PHPhotoLibrary.shared().performChanges({
-                // Make a new photo creation request
-                PHAssetCreationRequest.creationRequestForAsset(from: processedImage)
-            }, completionHandler: { (success, error) in
-                if let error = error {
-                    NSLog("Error saving photo: \(error)")
-                    return
-                }
-                
                 DispatchQueue.main.async {
                     self.view.addSubview(myActivityIndicator)
-                    //self.presentSuccessfulSaveAlert()
                     
                 }
-            })
-        }
-        
-        self.user2Controller!.uploadPhoto(imageContainer: photoData)
-        if self.user2Controller?.currentPhoto != nil {
+  
+        user2Controller!.uploadPhoto(imageContainer: photoData)
+        if user2Controller?.currentPhoto != nil {
             
-            self.user2Controller?.putProfileToServer(userID: self.currentUserUID!, firstName: self.firstName!, lastName: self.lastName!, email: self.email!, age: self.age!, gender: self.gender!, zipcode: self.zipcode!, condition: conditionsFromTableView, mainPhoto: nil, lookingFor: lookingForFromTableView, biography: self.biography!, completion: { (error) in
+            user2Controller?.putProfileToServer(userID: currentUserUID!, firstName: firstName!, lastName: lastName!, email: email!, age: age!, gender: gender!, zipcode: zipcode!, condition: conditionsFromTableView, mainPhoto: nil, lookingFor: lookingForFromTableView, biography: biography!, completion: { (error) in
                 if let error = error {
                     print("Error putting profile to server: \(error)")
                     self.removeActivityIndicator(activityIndicator: myActivityIndicator)
@@ -210,7 +166,6 @@ class ConditionLookingForViewController: UIViewController, UITableViewDataSource
                 }
             })
         }
-        
     }
     
     override func viewDidLoad() {
@@ -238,37 +193,6 @@ class ConditionLookingForViewController: UIViewController, UITableViewDataSource
         lookingTableView.backgroundColor = .clear
         view.backgroundColor = .violet
     }
-    
-    private func image(byFiltering image: UIImage) -> UIImage {
-        //let ciImage = originalImage?.ciImage
-        guard let cgImage = image.cgImage else { return image }
-        let ciImage = CIImage(cgImage: cgImage)
-        filter.setValue(ciImage, forKey: kCIInputImageKey) //"inputImage"
-        
-        //recipe ..meta data
-        guard let outputCIImage = filter.outputImage else { return image }
-        
-        // Create the graphics and apply the filter
-        guard let outputCGImage = context.createCGImage(outputCIImage, from: outputCIImage.extent) else { return image }
-        
-        return UIImage(cgImage: outputCGImage)
-    }
-    
-    private func updateImage() {
-        if let scaledImage = scaledImage {
-            photoView.image = image(byFiltering: scaledImage)
-        } else {
-            photoView.image = nil
-        }
-    }
-
-//    private func presentSuccessfulSaveAlert() {
-//        let alert = UIAlertController(title: "Photo Saved!", message: "The photo has been saved to your Photo Library!", preferredStyle: .alert)
-//        let okayAction = UIAlertAction(title: "Okay", style: .default, handler: nil)
-//
-//        alert.addAction(okayAction)
-//        present(alert, animated: true, completion: nil)
-//    }
 
     private func presentImagePickerController() {
         guard UIImagePickerController.isSourceTypeAvailable(.photoLibrary) else {
