@@ -24,7 +24,7 @@ This is a Lambda Labs Capstone Project designed as a dating app that provides a 
 ### Project Managers
 |  ![Michael](https://img.shields.io/badge/Michael-Ney-lightgrey.svg)                                                      |                                                  ![Austin](https://img.shields.io/badge/Austin-Cole-yellowgreen.svg)                                                       |                                                      
 | :-----------------------------------------------------------------------------------------------------------------------------------------: | :-------------------------------------------------------------------------------------------------------------------------------------------: | 
-| <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQMSW2zrZZtmUo6mEqTMlZTYsFkm2OHUtZQ2CjIxHkQFuWpaNxlLg" width = "200" /> | <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTAw7Vnnx1BdUXIHi2nIRpfsCnz6EEgMqjoBtHtwbW5OSKxIjaI" width = "200" /> | 
+| <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRdpRRjjJKtrP6XSfxwaMkjqzBW_q1d5abhPjFm1A5-vsS3Um8A" width = "200" /> | <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTAw7Vnnx1BdUXIHi2nIRpfsCnz6EEgMqjoBtHtwbW5OSKxIjaI" width = "200" /> | 
 |  [<img src="https://github.com/favicon.ico" width="35"> ](https://github.com/MichaelNey)                                |                                                  [<img src="https://github.com/favicon.ico" width="35"> ](https://github.com/AustinBCole)  
 <br>
 
