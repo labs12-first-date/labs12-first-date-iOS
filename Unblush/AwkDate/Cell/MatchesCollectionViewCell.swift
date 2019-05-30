@@ -46,6 +46,7 @@ class MatchesCollectionViewCell: UICollectionViewCell {
     @IBAction func didLikeButton(_ sender: Any) {
         guard let profile = profile else { return }
         let index = filteredProfiles.firstIndex(where: { $0["email"] as! String == profile["email"] as! String })
+        filteredProfiles.remove(at: index!)
         DispatchQueue.main.async {
             self.didLikeButton.setTitle("Liked!", for: .normal)
             self.notLikeButton.alpha = 0
@@ -59,7 +60,6 @@ class MatchesCollectionViewCell: UICollectionViewCell {
                 print("error in table view cell liked matches: \(error)")
                 return
             }
-            filteredProfiles.remove(at: index!)
             NotificationCenter.default.post(name: .updateCollection, object: nil)
         })
     }
