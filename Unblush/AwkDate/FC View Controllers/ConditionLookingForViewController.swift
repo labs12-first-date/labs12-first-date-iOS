@@ -94,9 +94,6 @@ class ConditionLookingForViewController: UIViewController, UITableViewDataSource
         }
     }
     
-    @objc func changeCheckMark(notification: NSNotification) -> Void {
-        
-    }
     
     @objc func displayMessage(notification: NSNotification) -> Void {
         guard let userMessage = notification.userInfo!["message"] else { return }
@@ -110,6 +107,7 @@ class ConditionLookingForViewController: UIViewController, UITableViewDataSource
                     DispatchQueue.main.async
                         {
                             alertController.dismiss(animated: true, completion: nil)
+                            
                     }
                 }
                 alertController.addAction(OKAction)
@@ -163,6 +161,8 @@ class ConditionLookingForViewController: UIViewController, UITableViewDataSource
                 DispatchQueue.main.async {
                     self.removeActivityIndicator(activityIndicator: myActivityIndicator)
                     self.performSegue(withIdentifier: "profile", sender: self)
+                    conditionsFromTableView = []
+                    lookingForFromTableView = []
                 }
             })
         }
