@@ -27,7 +27,9 @@ This is a Lambda Labs Capstone Project designed dating app that provides a safe 
 |  ![Michael](https://img.shields.io/badge/Michael-Ney-lightgrey.svg)                                                      |                                                  ![Austin](https://img.shields.io/badge/Austin-Cole-yellowgreen.svg)                                                       |                                                      
 | :-----------------------------------------------------------------------------------------------------------------------------------------: | :-------------------------------------------------------------------------------------------------------------------------------------------: | 
 | <img src="https://www.dalesjewelers.com/wp-content/uploads/2018/10/placeholder-silhouette-male.png" width = "200" /> | <img src="https://www.dalesjewelers.com/wp-content/uploads/2018/10/placeholder-silhouette-male.png" width = "200" /> | 
-|  [<img src="https://github.com/favicon.ico" width="35"> ](https://github.com/MichaelNey)                                |                                                  [<img src="https://github.com/favicon.ico" width="35"> ](https://github.com/AustinBCole)  
+|  [<img src="https://github.com/favicon.ico" width="35"> ](https://github.com/MichaelNey)                                |                                                  [<img src="https://github.com/favicon.ico" width="35"> ](https://github.com/AustinBCole)                            |
+| [ <img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="35"> ](https://www.linkedin.com/in/michaelqney/) | [ <img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="35"> ](https://www.linkedin.com/in/austin-cole-123009107//) | 
+
 <br>
 
 ## Tech Stack
