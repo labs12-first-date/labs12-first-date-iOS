@@ -9,9 +9,11 @@
 import UIKit
 import Firebase
 import UserNotifications
+import FirebaseInstanceID
+import FirebaseMessaging
 
 @UIApplicationMain
-class AppDelegate: UIResponder, UIApplicationDelegate {
+class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterDelegate, MessagingDelegate {
 
     var window: UIWindow?
    
@@ -63,6 +65,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         //token = deviceToken.map { String(format: "%02.2hhx", $0) }.joined()
        // 1c94141123e23caa7ba685bec04cac3aca7eb66fecff0c0de6d149b6b5c84d82
+        
+        Messaging.messaging().setAPNSToken(deviceToken, type: .sandbox)
+        // Messaging.messaging().setAPNSToken(deviceToken, type: .prod)
+        
+        //setAPNSToken(deviceToken, type: .sandbox)
         
         print("Receive Remote Notification!")
     }

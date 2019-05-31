@@ -11,6 +11,8 @@ import FirebaseFirestore
 import FirebaseMessaging
 import UIKit
 import UserNotifications
+import FirebaseInstanceID
+
 class PushNotificationManager: NSObject, MessagingDelegate, UNUserNotificationCenterDelegate {
     let userID: String
     init(userID: String) {
