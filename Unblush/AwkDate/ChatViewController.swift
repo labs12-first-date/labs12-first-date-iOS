@@ -40,6 +40,7 @@ class ChatViewController: MessagesViewController {
     let user: User
     let messageThread: MessageThread
     let chattingUserUID: String
+    var chattingUserPic: UIImage?
     
     deinit {
         messageListener?.remove()
@@ -121,6 +122,34 @@ class ChatViewController: MessagesViewController {
             
         })
         
+        let userController = User2Controller()
+        
+        
+        userController.fetchCompareProfileFromServer(userID: chattingUserUID) { (error) in
+            if let error = error {
+                print("Error fetching compare profile in chat vc: \(error)")
+                return
+            }
+            
+            if userController.compareProfileFromServer != nil {
+                let urlString = userController.compareProfileFromServer["profile_picture"] as! String
+                self.chattingUserPic = self.load(fileName: urlString)
+                
+                let cameraItem = InputBarButtonItem(type: .custom) // 1
+                // cameraItem.tintColor = .primary
+                cameraItem.image = self.chattingUserPic
+                cameraItem.addTarget(
+                    self,
+                    action: #selector(self.cameraButtonPressed), // 2
+                    for: .primaryActionTriggered
+                )
+                cameraItem.setSize(CGSize(width: 60, height: 30), animated: false)
+                self.messageInputBar.setStackViewItems([cameraItem], forStack: .left, animated: false) // 3
+            }
+            
+        }
+        
+        
         navigationItem.largeTitleDisplayMode = .never
         
         maintainPositionOnKeyboardFrameChanged = true
@@ -132,26 +161,49 @@ class ChatViewController: MessagesViewController {
         messagesCollectionView.messagesLayoutDelegate = self
         messagesCollectionView.messagesDisplayDelegate = self
         
-        let cameraItem = InputBarButtonItem(type: .system) // 1
-        cameraItem.tintColor = .primary
-        cameraItem.image = UIImage(named: "Image-1")
-        cameraItem.addTarget(
-            self,
-            action: #selector(cameraButtonPressed), // 2
-            for: .primaryActionTriggered
-        )
-        cameraItem.setSize(CGSize(width: 60, height: 30), animated: false)
+       
         
         messageInputBar.leftStackView.alignment = .center
         messageInputBar.setLeftStackViewWidthConstant(to: 50, animated: false)
-        messageInputBar.setStackViewItems([cameraItem], forStack: .left, animated: false) // 3
+        
     }
     
     
     // MARK: - Actions
     
+    private func load(fileName: String) -> UIImage? {
+        
+        print("file name: \(fileName)")
+        let url = NSURL(string: fileName)
+        let newURL = NSURL(string: fileName)
+        
+        let imagePath: String = url!.path! //"\(NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)[0])/\(url).png"
+        let imageUrl: URL = URL(fileURLWithPath: imagePath)
+        do {
+            let imageData = try Data(contentsOf: newURL! as URL)
+            // print("Image data: \(imageData)")
+            return UIImage(data: imageData)
+        } catch {
+            print("Error loading image : \(error)")
+        }
+        return nil
+        
+    }
+    
     @objc private func cameraButtonPressed() {
-        let picker = UIImagePickerController()
+        let showAlert = UIAlertController(title: "", message: nil, preferredStyle: .alert)
+        let imageView = UIImageView(frame: CGRect(x: 10, y: 50, width: 250, height: 230))
+        imageView.image = chattingUserPic // Your image here...
+        showAlert.view.addSubview(imageView)
+        let height = NSLayoutConstraint(item: showAlert.view, attribute: .height, relatedBy: .equal, toItem: nil, attribute: .notAnAttribute, multiplier: 1, constant: 320)
+        let width = NSLayoutConstraint(item: showAlert.view, attribute: .width, relatedBy: .equal, toItem: nil, attribute: .notAnAttribute, multiplier: 1, constant: 250)
+        showAlert.view.addConstraint(height)
+        showAlert.view.addConstraint(width)
+        showAlert.addAction(UIAlertAction(title: "OK", style: .default, handler: { action in
+            showAlert.dismiss(animated: true, completion: nil)
+        }))
+        self.present(showAlert, animated: true, completion: nil)
+       /* let picker = UIImagePickerController()
         picker.delegate = self
         
         if UIImagePickerController.isSourceTypeAvailable(.camera) {
@@ -160,7 +212,7 @@ class ChatViewController: MessagesViewController {
             picker.sourceType = .photoLibrary
         }
         
-        present(picker, animated: true, completion: nil)
+        present(picker, animated: true, completion: nil)*/
     }
     
     // MARK: - Helpers
